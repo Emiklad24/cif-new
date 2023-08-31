@@ -40,7 +40,22 @@ const Referral = () => {
     const onSearch = (value) => {
         console.log('search:', value);
     };
+    const [formValues, setFormValues] = useState({});
 
+    const handleUpdateInputValues = (inputName, value) => {
+  
+      console.log(inputName, value)
+  
+      setFormValues((previousState) => ({
+        ...previousState,	
+        [inputName]: value
+  
+      }))
+  
+    }
+  
+    console.log('form values', formValues)
+  
     return (
         <>
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -59,32 +74,19 @@ const Referral = () => {
                                     },
                                 ]}
                             >
-                                <Radio.Group buttonStyle="solid">
+                                <Radio.Group buttonStyle="solid" name="treatment" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                                     <Radio.Button value="yes">Yes</Radio.Button>
                                     <Radio.Button value="no">No</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
                         </Col>
-                        <Col lg={12} md={12} sm={24}>
-                            <Form.Item
-                                label="If No, Why not ?"
-                                name="whyNoTreatment"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}
-                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-                        <Col lg={12} md={12} sm={24}>
+                        
+                       {
+
+                         formValues?.treatment === "yes" && 
+                         (
+                        
+                            <Col lg={12} md={12} sm={24}>
                             <Form.Item
                                 label="If Yes, Name of facility"
                                 name="specifyNameOfFacility"
@@ -98,6 +100,16 @@ const Referral = () => {
                                 />
                             </Form.Item>
                         </Col>
+
+                         )                
+
+
+                       }
+
+                       
+
+
+                     
 
                         <Col lg={12} md={12} sm={24}>
                             <Form.Item
