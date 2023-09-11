@@ -42,7 +42,24 @@ const ClinicalHistory = () => {
   };
   const onSearch = (value) => {
     console.log('search:', value);
+
   };
+
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState,	
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
 
 
 
@@ -64,7 +81,7 @@ const ClinicalHistory = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -85,7 +102,7 @@ const ClinicalHistory = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>

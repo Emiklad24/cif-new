@@ -44,6 +44,20 @@ const Epidemiological = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    setFormValues((previousState) => ({
+      ...previousState,	
+      [inputName]: value
+
+    }))
+
+  }
+ 
+  console.log('form values', formValues)
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -64,7 +78,7 @@ const Epidemiological = () => {
                 ]}
               >
 
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid" name="sourceOfWater" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                   <Radio.Button value="Pipeborne">Pipeborne</Radio.Button>
                   <Radio.Button value="bole hole/well">bole hole/well</Radio.Button>
                   <Radio.Button value=" river/stream"> river/stream</Radio.Button>
@@ -87,7 +101,7 @@ const Epidemiological = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid" name="anyfamilyHistoryOfBuruli" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
