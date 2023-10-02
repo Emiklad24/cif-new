@@ -1,4 +1,6 @@
-import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE} from '../../constants/ActionTypes'
+import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE, UPDATE_CASE,
+  CREATE_CASE,
+  FETCH_CASE} from '../../constants/ActionTypes'
 import {TOGGLE_COLLAPSED_NAV, WINDOW_WIDTH} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
@@ -8,7 +10,12 @@ const INIT_STATE = {
   navCollapsed: true,
   width: window.innerWidth,
   pathname: '/',
+  data: [],
+  caseList: [],
+  case: {},
 };
+
+
 
 const CommonReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
@@ -45,6 +52,32 @@ const CommonReducer = (state = INIT_STATE, action) => {
     case HIDE_MESSAGE: {
       return {...state, loading: false, error: '', message: ''};
     }
+    case CREATE_CASE: {
+      let updatedList = state.caseList;
+      updatedList = [action.payload, ...updatedList];
+
+      return {
+        ...state,
+        caseList: updatedList,
+      };
+    }
+    case FETCH_CASE: {
+      return {
+        ...state,
+        case: action.payload,
+      };
+    }
+    case UPDATE_CASE: {
+      return {
+        ...state,
+        caseList: state.caseList?.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
+      };
+    }
+
+
+
     default:
       return state;
   }

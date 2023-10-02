@@ -56,7 +56,7 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={date_of_onset ? moment(date_of_onset) : null}
-                name="date_of_onset"
+                name="dateOfSymptomOnset"
                 rules={[
                   {
                     required: true,
@@ -82,7 +82,6 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                   // initialValue={diarrhea ? moment(diarrhea) : null}
-                  name="diarrhea"
                   rules={[
                     {
                       required: true,
@@ -104,15 +103,14 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                   // initialValue={restlessness ? moment(restlessness) : null}
-                  name="restlessness"
                   rules={[
                     {
                       required: true,
                       message: "Please input the date!",
                     },
                   ]}
-                
-                
+
+
               >
                 <Radio.Group buttonStyle="solid">
                   <Radio.Button value="yes">Yes</Radio.Button>
@@ -129,7 +127,6 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                   // initialValue={fever ? moment(fever) : null}
-                  name="fever"
                   rules={[
                     {
                       required: true,
@@ -147,7 +144,6 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Leg cramp"
-                name="legCramp"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={legCramp ? moment(legCramp) : null}
@@ -174,7 +170,6 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={vomiting ? moment(vomiting) : null}
-                name="vomiting"
                 rules={[
                   {
                     required: true,
@@ -192,7 +187,6 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Thirst"
-                name="thirst"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={thirst ? moment(thirst) : null}
@@ -218,7 +212,6 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                  // initialValue={dehydrated ? moment(dehydrated) : null}
-                 name="dehydrated"
                  rules={[
                    {
                      required: true,
@@ -240,7 +233,6 @@ const ClinicalHistory = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                   // initialValue={bloodInStool ? moment(bloodInStool) : null}
-                  name="bloodInStool"
                   rules={[
                     {
                       required: true,
@@ -261,7 +253,7 @@ const ClinicalHistory = () => {
                 name="othersymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                   
+
               >
                 <Input
                   placeholder="othersymptoms"
