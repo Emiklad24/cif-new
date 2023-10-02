@@ -12,7 +12,31 @@ import moment from "moment";
 
 const {Option} = Select;
 
-const signs = ['FCT', 'Enugu'];
+const signs = [ 'Fever', 
+ 'Headache',
+ 'Skin lesions',
+ 'Chest Discomfort',
+ 'Shortness of breath', 
+ 'Confusion or dizziness', 
+ 'Cough',
+ 'Nausea',
+ 'Bloody vomiting',
+'Stomach pains',
+ 'Sweats (often drenching)',
+ 'Extreme tiredness',
+ 'Body aches',
+ 'Swelling of neck or neck glands',
+ 'Sore throat',
+'Painful swallowing',
+'Hoarseness of voice',
+'Diarrhea or bloody diarrhea',
+'Flushing (red face) and red eyes',
+'Fainting', 
+'Swelling of the abdomen (stomach)',
+'Black Eschars/crusts',
+'Convulsions',
+'Others'
+];
 const baseline = ['Yes', 'No','Unknown'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
@@ -27,6 +51,14 @@ const ClinicalHistory = () => {
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+
+  const [signsSymptoms, setSignsSymptoms] = useState(false);
+
+  const [hasBaselineSecrum, setHasBaselineSecrum] = useState(null);
+
+  const handleRadioHasBaseLine = (event) => {
+    setHasBaselineSecrum(event.target.value);
+  };
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -77,7 +109,8 @@ const ClinicalHistory = () => {
                 <Select
                     placeholder="Select Option"
                     allowClear
-                    name="typeOfSpecimen"
+                    name="signsSymptoms"
+                    onChange={setSignsSymptoms}
                   >
                   {signs.map((item) => (
                     <Option label={item} value={item}>
@@ -88,6 +121,7 @@ const ClinicalHistory = () => {
                 </Select>
               </Form.Item>
             </Col>
+            {signsSymptoms === 'Others' &&
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Other"
@@ -103,6 +137,7 @@ const ClinicalHistory = () => {
                 />
               </Form.Item>
             </Col>
+            }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date of case investigation"
@@ -148,11 +183,12 @@ const ClinicalHistory = () => {
               >
                 <Radio.Group buttonStyle="solid">
                 {baseline.map((item) => (
-                    <Radio.Button value={item}>{item}</Radio.Button>
+                    <Radio.Button onChange={handleRadioHasBaseLine}  value={item}>{item}</Radio.Button>
                   ))}
                 </Radio.Group>
               </Form.Item>
             </Col>
+            {hasBaselineSecrum === 'Yes' &&
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="If yes, date"
@@ -171,6 +207,7 @@ const ClinicalHistory = () => {
                 />
               </Form.Item>
             </Col>
+            }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="First Symptom noticed"

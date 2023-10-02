@@ -12,7 +12,7 @@ import moment from "moment";
 
 const {Option} = Select;
 
-const classifications = ['Epidemiologically Linked', 'Clinically Compatible', 'Discarded', 'Pending Classification'];
+const classifications = ['Lab confirmed','Epidemiologically Linked', 'Clinically Compatible', 'Discarded', 'Pending Classification'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
 
