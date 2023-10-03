@@ -6,11 +6,11 @@ import {
   NAV_STYLE_FIXED,
   THEME_COLOR,
   THEME_TYPE,
-  THEME_TYPE_SEMI_DARK, UPDATE_RTL_STATUS, THEME_TYPE_LITE
+  THEME_TYPE_SEMI_DARK, UPDATE_RTL_STATUS, THEME_TYPE_LITE, NAV_STYLE_ABOVE_HEADER
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {
-  navStyle: NAV_STYLE_FIXED,
+  navStyle: NAV_STYLE_ABOVE_HEADER,
   layoutType: LAYOUT_TYPE_FULL,
   themeType: THEME_TYPE_LITE,
   themeColor: '',

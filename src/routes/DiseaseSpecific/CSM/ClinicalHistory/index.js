@@ -45,6 +45,28 @@ const ClinicalHistory = () => {
   };
 
 
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName] : value
+
+    }))
+
+    
+  }
+
+ 
+
+
+
+  
+
+
 
   return (
     <>
@@ -242,6 +264,7 @@ const ClinicalHistory = () => {
                     ]
                   }
                   name="sampleType"
+                  onChange={(value)=>  handleUpdateInputValues("sampleType", value)}
                 />
               </Form.Item>
             </Col>

@@ -10,7 +10,7 @@ import {
   Button,
   Radio,
 } from "antd";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "styles/pages/form.less";
 import moment from "moment";
 import YellowFever from "./YellowFever";
@@ -34,8 +34,12 @@ import Dengue from "./Dengue";
 import CSM from "./CSM";
 import Covid19 from "./Covid19";
 import BuruliUlcer from "./BuruliUlcer";
+import { createCase, updateCase } from "appRedux/actions/Common";
 
-const { Option } = Select;
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+const {Option} = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
 const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
 const stateData = ["FCT", "Enugu"];
@@ -76,9 +80,10 @@ const App = () => {
   const [lga, setLga] = useState([]);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const { Panel } = Collapse;
+  const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-
+  const history = useHistory();
+  const dispatch = useDispatch();
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
@@ -86,9 +91,76 @@ const App = () => {
   const onChange = () => {
     console.log("Received values of form:");
   };
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = async(fieldsValue) => {
+    let additionals = {}
+    if (program === "Cholera") {
+        additionals = {
+        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
+        'dateSpecimenTested': fieldsValue['dateSpecimenTested'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+      }
+    }else if (program === "Lassa Fever") {
+        additionals = {
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateSampleSent': fieldsValue['dateSampleSent'].format('DD-MM-YYYY'),
+        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
+        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
+        'dateResultSentOut': fieldsValue['dateResultSentOut'].format('DD-MM-YYYY'),
+        'startDateTraveled': fieldsValue['startDateTraveled'].format('DD-MM-YYYY'),
+        'endDateTraveled': fieldsValue['endDateTraveled'].format('DD-MM-YYYY'),
+        'dateHospitalVisitOrAdmission': fieldsValue['dateHospitalVisitOrAdmission'].format('DD-MM-YYYY'),
+        'dateHospitalVisit': fieldsValue['dateHospitalVisit'].format('DD-MM-YYYY'),
+        'dateIsolationAdmission': fieldsValue['dateIsolationAdmission'].format('DD-MM-YYYY'),
+        'dateDischarge': fieldsValue['dateDischarge'].format('DD-MM-YYYY'),
+        'dateLabPositiveResult': fieldsValue['dateLabPositiveResult'].format('DD-MM-YYYY'),
+      }
+    }else if (program === "Anthrax") {
+        additionals = {
+        'dateOfLastVaccination': fieldsValue['dateOfLastVaccination'].format('DD-MM-YYYY'),
+        'dateOfLastDose': fieldsValue['dateOfLastDose'].format('DD-MM-YYYY'),
+        'dateSeenAtHealthFacility': fieldsValue['dateSeenAtHealthFacility'].format('DD-MM-YYYY'),
+        'dateOfCaseInvestigation': fieldsValue['dateOfCaseInvestigation'].format('DD-MM-YYYY'),
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+      }
+    }else if (program === "Buruli Ulcer") {
+        additionals = {
+        'referralDate': fieldsValue['referralDate'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
+        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
+        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
+      }
+    }else if (program === "Covid19") {
+        additionals = {
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
+        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
+        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
+        'selectDateOfFirstVaccination': fieldsValue['selectDateOfFirstVaccination'].format('DD-MM-YYYY'),
+        'selectDateSecondOfVaccination': fieldsValue['selectDateSecondOfVaccination'].format('DD-MM-YYYY'),
+      }
+    }
+    const values = {
+      ...fieldsValue,
+      'dateOfReport': fieldsValue['dateOfReport'].format('DD-MM-YYYY'),
+      'dateOfNotification': fieldsValue['dateOfNotification'].format('DD-MM-YYYY'),
+      'dateOfInvestigation': fieldsValue['dateOfInvestigation'].format('DD-MM-YYYY'),
+      'dateOfBirth': fieldsValue['dateOfBirth'].format('DD-MM-YYYY'),
+      ...additionals
+    };
+    console.log('Received values of form: ', values);
+   await dispatch(createCase(values));
+      setTimeout(() => {
+        history.push("/disease_specific");
+      }, 1000);
   };
+
   const onChangeDisease = (value) => {
     setProgram(value);
   };
@@ -97,47 +169,47 @@ const App = () => {
   };
   const getProgram = () => {
     if (program === "Yellow Fever") {
-      return <YellowFever />;
+      return <YellowFever/>;
     } else if (program === "Cholera") {
-      return <Cholera />;
+      return <Cholera/>;
     } else if (program === "Yaw") {
-      return <Yaw />;
+      return <Yaw/>;
     } else if (program === "Anthrax") {
-      return <Anthrax />;
+      return <Anthrax/>;
     } else if (program === "AFP") {
-      return <AFP />;
+      return <AFP/>;
     } else if (program === "Tetanus") {
-      return <Tetanus />;
+      return <Tetanus/>;
     } else if (program === "Rubella") {
-      return <Rubella />;
+      return <Rubella/>;
     } else if (program === "NOMA") {
-      return <NOMA />;
+      return <NOMA/>;
     } else if (program === "Mpox") {
-      return <Mpox />;
+      return <Mpox/>;
     } else if (program === "Measles") {
-      return <Measles />;
+      return <Measles/>;
     } else if (program === "Lassa Fever") {
-      return <LassaFever />;
+      return <LassaFever/>;
     } else if (program === "Influenza") {
-      return <Influenza />;
+      return <Influenza/>;
     } else if (program === "Guinea Worm") {
-      return <GuineaWorm />;
+      return <GuineaWorm/>;
     } else if (program === "Diphtheria") {
-      return <Diphtheria />;
+      return <Diphtheria/>;
     } else if (program === "Ebola") {
-      return <Ebola />;
+      return <Ebola/>;
     } else if (program === "Dengue") {
-      return <Dengue />;
+      return <Dengue/>;
     } else if (program === "CSM") {
-      return <CSM />;
+      return <CSM/>;
     } else if (program === "Buruli Ulcer") {
-      return <BuruliUlcer />;
+      return <BuruliUlcer/>;
     } else if (program === "Perinatal Death") {
-      return <PerinatalDeath />;
+      return <PerinatalDeath/>;
     } else if (program === "Maternal Death") {
-      return <MaternalDeath />;
+      return <MaternalDeath/>;
     } else if (program === "Covid19") {
-      return <Covid19 />;
+      return <Covid19/>;
     } else {
       return null;
     }
@@ -148,8 +220,8 @@ const App = () => {
       <Row>
         <Col lg={12} md={12} sm={12} xs={24}>
           <Form.Item
-            labelCol={{ span: 24 }}
-            wrapperCol={{ span: 24 }}
+            labelCol={{span: 24}}
+            wrapperCol={{span: 24}}
             label="Disease Name"
             name="diseaseName"
             rules={[
@@ -161,21 +233,23 @@ const App = () => {
           >
             <Select
               showSearch
+
               placeholder="Select a disease"
               optionFilterProp="children"
               onChange={onChangeDisease}
               onSearch={onSearch}
+              allowClear
               filterOption={(input, option) =>
                 (option?.label ?? "")
                   .toLowerCase()
                   .includes(input.toLowerCase())
               }
               filterSort={(optionA, optionB) =>
-                optionA.children
-                  ?.toLowerCase()
-                  .localeCompare(optionB.children?.toLowerCase())
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
               }
-              options={diseaseData.map((disease) => ({
+
+              options={diseaseData.map((disease,i) => ({
+                key:i,
                 label: disease,
                 value: disease,
               }))}
@@ -189,8 +263,8 @@ const App = () => {
             <Col lg={6} md={6} sm={24}>
               <Form.Item
                 label="Date of Report"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfReport"
                 rules={[
@@ -205,7 +279,7 @@ const App = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{ width: "100%" }}
+                  style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
@@ -213,8 +287,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="State of Reporting"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="stateOfReporting"
                 rules={[
                   {
@@ -229,6 +303,14 @@ const App = () => {
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select State</>}
                   onChange={handleStateChange}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {stateData.map((item) => (
                     <Option label={item} value={item}>
@@ -241,8 +323,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="LGA of Reporting"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="lgaOfReporting"
                 rules={[
                   {
@@ -256,6 +338,14 @@ const App = () => {
                   allowClear
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select LGA</>}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {lga.map((item) => (
                     <Option label={item} value={item}>
@@ -268,8 +358,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Ward of Reporting"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="wardOfReporting"
                 rules={[
                   {
@@ -283,6 +373,14 @@ const App = () => {
                   allowClear
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select Ward</>}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {lga.map((item) => (
                     <Option label={item} value={item}>
@@ -295,8 +393,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Place of Detection"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="placeOfDetection"
                 rules={[
                   {
@@ -310,6 +408,14 @@ const App = () => {
                   allowClear
                   optionLabelProp="label"
                   onChange={setPlaceOfDetection}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {placeDetectedData.map((item) => (
                     <Option label={item} value={item}>
@@ -323,8 +429,8 @@ const App = () => {
               <Col lg={6} md={6} sm={12} xs={24}>
                 <Form.Item
                   label="Health Facility"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
                   name="placeOfDetectionFacility"
                   rules={[
                     {
@@ -337,6 +443,14 @@ const App = () => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                    }
                     // onChange={handleStateChange}
                   >
                     {facilityData.map((item) => (
@@ -353,8 +467,8 @@ const App = () => {
               place_of_detection === "NYSC Camp") && (
               <Col lg={6} md={6} sm={24} xs={24}>
                 <Form.Item
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
                   label="Place Description"
                   name="placeDescription"
                   rules={[
@@ -364,14 +478,14 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Input size="large" />
+                  <Input size="large"/>
                 </Form.Item>
               </Col>
             )}
             <Col lg={6} md={6} sm={24} xs={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 label="Epid Number"
                 name="epidNumber"
                 rules={[
@@ -381,14 +495,14 @@ const App = () => {
                   },
                 ]}
               >
-                <Input size="large" />
+                <Input size="large"/>
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Notified by"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="notifiedBy"
                 rules={[
                   {
@@ -414,8 +528,8 @@ const App = () => {
             <Col lg={6} md={6} sm={24}>
               <Form.Item
                 label="Date of notification"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfNotification"
                 rules={[
@@ -430,7 +544,7 @@ const App = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{ width: "100%" }}
+                  style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
@@ -438,8 +552,8 @@ const App = () => {
             <Col lg={6} md={6} sm={24}>
               <Form.Item
                 label="Date of Investigation"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfInvestigation"
                 rules={[
@@ -454,7 +568,7 @@ const App = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{ width: "100%" }}
+                  style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
@@ -467,8 +581,8 @@ const App = () => {
           <Row>
             <Col lg={6} md={6} sm={24} xs={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 label="First Name"
                 name="firstName"
                 rules={[
@@ -478,23 +592,23 @@ const App = () => {
                   },
                 ]}
               >
-                <Input size="large" />
+                <Input size="large"/>
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={24} xs={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 label="Middle Name"
                 name="middleName"
               >
-                <Input size="large" />
+                <Input size="large"/>
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={24} xs={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 label="Last Name"
                 name="lastName"
                 rules={[
@@ -504,13 +618,13 @@ const App = () => {
                   },
                 ]}
               >
-                <Input size="large" />
+                <Input size="large"/>
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={24} xs={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 label="Patient/Caregiver Phone Number"
                 // initialValue={phone}
                 name="phoneNumber"
@@ -531,8 +645,8 @@ const App = () => {
             <Col lg={6} md={6} sm={24}>
               <Form.Item
                 label="Date Of Birth"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfBirth"
                 rules={[
@@ -547,15 +661,15 @@ const App = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{ width: "100%" }}
+                  style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={24}>
               <Form.Item
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 tooltip="Estimated age in years and months"
                 label="Age"
                 name="age"
@@ -597,8 +711,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="State of Residence"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="stateOfResidence"
                 rules={[
                   {
@@ -613,6 +727,14 @@ const App = () => {
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select State</>}
                   onChange={handleStateChange}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {stateData.map((item) => (
                     <Option label={item} value={item}>
@@ -625,8 +747,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="LGA of Residence"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="lgaOfResidence"
                 rules={[
                   {
@@ -640,6 +762,14 @@ const App = () => {
                   allowClear
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select LGA</>}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {lga.map((item) => (
                     <Option label={item} value={item}>
@@ -652,8 +782,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Ward of Residence"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="wardOfResidence"
                 rules={[
                   {
@@ -667,6 +797,14 @@ const App = () => {
                   allowClear
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select Ward</>}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                  }
                 >
                   {lga.map((item) => (
                     <Option label={item} value={item}>
@@ -680,22 +818,23 @@ const App = () => {
               <Form.Item
                 label="Patient’s Residential address "
                 name="patientResidentialAddress"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
               >
                 <Input
                   placeholder="Enter Address"
                   id="address"
                   name="address"
-                  onChange={(e) => {}}
+                  onChange={(e) => {
+                  }}
                 />
               </Form.Item>
             </Col>
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Settlement type"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="settlementType"
                 rules={[
                   {
@@ -713,8 +852,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Occupation"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="occupation"
                 rules={[
                   {
@@ -735,8 +874,8 @@ const App = () => {
             <Col lg={6} md={6} sm={12} xs={24}>
               <Form.Item
                 label="Education"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 name="education"
                 rules={[
                   {
@@ -760,7 +899,7 @@ const App = () => {
       {getProgram()}
       <Row>
         <Col lg={6} md={6} sm={24}>
-          <Form.Item className="gx-m-2">
+          <Form.Item className="gx-m-3">
             <Button type="primary" htmlType="submit">
               Submit
             </Button>

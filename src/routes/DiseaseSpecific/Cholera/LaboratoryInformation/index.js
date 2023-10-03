@@ -44,72 +44,101 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Laboratory information" key="1">
           <Row>
-          <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Specimen collected"
-              name="specimenTaken"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
-            </Form.Item>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Date specimen was collected"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-
-              name="dateSpecimenWasTaken"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the date!",
-                },
-              ]}
-            >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="DD-MM-YYYY"
-                format="DD-MM-YYYY"
-              />
-            </Form.Item>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Type of specimen collected"
-              name="sampleType"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-              <CheckboxGroup
-                options={
-
-                  [
-                    { label: 'Stool', value: 'face' },
-                    { label: 'Rectal swab', value: 'leg' },
+            <Col lg={8} md={8} sm={24}>
+              <Form.Item
+                label="Specimen collected"
+                name="specimenTaken"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Radio.Group buttonStyle="solid" name="specimenTaken" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
+                  <Radio.Button value="yes">Yes</Radio.Button>
+                  <Radio.Button value="no">No</Radio.Button>
+                  <Radio.Button value="unknown">Unknown</Radio.Button>
+                </Radio.Group>
+              </Form.Item>
+            </Col>
 
 
-                  ]
-                }
-                name="specimentype"
-              />
-            </Form.Item>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
+            {
+              formValues?.specimenTaken === "yes" && (
+
+                <>
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="Date specimen was collected"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+
+                      name="dateSpecimenCollected"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the date!",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        // onChange={onChangeDoB}
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{ width: "100%" }}
+                        placeholder="DD-MM-YYYY"
+                        format="DD-MM-YYYY"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="Type of specimen collected"
+                      name="sampleType"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                    >
+                      <CheckboxGroup
+                        options={
+
+                          [
+                            { label: 'Stool', value: 'face' },
+                            { label: 'Rectal swab', value: 'leg' },
+
+
+                          ]
+                        }
+                        name="specimentype"
+                      />
+                    </Form.Item>
+                  </Col>
+
+                </>
+              )
+
+            }
+
+
+            <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Name of testing Laboratory"
                 name="nameOfTestingLaboratory"
@@ -225,7 +254,7 @@ const LaboratoryInformation = () => {
 
         </Panel>
       </Collapse>
-      
+
     </>
   );
 };

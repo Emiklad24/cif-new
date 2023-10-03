@@ -49,7 +49,7 @@ const LaboratoryInformation = () => {
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                   label="Date of specimen collection"
-                  name="dateSpecimenCollection"
+                  name="dateSpecimenCollected"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                 >
@@ -64,7 +64,7 @@ const LaboratoryInformation = () => {
                 />
                 </Form.Item>
             </Col>
-           
+
           </Row>
         </Panel>
       </Collapse>

@@ -6,19 +6,16 @@ import {
   Row,
   Select, Radio,
 } from 'antd';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import "styles/pages/form.less";
 import moment from "moment";
-import { Checkbox } from 'antd';
-import { FormContext } from 'antd/lib/form/context';
+import {Checkbox} from 'antd';
+import {FormContext} from 'antd/lib/form/context';
 
 const nameOfTestingLaboratory = ["National Refrence Laboratory (NRL)", "Central Public Health Laboratory (CPHL)"];
 const CheckboxGroup = Checkbox.Group;
-const { Option } = Select;
+const {Option} = Select;
 
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
 
 const lgaData = {
   FCT: ['AMAC', 'Bwari', 'Kwali'],
@@ -28,7 +25,7 @@ const lgaData = {
 const LaboratoryInformation = () => {
   const [form] = Form.useForm();
   const [lga, setLga] = useState([]);
-  const { Panel } = Collapse;
+  const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
   const handleStateChange = (value) => {
@@ -72,8 +69,8 @@ const LaboratoryInformation = () => {
               <Form.Item
                 label="Specimen Collected?"
                 name="specimenCollected"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                labelCol={{span: 24}}
+                wrapperCol={{span: 24}}
                 rules={[
                   {
                     required: true,
@@ -83,8 +80,8 @@ const LaboratoryInformation = () => {
               >
 
 
-
-                <Radio.Group buttonStyle="solid" name="specimenCollected" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
+                <Radio.Group buttonStyle="solid" name="specimenCollected"
+                             onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                 </Radio.Group>
@@ -93,22 +90,17 @@ const LaboratoryInformation = () => {
           </Row>
 
 
-
-
           {formValues?.specimenCollected === "yes" &&
             (
               <>
-
-
                 <Row>
-
-                  <Col lg={8} md={8} sm={24}>
+                  <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Date of Specimen Collection"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={symptom_date ? moment(symptom_date) : null}
-                      name="dataSpecimentCollected"
+                      name="dateSpecimenCollected"
                       rules={[
                         {
                           required: true,
@@ -121,7 +113,7 @@ const LaboratoryInformation = () => {
                         disabledDate={(current) =>
                           current.isAfter(moment()) || isDatePickerDisabled
                         }
-                        style={{ width: "100%" }}
+                        style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
                         format="DD-MM-YYYY"
                       />
@@ -131,23 +123,23 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Type of Specimen collected?"
-                      name="specimentType"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      name="specimenType"
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
 
                       rules={[
                         {
                           required: true,
                           message: "Select an Option!",
                         },
-                      ]}              >
+                      ]}>
                       <CheckboxGroup
                         options={
 
                           [
-                            { label: 'Blood', value: 'blood' },
-                            { label: 'Crust', value: 'crust' },
-                            { label: 'Swab', value: 'swab' },
+                            {label: 'Blood', value: 'blood'},
+                            {label: 'Crust', value: 'crust'},
+                            {label: 'Swab', value: 'swab'},
 
                           ]
                         }
@@ -159,8 +151,8 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Name of Testing Laboratory"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={birth_date ? moment(birth_date) : null}
                       name="nameOfTestingLaboratory"
                       rules={[
@@ -174,10 +166,9 @@ const LaboratoryInformation = () => {
                         showSearch
                         allowClear
                         optionLabelProp="label"
-                        onChange={nameOfTestingLaboratory}
                       >
-                        {nameOfTestingLaboratory.map((item) => (
-                          <Option label={item} value={item}>
+                        {nameOfTestingLaboratory.map((item, i) => (
+                          <Option key={i} label={item} value={item}>
                             {item}
                           </Option>
                         ))}
@@ -185,11 +176,11 @@ const LaboratoryInformation = () => {
                     </Form.Item>
                   </Col>
 
-                  <Col lg={12} md={8} sm={24}>
+                  <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Date of Specimen Sent"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={symptom_date ? moment(symptom_date) : null}
                       name="dateSpecimenSent"
                       rules={[
@@ -204,7 +195,7 @@ const LaboratoryInformation = () => {
                         disabledDate={(current) =>
                           current.isAfter(moment()) || isDatePickerDisabled
                         }
-                        style={{ width: "100%" }}
+                        style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
                         format="DD-MM-YYYY"
                       />
@@ -219,10 +210,10 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Date of Specimen Received"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={symptom_date ? moment(symptom_date) : null}
-                      name="dateSpecimenRreceived"
+                      name="dateSpecimenReceived"
                       rules={[
                         {
                           required: true,
@@ -235,37 +226,38 @@ const LaboratoryInformation = () => {
                         disabledDate={(current) =>
                           current.isAfter(moment()) || isDatePickerDisabled
                         }
-                        style={{ width: "100%" }}
+                        style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
                         format="DD-MM-YYYY"
-                        name="dateSpecimenRreceived" onChange={(_, dateString) => handleUpdateInputValues("dateSpecimenRreceived", dateString)}
+                        name="dateSpecimenReceived"
+                        onChange={(_, dateString) => handleUpdateInputValues("dateSpecimenReceived", dateString)}
                       />
                     </Form.Item>
                   </Col>
                   {
 
-                    formValues?.dateSpecimenRreceived && formValues?.dateSpecimenRreceived !== "" && (
+                    formValues?.dateSpecimenReceived && formValues?.dateSpecimenReceived !== "" && (
                       <>
-                        <Col lg={12} md={8} sm={24}>
+                        <Col lg={12} md={12} sm={24}>
                           <Form.Item
                             label="Type of Specimen Received?"
                             name="typeOfSpecmenReceived"
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
+                            labelCol={{span: 24}}
+                            wrapperCol={{span: 24}}
 
                             rules={[
                               {
                                 required: true,
                                 message: "Select an option!",
                               },
-                            ]}              >
+                            ]}>
                             <CheckboxGroup
                               options={
 
                                 [
-                                  { label: 'Tissue Biopsy', value: 'tissueBiopsy' },
-                                  { label: 'Fine Needle Aspirate', value: 'fineNeedleAspirate' },
-                                  { label: 'Swab', value: 'swab' },
+                                  {label: 'Tissue Biopsy', value: 'tissueBiopsy'},
+                                  {label: 'Fine Needle Aspirate', value: 'fineNeedleAspirate'},
+                                  {label: 'Swab', value: 'swab'},
 
                                 ]
                               }
@@ -279,8 +271,8 @@ const LaboratoryInformation = () => {
                             <Form.Item
                               label="Laboratory ID"
                               name="laboratoryId"
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
+                              labelCol={{span: 24}}
+                              wrapperCol={{span: 24}}
                             >
                               <Input
                                 placeholder="Enter laboratory Id"
@@ -294,8 +286,8 @@ const LaboratoryInformation = () => {
                             <Form.Item
                               label="Specimen Condition?"
                               name="specimencondition"
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
+                              labelCol={{span: 24}}
+                              wrapperCol={{span: 24}}
                               rules={[
                                 {
                                   required: true,
@@ -315,37 +307,30 @@ const LaboratoryInformation = () => {
                     )
 
 
-
                   }
 
 
-
-
-
-
-
-
-                  <Col lg={12} md={8} sm={24}>
+                  <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Type of Test Conducted?"
                       name="typeOfTestConducted"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
 
                       rules={[
                         {
                           required: true,
                           message: "Select an Option!",
                         },
-                      ]}              >
+                      ]}>
                       <CheckboxGroup
                         options={
 
                           [
-                            { label: 'PCR', value: 'pcr' },
-                            { label: 'ZN staining', value: 'znStaining' },
-                            { label: 'Culture', value: 'Culture' },
-                            { label: 'Histopathology', value: 'histopathology' },
+                            {label: 'PCR', value: 'pcr'},
+                            {label: 'ZN staining', value: 'znStaining'},
+                            {label: 'Culture', value: 'Culture'},
+                            {label: 'Histopathology', value: 'histopathology'},
 
                           ]}
                         name="typeOfTestConducted"
@@ -364,15 +349,16 @@ const LaboratoryInformation = () => {
                         <Form.Item
                           label="PCR Result"
                           name="pcrResult"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
+                          labelCol={{span: 24}}
+                          wrapperCol={{span: 24}}
                           rules={[
                             {
                               required: true,
                               message: "Select an option!",
                             },
-                          ]}              >
-                          <Radio.Group buttonStyle="solid" name="pcrResult" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
+                          ]}>
+                          <Radio.Group buttonStyle="solid" name="pcrResult"
+                                       onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
                             <Radio.Button value="positive">Positive</Radio.Button>
                             <Radio.Button value="negative">Negative</Radio.Button>
                             <Radio.Button value="indeterminate">Indeterminate</Radio.Button>
@@ -395,14 +381,14 @@ const LaboratoryInformation = () => {
                       <Form.Item
                         label="Serology Result"
                         name="serologyResult"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
+                        labelCol={{span: 24}}
+                        wrapperCol={{span: 24}}
                         rules={[
                           {
                             required: true,
                             message: "Select an option!",
                           },
-                        ]}              >
+                        ]}>
                         <Radio.Group buttonStyle="solid">
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
@@ -420,55 +406,27 @@ const LaboratoryInformation = () => {
                   }
 
 
-
-
-
+                </Row>
+                <Row>
 
 
                 </Row>
                 <Row>
 
 
-
-
-
-
-
-
-
-
-
-
+                </Row>
+                <Row>
 
 
                 </Row>
                 <Row>
 
 
-
-                </Row>
-                <Row>
-
-
-
-
-
-
-
-
-
-
-                </Row>
-                <Row>
-
-
-
-
-                  <Col lg={12} md={8} sm={24}>
+                  <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Date of Result Available"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={tested_date ? moment(tested_date) : null}
                       name="dateResultAvailable"
                       rules={[
@@ -483,18 +441,18 @@ const LaboratoryInformation = () => {
                         disabledDate={(current) =>
                           current.isAfter(moment()) || isDatePickerDisabled
                         }
-                        style={{ width: "100%" }}
+                        style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
                         format="DD-MM-YYYY"
                       />
                     </Form.Item>
                   </Col>
 
-                  <Col lg={12} md={8} sm={24}>
+                  <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Date Result sent"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
                       // initialValue={resultsent_date ? moment(resultsent_date) : null}
                       name="dateResultSent"
                       rules={[
@@ -509,7 +467,7 @@ const LaboratoryInformation = () => {
                         disabledDate={(current) =>
                           current.isAfter(moment()) || isDatePickerDisabled
                         }
-                        style={{ width: "100%" }}
+                        style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
                         format="DD-MM-YYYY"
                       />
@@ -521,11 +479,9 @@ const LaboratoryInformation = () => {
               </>
 
 
-
             )
 
           }
-
 
 
         </Panel>
