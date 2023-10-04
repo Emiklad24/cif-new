@@ -15,7 +15,7 @@ const {Option} = Select;
 const exposures = ['Yes', 'No','Unknown'];
 const associated = ['Yes', 'No','Unknown'];
 const sources = ['Yes', 'No','Unknown'];
-const kindAnimals = ['Yes', 'No','Unknown'];
+const kindAnimals = ['Goat', 'Sheep','Dog','Monkey','Lion', 'Beer'];
 const probablePlace = ['Yes', 'No','Unknown'];
 const vaccine = ['Yes', 'No','Unknown'];
 const animals = ['Yes', 'No','Unknown'];
@@ -35,6 +35,18 @@ const Epidemiological = () => {
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+
+  const [vaccinatedWithAnthrax, setVaccinatedWithAnthrax] = useState(null);
+  const [contactWithAnimalProduct, setContactWithAnimalProduct] = useState(null);
+
+  //const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleRadioContactAnimal = (event) => {
+    setContactWithAnimalProduct(event.target.value);
+  };
+  const handleRadioChange = (event) => {
+    setVaccinatedWithAnthrax(event.target.value);
+  };
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -60,14 +72,18 @@ const Epidemiological = () => {
                     label="Vaccinated with Anthrax vaccine"
                     name="vaccinatedWithAnthrax"
                     labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}>
+                    wrapperCol={{ span: 24 }}
+                    
+                    >
                     <Radio.Group buttonStyle="solid">
+
                       {vaccine.map((item) => (
-                          <Radio.Button value={item}>{item}</Radio.Button>
+                          <Radio.Button  onChange={handleRadioChange} value={item}>{item}</Radio.Button>
                         ))}
                     </Radio.Group>
                 </Form.Item>
             </Col>
+            {vaccinatedWithAnthrax === 'Yes' &&
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="If yes, Name of Vaccine"
@@ -84,6 +100,7 @@ const Epidemiological = () => {
                 />
               </Form.Item>
             </Col>
+            }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                     label="Route of Vaccine Administration"
@@ -206,11 +223,12 @@ const Epidemiological = () => {
                     wrapperCol={{ span: 24 }}>
                     <Radio.Group buttonStyle="solid">
                       {animals.map((item) => (
-                          <Radio.Button value={item}>{item}</Radio.Button>
+                          <Radio.Button onChange={handleRadioContactAnimal}  value={item}>{item}</Radio.Button>
                         ))}
                     </Radio.Group>
                 </Form.Item>
             </Col>
+            {contactWithAnimalProduct === 'Yes' &&
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                   label="If yes to above, what kind of animal?"
@@ -236,8 +254,10 @@ const Epidemiological = () => {
                     ))}
 
                   </Select>
+                  
                 </Form.Item>
             </Col>
+            }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                   label="Most probable place of exposure to Anthrax and contact"
@@ -251,18 +271,11 @@ const Epidemiological = () => {
                     },
                   ]}
                   >
-                  <Select
-                    placeholder="Select Option"
-                    allowClear
-                    name="placeOfExposureToAnthrax"
-                  >
-                    {probablePlace.map((item) => (
-                      <Option label={item} value={item}>
-                        {item}
-                      </Option>
-                    ))}
-
-                  </Select>
+                  <Radio.Group buttonStyle="solid">
+                      {probablePlace.map((item) => (
+                          <Radio.Button value={item}>{item}</Radio.Button>
+                        ))}
+                  </Radio.Group>
                 </Form.Item>
             </Col>
             <Col lg={12} md={12} sm={24}>

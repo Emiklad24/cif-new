@@ -12,7 +12,11 @@ import moment from "moment";
 
 const {Option} = Select;
 
-const stateData = ['FCT', 'Enugu'];
+const finals = ['Lab confirmed Anthrax',
+  'Epidemiologically linked Anthrax',
+  'Clinically compatible Anthrax',
+  'Discarded',
+  'Pending classification'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
 
@@ -45,21 +49,33 @@ const FinalClassification = () => {
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Final Classification" key="1">
-          <Col lg={6} md={6} sm={24}>
-              <Form.Item
-                label="Complete Address"
-                name="clientaddress"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-              >
-                <Input
-                  placeholder="Enter Address"
-                  id="address"
-                  name="address"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
+        <Col lg={12} md={12} sm={24}>
+                <Form.Item
+                  label="Select the Final classification of this case:"
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
+                  name="finalClassification"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select",
+                    },
+                  ]}
+                  >
+                  <Select
+                    placeholder="Select Option"
+                    allowClear
+                    name="finalClassification"
+                  >
+                    {finals.map((item) => (
+                      <Option label={item} value={item}>
+                        {item}
+                      </Option>
+                    ))}
+
+                  </Select>
+                 
+                </Form.Item>
             </Col>
         </Panel>
       </Collapse>

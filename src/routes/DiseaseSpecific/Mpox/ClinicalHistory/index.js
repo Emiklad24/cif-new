@@ -43,11 +43,28 @@ const ClinicalHistory = () => {
         console.log('search:', value);
     };
 
+    const [formValues, setFormValues] = useState({});
+
+    const handleUpdateInputValues = (inputName, value) => {
+
+        console.log(inputName, value)
+
+        setFormValues((previousState) => ({
+            ...previousState,
+            [inputName]: value
+
+        }))
+
+    }
+
+    console.log('form values', formValues)
+
+
     return (
         <>
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
                 <Panel header="Clinical history: Sign and Symptoms" key="1">
-                    <Row>                       
+                    <Row>
 
                         <Col lg={8} md={8} sm={24}>
                             <Form.Item
@@ -62,7 +79,7 @@ const ClinicalHistory = () => {
                                     },
                                 ]}
                             >
-                                <Radio.Group buttonStyle="solid">
+                                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="fever" >
                                     <Radio.Button value="yes">Yes</Radio.Button>
                                     <Radio.Button value="no">No</Radio.Button>
                                     <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -70,30 +87,46 @@ const ClinicalHistory = () => {
                             </Form.Item>
                         </Col>
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Date Of Fever Onset"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                // initialValue={feveronset_date ? moment(feveronset_date) : null}
-                                name="dateOfFeverOnset"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select a date!",
-                                    },
-                                ]}
-                            >
-                                <DatePicker
-                                    format="DD-MM-YYYY"
-                                    disabledDate={(current) =>
-                                        current.isAfter(moment()) || isDatePickerDisabled
-                                    }
-                                    style={{ width: "100%" }}
-                                    placeholder="DD-MM-YYYY"
-                                />
-                            </Form.Item>
-                        </Col>
+                        {
+
+                            formValues?.fever === "yes" &&
+                            (
+                                <>
+
+
+                                    <Col lg={8} md={8} sm={24}>
+                                        <Form.Item
+                                            label="Date Of Fever Onset"
+                                            labelCol={{ span: 24 }}
+                                            wrapperCol={{ span: 24 }}
+                                            // initialValue={feveronset_date ? moment(feveronset_date) : null}
+                                            name="dateOfFeverOnset"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: "Select a date!",
+                                                },
+                                            ]}
+                                        >
+                                            <DatePicker
+                                                format="DD-MM-YYYY"
+                                                disabledDate={(current) =>
+                                                    current.isAfter(moment()) || isDatePickerDisabled
+                                                }
+                                                style={{ width: "100%" }}
+                                                placeholder="DD-MM-YYYY"
+
+                                                name="dateOfFeverOnset"
+                                                onChange={(_, dateString) => handleUpdateInputValues("dateOfFeverOnset", dateString)}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+
+                                </>
+                            )
+
+                        }
+
 
                         <Col lg={8} md={8} sm={24}>
                             <Form.Item
@@ -107,7 +140,7 @@ const ClinicalHistory = () => {
                                         message: "Select an option!",
                                     },
                                 ]}                >
-                                <Radio.Group buttonStyle="solid">
+                                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="presentOfLesion">
                                     <Radio.Button value="yes">Yes</Radio.Button>
                                     <Radio.Button value="no">No</Radio.Button>
                                     <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -115,65 +148,78 @@ const ClinicalHistory = () => {
                             </Form.Item>
                         </Col>
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Are the lesions in the same state of development on the body?"
-                                name="lesionSameStateOnTheBody"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Are all of the lesions the same size?"
-                                name="leslesionSameSize"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
+                        {
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Are the lesions deep and profound?"
-                                name="lesionDeepAndProfound"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
+                            formValues?.presentOfLesion === "yes" &&
+                            (
+                                <>
+
+
+                                    <Col lg={8} md={8} sm={24}>
+                                        <Form.Item
+                                            label="Are the lesions in the same state of development on the body?"
+                                            name="lesionSameStateOnTheBody"
+                                            labelCol={{ span: 24 }}
+                                            wrapperCol={{ span: 24 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: "Select an option!",
+                                                },
+                                            ]}                >
+                                            <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="lesionSameStateOnTheBody">
+                                                <Radio.Button value="yes">Yes</Radio.Button>
+                                                <Radio.Button value="no">No</Radio.Button>
+                                                <Radio.Button value="unknown">Unknown</Radio.Button>
+                                            </Radio.Group>
+                                        </Form.Item>
+                                    </Col>
+
+                                    <Col lg={8} md={8} sm={24}>
+                                        <Form.Item
+                                            label="Are all of the lesions the same size?"
+                                            name="leslesionSameSize"
+                                            labelCol={{ span: 24 }}
+                                            wrapperCol={{ span: 24 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: "Select an option!",
+                                                },
+                                            ]}                >
+                                            <Radio.Group buttonStyle="solid">
+                                                <Radio.Button value="yes">Yes</Radio.Button>
+                                                <Radio.Button value="no">No</Radio.Button>
+                                                <Radio.Button value="unknown">Unknown</Radio.Button>
+                                            </Radio.Group>
+                                        </Form.Item>
+                                    </Col>
+
+                                    <Col lg={8} md={8} sm={24}>
+                                        <Form.Item
+                                            label="Are the lesions deep and profound?"
+                                            name="lesionDeepAndProfound"
+                                            labelCol={{ span: 24 }}
+                                            wrapperCol={{ span: 24 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: "Select an option!",
+                                                },
+                                            ]}                >
+                                            <Radio.Group buttonStyle="solid">
+                                                <Radio.Button value="yes">Yes</Radio.Button>
+                                                <Radio.Button value="no">No</Radio.Button>
+                                                <Radio.Button value="unknown">Unknown</Radio.Button>
+                                            </Radio.Group>
+                                        </Form.Item>
+                                    </Col>
+
+                                </>
+                            )
+
+                        }
 
                         <Col lg={16} md={16} sm={24}>
                             <Form.Item
@@ -554,7 +600,7 @@ const ClinicalHistory = () => {
                                 ]}
                             >
                                 <DatePicker
-                                     format="DD-MM-YYYY"
+                                    format="DD-MM-YYYY"
                                     disabledDate={(current) =>
                                         current.isAfter(moment()) || isDatePickerDisabled
                                     }
