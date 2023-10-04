@@ -1,5 +1,5 @@
 import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE, UPDATE_CASE,
-  CREATE_CASE,
+  CREATE_CASE,FETCH_STATE_LIST,FETCH_LOCAL_GOVERNMENT_AREA_LIST,
   FETCH_CASE} from '../../constants/ActionTypes'
 import {TOGGLE_COLLAPSED_NAV, WINDOW_WIDTH} from "../../constants/ActionTypes";
 
@@ -11,6 +11,7 @@ const INIT_STATE = {
   width: window.innerWidth,
   pathname: '/',
   data: [],
+  localGovernmentAreaList: [],
   caseList: [],
   case: {},
 };
@@ -75,8 +76,18 @@ const CommonReducer = (state = INIT_STATE, action) => {
         ),
       };
     }
-
-
+    case FETCH_STATE_LIST: {
+        return {
+          ...state,
+          stateList: action.payload,
+        };
+      }
+    case FETCH_LOCAL_GOVERNMENT_AREA_LIST: {
+      return {
+        ...state,
+        localGovernmentAreaList: action.payload,
+      };
+    }
 
     default:
       return state;

@@ -27,6 +27,13 @@ const placeManage = ['CCC', 'Home','Health Center','Hospitals'];
 const ClinicalHistory = () => {
   const [form] = Form.useForm();
   //const [lga, setLga] = useState([]);
+
+  const [firstSignSymptom, setFirstSignSymptom] = useState(false);
+
+  const handleRadioFirstSign = (event) => {
+    setFirstSignSymptom(event.target.value);
+  };
+
   const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
@@ -58,15 +65,16 @@ const ClinicalHistory = () => {
               >
                 <Radio.Group buttonStyle="solid">
                   {signs.map((item) => (
-                    <Radio.Button value={item}>{item}</Radio.Button>
+                    <Radio.Button onChange={handleRadioFirstSign} value={item}>{item}</Radio.Button>
                   ))}
                 </Radio.Group>
               </Form.Item>
             </Col>
+            {firstSignSymptom === 'Others' &&
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Specify"
-                name="clientaddress"
+                name="specify"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -78,6 +86,7 @@ const ClinicalHistory = () => {
                 />
               </Form.Item>
             </Col>
+            }
 
             <Col lg={6} md={6} sm={24}>
               <Form.Item

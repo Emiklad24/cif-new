@@ -13,7 +13,6 @@ const Anthrax = () => {
       <ClinicalHistory/>
       <LaboratoryInformation/>
       <FinalClassification/>
-      <ContactTracing/>
     </>
   );
 };
