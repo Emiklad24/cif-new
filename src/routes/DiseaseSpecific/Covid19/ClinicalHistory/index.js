@@ -313,7 +313,7 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Other symptom please specify"
-                name="otherSymptoms"
+                name="OtherSymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[
@@ -324,16 +324,16 @@ const ClinicalHistory = () => {
                 ]}
               >
                 <Input
-                  placeholder="othersymptoms"
-                  id="othersymptoms "
-                  name="othersymptoms"
+                  placeholder="Other Symptoms"
+                  id="otherSymptoms "
+                  name="otherSymptoms"
                   type="text"
                 />
               </Form.Item>
             </Col>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="DateOfSymptomOnset"
+                label="Date of Symptom Onset"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[
@@ -343,7 +343,7 @@ const ClinicalHistory = () => {
                   },
                 ]}
                 // initialValue={birth_date ? moment(birth_date) : null}
-                name="date_of_onset"
+                name="dateOfSymptomOnset"
               >
                 <DatePicker
                   format="DD-MM-YYYY"

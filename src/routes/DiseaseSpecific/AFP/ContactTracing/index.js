@@ -44,26 +44,7 @@ const ContactTracing = () => {
   return (
     <>
 
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="Contact Tracing Information" key="1">
-          <Col lg={6} md={6} sm={24}>
-              <Form.Item
-                label="Complete Address"
-                name="clientaddress"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-              >
-                <Input
-                  placeholder="Enter Address"
-                  id="address"
-                  name="address"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
-            </Col>
-        </Panel>
-      </Collapse>
+      
     </>
   );
 };

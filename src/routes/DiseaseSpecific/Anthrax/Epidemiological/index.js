@@ -69,7 +69,7 @@ const Epidemiological = () => {
           <Row>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Vaccinated with Anthrax vaccine"
+                    label="Vaccinated with anthrax vaccine"
                     name="vaccinatedWithAnthrax"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
@@ -86,7 +86,7 @@ const Epidemiological = () => {
             {vaccinatedWithAnthrax === 'Yes' &&
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="If yes, Name of Vaccine"
+                label="If yes, name of vaccine"
                 name="nameOfVaccine" 
                 labelCol={{span: 24}}
                 wrapperCol={{span: 24}}
@@ -103,7 +103,7 @@ const Epidemiological = () => {
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Route of Vaccine Administration"
+                    label="Route of vaccine administration"
                     name="routeOfVaccineAdministration"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
@@ -116,7 +116,7 @@ const Epidemiological = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Number of Anthrax vaccine doses"
+                  label="Number of anthrax vaccine doses"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="numberOfAnthraxVaccineDoses"
@@ -191,7 +191,7 @@ const Epidemiological = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Close contact with suspected or confirmed human case of Anthrax"
+                    label="Close contact with suspected or confirmed human case of anthrax"
                     name="closeContactWithSuspectedOrConfirmedCase"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
@@ -260,7 +260,7 @@ const Epidemiological = () => {
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Most probable place of exposure to Anthrax and contact"
+                  label="Most probable place of exposure to anthrax and contact"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="placeOfExposureToAnthrax"
@@ -280,7 +280,7 @@ const Epidemiological = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Source confirmed positive for Anthrax"
+                    label="Source confirmed positive for anthrax"
                     name="sourceConfirmedPositiveForAnthrax"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>

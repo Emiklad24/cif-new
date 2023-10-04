@@ -43,6 +43,22 @@ const ClinicalHistory = () => {
         console.log('search:', value);
     };
 
+    const [formValues, setFormValues] = useState({});
+
+    const handleUpdateInputValues = (inputName, value) => {
+
+        console.log(inputName, value)
+
+        setFormValues((previousState) => ({
+            ...previousState,
+            [inputName]: value
+
+        }))
+
+    }
+
+    console.log('form values', formValues)
+
     return (
         <>
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -62,13 +78,19 @@ const ClinicalHistory = () => {
                                     },
                                 ]}
                             >
-                                <Radio.Group buttonStyle="solid">
+                                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="fever">
                                     <Radio.Button value="yes">Yes</Radio.Button>
                                     <Radio.Button value="no">No</Radio.Button>
                                     <Radio.Button value="unknown">Unknown</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
                         </Col>
+
+                        {
+
+formValues?.fever === "yes"  &&
+  (
+<>
 
                         <Col lg={8} md={8} sm={24}>
                             <Form.Item
@@ -91,9 +113,17 @@ const ClinicalHistory = () => {
                                     }
                                     style={{ width: "100%" }}
                                     placeholder="DD-MM-YYYY"
+
+                                    name="dateFeverOnset"
+                                    onChange={(_, dateString) => handleUpdateInputValues("dateFeverOnset", dateString)}
                                 />
                             </Form.Item>
                         </Col>
+
+                        </>
+                ) 
+
+       }
 
                         <Col lg={8} md={8} sm={24}>
                             <Form.Item

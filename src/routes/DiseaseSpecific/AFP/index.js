@@ -6,10 +6,12 @@ import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
+//const {Option} = Select;
+
 const AFP = () => {
   return (
     <>
-     <Epidemiological/>
+      <Epidemiological/>
       <ClinicalHistory/>
       <LaboratoryInformation/>
       <FinalClassification/>

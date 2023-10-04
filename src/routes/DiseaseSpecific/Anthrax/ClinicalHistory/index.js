@@ -83,7 +83,7 @@ const ClinicalHistory = () => {
           <Row>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Date seen at the Health Facility"
+                label="Date seen at the health facility"
                 name="dateSeenAtHealthFacility"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -101,7 +101,7 @@ const ClinicalHistory = () => {
             </Col>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Signs and Symptoms"
+                label="Signs and symptoms"
                 name="signsSymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -210,13 +210,13 @@ const ClinicalHistory = () => {
             }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="First Symptom noticed"
+                label="First symptom noticed"
                 name="firstSymptomNoticed"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
                 <Input
-                  placeholder="First Symptom Noticed"
+                  placeholder="First symptom noticed"
                   id="firstSymptomNoticed"
                   name="firstSymptomNoticed"
                   onChange={(e) => {}}

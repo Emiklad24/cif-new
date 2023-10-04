@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import "styles/pages/form.less";
 import moment from "moment";
 
+const finalClass = ['Lab confirmed', 'Epidemiologically linked', 'Clinically compatible', 'Discarded', 'Pending classification'];
 const {Option} = Select;
 
 const stateData = ['FCT', 'Enugu'];
@@ -45,22 +46,67 @@ const FinalClassification = () => {
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Final Classification" key="1">
-          <Col lg={6} md={6} sm={24}>
+        
+        
+
+            <Col lg={12} md={12} sm={24}>
+                <Form.Item
+                  label="Final Classification of Case"
+                  name="finalClassification"
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
+                >
+                   <Select
+                    placeholder="Select Option"
+                    allowClear
+                    name="finalClassification"
+
+                  >
+                    {finalClass.map((item) => (
+                      <Option label={item} value={item}>
+                        {item}
+                      </Option>
+                    ))}
+
+                  </Select>
+                </Form.Item>
+            </Col>
+            
+
+            <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="Complete Address"
-                name="clientaddress"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                label="Polio Type"
+                name="polioType"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
               >
-                <Input
-                  placeholder="Enter Address"
-                  id="address"
-                  name="address"
-                  onChange={(e) => {
-                  }}
-                />
+                <Radio.Group buttonStyle="solid">
+                  <Radio.Button value="cvpv">cVPV</Radio.Button>
+                  <Radio.Button value="avpv">aVPV</Radio.Button>
+                  <Radio.Button value="ivpv">iVPV</Radio.Button>
+                </Radio.Group>
               </Form.Item>
             </Col>
+
+            <Col lg={12} md={12} sm={24}>
+              <Form.Item
+                label="Indicate serotype"
+                name="serotype"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Radio.Group buttonStyle="solid">
+                  <Radio.Button value="1">1</Radio.Button>
+                  <Radio.Button value="2">2</Radio.Button>
+                  <Radio.Button value="3">3</Radio.Button>
+                </Radio.Group>
+              </Form.Item>
+            </Col>
+            
+            
+        
+            
+          
         </Panel>
       </Collapse>
     </>

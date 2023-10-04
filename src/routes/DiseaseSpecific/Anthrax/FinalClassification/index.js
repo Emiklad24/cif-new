@@ -51,7 +51,7 @@ const FinalClassification = () => {
         <Panel header="Final Classification" key="1">
         <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Select the Final classification of this case:"
+                  label="Select the final classification of this case:"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="finalClassification"

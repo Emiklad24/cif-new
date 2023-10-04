@@ -6,11 +6,11 @@ import {
   Row, Tooltip,
   Select, Radio,
 } from 'antd';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "styles/pages/form.less";
 import moment from "moment";
 
-const {Option} = Select;
+const { Option } = Select;
 
 const stateData = ['FCT', 'Enugu'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
@@ -24,7 +24,7 @@ const lgaData = {
 const Epidemiological = () => {
   const [form] = Form.useForm();
   const [lga, setLga] = useState([]);
-  const {Panel} = Collapse;
+  const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
   const handleStateChange = (value) => {
@@ -40,6 +40,18 @@ const Epidemiological = () => {
   const onSearch = (value) => {
     console.log('search:', value);
   };
+
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+    console.log(inputName, value)
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value
+    }))
+  }
+
+  console.log('form values', formValues)
 
   return (
     <>
@@ -90,12 +102,12 @@ const Epidemiological = () => {
             </Col>
           </Row>
 
-          <Row>  
+          <Row>
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Date of Last Vaccination"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateLastVaccination"
                 rules={[
@@ -110,7 +122,7 @@ const Epidemiological = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
@@ -119,8 +131,8 @@ const Epidemiological = () => {
             <Col lg={12} md={12} sm={12} xs={24}>
               <Form.Item
                 label="Source of Vaccination Information"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 name="sourceVaccinationInformation"
                 rules={[
                   {
@@ -135,17 +147,23 @@ const Epidemiological = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-          
+
           </Row>
 
-          <Row>  
+          <Row>
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="History of Contact with Person with Similar Symptoms"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                label="History of Contact with Person with Rash/Measles"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="contactPersonSimilarSymptoms"
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
               >
                 <Radio.Group buttonStyle="solid">
                   <Radio.Button value="yse">Yes</Radio.Button>
@@ -158,8 +176,8 @@ const Epidemiological = () => {
             <Col lg={12} md={12} sm={12} xs={24}>
               <Form.Item
                 label="Ongoing Measles Outbreak in your Community"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 name="ongoingMeaslesOutbreakCommunity"
               >
                 <Radio.Group buttonStyle="solid">
@@ -169,7 +187,7 @@ const Epidemiological = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-          
+
           </Row>
 
         </Panel>

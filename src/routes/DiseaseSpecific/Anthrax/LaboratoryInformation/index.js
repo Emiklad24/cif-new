@@ -81,7 +81,7 @@ const LaboratoryInformation = () => {
            
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Type of Specimen"
+                  label="Type of specimen"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   rules={[
@@ -109,13 +109,13 @@ const LaboratoryInformation = () => {
             {typeOfSpecimen === 'Others' &&
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Other Specify"
+                  label="Other specify"
                   name="otherspecimen"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                 >
                 <Input
-                  placeholder="Enter Other Specimen"
+                  placeholder="Enter other specimen"
                   id="otherspecimen"
                   name="otherspecimen"
                   onChange={(e) => {
@@ -126,7 +126,7 @@ const LaboratoryInformation = () => {
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Date Specimen sent to lab"
+                  label="Date specimen sent to lab"
                   name="dateSpecimenLab"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
@@ -164,7 +164,7 @@ const LaboratoryInformation = () => {
             
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Specimen Condition"
+                    label="Specimen condition"
                     name="specimenCondition"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
@@ -178,7 +178,7 @@ const LaboratoryInformation = () => {
             
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Type of Test"
+                  label="Type of test"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="typeOfTest"
@@ -199,7 +199,7 @@ const LaboratoryInformation = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Has sentinel lab ruled out Anthrax?"
+                  label="Has sentinel lab ruled out anthrax?"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="hasSentinelLab"
@@ -221,7 +221,7 @@ const LaboratoryInformation = () => {
             {hasSentinelLab === 'No' &&
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="If No/IndeteGITrminate, Date Specimen sent to Reference lab for confirmation"
+                  label="If no/indeteGITrminate, date specimen sent to reference lab for confirmation"
                   name="dateSpecimenSentForConfirmation"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
@@ -240,7 +240,7 @@ const LaboratoryInformation = () => {
             {hasSentinelLab === 'Indeterminate' &&
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="If No/IndeteGITrminate, Date Specimen sent to Reference lab for confirmation"
+                  label="If no/indeteGITrminate, date specimen sent to reference lab for confirmation"
                   name="dateSpecimenSentForConfirmation"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
@@ -258,7 +258,7 @@ const LaboratoryInformation = () => {
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Name of Reference Lab Specimen was sent"
+                  label="Name of reference lab specimen was sent"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="nameReferenceLabSpecimen"
@@ -314,7 +314,7 @@ const LaboratoryInformation = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Definitive Characterization of Infection"
+                  label="Definitive characterization of infection"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="characterizationOfInfection"
