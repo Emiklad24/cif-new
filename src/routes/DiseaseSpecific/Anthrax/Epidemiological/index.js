@@ -66,15 +66,24 @@ const Epidemiological = () => {
   
   const handleUpdateInputValues = (inputName, value) => {
 
-      console.log(inputName, value)
-
       setFormValues((previousState) => ({
           ...previousState,
           [inputName]: value
 
-      }))
+      }));
 
-  }
+      if(formValues?.vaccinatedWithAnthrax === "no" || formValues?.vaccinatedWithAnthrax ==="unknown"){
+        form?.setFieldsValue({
+          nameOfVaccine:"",
+        });
+      }
+      if(formValues?.contactWithAnimalProduct === "no" || formValues?.contactWithAnimalProduct ==="unknown"){
+        form?.setFieldsValue({
+          whatKindOfAnimal:null
+          });
+      }
+
+  };
 
   return (
     <>
@@ -84,7 +93,7 @@ const Epidemiological = () => {
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                     label="Vaccinated with anthrax vaccine"
-                    name="vaccinatedWithAnthrax"
+                    
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     rules={[
@@ -107,13 +116,11 @@ const Epidemiological = () => {
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="If yes, name of vaccine"
-                      name="nameOfVaccine" 
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
                     >
                       <Input
                         placeholder="Name of Vaccine"
-                        id="nameOfVaccine"
                         name="nameOfVaccine"
                         onChange={(e) => {
                         }}
@@ -241,7 +248,6 @@ const Epidemiological = () => {
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                     label="Contact with animals or animal products"
-                    name="contactWithAnimalProduct"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
                     <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="contactWithAnimalProduct">
@@ -262,7 +268,6 @@ const Epidemiological = () => {
                         label="If yes to above, what kind of animal?"
                         labelCol={{span: 24}}
                         wrapperCol={{span: 24}}
-                        name="whatKindOfAnimal"
                         rules={[
                           {
                             required: true,
@@ -273,8 +278,8 @@ const Epidemiological = () => {
                         <Select
                           placeholder="Select Option"
                           allowClear
-                          name="typeOfSpecimen"
-                          onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
+                          name="whatKindOfAnimal"
+                          onChange={(value) => handleUpdateInputValues("whatKindOfAnimal", value)}
                         >
                           {kindAnimals.map((item) => (
                             <Option label={item} value={item}>

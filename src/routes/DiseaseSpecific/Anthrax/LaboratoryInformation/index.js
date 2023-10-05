@@ -56,18 +56,27 @@ const LaboratoryInformation = () => {
   };
 
   const [formValues, setFormValues] = useState({});
-
+  
   const handleUpdateInputValues = (inputName, value) => {
 
-    console.log(inputName, value)
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
 
-    setFormValues((previousState) => ({
-        ...previousState,
-        [inputName]: value
+      }));
 
-    }))
+      if(formValues?.typeOfSpecimen !== "Others"){
+        form?.setFieldsValue({
+          otherspecimen:"",
+        });
+      }
+      if(formValues?.hasSentinelLab === "yes" || formValues?.hasSentinelLab ==="indeterminate"){
+        form?.setFieldsValue({
+          dateSpecimenSentForConfirmation:null
+          });
+      }
 
-  }
+  };
 
   return (
     <>
@@ -109,7 +118,7 @@ const LaboratoryInformation = () => {
                     placeholder="Select Option"
                     allowClear
                     name="typeOfSpecimen"
-                    onChange={setTypeOfSpecimen}
+                    onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
                   >
                     {typeSpecimen.map((item) => (
                       <Option label={item} value={item}>
@@ -129,13 +138,11 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                       <Form.Item
                         label="Other specify"
-                        name="otherspecimen"
                         labelCol={{span: 24}}
                         wrapperCol={{span: 24}}
                       >
                       <Input
                         placeholder="Enter other specimen"
-                        id="otherspecimen"
                         name="otherspecimen"
                         onChange={(e) => {
                         }}
@@ -223,7 +230,6 @@ const LaboratoryInformation = () => {
                   label="Has sentinel lab ruled out anthrax?"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
-                  name="hasSentinelLab"
                   rules={[
                     {
                       required: true,
@@ -248,7 +254,6 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                       <Form.Item
                         label="If no/indeteGITrminate, date specimen sent to reference lab for confirmation"
-                        name="dateSpecimenSentForConfirmation"
                         labelCol={{span: 24}}
                         wrapperCol={{span: 24}}
                       >
@@ -259,7 +264,6 @@ const LaboratoryInformation = () => {
                         }
                         style={{width: "100%"}}
                         placeholder="DD-MM-YYYY"
-                        id="dateSpecimenSentForConfirmation"
                         name="dateSpecimenSentForConfirmation"
                         onChange={(_, dateString) => handleUpdateInputValues("dateSpecimenSentForConfirmation", dateString)}
                         />

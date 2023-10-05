@@ -78,8 +78,6 @@ const ClinicalHistory = ({form}) => {
   
   const handleUpdateInputValues = (inputName, value) => {
 
-      console.log(inputName, value, 'hellos')
-
       setFormValues((previousState) => ({
           ...previousState,
           [inputName]: value
@@ -135,7 +133,7 @@ const ClinicalHistory = ({form}) => {
                     placeholder="Select Option"
                     allowClear
                     name="signsSymptoms"
-                    onChange={(value) => handleUpdateInputValues(signsSymptoms, value)}
+                    onChange={(value) => handleUpdateInputValues("signsSymptoms", value)}
                   >
                   {signs.map((item) => (
                     <Option label={item} value={item}>

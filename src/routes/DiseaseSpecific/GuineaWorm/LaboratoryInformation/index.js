@@ -53,18 +53,28 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
-  const [formValues, setFormValues] = useState({}); 
+  const [formValues, setFormValues] = useState({});
+  
   const handleUpdateInputValues = (inputName, value) => {
-
-    console.log(inputName, value)
 
     setFormValues((previousState) => ({
         ...previousState,
         [inputName]: value
 
-    }))
+    }));
 
-  }
+    if(formValues?.specimenPreserved === "yes" || formValues?.specimenPreserved ==="indeterminate"){
+      form?.setFieldsValue({
+        specify:"",
+      });
+    }
+    if(formValues?.typeOfSpecimen !== "Others"){
+      form?.setFieldsValue({
+        specifyIfOthers:"",
+      });
+    }
+    
+  };
 
   return (
     <>
@@ -74,7 +84,6 @@ const LaboratoryInformation = () => {
           <Col lg={12} md={12} sm={24}>
                 <Form.Item
                     label="Was a specimen (worm) saved and preserved in alcohol?"
-                    name="specimenPreserved"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
                     
@@ -91,13 +100,11 @@ const LaboratoryInformation = () => {
                     <Col lg={12} md={12} sm={24}>
                         <Form.Item
                           label="If No, Why?"
-                          name="ifNoWhy"
                           labelCol={{span: 24}}
                           wrapperCol={{span: 24}}
                         >
                           <Input
                           placeholder="If No, Why?"
-                          id="ifNoWhy"
                           name="ifNoWhy"
                           onChange={(e) => {}}
                         />
@@ -130,7 +137,6 @@ const LaboratoryInformation = () => {
                   label="Type of Specimen"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
-                  name="typeOfSpecimen"
                   rules={[
                     {
                       required: true,
@@ -142,7 +148,7 @@ const LaboratoryInformation = () => {
                     placeholder="Select Option"
                     allowClear
                     name="typeOfSpecimen"
-                    onChange={setTypeOfSpecimen}
+                    onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
                   >
                     {typeSpecimen.map((item) => (
                       <Option label={item} value={item}>
@@ -153,22 +159,25 @@ const LaboratoryInformation = () => {
                   </Select>
                 </Form.Item>
             </Col>
-            {typeOfSpecimen === 'Others' &&
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="Specify"
-                  name="specify"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                >
-                  <Input
-                  placeholder="Specify"
-                  id="specify"
-                  name="specifyIfOthers"
-                  onChange={(e) => {}}
-                />
-                </Form.Item>
-            </Col>
+            {
+              formValues?.typeOfSpecimen === 'Others' &&
+                (
+                  <>
+                    <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                          label="Specify"
+                          labelCol={{span: 24}}
+                          wrapperCol={{span: 24}}
+                        >
+                          <Input
+                          placeholder="Specify"
+                          name="specifyIfOthers"
+                          onChange={(e) => {}}
+                        />
+                        </Form.Item>
+                    </Col>
+                  </>
+                )
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item

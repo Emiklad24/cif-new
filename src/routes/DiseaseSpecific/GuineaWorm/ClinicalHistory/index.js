@@ -52,18 +52,22 @@ const ClinicalHistory = () => {
   };
 
   const [formValues, setFormValues] = useState({});
-
+  
   const handleUpdateInputValues = (inputName, value) => {
-
-    console.log(inputName, value)
 
     setFormValues((previousState) => ({
         ...previousState,
         [inputName]: value
 
-    }))
+    }));
 
-  }
+    if(formValues?.firstSignSymptom !== "Others" ){
+      form?.setFieldsValue({
+        specify:"",
+      });
+    }
+    
+  };
 
   return (
     <>
@@ -73,7 +77,6 @@ const ClinicalHistory = () => {
             <Col lg={10} md={10} sm={24}>
               <Form.Item
                 label="First sign/symptom before the emergence of worm"
-                name="firstSignSymptom"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -92,13 +95,11 @@ const ClinicalHistory = () => {
                     <Col lg={8} md={8} sm={24}>
                       <Form.Item
                         label="Specify"
-                        name="specify"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                       >
                         <Input
                           placeholder="Specify"
-                          id="specify"
                           name="specify"
                           onChange={(e) => {}}
                         />
