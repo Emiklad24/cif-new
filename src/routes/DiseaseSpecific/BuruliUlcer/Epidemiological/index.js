@@ -65,7 +65,6 @@ const Epidemiological = () => {
       ...previousState,
       [inputName]: value
     }))
-
   }
 
   console.log('form values', formValues)
@@ -162,51 +161,23 @@ const Epidemiological = () => {
               </Form.Item>
             </Col>
 
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Comorbidity"
-                name="comobidity"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Checkbox.Group buttonStyle="solid"
-                  options={
-
-                    [
-                      { label: 'Hypertension', value: 'hypertension' },
-                      { label: 'Diabetes ', value: 'diabetes' },
-                      { label: 'Respiratory diseases ', value: 'respiratory_diseases' },
-                      { label: 'Immunocompromised conditions', value: 'Immunocompromised conditions' },
-                      { label: 'Obesity ', value: 'obesity' },
-                      { label: 'Chronic kidney disease', value: 'Chronic kidney disease' },
-                      { label: 'Liver diseases ', value: 'Liver disease' },
-                      { label: 'Neurological conditions ', value: 'Neurological conditions' },
-                    ]
-                  }
-
-                />
-              </Form.Item>
-            </Col>
-
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Comorbidity"
-                name="comorbidity"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                {comorbidityOption.map((el, i) => 
-                 <div>
-                  <label>{el.label}:&nbsp;</label>
-                   <Radio.Group buttonStyle="solid">
+            <Col span={24} className='gx-text-center'> <label className='label_center'>Comorbidity</label></Col>
+            {comorbidityOption.map((el, i) =>
+              <Col lg={8} md={12} sm={24} id={i}>
+                <Form.Item
+                  label={el.label}
+                  name={el.value}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                >
+                  <Radio.Group buttonStyle="solid" name={el.value}>
                     <Radio.Button value="yes">Yes</Radio.Button>
                     <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
                   </Radio.Group>
-                 </div>
-                )}
-          
-              </Form.Item>
-            </Col>
+                </Form.Item>
+              </Col>
+            )}
 
 
             <Col lg={12} m12 sm={24}>
