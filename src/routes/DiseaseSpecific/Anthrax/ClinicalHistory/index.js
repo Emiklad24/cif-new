@@ -84,6 +84,7 @@ const ClinicalHistory = () => {
           ...previousState,
           [inputName]: value
 
+<<<<<<< HEAD
       }));
 
       if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
@@ -93,6 +94,11 @@ const ClinicalHistory = () => {
       }
 
   };
+=======
+      }))
+
+  }
+>>>>>>> frontend_vincent_02_10_2023
 
 
 
