@@ -83,7 +83,7 @@ const FinalClassification = () => {
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="Absconded against medical advice"
+                label="Absconded Against Medical Advice"
                 name="abscondedAgainstMedicalAdvice"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -122,7 +122,7 @@ const FinalClassification = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="If dead, Buruli Ulcer related?"
+                label="If Dead, Buruli Ulcer Related?"
                 name="deathRelated"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}

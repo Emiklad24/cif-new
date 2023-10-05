@@ -70,7 +70,7 @@ const ClinicalHistory = () => {
           <Row>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Leg"
+                label="Painless Swelling Of The Leg"
                 name="SwellingLeg"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -91,7 +91,7 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Arm"
+                label="Painless Swelling Of The Arm"
                 name="SwellingArm"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -111,7 +111,7 @@ const ClinicalHistory = () => {
             </Col>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Face"
+                label="Painless Swelling Of The Face"
                 name="SwellingFace"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -193,8 +193,8 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="The appearance of Lesions"
-                name="appearanceOfLesion"
+                label="The Appearance Of Lesions"
+                name="AppearanceOfLesion"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -217,7 +217,7 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Disability presence"
+                label="Disability Presence"
                 name="disabilityPresence"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -238,7 +238,7 @@ const ClinicalHistory = () => {
            
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Other symptom please specify"
+                label="Other Symptom Please Specify"
                 name="othersymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
