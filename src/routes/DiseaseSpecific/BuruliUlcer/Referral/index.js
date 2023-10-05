@@ -88,7 +88,7 @@ const Referral = () => {
                         
                             <Col lg={12} md={12} sm={24}>
                             <Form.Item
-                                label="If Yes, Name of facility"
+                                label="If Yes, Name Of Facility"
                                 name="specifyNameOfFacility"
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
