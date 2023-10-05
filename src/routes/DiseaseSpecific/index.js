@@ -175,7 +175,7 @@ const App = () => {
     } else if (program === "Yaw") {
       return <Yaw/>;
     } else if (program === "Anthrax") {
-      return <Anthrax/>;
+      return <Anthrax form={form}/>;
     } else if (program === "AFP") {
       return <AFP/>;
     } else if (program === "Tetanus") {
@@ -193,7 +193,7 @@ const App = () => {
     } else if (program === "Influenza") {
       return <Influenza/>;
     } else if (program === "Guinea Worm") {
-      return <GuineaWorm/>;
+      return <GuineaWorm form={form}/>;
     } else if (program === "Diphtheria") {
       return <Diphtheria/>;
     } else if (program === "Ebola") {

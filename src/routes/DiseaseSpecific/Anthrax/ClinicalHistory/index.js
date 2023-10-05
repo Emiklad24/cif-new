@@ -46,13 +46,13 @@ const lgaData = {
   Enugu: ['Nsukka', 'Enugu south', 'Udi'],
 };
 
-const ClinicalHistory = () => {
-  const [form] = Form.useForm();
+const ClinicalHistory = ({form}) => {
+
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
-  const [signsSymptoms, setSignsSymptoms] = useState(false);
+  const [signsSymptoms, setSignsSymptoms] = useState("");
 
   const [hasBaselineSecrum, setHasBaselineSecrum] = useState(null);
 
@@ -78,27 +78,27 @@ const ClinicalHistory = () => {
   
   const handleUpdateInputValues = (inputName, value) => {
 
-      console.log(inputName, value)
+      console.log(inputName, value, 'hellos')
 
       setFormValues((previousState) => ({
           ...previousState,
           [inputName]: value
 
-<<<<<<< HEAD
       }));
 
-      if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
-        form.setFieldsValue({
-            dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null
+      if(formValues?.hasBaselineSecrum === "no" || formValues?.hasBaselineSecrum ==="unknown"){
+        form?.setFieldsValue({
+          ifYesDate:null,
+        });
+      }
+      if(formValues?.signsSymptoms === "no" || formValues?.signsSymptoms ==="unknown"){
+        form?.setFieldsValue({
+            other:null
           });
       }
 
   };
-=======
-      }))
-
-  }
->>>>>>> frontend_vincent_02_10_2023
+      
 
 
 
@@ -128,7 +128,6 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Signs and symptoms"
-                name="signsSymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -136,7 +135,7 @@ const ClinicalHistory = () => {
                     placeholder="Select Option"
                     allowClear
                     name="signsSymptoms"
-                    onChange={setSignsSymptoms}
+                    onChange={(value) => handleUpdateInputValues(signsSymptoms, value)}
                   >
                   {signs.map((item) => (
                     <Option label={item} value={item}>
@@ -147,22 +146,25 @@ const ClinicalHistory = () => {
                 </Select>
               </Form.Item>
             </Col>
-            {signsSymptoms === 'Others' &&
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Other"
-                name="other"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  placeholder="Other specify"
-                  id="other"
-                  name="other"
-                  onChange={(e) => {}}
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.signsSymptoms === 'Others' &&
+              (
+                <>
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="Other"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                    >
+                      <Input
+                        placeholder="Other specify"
+                        name="other"
+                        onChange={(e) => {}}
+                      />
+                    </Form.Item>
+                  </Col>
+                </>
+              )
             }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
@@ -223,11 +225,9 @@ const ClinicalHistory = () => {
               formValues?.hasBaselineSecrum === 'yes' &&
               (
                 <>
-
                   <Col lg={8} md={8} sm={24}>
                     <Form.Item
                       label="If yes, date"
-                      name="ifYesDate"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
@@ -251,8 +251,6 @@ const ClinicalHistory = () => {
                       />
                     </Form.Item>
                   </Col>
-
-                  
                 </>
               )
             }
@@ -305,8 +303,6 @@ const ClinicalHistory = () => {
                 />
               </Form.Item>
             </Col>
-
-          
           </Row>
         </Panel>
       </Collapse>
