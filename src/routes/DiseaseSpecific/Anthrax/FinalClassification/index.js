@@ -45,6 +45,20 @@ const FinalClassification = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      console.log(inputName, value)
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }))
+
+  }
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -66,6 +80,7 @@ const FinalClassification = () => {
                     placeholder="Select Option"
                     allowClear
                     name="finalClassification"
+                    onChange={(value) => handleUpdateInputValues("finalClassification", value)}
                   >
                     {finals.map((item) => (
                       <Option label={item} value={item}>

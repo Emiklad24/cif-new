@@ -62,6 +62,20 @@ const Epidemiological = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      console.log(inputName, value)
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }))
+
+  }
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -73,33 +87,42 @@ const Epidemiological = () => {
                     name="vaccinatedWithAnthrax"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-                    
-                    >
-                    <Radio.Group buttonStyle="solid">
-
-                      {vaccine.map((item) => (
-                          <Radio.Button  onChange={handleRadioChange} value={item}>{item}</Radio.Button>
-                        ))}
+                    rules={[
+                      {
+                          required: true,
+                          message: "Select an option!",
+                      },
+                    ]}>
+                    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="vaccinatedWithAnthrax" >
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                      <Radio.Button value="unknown">Unknown</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
             </Col>
-            {vaccinatedWithAnthrax === 'Yes' &&
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="If yes, name of vaccine"
-                name="nameOfVaccine" 
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-              >
-                <Input
-                  placeholder="Name of Vaccine"
-                  id="nameOfVaccine"
-                  name="nameOfVaccine"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.vaccinatedWithAnthrax === 'yes' &&
+              (
+                <>
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="If yes, name of vaccine"
+                      name="nameOfVaccine" 
+                      labelCol={{span: 24}}
+                      wrapperCol={{span: 24}}
+                    >
+                      <Input
+                        placeholder="Name of Vaccine"
+                        id="nameOfVaccine"
+                        name="nameOfVaccine"
+                        onChange={(e) => {
+                        }}
+                      />
+                    </Form.Item>
+                  </Col>
+                </>
+
+              )
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
@@ -221,42 +244,50 @@ const Epidemiological = () => {
                     name="contactWithAnimalProduct"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
-                    <Radio.Group buttonStyle="solid">
-                      {animals.map((item) => (
-                          <Radio.Button onChange={handleRadioContactAnimal}  value={item}>{item}</Radio.Button>
-                        ))}
+                    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="contactWithAnimalProduct">
+                        <Radio.Button value="yes">Yes</Radio.Button>
+                        <Radio.Button value="no">No</Radio.Button>
+                        <Radio.Button value="unknown">Unknown</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
             </Col>
-            {contactWithAnimalProduct === 'Yes' &&
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="If yes to above, what kind of animal?"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                  name="whatKindOfAnimal"
-                  rules={[
-                    {
-                      required: true,
-                      message: "If yes to above, what kind of animal?",
-                    },
-                  ]}
-                  >
-                  <Select
-                    placeholder="Select Option"
-                    allowClear
-                    name="typeOfSpecimen"
-                  >
-                    {kindAnimals.map((item) => (
-                      <Option label={item} value={item}>
-                        {item}
-                      </Option>
-                    ))}
 
-                  </Select>
-                  
-                </Form.Item>
-            </Col>
+            {
+              formValues?.contactWithAnimalProduct === 'yes' &&
+              
+              (
+                <>
+                  <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="If yes to above, what kind of animal?"
+                        labelCol={{span: 24}}
+                        wrapperCol={{span: 24}}
+                        name="whatKindOfAnimal"
+                        rules={[
+                          {
+                            required: true,
+                            message: "If yes to above, what kind of animal?",
+                          },
+                        ]}
+                        >
+                        <Select
+                          placeholder="Select Option"
+                          allowClear
+                          name="typeOfSpecimen"
+                          onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
+                        >
+                          {kindAnimals.map((item) => (
+                            <Option label={item} value={item}>
+                              {item}
+                            </Option>
+                          ))}
+
+                        </Select>
+                        
+                      </Form.Item>
+                  </Col>
+                </>
+              )
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item

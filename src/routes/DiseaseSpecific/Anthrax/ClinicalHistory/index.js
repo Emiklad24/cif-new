@@ -74,6 +74,20 @@ const ClinicalHistory = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      console.log(inputName, value)
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }))
+
+  }
+
 
 
   return (
@@ -180,33 +194,55 @@ const ClinicalHistory = () => {
                 name="hasBaselineSecrum"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-              >
-                <Radio.Group buttonStyle="solid">
-                {baseline.map((item) => (
-                    <Radio.Button onChange={handleRadioHasBaseLine}  value={item}>{item}</Radio.Button>
-                  ))}
+                rules={[
+                    {
+                        required: true,
+                        message: "Select an option!",
+                    },
+                ]}>
+                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="hasBaselineSecrum" >
+                    <Radio.Button value="yes">Yes</Radio.Button>
+                    <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>
-            {hasBaselineSecrum === 'Yes' &&
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="If yes, date"
-                name="yesDate"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <DatePicker
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                  id="yesDate"
-                  name="yesDate"
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.hasBaselineSecrum === 'yes' &&
+              (
+                <>
+
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="If yes, date"
+                      name="ifYesDate"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                            required: true,
+                            message: "Select a date!",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{ width: "100%" }}
+                        placeholder="DD-MM-YYYY"
+
+                        name="ifYesDate"
+                        onChange={(_, dateString) => handleUpdateInputValues("ifYesDate", dateString)}
+
+                      />
+                    </Form.Item>
+                  </Col>
+
+                  
+                </>
+              )
             }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
@@ -216,7 +252,7 @@ const ClinicalHistory = () => {
                 wrapperCol={{ span: 24 }}
               >
                 <Input
-                  placeholder="First symptom noticed"
+                  placeholder="Enter first symptom noticed"
                   id="firstSymptomNoticed"
                   name="firstSymptomNoticed"
                   onChange={(e) => {}}
@@ -226,7 +262,7 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date of onset of first symptoms"
-                name="yesDate"
+                name="dateOfOnsetOfFirstSymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -236,8 +272,8 @@ const ClinicalHistory = () => {
                   }
                   style={{ width: "100%" }}
                   placeholder="DD-MM-YYYY"
-                  id="yesDate"
-                  name="yesDate"
+                  id="dateOfOnsetOfFirstSymptoms"
+                  name="dateOfOnsetOfFirstSymptoms"
                 />
               </Form.Item>
             </Col>
@@ -250,7 +286,7 @@ const ClinicalHistory = () => {
                 wrapperCol={{ span: 24 }}
               >
                 <Input
-                  placeholder="Name of sentinel lab specimen was sent"
+                  placeholder="Enter name of sentinel lab specimen was sent"
                   id="nameOfSentinelLabSpecimen"
                   name="nameOfSentinelLabSpecimen"
                   onChange={(e) => {}}
