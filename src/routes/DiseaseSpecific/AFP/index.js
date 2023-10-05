@@ -8,14 +8,14 @@ import LaboratoryInformation from "./LaboratoryInformation";
 
 //const {Option} = Select;
 
-const AFP = () => {
+const AFP = ({form}) => {
   return (
     <>
-      <Epidemiological/>
-      <ClinicalHistory/>
-      <LaboratoryInformation/>
-      <FinalClassification/>
-      <ContactTracing/>
+      <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
+      <ContactTracing form={form}/>
     </>
   );
 };
