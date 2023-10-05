@@ -53,7 +53,7 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({}); 
   const handleUpdateInputValues = (inputName, value) => {
 
     console.log(inputName, value)
