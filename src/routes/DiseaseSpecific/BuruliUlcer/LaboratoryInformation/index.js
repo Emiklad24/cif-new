@@ -93,6 +93,7 @@ const LaboratoryInformation = ({form}) => {
                              onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
+                  <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>
@@ -131,7 +132,7 @@ const LaboratoryInformation = ({form}) => {
 
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
-                      label="Type of Specimen collected?"
+                      label="Type Of Specimen Collected?"
                       name="specimenType"
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
@@ -159,7 +160,7 @@ const LaboratoryInformation = ({form}) => {
 
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
-                      label="Name of Testing Laboratory"
+                      label="Name Of Testing Laboratory"
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
                       // initialValue={birth_date ? moment(birth_date) : null}
@@ -187,7 +188,7 @@ const LaboratoryInformation = ({form}) => {
 
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
-                      label="Date of Specimen Sent"
+                      label="Date Specimen Sent"
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
                       // initialValue={symptom_date ? moment(symptom_date) : null}
@@ -218,7 +219,7 @@ const LaboratoryInformation = ({form}) => {
 
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
-                      label="Date of Specimen Received"
+                      label="Date Specimen Received"
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
                       // initialValue={symptom_date ? moment(symptom_date) : null}
@@ -249,7 +250,7 @@ const LaboratoryInformation = ({form}) => {
                       <>
                         <Col lg={12} md={12} sm={24}>
                           <Form.Item
-                            label="Type of Specimen Received?"
+                            label="Type Of Specimen Received?"
                             name="typeOfSpecmenReceived"
                             labelCol={{span: 24}}
                             wrapperCol={{span: 24}}
@@ -321,7 +322,7 @@ const LaboratoryInformation = ({form}) => {
 
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
-                      label="Type of Test Conducted?"
+                      label="Type Of Test Conducted?"
                       name="typeOfTestConducted"
                       labelCol={{span: 24}}
                       wrapperCol={{span: 24}}
