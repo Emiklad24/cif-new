@@ -6,13 +6,13 @@ import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
-const Anthrax = ({form}) => {
+const Anthrax = () => {
   return (
     <>
-      <Epidemiological form={form}/>
-      <ClinicalHistory form={form}/>
-      <LaboratoryInformation form={form}/>
-      <FinalClassification form={form}/>
+     <Epidemiological/>
+      <ClinicalHistory/>
+      <LaboratoryInformation/>
+      <FinalClassification/>
     </>
   );
 };

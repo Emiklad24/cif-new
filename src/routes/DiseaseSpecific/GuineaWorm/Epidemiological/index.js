@@ -37,6 +37,10 @@ const Epidemiological = () => {
     console.log("search:", value);
   };
 
+  const [formValues, setFormValues] = useState({});
+
+  
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>

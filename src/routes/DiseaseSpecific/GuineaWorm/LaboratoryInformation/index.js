@@ -53,6 +53,19 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({}); 
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+        ...previousState,
+        [inputName]: value
+
+    }))
+
+  }
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -64,29 +77,34 @@ const LaboratoryInformation = () => {
                     name="specimenPreserved"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
-                    <Radio.Group buttonStyle="solid">
-                      {specimenWorms.map((item) => (
-                          <Radio.Button onChange={handleRadioSpecimenPreserved} value={item}>{item}</Radio.Button>
-                        ))}
+                    
+                    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="specimenPreserved" >
+                      <Radio.Button value="Yes">Yes</Radio.Button>
+                      <Radio.Button value="No">No</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
             </Col>
-            {specimenPreserved === 'No' &&
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="If No, Why?"
-                  name="ifNoWhy"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                >
-                  <Input
-                  placeholder="If No, Why?"
-                  id="ifNoWhy"
-                  name="ifNoWhy"
-                  onChange={(e) => {}}
-                />
-                </Form.Item>
-            </Col>
+            {
+              formValues?.specimenPreserved === 'No' &&
+              (
+                <>
+                    <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                          label="If No, Why?"
+                          name="ifNoWhy"
+                          labelCol={{span: 24}}
+                          wrapperCol={{span: 24}}
+                        >
+                          <Input
+                          placeholder="If No, Why?"
+                          id="ifNoWhy"
+                          name="ifNoWhy"
+                          onChange={(e) => {}}
+                        />
+                        </Form.Item>
+                    </Col>
+                </>
+              )
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item

@@ -45,13 +45,27 @@ const FinalClassification = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      console.log(inputName, value)
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }))
+
+  }
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Final Classification" key="1">
         <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Select the Final classification of this case:"
+                  label="Select the final classification of this case:"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="finalClassification"
@@ -66,6 +80,7 @@ const FinalClassification = () => {
                     placeholder="Select Option"
                     allowClear
                     name="finalClassification"
+                    onChange={(value) => handleUpdateInputValues("finalClassification", value)}
                   >
                     {finals.map((item) => (
                       <Option label={item} value={item}>
