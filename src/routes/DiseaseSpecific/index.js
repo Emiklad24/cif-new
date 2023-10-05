@@ -169,7 +169,7 @@ const App = () => {
   };
   const getProgram = () => {
     if (program === "Yellow Fever") {
-      return <YellowFever/>;
+      return <YellowFever form={form}/>;
     } else if (program === "Cholera") {
       return <Cholera/>;
     } else if (program === "Yaw") {
@@ -209,7 +209,7 @@ const App = () => {
     } else if (program === "Maternal Death") {
       return <MaternalDeath/>;
     } else if (program === "Covid19") {
-      return <Covid19/>;
+      return <Covid19 form={form}/>;
     } else {
       return null;
     }

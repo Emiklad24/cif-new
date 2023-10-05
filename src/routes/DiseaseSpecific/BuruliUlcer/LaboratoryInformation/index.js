@@ -22,8 +22,7 @@ const lgaData = {
   Enugu: ['Nsukka', 'Enugu south', 'Udi'],
 };
 
-const LaboratoryInformation = () => {
-  const [form] = Form.useForm();
+const LaboratoryInformation = ({form}) => {
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
@@ -53,6 +52,16 @@ const LaboratoryInformation = () => {
       [inputName]: value
 
     }))
+     if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
+      form.setFieldsValue({
+          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null
+        });
+    }
+     if(formValues?.typeOfTestConducted === "no" || formValues?.typeOfTestConducted ==="unknown"){
+      form.setFieldsValue({
+          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null
+        });
+    }
 
   }
 
