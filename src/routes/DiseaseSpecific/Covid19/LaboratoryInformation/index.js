@@ -5,7 +5,7 @@ import {
   Collapse,
   DatePicker,
   Row,
-  Tooltip,
+  Tooltip,Divider,
   Select,
   Radio,
 } from "antd";
@@ -33,10 +33,8 @@ const lgaData = {
   Enugu: ["Nsukka", "Enugu south", "Udi"],
 };
 
-const LaboratoryInformation = () => {
-  const [form] = Form.useForm();
+const LaboratoryInformation = ({form}) => {
   const [lga, setLga] = useState([]);
-  const [cultureresult_type, setCultureresult] = useState("");
   const [testinglaboratory_type, settestingLaboratory] = useState("");
   const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
@@ -58,12 +56,19 @@ const LaboratoryInformation = () => {
   const [formValues, setFormValues] = useState({});
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    // console.log(inputName, value);
 
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
+
+
+    if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
+      form.setFieldsValue({
+          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null
+        });
+    }
   };
 
   console.log("form values", formValues);
@@ -210,7 +215,7 @@ const LaboratoryInformation = () => {
                     </Select>
                   </Form.Item>
                 </Col>
-
+                <Divider plain>At the Laboratory</Divider>
                 {formValues?.sampleType?.length >= 1 && (
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item

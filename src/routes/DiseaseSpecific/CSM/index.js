@@ -6,16 +6,16 @@ import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
-const CSM = ({ formValues }) => {
+const CSM = ({form} ) => {
 
 
   return (
     <>
-      <Epidemiological formValues={formValues} />
-      <ClinicalHistory formValues={formValues} />
-      <LaboratoryInformation formValues={formValues} />
-      <FinalClassification formValues={formValues} />
-      <ContactTracing formValues={formValues} />
+       <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
+      <ContactTracing form={form}/>
     </>
   );
 };

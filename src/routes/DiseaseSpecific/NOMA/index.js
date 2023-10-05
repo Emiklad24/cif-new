@@ -5,15 +5,16 @@ import Epidemiological from "./Epidemiological";
 import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
+import ContactTracing from "../BuruliUlcer/ContactTracing";
 
-const NOMA = () => {
+const NOMA = ({form}) => {
   return (
     <>
-     <Epidemiological/>
-      <ClinicalHistory/>
-      <LaboratoryInformation/>
-      <FinalClassification/>
-      {/* <ContactTracing/> */}
+      <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
+      {/*<ContactTracing form={form}/>*/}
     </>
   );
 };

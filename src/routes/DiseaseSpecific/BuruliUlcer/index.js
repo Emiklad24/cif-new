@@ -7,15 +7,15 @@ import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 import Referral from './Referral';
 
-const BuruliUlcer = () => {
+const BuruliUlcer = ({form}) => {
   return (
     <>
-     <Epidemiological/>
-      <ClinicalHistory/>
-      <LaboratoryInformation/>
-      <FinalClassification/>
-      <ContactTracing/>
-      <Referral/>
+      <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
+      <ContactTracing form={form}/>
+      <Referral form={form}/>
     </>
   );
 };

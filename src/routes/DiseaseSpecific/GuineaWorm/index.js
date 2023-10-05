@@ -4,14 +4,15 @@ import Epidemiological from "./Epidemiological";
 import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
+import ContactTracing from "../BuruliUlcer/ContactTracing";
 
-const GuineaWorm = () => {
+const GuineaWorm = ({form}) => {
   return (
     <>
-     <Epidemiological/>
-      <ClinicalHistory/>
-      <LaboratoryInformation/>
-      <FinalClassification/>
+      <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
     </>
   );
 };
