@@ -46,13 +46,13 @@ const lgaData = {
   Enugu: ['Nsukka', 'Enugu south', 'Udi'],
 };
 
-const ClinicalHistory = () => {
-  const [form] = Form.useForm();
+const ClinicalHistory = ({form}) => {
+
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
-  const [signsSymptoms, setSignsSymptoms] = useState(false);
+  const [signsSymptoms, setSignsSymptoms] = useState("");
 
   const [hasBaselineSecrum, setHasBaselineSecrum] = useState(null);
 
@@ -74,6 +74,30 @@ const ClinicalHistory = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }));
+
+      if(formValues?.hasBaselineSecrum === "no" || formValues?.hasBaselineSecrum ==="unknown"){
+        form?.setFieldsValue({
+          ifYesDate:null,
+        });
+      }
+      if(formValues?.signsSymptoms === "no" || formValues?.signsSymptoms ==="unknown"){
+        form?.setFieldsValue({
+            other:null
+          });
+      }
+
+  };
+      
+
 
 
   return (
@@ -83,7 +107,7 @@ const ClinicalHistory = () => {
           <Row>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Date seen at the Health Facility"
+                label="Date seen at the health facility"
                 name="dateSeenAtHealthFacility"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -101,8 +125,7 @@ const ClinicalHistory = () => {
             </Col>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Signs and Symptoms"
-                name="signsSymptoms"
+                label="Signs and symptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -110,7 +133,7 @@ const ClinicalHistory = () => {
                     placeholder="Select Option"
                     allowClear
                     name="signsSymptoms"
-                    onChange={setSignsSymptoms}
+                    onChange={(value) => handleUpdateInputValues("signsSymptoms", value)}
                   >
                   {signs.map((item) => (
                     <Option label={item} value={item}>
@@ -121,22 +144,25 @@ const ClinicalHistory = () => {
                 </Select>
               </Form.Item>
             </Col>
-            {signsSymptoms === 'Others' &&
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Other"
-                name="other"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  placeholder="Other specify"
-                  id="other"
-                  name="other"
-                  onChange={(e) => {}}
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.signsSymptoms === 'Others' &&
+              (
+                <>
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="Other"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                    >
+                      <Input
+                        placeholder="Other specify"
+                        name="other"
+                        onChange={(e) => {}}
+                      />
+                    </Form.Item>
+                  </Col>
+                </>
+              )
             }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
@@ -180,43 +206,61 @@ const ClinicalHistory = () => {
                 name="hasBaselineSecrum"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-              >
-                <Radio.Group buttonStyle="solid">
-                {baseline.map((item) => (
-                    <Radio.Button onChange={handleRadioHasBaseLine}  value={item}>{item}</Radio.Button>
-                  ))}
+                rules={[
+                    {
+                        required: true,
+                        message: "Select an option!",
+                    },
+                ]}>
+                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="hasBaselineSecrum" >
+                    <Radio.Button value="yes">Yes</Radio.Button>
+                    <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>
-            {hasBaselineSecrum === 'Yes' &&
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="If yes, date"
-                name="yesDate"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <DatePicker
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                  id="yesDate"
-                  name="yesDate"
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.hasBaselineSecrum === 'yes' &&
+              (
+                <>
+                  <Col lg={8} md={8} sm={24}>
+                    <Form.Item
+                      label="If yes, date"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                            required: true,
+                            message: "Select a date!",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{ width: "100%" }}
+                        placeholder="DD-MM-YYYY"
+
+                        name="ifYesDate"
+                        onChange={(_, dateString) => handleUpdateInputValues("ifYesDate", dateString)}
+
+                      />
+                    </Form.Item>
+                  </Col>
+                </>
+              )
             }
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="First Symptom noticed"
+                label="First symptom noticed"
                 name="firstSymptomNoticed"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
                 <Input
-                  placeholder="First Symptom Noticed"
+                  placeholder="Enter first symptom noticed"
                   id="firstSymptomNoticed"
                   name="firstSymptomNoticed"
                   onChange={(e) => {}}
@@ -226,7 +270,7 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date of onset of first symptoms"
-                name="yesDate"
+                name="dateOfOnsetOfFirstSymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -236,8 +280,8 @@ const ClinicalHistory = () => {
                   }
                   style={{ width: "100%" }}
                   placeholder="DD-MM-YYYY"
-                  id="yesDate"
-                  name="yesDate"
+                  id="dateOfOnsetOfFirstSymptoms"
+                  name="dateOfOnsetOfFirstSymptoms"
                 />
               </Form.Item>
             </Col>
@@ -250,15 +294,13 @@ const ClinicalHistory = () => {
                 wrapperCol={{ span: 24 }}
               >
                 <Input
-                  placeholder="Name of sentinel lab specimen was sent"
+                  placeholder="Enter name of sentinel lab specimen was sent"
                   id="nameOfSentinelLabSpecimen"
                   name="nameOfSentinelLabSpecimen"
                   onChange={(e) => {}}
                 />
               </Form.Item>
             </Col>
-
-          
           </Row>
         </Panel>
       </Collapse>

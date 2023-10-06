@@ -87,7 +87,7 @@ const ClinicalHistory = () => {
                             </Form.Item>
                         </Col>
 
-                        {
+                        { 
 
                             formValues?.fever === "yes" &&
                             (

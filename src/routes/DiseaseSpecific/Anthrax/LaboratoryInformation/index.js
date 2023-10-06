@@ -55,6 +55,29 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+      setFormValues((previousState) => ({
+          ...previousState,
+          [inputName]: value
+
+      }));
+
+      if(formValues?.typeOfSpecimen !== "Others"){
+        form?.setFieldsValue({
+          otherspecimen:"",
+        });
+      }
+      if(formValues?.hasSentinelLab === "yes" || formValues?.hasSentinelLab ==="indeterminate"){
+        form?.setFieldsValue({
+          dateSpecimenSentForConfirmation:null
+          });
+      }
+
+  };
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -81,7 +104,7 @@ const LaboratoryInformation = () => {
            
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Type of Specimen"
+                  label="Type of specimen"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   rules={[
@@ -95,7 +118,7 @@ const LaboratoryInformation = () => {
                     placeholder="Select Option"
                     allowClear
                     name="typeOfSpecimen"
-                    onChange={setTypeOfSpecimen}
+                    onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
                   >
                     {typeSpecimen.map((item) => (
                       <Option label={item} value={item}>
@@ -106,27 +129,32 @@ const LaboratoryInformation = () => {
                   </Select>
                 </Form.Item>
             </Col>
-            {typeOfSpecimen === 'Others' &&
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="Other Specify"
-                  name="otherspecimen"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                >
-                <Input
-                  placeholder="Enter Other Specimen"
-                  id="otherspecimen"
-                  name="otherspecimen"
-                  onChange={(e) => {
-                  }}
-                />
-                </Form.Item>
-            </Col>
+
+            {
+              formValues?.typeOfSpecimen === 'Others' &&
+              (
+                <>
+
+                  <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Other specify"
+                        labelCol={{span: 24}}
+                        wrapperCol={{span: 24}}
+                      >
+                      <Input
+                        placeholder="Enter other specimen"
+                        name="otherspecimen"
+                        onChange={(e) => {
+                        }}
+                      />
+                      </Form.Item>
+                  </Col>
+                </>
+              )
             }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Date Specimen sent to lab"
+                  label="Date specimen sent to lab"
                   name="dateSpecimenLab"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
@@ -164,7 +192,7 @@ const LaboratoryInformation = () => {
             
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                    label="Specimen Condition"
+                    label="Specimen condition"
                     name="specimenCondition"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}>
@@ -178,7 +206,7 @@ const LaboratoryInformation = () => {
             
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Type of Test"
+                  label="Type of test"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="typeOfTest"
@@ -199,10 +227,9 @@ const LaboratoryInformation = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Has sentinel lab ruled out Anthrax?"
+                  label="Has sentinel lab ruled out anthrax?"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
-                  name="hasSentinelLab"
                   rules={[
                     {
                       required: true,
@@ -210,55 +237,72 @@ const LaboratoryInformation = () => {
                     },
                   ]}
                   >
-                  <Radio.Group buttonStyle="solid">
-                      {sentinel.map((item) => (
-                          <Radio.Button onChange={handleRadiohasSentinelLab} value={item}>{item}</Radio.Button>
-                        ))}
-                  </Radio.Group>
+                  
+                    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="hasSentinelLab" >
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                      <Radio.Button value="indeterminate">Indeterminate</Radio.Button>
+                    </Radio.Group>
                  
                 </Form.Item>
             </Col>
-            {hasSentinelLab === 'No' &&
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="If No/IndeteGITrminate, Date Specimen sent to Reference lab for confirmation"
-                  name="dateSpecimenSentForConfirmation"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                >
-                  <DatePicker
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{width: "100%"}}
-                  placeholder="DD-MM-YYYY"
-                  id="dateSpecimenSentForConfirmation"
-                  name="dateSpecimenSentForConfirmation"/>
-                </Form.Item>
-            </Col>
+            {
+              formValues?.hasSentinelLab === 'no' &&
+              (
+                <>
+
+                  <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="If no/indeteGITrminate, date specimen sent to reference lab for confirmation"
+                        labelCol={{span: 24}}
+                        wrapperCol={{span: 24}}
+                      >
+                        <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{width: "100%"}}
+                        placeholder="DD-MM-YYYY"
+                        name="dateSpecimenSentForConfirmation"
+                        onChange={(_, dateString) => handleUpdateInputValues("dateSpecimenSentForConfirmation", dateString)}
+                        />
+                      </Form.Item>
+                  </Col>
+                </>
+              )
+
             }
-            {hasSentinelLab === 'Indeterminate' &&
+            {/* {
+              formValues?.hasSentinelLab === 'indeterminate' &&
+              (
+                <>
+                  <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="If no/indeteGITrminate, date specimen sent to reference lab for confirmation"
+                        name="dateSpecimenSentForConfirmation"
+                        labelCol={{span: 24}}
+                        wrapperCol={{span: 24}}
+                      >
+                        <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{width: "100%"}}
+                        placeholder="DD-MM-YYYY"
+                        id="dateSpecimenSentForConfirmation"
+                        name="dateSpecimenSentForConfirmation"
+                        onChange={(_, dateString) => handleUpdateInputValues("dateSpecimenSentForConfirmation", dateString)}
+                        />
+                      </Form.Item>
+                  </Col>
+                </>
+              )
+            } */}
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="If No/IndeteGITrminate, Date Specimen sent to Reference lab for confirmation"
-                  name="dateSpecimenSentForConfirmation"
-                  labelCol={{span: 24}}
-                  wrapperCol={{span: 24}}
-                >
-                  <DatePicker
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{width: "100%"}}
-                  placeholder="DD-MM-YYYY"
-                  id="dateSpecimenSentForConfirmation"
-                  name="dateSpecimenSentForConfirmation"/>
-                </Form.Item>
-            </Col>
-            }
-            <Col lg={12} md={12} sm={24}>
-                <Form.Item
-                  label="Name of Reference Lab Specimen was sent"
+                  label="Name of reference lab specimen was sent"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="nameReferenceLabSpecimen"
@@ -314,7 +358,7 @@ const LaboratoryInformation = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
-                  label="Definitive Characterization of Infection"
+                  label="Definitive characterization of infection"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
                   name="characterizationOfInfection"

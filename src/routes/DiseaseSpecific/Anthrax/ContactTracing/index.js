@@ -48,7 +48,7 @@ const ContactTracing = () => {
         <Panel header="Contact Tracing Information" key="1">
           <Col lg={6} md={6} sm={24}>
               <Form.Item
-                label="Complete Address"
+                label="Complete address"
                 name="clientaddress"
                 labelCol={{span: 24}}
                 wrapperCol={{span: 24}}
