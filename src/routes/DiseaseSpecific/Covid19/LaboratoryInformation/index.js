@@ -53,7 +53,7 @@ const LaboratoryInformation = ({form}) => {
     console.log("search:", value);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form);
 
   const handleUpdateInputValues = (inputName, value) => {
     // console.log(inputName, value);
@@ -66,7 +66,7 @@ const LaboratoryInformation = ({form}) => {
 
     if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
       form.setFieldsValue({
-          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null
+          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null, sampleType:[]
         });
     }
   };
