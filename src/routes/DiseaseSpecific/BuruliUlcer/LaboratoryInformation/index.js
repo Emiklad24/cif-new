@@ -56,7 +56,7 @@ const LaboratoryInformation = ({ form }) => {
   const [formValues, setFormValues] = useState({});
 
   const handleUpdateInputValues = (inputName, value) => {
-    // console.log(inputName, value);
+    console.log(inputName, value);
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -65,6 +65,7 @@ const LaboratoryInformation = ({ form }) => {
 
 
     if (formValues?.sampleCollected === "no" || formValues?.sampleCollected === "unknown") {
+      console.log('hhhh')
       form.setFieldsValue({
         dateSpecimenCollected: null, specimenCollected: null, dateSpecimenSent: null, nameOfTestingLaboratory: null
       });
@@ -232,13 +233,13 @@ const LaboratoryInformation = ({ form }) => {
                     >
                       <CheckboxGroup
                         options={
-                          formValues?.sampleType?.length === 2
+                          formValues?.sampleType?.length >= 1
                             ? [
                               {
-                                label: "Cerebrospinal fluid",
-                                value: "Cerebrospinal fluid",
+                                label: "Swab",
+                                value: "Swab",
                               },
-                              { label: "Blood", value: "Blood" },
+                              { label: "Fine Needle Aspirates", value: "Fine Needle Aspirates" },{label: "Biopsy",value: "Biopsy"}
                             ]
                             : formValues?.sampleType?.length === 1 &&
                               formValues?.sampleType?.includes(
@@ -348,7 +349,7 @@ const LaboratoryInformation = ({ form }) => {
                             ]
                             : [
                               { label: "PCR", value: "pcr" },
-                              { label: "RDT", value: "rdt" },
+                              { label: "Histopathology", value: "histopathology" },
                               { label: "Culture", value: "culture" },
                             ]
                         }
@@ -379,9 +380,6 @@ const LaboratoryInformation = ({ form }) => {
                         <Radio.Group buttonStyle="solid">
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
-                          <Radio.Button value="indeterminate">
-                            Indeterminate
-                          </Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
                           <Radio.Button value="not done">Not Done</Radio.Button>
                         </Radio.Group>
@@ -440,27 +438,24 @@ const LaboratoryInformation = ({ form }) => {
                   </Row>
                 )}
 
-                {formValues?.testConducted?.includes("rdt") && (
+                {formValues?.testConducted?.includes("histopathology") && (
                   <Row>
                     <Col lg={12} md={12} sm={24}>
                       <Form.Item
-                        label="RDT Result"
-                        name="rdtResult"
+                        label="Histopathology"
+                        name="histopathologyresult"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
                           {
                             required: true,
-                            message: "Select RDT result",
+                            message: "Select Histopathology result",
                           },
                         ]}
                       >
                         <Radio.Group buttonStyle="solid">
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
-                          <Radio.Button value="indeterminate">
-                            Indeterminate
-                          </Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
                           <Radio.Button value="not done">Not Done</Radio.Button>
                         </Radio.Group>
@@ -542,6 +537,8 @@ const LaboratoryInformation = ({ form }) => {
                       >
                         <Radio.Button value="growth">Growth</Radio.Button>
                         <Radio.Button value="no growth">No Growth</Radio.Button>
+                        <Radio.Button value="not done">Not Done</Radio.Button>
+                        <Radio.Button value="pending">Pending</Radio.Button>
                       </Radio.Group>
                     </Form.Item>
                   </Col>
