@@ -2,23 +2,26 @@ import {
   Col,
   Form,
   Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
-} from 'antd';
-import React, { useState } from 'react';
+  Collapse,
+  DatePicker,
+  Row,
+  Tooltip,
+  Select,
+  Radio,
+} from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
 import moment from "moment";
 
 const { Option } = Select;
 
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
+const stateData = ["FCT", "Enugu"];
+const facilityData = ["Federal Medical Center", "Jabi Clinic"];
+const diseaseData = ["COVID-19", "Cholera", "Yellow Fever"];
 
 const lgaData = {
-  FCT: ['AMAC', 'Bwari', 'Kwali'],
-  Enugu: ['Nsukka', 'Enugu south', 'Udi'],
+  FCT: ["AMAC", "Bwari", "Kwali"],
+  Enugu: ["Nsukka", "Enugu south", "Udi"],
 };
 
 const ClinicalHistory = () => {
@@ -32,20 +35,18 @@ const ClinicalHistory = () => {
   };
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
   };
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
   const onSearch = (value) => {
-    console.log('search:', value);
+    console.log("search:", value);
   };
-
-
 
   return (
     <>
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
+      <Collapse defaultActiveKey={["1"]} onChange={onChange}>
         <Panel header="Clinical history: Sign and Symptoms" key="1">
           <Row>
             <Col lg={12} md={12} sm={24}>
@@ -72,7 +73,6 @@ const ClinicalHistory = () => {
               </Form.Item>
             </Col>
 
-
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Was baby normal at birth"
@@ -93,7 +93,6 @@ const ClinicalHistory = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
@@ -118,7 +117,7 @@ const ClinicalHistory = () => {
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="Stopped suckimg after 2 days"
+                label="Stopped sucking after 2 days"
                 name="stoppedSuckingAfterTwoDays"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -263,7 +262,6 @@ const ClinicalHistory = () => {
               </Form.Item>
             </Col>
 
-
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Date of admission"
@@ -297,8 +295,7 @@ const ClinicalHistory = () => {
               >
                 <Input
                   placeholder="Specify Facility"
-                  onChange={(e) => {
-                  }}
+                  onChange={(e) => {}}
                   type="text"
                 />
               </Form.Item>
@@ -312,13 +309,11 @@ const ClinicalHistory = () => {
               >
                 <Input
                   placeholder="Specify Facility"
-                  onChange={(e) => {
-                  }}
+                  onChange={(e) => {}}
                   type="number"
                 />
               </Form.Item>
             </Col>
-
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
@@ -362,7 +357,6 @@ const ClinicalHistory = () => {
               </Form.Item>
             </Col>
 
-
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Date of response for supplemental"
@@ -396,15 +390,11 @@ const ClinicalHistory = () => {
               >
                 <Input
                   placeholder="Specify Facility"
-                  onChange={(e) => {
-                  }}
+                  onChange={(e) => {}}
                   type="text"
                 />
               </Form.Item>
             </Col>
-
-
-           
           </Row>
         </Panel>
       </Collapse>
