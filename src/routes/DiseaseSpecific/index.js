@@ -77,21 +77,93 @@ const lgaData = {
 
 const App = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const { Panel } = Collapse;
+
   const [lga, setLga] = useState([]);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-  const history = useHistory();
-  const dispatch = useDispatch();
+
+  const [age_year, setAgeYear] = useState(0);
+  const [age_month, setAgeMonth] = useState(0);
+  const [dateOfBirth, setBirthDate] = useState(null);
+  const [isYearDisabled, setIsYearDisabled] = useState(false);
+
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
 
+  /**
+ * @function getDoBFromAge
+ * @param {String} '1970-01-01'
+ * @return {Object} {'53', '4'}
+ */
+  const getDoBFromAge = (arg) => {
+    const dob = new Date(arg);
+    const today = new Date();
+    let ageYear = today.getFullYear() - dob.getFullYear();
+    let ageMonth = today.getMonth() - dob.getMonth();
+
+    if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
+      ageYear--;
+      ageMonth += 12;
+    }
+
+    return { ageYear, ageMonth };
+  };
+
+  /**
+ * @function onChangeDoB
+ * @description when the datepicker has a date calculate the year and month and update the fields and disable the year field else set them to empty and enable the year field
+ */
+  const onChangeDoB = (date, dateString) => {
+    if (date) {
+      const today = moment();
+      const age = today.diff(date, "years");
+      setAgeYear(age);
+      setIsYearDisabled(true);
+    } else {
+      setAgeYear(null);
+      setIsYearDisabled(false);
+    }
+
+    const { ageMonth } = getDoBFromAge(dateString);
+    setBirthDate(dateString);
+    setAgeMonth(ageMonth);
+  };
+
+  /**
+ * @function onChangeYear
+ * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
+ */
+  const onChangeYear = (e) => {
+    const year = e.target.value;
+    setAgeYear(year);
+    if (year) {
+      const calculatedDate = moment()
+        .subtract(year, "years")
+        .set({ month: 0, date: 1 });
+      form.setFieldsValue({ dateOfBirth: calculatedDate });
+      setBirthDate(calculatedDate.format("YYYY-MM-DD"));
+      setIsDatePickerDisabled(true);
+      setAgeMonth(0);
+      return;
+    }
+    form.setFieldsValue({ dateOfBirth: null });
+    setIsDatePickerDisabled(false);
+  };
+
+  const onChangeMonth = (e) => {
+    console.log(e.target)
+  }
+
   const onChange = () => {
     console.log("Received values of form:");
   };
-  
+
   const onFinish = async (fieldsValue) => {
     let additionals = {}
     if (program === "Cholera") {
@@ -652,17 +724,20 @@ const App = () => {
                   label="Date Of Birth"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  // initialValue={birth_date ? moment(birth_date) : null}
+                  initialValue={
+                    dateOfBirth !== null ? moment(dateOfBirth) : null
+                  }
                   name="dateOfBirth"
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "Please input the date of birth!",
                     },
                   ]}
                 >
                   <DatePicker
-                    format="DD-MM-YYYY"
+                    // format="DD-MM-YYYY"
+                    onChange={onChangeDoB}
                     disabledDate={(current) =>
                       current.isAfter(moment()) || isDatePickerDisabled
                     }
@@ -688,10 +763,10 @@ const App = () => {
                           arrowPointAtCenter
                         >
                           <Input
-                            // value={age_year}
-                            // onChange={onChangeYear}
+                            value={age_year}
+                            onChange={onChangeYear}
                             placeholder="Estimated Years"
-                          // disabled={isYearDisabled}
+                            disabled={isYearDisabled}
                           />
                         </Tooltip>
                       </Col>
@@ -702,10 +777,10 @@ const App = () => {
                           arrowPointAtCenter
                         >
                           <Input
-                            // onChange={onChangeMonth}
-                            // value={age_month}
+                            value={age_month}
                             placeholder="Estimated Months"
-                            disabled
+                            onChange={onChangeMonth}
+                            // disabled
                           />
                         </Tooltip>
                       </Col>
