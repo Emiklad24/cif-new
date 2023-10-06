@@ -182,7 +182,7 @@ const App = () => {
     } else if (program === "AFP") {
       return <AFP />;
     } else if (program === "Tetanus") {
-      return <Tetanus />;
+      return <Tetanus form={form}/>;
     } else if (program === "Rubella") {
       return <Rubella />;
     } else if (program === "NOMA") {
