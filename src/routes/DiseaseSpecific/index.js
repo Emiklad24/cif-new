@@ -91,7 +91,7 @@ const App = () => {
   const onChange = () => {
     console.log("Received values of form:");
   };
-  
+
   const onFinish = async (fieldsValue) => {
     let additionals = {}
     if (program === "Cholera") {
@@ -174,43 +174,43 @@ const App = () => {
     if (program === "Yellow Fever") {
       return <YellowFever form={form} />;
     } else if (program === "Cholera") {
-      return <Cholera />;
+      return <Cholera form={form}/>;
     } else if (program === "Yaw") {
-      return <Yaw />;
+      return <Yaw form={form}/>;
     } else if (program === "Anthrax") {
-      return <Anthrax />;
+      return <Anthrax form={form}/>;
     } else if (program === "AFP") {
-      return <AFP />;
+      return <AFP form={form}/>;
     } else if (program === "Tetanus") {
-      return <Tetanus />;
+      return <Tetanus form={form}/>;
     } else if (program === "Rubella") {
-      return <Rubella />;
+      return <Rubella form={form}/>;
     } else if (program === "NOMA") {
-      return <NOMA />;
+      return <NOMA form={form}/>;
     } else if (program === "Mpox") {
-      return <Mpox />;
+      return <Mpox form={form}/>;
     } else if (program === "Measles") {
-      return <Measles />;
+      return <Measles form={form}/>;
     } else if (program === "Lassa Fever") {
-      return <LassaFever />;
+      return <LassaFever form={form} />;
     } else if (program === "Influenza") {
-      return <Influenza />;
+      return <Influenza form={form}/>;
     } else if (program === "Guinea Worm") {
-      return <GuineaWorm />;
+      return <GuineaWorm form={form}/>;
     } else if (program === "Diphtheria") {
-      return <Diphtheria />;
+      return <Diphtheria form={form}/>;
     } else if (program === "Ebola") {
-      return <Ebola />;
+      return <Ebola form={form}/>;
     } else if (program === "Dengue") {
-      return <Dengue />;
+      return <Dengue form={form}/>;
     } else if (program === "CSM") {
-      return <CSM />;
+      return <CSM form={form}/>;
     } else if (program === "Buruli Ulcer") {
-      return <BuruliUlcer />;
+      return <BuruliUlcer form={form}/>;
     } else if (program === "Perinatal Death") {
-      return <PerinatalDeath />;
+      return <PerinatalDeath form={form}/>;
     } else if (program === "Maternal Death") {
-      return <MaternalDeath />;
+      return <MaternalDeath form={form}/>;
     } else if (program === "Covid19") {
       return <Covid19 form={form} />;
     } else {
