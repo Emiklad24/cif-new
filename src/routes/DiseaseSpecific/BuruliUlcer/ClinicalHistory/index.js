@@ -42,7 +42,24 @@ const ClinicalHistory = () => {
   };
   const onSearch = (value) => {
     console.log('search:', value);
+
   };
+
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState,	
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
 
 
 
@@ -53,7 +70,7 @@ const ClinicalHistory = () => {
           <Row>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Leg"
+                label="Painless Swelling Of The Leg"
                 name="SwellingLeg"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -64,7 +81,7 @@ const ClinicalHistory = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -74,7 +91,7 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Arm"
+                label="Painless Swelling Of The Arm"
                 name="SwellingArm"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -85,7 +102,7 @@ const ClinicalHistory = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -94,7 +111,7 @@ const ClinicalHistory = () => {
             </Col>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Painless Swelling of the Face"
+                label="Painless Swelling Of The Face"
                 name="SwellingFace"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -176,8 +193,8 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="The appearance of Lesions"
-                name="appearanceOfLesion"
+                label="The Appearance Of Lesions"
+                name="AppearanceOfLesion"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
@@ -200,7 +217,7 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Disability presence"
+                label="Disability Presence"
                 name="disabilityPresence"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -221,7 +238,7 @@ const ClinicalHistory = () => {
            
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Other symptom please specify"
+                label="Other Symptom Please Specify"
                 name="othersymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}

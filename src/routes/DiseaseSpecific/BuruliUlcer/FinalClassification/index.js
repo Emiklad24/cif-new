@@ -48,8 +48,8 @@ const FinalClassification = () => {
           <Row>
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="Healed without sequelea"
-                name="healedWithoutSequelae"
+                label="Healed"
+                name="healed"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[
@@ -60,30 +60,12 @@ const FinalClassification = () => {
                 ]}
               >
                 <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
+                  <Radio.Button value="withSequelea">With sequelae</Radio.Button>
+                  <Radio.Button value="withOutSequelea">With out sequelae</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Healed with sequelea"
-                name="healedWithSequelae"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+            
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Specify"
@@ -101,7 +83,7 @@ const FinalClassification = () => {
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="Absconded against medical advice"
+                label="Absconded Against Medical Advice"
                 name="abscondedAgainstMedicalAdvice"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -140,7 +122,7 @@ const FinalClassification = () => {
             </Col>
             <Col lg={12} md={12} sm={24}>
               <Form.Item
-                label="If dead, Buruli Ulcer related/ Non related"
+                label="If Dead, Buruli Ulcer Related?"
                 name="deathRelated"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}

@@ -49,11 +49,70 @@ const ClinicalHistory = () => {
 
   const [patientFevervalue, setPatientFevervalue] = useState(""); // Store the selected value in state
 
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+    console.log(inputName, value);
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+  };
+
+  console.log("form values", formValues);
+
   return (
     <>
       <Collapse defaultActiveKey={["1"]} onChange={onChange}>
         <Panel header="Clinical history: Sign and Symptoms" key="1">
           <Row>
+            <Col lg={8} md={8} sm={24}>
+              <Form.Item
+                label="Fever (≥38 °C)"
+                name="fever"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
+              >
+                <Radio.Group buttonStyle="solid">
+                  <Radio.Button value="yes">Yes</Radio.Button>
+                  <Radio.Button value="no">No</Radio.Button>
+                  <Radio.Button value="unknown">Unknown</Radio.Button>
+                </Radio.Group>
+              </Form.Item>
+            </Col>
+
+            <Col lg={8} md={8} sm={24}>
+              <Form.Item
+                label="Date Of Fever Onset"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                // initialValue={feveronset_date ? moment(feveronset_date) : null}
+                name="dateOfFeverOnset"
+                rules={[
+                  {
+                    required: true,
+                    message: "Select a date!",
+                  },
+                ]}
+              >
+                <DatePicker
+                  format="DD-MM-YYYY"
+                  disabledDate={(current) =>
+                    current.isAfter(moment()) || isDatePickerDisabled
+                  }
+                  style={{ width: "100%" }}
+                  placeholder="DD-MM-YYYY"
+                />
+              </Form.Item>
+            </Col>
+            
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date Seen at the Health Facility"
@@ -250,7 +309,7 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
-                label="Date Of symptom onset"
+                label="Date of symptom onset"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
@@ -296,27 +355,7 @@ const ClinicalHistory = () => {
                 />
               </Form.Item>
             </Col>
-
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Hospitalization status"
-                name="hospitalizationStatus"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Fill this field!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="in-patient">In-patient</Radio.Button>
-                  <Radio.Button value="out-patient">Out-patient</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
-
+            
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date of hopsitalization"

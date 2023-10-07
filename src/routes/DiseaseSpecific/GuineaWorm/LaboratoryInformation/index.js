@@ -12,8 +12,9 @@ import moment from "moment";
 
 const {Option} = Select;
 
-const typeSpecimen = ['Blood', 'Swab', 'Body Fluid', 'Tissue', 'Stool'];
+const typeSpecimen = ['Blood', 'Swab', 'Body Fluid', 'Tissue', 'Stool','Others'];
 const specimen = ['Adequate', 'Inadequate'];
+const specimenWorms = ['Yes', 'No'];
 const tests = ['Serology', 'Culture', 'Others'];
 const gwTests = ['Positive', 'Negative', 'Not done'];
 const refLabs = ['National Veterinary Research Institute (NVRI) Vom Jos, Plateau State', 'National Reference Laboratory Gaduwa, Abuja', 'Central Public Health Lab (CPHL), Yaba Lagos'
@@ -31,6 +32,12 @@ const LaboratoryInformation = () => {
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [typeOfSpecimen, setTypeOfSpecimen] = useState(false);
+  const [specimenPreserved, setSpecimenPreserved] = useState(false);
+
+  const handleRadioSpecimenPreserved = (event) => {
+    setSpecimenPreserved(event.target.value);
+  };
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -46,11 +53,66 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+    setFormValues((previousState) => ({
+        ...previousState,
+        [inputName]: value
+
+    }));
+
+    if(formValues?.specimenPreserved === "yes" || formValues?.specimenPreserved ==="indeterminate"){
+      form?.setFieldsValue({
+        specify:"",
+      });
+    }
+    if(formValues?.typeOfSpecimen !== "Others"){
+      form?.setFieldsValue({
+        specifyIfOthers:"",
+      });
+    }
+    
+  };
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Laboratory information" key="1">
           <Row>
+          <Col lg={12} md={12} sm={24}>
+                <Form.Item
+                    label="Was a specimen (worm) saved and preserved in alcohol?"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}>
+                    
+                    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="specimenPreserved" >
+                      <Radio.Button value="Yes">Yes</Radio.Button>
+                      <Radio.Button value="No">No</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+            </Col>
+            {
+              formValues?.specimenPreserved === 'No' &&
+              (
+                <>
+                    <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                          label="If No, Why?"
+                          labelCol={{span: 24}}
+                          wrapperCol={{span: 24}}
+                        >
+                          <Input
+                          placeholder="If No, Why?"
+                          name="ifNoWhy"
+                          onChange={(e) => {}}
+                        />
+                        </Form.Item>
+                    </Col>
+                </>
+              )
+            }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                   label="Date of specimen collection"
@@ -75,7 +137,6 @@ const LaboratoryInformation = () => {
                   label="Type of Specimen"
                   labelCol={{span: 24}}
                   wrapperCol={{span: 24}}
-                  name="typeOfSpecimen"
                   rules={[
                     {
                       required: true,
@@ -87,6 +148,7 @@ const LaboratoryInformation = () => {
                     placeholder="Select Option"
                     allowClear
                     name="typeOfSpecimen"
+                    onChange={(value) => handleUpdateInputValues("typeOfSpecimen", value)}
                   >
                     {typeSpecimen.map((item) => (
                       <Option label={item} value={item}>
@@ -97,7 +159,26 @@ const LaboratoryInformation = () => {
                   </Select>
                 </Form.Item>
             </Col>
-           
+            {
+              formValues?.typeOfSpecimen === 'Others' &&
+                (
+                  <>
+                    <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                          label="Specify"
+                          labelCol={{span: 24}}
+                          wrapperCol={{span: 24}}
+                        >
+                          <Input
+                          placeholder="Specify"
+                          name="specifyIfOthers"
+                          onChange={(e) => {}}
+                        />
+                        </Form.Item>
+                    </Col>
+                  </>
+                )
+            }
             <Col lg={12} md={12} sm={24}>
                 <Form.Item
                   label="Date Specimen sent to lab"

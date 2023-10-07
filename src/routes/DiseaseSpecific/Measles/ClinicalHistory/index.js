@@ -6,11 +6,11 @@ import {
   Row, Tooltip,
   Select, Radio,
 } from 'antd';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "styles/pages/form.less";
 import moment from "moment";
 
-const {Option} = Select;
+const { Option } = Select;
 
 const stateData = ['FCT', 'Enugu'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
@@ -24,7 +24,7 @@ const lgaData = {
 const ClinicalHistory = () => {
   const [form] = Form.useForm();
   const [lga, setLga] = useState([]);
-  const {Panel} = Collapse;
+  const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
   const handleStateChange = (value) => {
@@ -46,7 +46,7 @@ const ClinicalHistory = () => {
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="Clinical history: Sign and Symptoms" key="1">
+        <Panel header="Clinical History: Sign and Symptoms" key="1">
           <Row>
             <Col lg={8} md={8} sm={24}>
               <Form.Item
@@ -68,7 +68,7 @@ const ClinicalHistory = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-            
+
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Rash"
@@ -93,8 +93,8 @@ const ClinicalHistory = () => {
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Date of Symptom Onset"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateSymptomOnset"
                 rules={[
@@ -109,7 +109,7 @@ const ClinicalHistory = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
@@ -183,7 +183,7 @@ const ClinicalHistory = () => {
           </Row>
 
           <Row>
-          <Col lg={8} md={8} sm={24}>
+            <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Joint Swelling/Pain"
                 name="jointSwellingPain"
@@ -203,7 +203,7 @@ const ClinicalHistory = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-            
+
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Swollen lymph Nodes Behind Ears"
@@ -224,7 +224,7 @@ const ClinicalHistory = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-         
+
             <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Others (Specify)"
@@ -243,6 +243,26 @@ const ClinicalHistory = () => {
 
             <Col lg={8} md={8} sm={24}>
               <Form.Item
+                label="History of Hospitalization"
+                name="hospitalization"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
+              >
+                <Radio.Group buttonStyle="solid">
+                  <Radio.Button value="inPatient">In patient</Radio.Button>
+                  <Radio.Button value="outPatient">Out patient</Radio.Button>
+                </Radio.Group>
+              </Form.Item>
+            </Col>
+            
+            <Col lg={8} md={8} sm={24}>
+              <Form.Item
                 label="Outcome"
                 name="outcome"
                 labelCol={{ span: 24 }}
@@ -259,6 +279,31 @@ const ClinicalHistory = () => {
                   <Radio.Button value="dead">Dead</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
+              </Form.Item>
+            </Col>
+
+            <Col lg={8} md={8} sm={24}>
+              <Form.Item
+                label="Date of Death"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                // initialValue={birth_date ? moment(birth_date) : null}
+                name="dateDeath"
+                rules={[
+                  {
+                    required: true,
+                    message: "Select a date!",
+                  },
+                ]}
+              >
+                <DatePicker
+                  format="DD-MM-YYYY"
+                  disabledDate={(current) =>
+                    current.isAfter(moment()) || isDatePickerDisabled
+                  }
+                  style={{ width: "100%" }}
+                  placeholder="DD-MM-YYYY"
+                />
               </Form.Item>
             </Col>
           </Row>

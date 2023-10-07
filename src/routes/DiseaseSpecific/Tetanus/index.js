@@ -6,14 +6,14 @@ import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
-const Tetanus = () => {
+const Tetanus = ({form}) => {
   return (
     <>
-     <Epidemiological/>
-      <ClinicalHistory/>
-      <LaboratoryInformation/>
-      <FinalClassification/>
-      <ContactTracing/>
+      <Epidemiological form={form}/>
+      <ClinicalHistory form={form}/>
+      <LaboratoryInformation form={form}/>
+      <FinalClassification form={form}/>
+      <ContactTracing form={form}/>
     </>
   );
 };

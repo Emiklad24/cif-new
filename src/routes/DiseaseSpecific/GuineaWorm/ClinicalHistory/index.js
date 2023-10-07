@@ -27,6 +27,13 @@ const placeManage = ['CCC', 'Home','Health Center','Hospitals'];
 const ClinicalHistory = () => {
   const [form] = Form.useForm();
   //const [lga, setLga] = useState([]);
+
+  const [firstSignSymptom, setFirstSignSymptom] = useState(false);
+
+  const handleRadioFirstSign = (event) => {
+    setFirstSignSymptom(event.target.value);
+  };
+
   const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
@@ -44,6 +51,24 @@ const ClinicalHistory = () => {
     console.log("search:", value);
   };
 
+  const [formValues, setFormValues] = useState({});
+  
+  const handleUpdateInputValues = (inputName, value) => {
+
+    setFormValues((previousState) => ({
+        ...previousState,
+        [inputName]: value
+
+    }));
+
+    if(formValues?.firstSignSymptom !== "Others" ){
+      form?.setFieldsValue({
+        specify:"",
+      });
+    }
+    
+  };
+
   return (
     <>
       <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -52,32 +77,37 @@ const ClinicalHistory = () => {
             <Col lg={10} md={10} sm={24}>
               <Form.Item
                 label="First sign/symptom before the emergence of worm"
-                name="firstSignSymptom"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
-                <Radio.Group buttonStyle="solid">
-                  {signs.map((item) => (
-                    <Radio.Button value={item}>{item}</Radio.Button>
-                  ))}
-                </Radio.Group>
+                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="firstSignSymptom" >
+                      <Radio.Button value="Blister">Blister</Radio.Button>
+                      <Radio.Button value="Itching">Itching</Radio.Button>
+                      <Radio.Button value="Swelling">Swelling</Radio.Button>
+                      <Radio.Button value="Others">Others</Radio.Button>
+                    </Radio.Group>
               </Form.Item>
             </Col>
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Specify"
-                name="clientaddress"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  placeholder="Specify"
-                  id="specify"
-                  name="specify"
-                  onChange={(e) => {}}
-                />
-              </Form.Item>
-            </Col>
+            {
+              formValues?.firstSignSymptom === 'Others' &&
+              (
+                <>
+                    <Col lg={8} md={8} sm={24}>
+                      <Form.Item
+                        label="Specify"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                      >
+                        <Input
+                          placeholder="Specify"
+                          name="specify"
+                          onChange={(e) => {}}
+                        />
+                      </Form.Item>
+                    </Col>
+                </>
+              )
+            }
 
             <Col lg={6} md={6} sm={24}>
               <Form.Item

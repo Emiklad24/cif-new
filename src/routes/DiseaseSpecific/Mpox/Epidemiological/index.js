@@ -46,6 +46,25 @@ const Epidemiological = () => {
     console.log('search:', value);
   };
 
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
+
+
+
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -131,77 +150,89 @@ const Epidemiological = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="patientTouchAnimals">
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
               </Form.Item>
 
-            </Col>          
-
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="What Kind of Animal?"
-                name="kindOfAnimal"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  placeholder="Enter type of animal touched"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
             </Col>
 
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Date of Animal Contact"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                // initialValue={symptom_date ? moment(symptom_date) : null}
-                name="dateOfAnimalContact"
-                rules={[
-                  {
-                    required: true,
-                    message: "Select a date!",
-                  },
-                ]}
-              >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
-            </Col>
+            {
 
-            <Col lg={24} md={24} sm={24}>
-              <Form.Item
-                label="Type of contact?"
-                name="typeOfContact"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <CheckboxGroup
-                  options={
+              formValues?.patientTouchAnimals === "yes" &&
+              (
+                <>
 
-                    [
-                      { label: 'Rodents alive in the House', value: 'rodents_alive_in_the_house' },
-                      { label: 'Dead Animal found in the Forest', value: 'dead_animal_found_in_the_forest' },
-                      { label: 'Alive Animal Living in the Forest', value: 'alive_animal_living_in_the_forest' },
-                      { label: 'Animal bought for Meat', value: 'animal_bought_for_meat' },
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="What Kind of Animal?"
+                      name="kindOfAnimal"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                    >
+                      <Input
+                        placeholder="Enter type of animal touched"
+                        id="kindofanimal"
+                        name="kindOfAnimal"
+                        onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}
+                      />
+                    </Form.Item>
+                  </Col>
 
-                    ]
-                  }
-                  name="typeOfContact"
-                />
-              </Form.Item>
-            </Col>
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Date of Animal Contact"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      // initialValue={symptom_date ? moment(symptom_date) : null}
+                      name="dateOfAnimalContact"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Select a date!",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{ width: "100%" }}
+                        placeholder="DD-MM-YYYY"
+                      />
+                    </Form.Item>
+                  </Col>
+
+                  <Col lg={24} md={24} sm={24}>
+                    <Form.Item
+                      label="Type of contact?"
+                      name="typeOfContact"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                    >
+                      <CheckboxGroup
+                        options={
+
+                          [
+                            { label: 'Rodents alive in the House', value: 'rodents_alive_in_the_house' },
+                            { label: 'Dead Animal found in the Forest', value: 'dead_animal_found_in_the_forest' },
+                            { label: 'Alive Animal Living in the Forest', value: 'alive_animal_living_in_the_forest' },
+                            { label: 'Animal bought for Meat', value: 'animal_bought_for_meat' },
+
+                          ]
+                        }
+                        name="typeOfContact"
+                      />
+                    </Form.Item>
+                  </Col>
+
+                </>
+              )
+
+            }
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
