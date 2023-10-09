@@ -30,6 +30,7 @@ const lgaData = {
 const LaboratoryInformation = () => {
   const [form] = Form.useForm();
   const [lga, setLga] = useState([]);
+  const [formValues, setFormValues] = useState({});
   const [sentLaboratory, setPlaceOfLaboratory] = useState('');
   const [sampleCollection, setTypeOfTest] = useState('');
   const [testConducted, setTestResult] = useState('');
@@ -41,6 +42,21 @@ const LaboratoryInformation = () => {
     setLga(lgaData[value]);
   };
 
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState, 
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
+
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
@@ -51,11 +67,14 @@ const LaboratoryInformation = () => {
     console.log('search:', value);
   };
 
+
+
   return (
     <>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Laboratory information" key="1">
 
+        
         <Row>
 
 <Col lg={12} md={12} sm={24}>
@@ -72,7 +91,8 @@ const LaboratoryInformation = () => {
     ]}
   >
 
-<Radio.Group buttonStyle="solid">
+<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="sampleCollected" >
       <Radio.Button value="yes">Yes</Radio.Button>
       <Radio.Button value="no">No</Radio.Button>
       <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -80,7 +100,7 @@ const LaboratoryInformation = () => {
   </Form.Item>
 </Col>
 
-
+{formValues?.sampleCollected === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Enter the type of sample collected"
@@ -94,24 +114,18 @@ const LaboratoryInformation = () => {
       },
     ]}
   >
-    <CheckboxGroup
-                  options={
+    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="sampleCollection" >
+      <Radio.Button value="blood">Blood</Radio.Button>
+      <Radio.Button value="sera">Sera</Radio.Button> 
+    </Radio.Group>
 
-                    [
-                      { label: 'Blood', value: 'blood' },
-                      { label: 'Sera', value: 'sera' },
-
-                    ]
-                  }
-                
-                />
-    
   </Form.Item>
 
 </Col>
+}
 
-
-
+{formValues?.sampleCollected === "yes"  &&
 <Col lg={12} md={12} sm={24}>
 <Form.Item
     label="Enter the Date the Sample was collected:"
@@ -137,8 +151,9 @@ const LaboratoryInformation = () => {
     />
   </Form.Item>
 </Col>
+}
 
-
+{formValues?.sampleCollected === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Has collected Sample been sent to the Lab?"
@@ -153,16 +168,17 @@ const LaboratoryInformation = () => {
     ]}
   >
 
-    <Radio.Group buttonStyle="solid">
+<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="sampleSent" >
       <Radio.Button value="yes">Yes</Radio.Button>
       <Radio.Button value="no">No</Radio.Button>
       <Radio.Button value="unknown">Unknown</Radio.Button>
     </Radio.Group>
   </Form.Item>
 </Col>
+}
 
-
-
+{formValues?.sampleSent === "yes"  &&
 <Col lg={12} md={12} sm={24}>
 <Form.Item
     label="Enter the Date the Sample was sent to the laboratory:"
@@ -188,8 +204,9 @@ const LaboratoryInformation = () => {
     />
   </Form.Item>
 </Col>
+}
 
-
+{formValues?.sampleSent === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Name of Laboratory Sample was sent to"
@@ -218,8 +235,9 @@ const LaboratoryInformation = () => {
                 </Select>
   </Form.Item>
 </Col>
+}
 
-
+{formValues?.sampleSent === "yes"  &&
 <Col lg={12} md={12} sm={24}>
 <Form.Item
     label="Has sample been recieved at the Lab?"
@@ -227,41 +245,17 @@ const LaboratoryInformation = () => {
     labelCol={{span: 24}}
     wrapperCol={{span: 24}}
   >
-    <Radio.Group buttonStyle="solid">
+    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="sampleRecieved" >
       <Radio.Button value="yes">Yes</Radio.Button>
       <Radio.Button value="no">No</Radio.Button>
       <Radio.Button value="unknown">Unknown</Radio.Button>
     </Radio.Group>
   </Form.Item>
 </Col>
+}
 
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Enter the type of sample received at the laboratory"
-    name="sampleReception"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select this option!",
-      },
-    ]}
-  >
-    <CheckboxGroup
-                  options={
-
-                    [
-                      { label: 'Blood', value: 'blood' },
-                      { label: 'Sera', value: 'sera' },
-
-                    ]
-                  }
-                
-                />
-  </Form.Item>
-</Col>
-
+{formValues?.sampleRecieved === "yes"  &&
 <Col lg={12} md={12} sm={24}>
 <Form.Item
     label="Enter the Date the Sample was received at the laboratory:"
@@ -287,7 +281,9 @@ const LaboratoryInformation = () => {
     />
   </Form.Item>
 </Col>
+}
 
+{formValues?.sampleRecieved === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Sample Condition"
@@ -307,7 +303,27 @@ const LaboratoryInformation = () => {
     </Radio.Group>
   </Form.Item>
 </Col>
+}
 
+{formValues?.sampleRecieved === "yes"  &&
+<Col lg={12} md={12} sm={24}>
+<Form.Item
+    label="Has sample test been conducted?"
+    name="sampleTest"
+    labelCol={{span: 24}}
+    wrapperCol={{span: 24}}
+  >
+    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="sampleTest" >
+      <Radio.Button value="yes">Yes</Radio.Button>
+      <Radio.Button value="no">No</Radio.Button>
+      <Radio.Button value="unknown">Unknown</Radio.Button>
+    </Radio.Group>
+  </Form.Item>
+</Col>
+}
+
+{formValues?.sampleTest === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Type of Test conducted"
@@ -336,7 +352,9 @@ const LaboratoryInformation = () => {
                 </Select>
   </Form.Item>
 </Col>
+}
 
+{formValues?.sampleTest === "yes"  &&
 <Col lg={12} md={12} sm={24}>
   <Form.Item
     label="Result of Test conducted"
@@ -365,7 +383,9 @@ const LaboratoryInformation = () => {
                 </Select>
   </Form.Item>
 </Col>
+}
 
+{formValues?.sampleTest === "yes"  &&
 <Col lg={12} md={12} sm={24}>
             <Form.Item
                 label="Enter Date result was made available:"
@@ -384,20 +404,22 @@ const LaboratoryInformation = () => {
                   // onChange={onChangeDoB}
                   format="DD-MM-YYYY"
                   disabledDate={(current) =>
-                    current.isBefore(moment()) || isDatePickerDisabled
+                    current.isAfter(moment()) || isDatePickerDisabled
                   }
                   style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
+}
 
+{formValues?.sampleTest === "yes"  &&
             <Col lg={12} md={12} sm={24}>
             <Form.Item
                 label="Enter Date result was sent out:"
                 labelCol={{span: 24}}
                 wrapperCol={{span: 24}}
-                // initialValue={birth_date ? moment(birth_date) : null}
+                
                 name="dateResultSentOut"
                 rules={[
                   {
@@ -410,15 +432,16 @@ const LaboratoryInformation = () => {
                   // onChange={onChangeDoB}
                   format="DD-MM-YYYY"
                   disabledDate={(current) =>
-                    current.isBefore(moment()) || isDatePickerDisabled
+                    current.isAfter(moment()) || isDatePickerDisabled
                   }
                   style={{width: "100%"}}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
-
+}
 </Row>
+
 
         </Panel>
       </Collapse>

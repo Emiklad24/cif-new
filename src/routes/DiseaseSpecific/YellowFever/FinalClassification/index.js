@@ -23,6 +23,7 @@ const lgaData = {
 
 const FinalClassification = () => {
   const [form] = Form.useForm();
+  const [formValues, setFormValues] = useState({});
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
@@ -30,6 +31,21 @@ const FinalClassification = () => {
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
+
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState, 
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
+
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -40,6 +56,8 @@ const FinalClassification = () => {
   const onSearch = (value) => {
     console.log('search:', value);
   };
+
+  
 
   return (
     <>
@@ -60,7 +78,9 @@ const FinalClassification = () => {
     ]}
   >
 
-    <Radio.Group buttonStyle="solid">
+<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="finalClassification">
+
       <Radio.Button value="suspect">Suspect</Radio.Button>
       <Radio.Button value="confirmed">Confirmed</Radio.Button>
       <Radio.Button value="presumptive positive">Presumptive positive</Radio.Button>
@@ -69,6 +89,7 @@ const FinalClassification = () => {
   </Form.Item>
 </Col>
 
+{formValues?.finalClassification === "discarded"  &&
           <Col lg={18} md={12} sm={24}>
               <Form.Item
                 label="Enter diagnosis"
@@ -91,6 +112,7 @@ const FinalClassification = () => {
                 />
               </Form.Item>
             </Col>
+}
         </Panel>
       </Collapse>
     </>
