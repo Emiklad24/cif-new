@@ -2,450 +2,1216 @@ import {
   Col,
   Form,
   Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
-} from 'antd';
-import React, {useState} from 'react';
+  Collapse,
+  DatePicker,
+  Row,
+  Tooltip,Divider,
+  Select,
+  Radio,
+} from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
 import moment from "moment";
-import { Checkbox } from 'antd';
+import { Checkbox } from "antd";
 
-const {Option} = Select;
 const CheckboxGroup = Checkbox.Group;
 
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
-const sentLaboratoryData = ['NRL, Gaduwa', 'CPHL', 'YDMH', 'UBTH', 'MAITAMA DISTRICT HOSPITAL LABORATORY', 'GOMBE SPECIALIST HOSPITAL', 'MAITAMA DISTRICT HOSPITAL LABORATORY', 'UNTH'];
-const labTestData = ['Igm', 'IgG(acute)', 'IgG(convalescent)', 'Microscopy', 'PCR/RT-PCR'];
-const labResultData = ['Positive', 'Negative', 'Inconclusive'];
+const { Option } = Select;
 
+const stateData = ["FCT", "Enugu"];
+const facilityData = ["Federal Medical Center", "Jabi Clinic"];
+const diseaseData = ["COVID-19", "Cholera", "Yellow Fever"];
+const cultureresultData = ["Positive", "Negative", "Pending", "indeterminate"];
+const testingLaboratoryData = ['NRL, Gaduwa', 'CPHL', 'YDMH', 'UBTH', 'MAITAMA DISTRICT HOSPITAL LABORATORY', 'GOMBE SPECIALIST HOSPITAL', 'MAITAMA DISTRICT HOSPITAL LABORATORY', 'UNTH'];
 
 const lgaData = {
-  FCT: ['AMAC', 'Bwari', 'Kwali'],
-  Enugu: ['Nsukka', 'Enugu south', 'Udi'],
+  FCT: ["AMAC", "Bwari", "Kwali"],
+  Enugu: ["Nsukka", "Enugu south", "Udi"],
 };
 
-const LaboratoryInformation = () => {
-  const [form] = Form.useForm();
+const LaboratoryInformation = ({form}) => {
   const [lga, setLga] = useState([]);
-  const [formValues, setFormValues] = useState({});
-  const [sentLaboratory, setPlaceOfLaboratory] = useState('');
-  const [sampleCollection, setTypeOfTest] = useState('');
-  const [testConducted, setTestResult] = useState('');
-  const [sampleCollected,setSamplecollection] = useState('');
-  const {Panel} = Collapse;
+  const [testinglaboratory_type, settestingLaboratory] = useState("");
+  const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
 
-  const handleUpdateInputValues = (inputName, value) => {
-
-    console.log(inputName, value)
-
-    setFormValues((previousState) => ({
-      ...previousState, 
-      [inputName]: value
-
-    }))
-
-  }
-
-  console.log('form values', formValues)
-
-
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
   };
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
   const onSearch = (value) => {
-    console.log('search:', value);
+    console.log("search:", value);
   };
 
+  const [formValues, setFormValues] = useState(form);
 
+  const handleUpdateInputValues = (inputName, value) => {
+    console.log(inputName, value);
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+
+
+    if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
+      form.setFieldsValue({
+          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null, sampleType:[]
+        });
+    }
+  };
+
+  console.log("form values", formValues);
 
   return (
     <>
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
+      <Collapse defaultActiveKey={["1"]} onChange={onChange}>
         <Panel header="Laboratory information" key="1">
-
-        
-        <Row>
-
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Was sample Collected?"
-    name="sampleCollected"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-    rules={[
-      {
-        required: true,
-        message: "Make a selection!",
-      },
-    ]}
-  >
-
-<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="sampleCollected" >
-      <Radio.Button value="yes">Yes</Radio.Button>
-      <Radio.Button value="no">No</Radio.Button>
-      <Radio.Button value="unknown">Unknown</Radio.Button>
-    </Radio.Group>
-  </Form.Item>
-</Col>
-
-{formValues?.sampleCollected === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Enter the type of sample collected"
-    name="sampleCollection"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select a sample!",
-      },
-    ]}
-  >
-    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="sampleCollection" >
-      <Radio.Button value="blood">Blood</Radio.Button>
-      <Radio.Button value="sera">Sera</Radio.Button> 
-    </Radio.Group>
-
-  </Form.Item>
-
-</Col>
-}
-
-{formValues?.sampleCollected === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-<Form.Item
-    label="Enter the Date the Sample was collected:"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-    // initialValue={birth_date ? moment(birth_date) : null}
-    name="dateOfSampleCollection"
-    rules={[
-      {
-        required: true,
-        message: "Input the date!",
-      },
-    ]}
-  >
-    <DatePicker
-      // onChange={onChangeDoB}
-      format="DD-MM-YYYY"
-      disabledDate={(current) =>
-        current.isAfter(moment()) || isDatePickerDisabled
-      }
-      style={{width: "100%"}}
-      placeholder="DD-MM-YYYY"
-    />
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleCollected === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Has collected Sample been sent to the Lab?"
-    name="sampleSent"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-    rules={[
-      {
-        required: true,
-        message: "Make a selection!",
-      },
-    ]}
-  >
-
-<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="sampleSent" >
-      <Radio.Button value="yes">Yes</Radio.Button>
-      <Radio.Button value="no">No</Radio.Button>
-      <Radio.Button value="unknown">Unknown</Radio.Button>
-    </Radio.Group>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleSent === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-<Form.Item
-    label="Enter the Date the Sample was sent to the laboratory:"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-    // initialValue={birth_date ? moment(birth_date) : null}
-    name="dateOfSampleShipment"
-    rules={[
-      {
-        required: true,
-        message: "Input the date!",
-      },
-    ]}
-  >
-    <DatePicker
-      // onChange={onChangeDoB}
-      format="DD-MM-YYYY"
-      disabledDate={(current) =>
-        current.isAfter(moment()) || isDatePickerDisabled
-      }
-      style={{width: "100%"}}
-      placeholder="DD-MM-YYYY"
-    />
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleSent === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Name of Laboratory Sample was sent to"
-    name="sentLaboratory"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select this option!",
-      },
-    ]}
-  >
-     <Select
-                  showSearch
-                  allowClear
-                  optionLabelProp="label"
-                  onChange={setPlaceOfLaboratory}
-                >
-                  {sentLaboratoryData.map((item) => (
-                    <Option label={item} value={item}>
-                      {item}
-                    </Option>
-                  ))}
-
-                </Select>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleSent === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-<Form.Item
-    label="Has sample been recieved at the Lab?"
-    name="sampleRecieved"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-  >
-    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="sampleRecieved" >
-      <Radio.Button value="yes">Yes</Radio.Button>
-      <Radio.Button value="no">No</Radio.Button>
-      <Radio.Button value="unknown">Unknown</Radio.Button>
-    </Radio.Group>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleRecieved === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-<Form.Item
-    label="Enter the Date the Sample was received at the laboratory:"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-    // initialValue={birth_date ? moment(birth_date) : null}
-    name="dateOfSampleRecieved"
-    rules={[
-      {
-        required: true,
-        message: "Input the date!",
-      },
-    ]}
-  >
-    <DatePicker
-      // onChange={onChangeDoB}
-      format="DD-MM-YYYY"
-      disabledDate={(current) =>
-        current.isAfter(moment()) || isDatePickerDisabled
-      }
-      style={{width: "100%"}}
-      placeholder="DD-MM-YYYY"
-    />
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleRecieved === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Sample Condition"
-    name="sampleCondition"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select this option!",
-      },
-    ]}
-  >
-    <Radio.Group buttonStyle="solid">
-      <Radio.Button value="Adequate">Adequate</Radio.Button>
-      <Radio.Button value="Not adequate">Not adequate</Radio.Button>
-    </Radio.Group>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleRecieved === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-<Form.Item
-    label="Has sample test been conducted?"
-    name="sampleTest"
-    labelCol={{span: 24}}
-    wrapperCol={{span: 24}}
-  >
-    <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="sampleTest" >
-      <Radio.Button value="yes">Yes</Radio.Button>
-      <Radio.Button value="no">No</Radio.Button>
-      <Radio.Button value="unknown">Unknown</Radio.Button>
-    </Radio.Group>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleTest === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Type of Test conducted"
-    name="testConducted"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select this option!",
-      },
-    ]}
-  >
-     <Select
-                  showSearch
-                  allowClear
-                  optionLabelProp="label"
-                  onChange={setTypeOfTest}
-                >
-                  {labTestData.map((item) => (
-                    <Option label={item} value={item}>
-                      {item}
-                    </Option>
-                  ))}
-
-                </Select>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleTest === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-  <Form.Item
-    label="Result of Test conducted"
-    name="testResult"
-    labelCol={{ span: 24 }}
-    wrapperCol={{ span: 24 }}
-    rules={[
-      {
-        required: true,
-        message: "Select this option!",
-      },
-    ]}
-  >
-     <Select
-                  showSearch
-                  allowClear
-                  optionLabelProp="label"
-                  onChange={setTestResult}
-                >
-                  {labResultData.map((item) => (
-                    <Option label={item} value={item}>
-                      {item}
-                    </Option>
-                  ))}
-
-                </Select>
-  </Form.Item>
-</Col>
-}
-
-{formValues?.sampleTest === "yes"  &&
-<Col lg={12} md={12} sm={24}>
-            <Form.Item
-                label="Enter Date result was made available:"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-                // initialValue={birth_date ? moment(birth_date) : null}
-                name="dateOfAvailableResult"
-                rules={[
-                  {
-                    required: true,
-                    message: "Input the date!",
-                  },
-                ]}
-              >
-                <DatePicker
-                  // onChange={onChangeDoB}
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{width: "100%"}}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
-            </Col>
-}
-
-{formValues?.sampleTest === "yes"  &&
+          <Row>
             <Col lg={12} md={12} sm={24}>
-            <Form.Item
-                label="Enter Date result was sent out:"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-                
-                name="dateResultSentOut"
+              <Form.Item
+                label="Sample Collected"
+                name="sampleCollected"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 rules={[
                   {
                     required: true,
-                    message: "Input the date!",
+                    message: "Select an Option ",
                   },
                 ]}
               >
-                <DatePicker
-                  // onChange={onChangeDoB}
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
+                <Radio.Group
+                  buttonStyle="solid"
+                  name="sampleCollected"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
                   }
-                  style={{width: "100%"}}
-                  placeholder="DD-MM-YYYY"
-                />
+                >
+                  <Radio.Button value="yes">Yes</Radio.Button>
+                  <Radio.Button value="no">No</Radio.Button>
+                  <Radio.Button value="unknown">Unknown</Radio.Button>
+                </Radio.Group>
               </Form.Item>
             </Col>
-}
-</Row>
+
+            {formValues?.sampleCollected === "yes" && (
+              <>
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Date Specimen collected "
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                   
+                    name="dateSpecimenCollected"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select Date Of specimen collected",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      format="DD-MM-YYYY"
+                      disabledDate={(current) =>
+                        current.isAfter(moment()) || isDatePickerDisabled
+                      }
+                      style={{ width: "100%" }}
+                      placeholder="DD-MM-YYYY"
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Type of Specimen collected?"
+                    name="sampleType"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option",
+                      },
+                    ]}
+                  >
+                    <CheckboxGroup
+                      options={[
+                        {
+                          label: "Blood", value: "blood"},
+                        { label: "Sera", value: "sera" },
+                      ]}
+                      name="sampleType"
+                      onChange={(value) =>
+                        handleUpdateInputValues("sampleType", value)
+                      }
+                    />
+                  </Form.Item>
+                </Col>
+
+                {formValues?.sampleType?.length >= 1 && (
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Date Specimen Sent"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                     
+                      name="dateSpecimenSent"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Select Date Specimen Sent",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        format="DD-MM-YYYY"
+                        disabledDate={(current) =>
+                          current.isAfter(moment()) || isDatePickerDisabled
+                        }
+                        style={{ width: "100%" }}
+                        placeholder="DD-MM-YYYY"
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
+
+                <Col lg={24} md={12} sm={12} xs={24}>
+                  <Form.Item
+                    label="Name Of Testing Laboratory"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    name="nameOfTestingLaboratory"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select laboratory!",
+                      },
+                    ]}
+                  >
+                    <Select
+                      showSearch
+                      allowClear
+                      optionLabelProp="label"
+                      onChange={settestingLaboratory}
+                    >
+                      {testingLaboratoryData.map((item) => (
+                        <Option label={item} value={item}>
+                          {item}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Divider plain>Laboratory result</Divider>
+                {formValues?.sampleType?.includes('blood') && (
+                <Col lg={24} md={24} sm={24}>
+                  <Form.Item
+                    label="Blood sample received"
+                    name="bloodSampleReceived"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option ",
+                      },
+                    ]}
+                  >
+                    <Radio.Group
+                      buttonStyle="solid"
+                      name="bloodSampleReceived"
+                      onChange={(e) =>
+                        handleUpdateInputValues(e.target.name, e.target.value)
+                      }
+                    >
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+                  )}
 
 
+                {formValues?.bloodSampleReceived === 'yes' && (
+                <>
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Date Specimen Received "
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    // initialValue={birth_date ? moment(birth_date) : null}
+                    name={['blood', 'dateSecimenReceived']}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Date Specimen received",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      format="DD-MM-YYYY"
+                      disabledDate={(current) =>
+                        current.isAfter(moment()) || isDatePickerDisabled
+                      }
+                      style={{ width: "100%" }}
+                      placeholder="DD-MM-YYYY"
+                    />
+                  </Form.Item>
+                </Col>
+
+
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Specimen Condition"
+                    name={['blood', 'sampleCondition']}
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option",
+                      },
+                    ]}
+                  >
+                    <Radio.Group buttonStyle="solid">
+                      <Radio.Button value="adequate">Adequate</Radio.Button>
+                      <Radio.Button value="not adequate">
+                        Not Adequate
+                      </Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+
+                {formValues?.sampleType?.length >= 1 && (
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Test Conducted"
+                      name={['blood', 'testConducted']}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "select an option",
+                        },
+                      ]}
+                    >
+                      <CheckboxGroup
+                        options={
+                          formValues?.sampleType?.length === 1 &&
+                          formValues?.sampleType[0] === "Sera"
+                            ? [
+                                { label: "Igm", value: "igm" },
+                                { label: "PCR/RT-PCR", value: "PcrRtPcr" },
+                              ]
+                            : [
+                                { label: "Igm", value: "igm" },
+                                { label: "IgG(acute)", value: "iggAcute" },
+                                { label: "IgG(convalescent)", value: "iggConvalescent)" },
+                                { label: "Microscopy", value: "microscopy" },
+                               { label: "PCR/RT-PCR", value: "pcrRtPcr"},
+                              ]
+                        }
+                        name="testConducted"
+                        onChange={(value) =>
+                          handleUpdateInputValues("testConducted", value)
+                        }
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
+
+                {formValues?.testConducted?.includes("igm") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Igm Result"
+                        name={['blood', 'igmResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Igm result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                          <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        
+                        name={['blood', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "SelectDateResultAvailable",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultSent']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+               {formValues?.testConducted?.includes("iggAcute") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="IgG(Acute) Result"
+                        name={['blood', 'iggAcuteResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select igg(Acute) result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+                
+                {formValues?.testConducted?.includes("iggConvalescent") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="IgG(Acute) Result"
+                        name={['blood', 'iggConvalescentResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select igg(Convalescent) result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+                
+                {formValues?.testConducted?.includes("microscopy") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Microscopy Result"
+                        name={['blood', 'microscopyResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Microscopy result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+
+                {formValues?.testConducted?.includes("pcrRtPcr") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="PCR/RT-PCR Result"
+                        name={['blood', 'pcrRtPcrResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select PCR/RT-PCR result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+                
+                  </>
+                  )}
+
+                {formValues?.sampleType?.includes('sera') && (
+                <Col lg={24} md={24} sm={24}>
+                  <Form.Item
+                    label="Sera sample received"
+                    name="seraSampleReceived"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option ",
+                      },
+                    ]}
+                  >
+                    <Radio.Group
+                      buttonStyle="solid"
+                      name="seraSampleReceived"
+                      onChange={(e) =>
+                        handleUpdateInputValues(e.target.name, e.target.value)
+                      }
+                    >
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+                  )}
+
+
+                {formValues?.seraSampleReceived === 'yes' && (
+                <>
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Date Specimen Received "
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    // initialValue={birth_date ? moment(birth_date) : null}
+                    name={['sera', 'dateSecimenReceived']}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Date Specimen received",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      format="DD-MM-YYYY"
+                      disabledDate={(current) =>
+                        current.isAfter(moment()) || isDatePickerDisabled
+                      }
+                      style={{ width: "100%" }}
+                      placeholder="DD-MM-YYYY"
+                    />
+                  </Form.Item>
+                </Col>
+
+
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Specimen Condition"
+                    name={['sera', 'sampleCondition']}
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option",
+                      },
+                    ]}
+                  >
+                    <Radio.Group buttonStyle="solid">
+                      <Radio.Button value="adequate">Adequate</Radio.Button>
+                      <Radio.Button value="not adequate">
+                        Not Adequate
+                      </Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+
+                {formValues?.sampleType?.length >= 1 && (
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Test Conducted"
+                      name={['sera', 'testConducted']}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "select an option",
+                        },
+                      ]}
+                    >
+                      <CheckboxGroup
+                        options={
+                          formValues?.sampleType?.length === 1 &&
+                          formValues?.sampleType[0] === "Sera"
+                            ? [
+                                { label: "Igm", value: "igm" },
+                                { label: "PCR/RT-PCR", value: "PcrRtPcr" },
+                              ]
+                            : [
+                                { label: "Igm", value: "igm" },
+                                { label: "IgG(acute)", value: "iggAcute" },
+                                { label: "IgG(convalescent)", value: "iggConvalescent)" },
+                                { label: "Microscopy", value: "microscopy" },
+                               { label: "PCR/RT-PCR", value: "pcrRtPcr"},
+                              ]
+                        }
+                        name="testConducted"
+                        onChange={(value) =>
+                          handleUpdateInputValues("testConducted", value)
+                        }
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
+
+               {formValues?.testConducted?.includes("igm") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Igm Result"
+                        name={['sera', 'igmResult']}
+
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select IGM result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                          <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "SelectDateResultAvailable",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultSent']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+        {formValues?.testConducted?.includes("iggAcute") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="IgG(Acute) Result"
+                        name={['sera', 'iggAcuteResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select igg(Acute) result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+
+            {formValues?.testConducted?.includes("iggConvalescent") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="IgG(convalescent) Result"
+                        name={['sera', 'iggConvalescentResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select IgG(convalescent) result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+                    
+                    {formValues?.testConducted?.includes("microscopy") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Microscopy Result"
+                        name={['sera', 'microscopyResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Microscopy result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+                {formValues?.testConducted?.includes("pcrRtPcr") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="PCR/RT-PCR Result"
+                        name={['sera', 'pcrRtPcrResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select PCR/RT-PCR result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                        <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="inconclusive">Inconclusive</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['sera', 'dateResultSentOut']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                      </Col>
+                  </Row>
+                )}
+                  </>
+                  )}
+              </>
+            )}
+
+          </Row>
         </Panel>
       </Collapse>
     </>
   );
 };
 export default LaboratoryInformation;
+
