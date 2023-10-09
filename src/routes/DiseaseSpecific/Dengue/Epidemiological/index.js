@@ -2,7 +2,7 @@ import {
   Col,
   Form,
   Input,
-  Collapse, DatePicker,Segmented ,
+  Collapse, DatePicker, Segmented,
   Row, Tooltip,
   Select, Radio,
 } from 'antd';
@@ -17,7 +17,7 @@ const {Option} = Select;
 const stateData = ['FCT', 'Enugu'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
-const vaccinationStatusData = ['Vaccinated','Not vaccinated', 'Unknown'];
+const vaccinationStatusData = ['Vaccinated', 'Not vaccinated', 'Unknown'];
 
 
 const lgaData = {
@@ -27,14 +27,28 @@ const lgaData = {
 
 const Epidemiological = () => {
   const [form] = Form.useForm();
+  const [formValues, setFormValues] = useState({});
   const [lga, setLga] = useState([]);
   const {Panel} = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-  const [vaccinationStatus, setStatusOfVaccination] = useState('');
+  const [vaccination_status, setVaccinationStatus] = useState('');
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
+  const handleUpdateInputValues = (inputName, value) => {
+
+    console.log(inputName, value)
+
+    setFormValues((previousState) => ({
+      ...previousState, 
+      [inputName]: value
+
+    }))
+
+  }
+
+  console.log('form values', formValues)
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -45,6 +59,8 @@ const Epidemiological = () => {
   const onSearch = (value) => {
     console.log('search:', value);
   };
+
+  <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="vaccinationStatus" ></Radio.Group>
 
   return (
     <>
@@ -66,22 +82,18 @@ const Epidemiological = () => {
                 ]}
               >
 
-                <Select
-                  showSearch
-                  allowClear
-                  optionLabelProp="label"
-                  onChange={setStatusOfVaccination}
-                >
-                  {vaccinationStatusData.map((item) => (
-                    <Option label={item} value={item}>
-                      {item}
-                    </Option>
-                    ))}
-                    </Select>
+<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
+                      name="vaccinationStatus" >
+                  <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
+                  <Radio.Button value="notVaccinated">Not Vaccinated</Radio.Button>
+                  <Radio.Button value="unknown">Unknown</Radio.Button>
+                </Radio.Group>
+
               </Form.Item>
             </Col>
 
-            {vaccinationStatus === 'Vaccinated' &&
+            {formValues?.vaccinationStatus === "vaccinated"  &&
+                
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Number of vaccine doses"
@@ -104,7 +116,7 @@ const Epidemiological = () => {
             </Col>
 }
 
-            {vaccinationStatus === 'Vaccinated' &&
+            {formValues?.vaccinationStatus === "vaccinated"  &&
                     <Col lg={12} md={12} sm={24}>
             <Form.Item
                 label="Date of Vaccination:"
@@ -133,7 +145,7 @@ const Epidemiological = () => {
 }
            
 
-           {vaccinationStatus === 'Vaccinated' &&
+           {formValues?.vaccinationStatus === "vaccinated"  &&
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Source of vaccination history"
@@ -216,6 +228,7 @@ const Epidemiological = () => {
             </Col>
 
           </Row>
+
         </Panel>
       </Collapse>
 
@@ -224,4 +237,3 @@ const Epidemiological = () => {
   );
 };
 export default Epidemiological;
-
