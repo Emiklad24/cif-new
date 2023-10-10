@@ -1,106 +1,76 @@
-import {
-  Col,
-  Form,
-  Input,
-  Collapse, DatePicker, Segmented,
-  Row, Tooltip,
-  Select, Radio,
-} from 'antd';
-import React, {useState} from 'react';
+import { Col, Form, Input, Collapse, DatePicker, Row, Radio } from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
 import moment from "moment";
-// const [value, setValue] = useState('Map');
-//   return <Segmented options={['Map', 'Transit', 'Satellite']} value={value} onChange={setValue} />;
 
-const {Option} = Select;
-
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
-
-
-
-const lgaData = {
-  FCT: ['AMAC', 'Bwari', 'Kwali'],
-  Enugu: ['Nsukka', 'Enugu south', 'Udi'],
-};
-
-const Epidemiological = () => {
-  
+const Epidemiological = ({ form }) => {
   const [formValues, setFormValues] = useState({});
-  const [lga, setLga] = useState([]);
-  const {Panel} = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-  const [vaccination_status, setVaccinationStatus] = useState('');
+  const { Panel } = Collapse;
+  const [isDatePickerDisabled] = useState(false);
 
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
-  };
   const handleUpdateInputValues = (inputName, value) => {
-
-    console.log(inputName, value)
-
     setFormValues((previousState) => ({
-      ...previousState, 
-      [inputName]: value
+      ...previousState,
+      [inputName]: value,
+    }));
 
-    }))
-    
-  
-  }
+    if (
+      formValues?.vaccinationStatus === "notVaccinated" ||
+      formValues?.vaccinationStatus === "unknown"
+    ) {
+      form.setFieldsValue({
+        numberOfVaccineDose: null,
+        dateOfVaccination: null,
+        sourceVaccinationHistory: null,
+      });
 
-  
-
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+      setFormValues((previousState) => ({
+        ...previousState,
+        numberOfVaccineDose: null,
+        dateOfVaccination: null,
+        sourceVaccinationHistory: null,
+      }));
+    }
   };
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const onSearch = (value) => {
-    console.log('search:', value);
 
-    if(formValues?.vaccinationStatus === "notVaccinated" || formValues?.vaccinationStatus ==="unknown"){
-      form.setFieldsValue({
-        numberOfVaccineDose:null, dateOfVaccination:null, sourceVaccinationHistory:null
-        });
-    }
-  };
-  
-  console.log('form values', formValues)
- 
   return (
-    <>
-<Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="Epidemiological Information" key="1">
-          <Row>
-
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Vaccination Status"
+    <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+      <Panel header="Epidemiological Information" key="1">
+        <Row>
+          <Col lg={12} md={12} sm={24}>
+            <Form.Item
+              label="Vaccination Status"
+              name="vaccinationStatus"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please choose one!",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
                 name="vaccinationStatus"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please choose one!",
-                  },
-                ]}
               >
+                <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
+                <Radio.Button value="notVaccinated">
+                  Not Vaccinated
+                </Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
 
-<Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} 
-                      name="vaccinationStatus" >
-                  <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
-                  <Radio.Button value="notVaccinated">Not Vaccinated</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-
-              </Form.Item>
-            </Col>
-
-            {formValues?.vaccinationStatus === "vaccinated"  &&
-                
+          {formValues?.vaccinationStatus === "vaccinated" && (
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Number of vaccine doses"
@@ -119,16 +89,15 @@ const Epidemiological = () => {
                   <Radio.Button value="2+">2+</Radio.Button>
                 </Radio.Group>
               </Form.Item>
-
             </Col>
-}
+          )}
 
-            {formValues?.vaccinationStatus === "vaccinated"  &&
-                    <Col lg={12} md={12} sm={24}>
-            <Form.Item
+          {formValues?.vaccinationStatus === "vaccinated" && (
+            <Col lg={12} md={12} sm={24}>
+              <Form.Item
                 label="Date of Vaccination:"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfVaccination"
                 rules={[
@@ -144,15 +113,14 @@ const Epidemiological = () => {
                   disabledDate={(current) =>
                     current.isAfter(moment()) || isDatePickerDisabled
                   }
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   placeholder="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
-}
-           
+          )}
 
-           {formValues?.vaccinationStatus === "vaccinated"  &&
+          {formValues?.vaccinationStatus === "vaccinated" && (
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Source of vaccination history"
@@ -172,75 +140,68 @@ const Epidemiological = () => {
                 </Radio.Group>
               </Form.Item>
             </Col>
-}
-           <Col lg={12} md={12} sm={24}>
-           <Form.Item
-                label="List names of villages, towns or LGAs that patient visited in the last 3 weeks"
-                name="travelHistory"
-                labelCol={{span: 24}}
-                wrapperCol={{span: 24}}
-              >
-                <Input
-                  placeholder="Enter travel history"
-                  id="address"
-                  name="address"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
-            </Col>
+          )}
+          <Col lg={12} md={12} sm={24}>
+            <Form.Item
+              label="List names of villages, towns or LGAs that patient visited in the last 3 weeks"
+              name="travelHistory"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
+                placeholder="Enter travel history"
+                id="address"
+                name="address"
+                onChange={(e) => {}}
+              />
+            </Form.Item>
+          </Col>
 
-            <Col lg={24} md={12} sm={24}>
-              <Form.Item
-                label="Have cases of fever and jaundice been seen or reported in places visited by the patient in the last 2 weeks
+          <Col lg={24} md={12} sm={24}>
+            <Form.Item
+              label="Have cases of fever and jaundice been seen or reported in places visited by the patient in the last 2 weeks
                 before onset of symptoms?"
-                name = "locationHistoryOfFever"
-                labelCol={{ span:24}}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select this option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+              name="locationHistoryOfFever"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select this option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
 
-            <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Patient Present Condition"
-                name="patientPresentCondition"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select this option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="Alive">Alive</Radio.Button>
-                  <Radio.Button value="Dead">Dead</Radio.Button>
-                  <Radio.Button value="Unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-
-            </Col>
-
-          </Row>
-
-        </Panel>
-      </Collapse>
-
-
-    </>
+          <Col lg={12} md={12} sm={24}>
+            <Form.Item
+              label="Patient Present Condition"
+              name="patientPresentCondition"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select this option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="Alive">Alive</Radio.Button>
+                <Radio.Button value="Dead">Dead</Radio.Button>
+                <Radio.Button value="Unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
+        </Row>
+      </Panel>
+    </Collapse>
   );
 };
 export default Epidemiological;
