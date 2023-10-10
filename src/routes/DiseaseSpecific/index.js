@@ -189,6 +189,16 @@ const App = () => {
         'dateDischarge': fieldsValue['dateDischarge'].format('DD-MM-YYYY'),
         'dateLabPositiveResult': fieldsValue['dateLabPositiveResult'].format('DD-MM-YYYY'),
       }
+    } else if (program === "Yellow Fever") {
+      additionals = {
+        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
+        'dateResultSentOut': fieldsValue['dateResultSentOut'].format('DD-MM-YYYY'),
+        'dateSecimenReceived': fieldsValue['dateSecimenReceived'].format('DD-MM-YYYY'),
+        'dateOfVaccination': fieldsValue['dateOfVaccination'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'datefOnset': fieldsValue['datefOnset'].format('DD-MM-YYYY'),
+      }
     } else if (program === "Anthrax") {
       additionals = {
         'dateOfLastVaccination': fieldsValue['dateOfLastVaccination'].format('DD-MM-YYYY'),

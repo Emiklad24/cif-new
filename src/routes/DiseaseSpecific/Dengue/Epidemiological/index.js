@@ -17,7 +17,7 @@ const {Option} = Select;
 const stateData = ['FCT', 'Enugu'];
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
-const vaccinationStatusData = ['Vaccinated', 'Not vaccinated', 'Unknown'];
+
 
 
 const lgaData = {
@@ -45,6 +45,13 @@ const Epidemiological = () => {
       [inputName]: value
 
     }))
+
+    if(formValues?.vaccinationStatus === "notVaccinated" || formValues?.vaccinationStatus ==="unknown"){
+      form.setFieldsValue({
+        numberOfVaccineDose:null,dateOfVaccination:null, sourceVaccinationHistory:null
+        });
+    }
+
 
   }
 
@@ -183,7 +190,7 @@ const Epidemiological = () => {
               </Form.Item>
             </Col>
 
-            <Col lg={12} md={12} sm={24}>
+            <Col lg={24} md={12} sm={24}>
               <Form.Item
                 label="Have cases of fever and jaundice been seen or reported in places visited by the patient in the last 2 weeks
                 before onset of symptoms?"
