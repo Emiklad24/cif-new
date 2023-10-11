@@ -11,7 +11,7 @@ const CSM = ({form} ) => {
 
   return (
     <>
-       <Epidemiological form={form}/>
+      <Epidemiological form={form}/>
       <ClinicalHistory form={form}/>
       <LaboratoryInformation form={form}/>
       <FinalClassification form={form}/>

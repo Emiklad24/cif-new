@@ -110,7 +110,7 @@ const ContactTracing = () => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={sample_date ? moment(sample_date) : null}
-                name="dateOfBirth"
+                name="contactDateOfBirth"
                 rules={[
                   {
                     required: true,
@@ -244,8 +244,8 @@ const ContactTracing = () => {
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select LGA</>}
                 >
-                  {lga.map((item) => (
-                    <Option label={item} value={item}>
+                  {lga.map((item, i) => (
+                    <Option key={i} label={item} value={item}>
                       {item}
                     </Option>
                   ))}
@@ -271,8 +271,8 @@ const ContactTracing = () => {
                   optionLabelProp="label"
                   placeholder={<>&nbsp; Select Ward</>}
                 >
-                  {lga.map((item) => (
-                    <Option label={item} value={item}>
+                  {lga.map((item, i) => (
+                    <Option key={i} label={item} value={item}>
                       {item}
                     </Option>
                   ))}
@@ -301,7 +301,7 @@ const ContactTracing = () => {
               </Form.Item>
             </Col>
 
-            <Col lg={12} md={12} sm={24}>
+            <Col lg={8} md={8} sm={24}>
               <Form.Item
                 label="Relationship with Case"
                 labelCol={{ span: 24 }}
@@ -319,10 +319,9 @@ const ContactTracing = () => {
                   showSearch
                   allowClear
                   optionLabelProp="label"
-                  onChange={relationshipWithCase}
                 >
-                  {relationshipWithCase.map((item) => (
-                    <Option label={item} value={item}>
+                  {relationshipWithCase.map((item, i) => (
+                    <Option key={i} label={item} value={item}>
                       {item}
                     </Option>
                   ))}

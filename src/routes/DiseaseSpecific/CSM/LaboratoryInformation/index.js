@@ -7,7 +7,7 @@ import {
   Row,
   Tooltip,
   Select,
-  Radio,
+  Radio, Divider,
 } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
@@ -108,7 +108,7 @@ const LaboratoryInformation = () => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     // initialValue={birth_date ? moment(birth_date) : null}
-                    name="dateSampleCollected"
+                    name="dateSpecimenCollected"
                     rules={[
                       {
                         required: true,
@@ -130,7 +130,7 @@ const LaboratoryInformation = () => {
                 <Col lg={12} md={12} sm={24}>
                   <Form.Item
                     label="Type of Specimen collected?"
-                    name="specimenCollected"
+                    name="sampleType"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     rules={[
@@ -143,10 +143,10 @@ const LaboratoryInformation = () => {
                     <CheckboxGroup
                       options={[
                         {
-                          label: "cerebrospinal fluid",
-                          value: "Cerebrospinal fluid",
+                          label: "Cerebrospinal fluid",
+                          value: "cerebrospinalFluid",
                         },
-                        { label: "blood", value: "Blood" },
+                        { label: "Blood", value: "blood" },
                       ]}
                       name="sampleType"
                       onChange={(value) =>
@@ -183,7 +183,7 @@ const LaboratoryInformation = () => {
                   </Col>
                 )}
 
-                <Col lg={24} md={6} sm={12} xs={24}>
+                <Col lg={24} md={12} sm={12} xs={24}>
                   <Form.Item
                     label="Name Of Testing Laboratory"
                     labelCol={{ span: 24 }}
@@ -210,59 +210,45 @@ const LaboratoryInformation = () => {
                     </Select>
                   </Form.Item>
                 </Col>
-
-                {formValues?.sampleType?.length >= 1 && (
-                  <Col lg={12} md={12} sm={24}>
-                    <Form.Item
-                      label="Specimen Received?"
-                      name="specimenReceived"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Select Specimen Received",
-                        },
-                      ]}
+                <Divider plain>Laboratory result</Divider>
+                {formValues?.sampleType?.includes('blood') && (
+                <Col lg={24} md={24} sm={24}>
+                  <Form.Item
+                    label="Blood sample received"
+                    name="bloodSampleReceived"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option ",
+                      },
+                    ]}
+                  >
+                    <Radio.Group
+                      buttonStyle="solid"
+                      name="bloodSampleReceived"
+                      onChange={(e) =>
+                        handleUpdateInputValues(e.target.name, e.target.value)
+                      }
                     >
-                      <CheckboxGroup
-                        options={
-                          formValues?.sampleType?.length === 2
-                            ? [
-                                {
-                                  label: "Cerebrospinal fluid",
-                                  value: "Cerebrospinal fluid",
-                                },
-                                { label: "Blood", value: "Blood" },
-                              ]
-                            : formValues?.sampleType?.length === 1 &&
-                              formValues?.sampleType?.includes(
-                                "Cerebrospinal fluid"
-                              )
-                            ? [
-                                {
-                                  label: "Cerebrospinal fluid",
-                                  value: "Cerebrospinal fluid",
-                                },
-                              ]
-                            : formValues?.sampleType?.length === 1 &&
-                              formValues?.sampleType?.includes("Blood")
-                            ? [{ label: "Blood", value: "Blood" }]
-                            : null
-                        }
-                        name="specimenReceived"
-                      />
-                    </Form.Item>
-                  </Col>
-                )}
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+                  )}
 
+
+                {formValues?.bloodSampleReceived === 'yes' && (
+                <>
                 <Col lg={12} md={12} sm={24}>
                   <Form.Item
                     label="Date Specimen Received "
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     // initialValue={birth_date ? moment(birth_date) : null}
-                    name="dateSecimenReceived"
+                    name={['blood', 'dateSpecimenReceived']}
                     rules={[
                       {
                         required: true,
@@ -284,7 +270,7 @@ const LaboratoryInformation = () => {
                 <Col lg={12} md={12} sm={24}>
                   <Form.Item
                     label="Laboratory ID"
-                    name="laboratoryId"
+                    name={['blood', 'laboratoryId']}
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                   >
@@ -300,7 +286,7 @@ const LaboratoryInformation = () => {
                 <Col lg={12} md={12} sm={24}>
                   <Form.Item
                     label="Specimen Condition"
-                    name="sampleCondition"
+                    name={['blood', 'sampleCondition']}
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     rules={[
@@ -323,7 +309,7 @@ const LaboratoryInformation = () => {
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Test Conducted"
-                      name="testConducted"
+                      name={['blood', 'testConducted']}
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
@@ -335,33 +321,27 @@ const LaboratoryInformation = () => {
                     >
                       <CheckboxGroup
                         options={
-                          formValues?.sampleType?.length === 1 &&
-                          formValues?.sampleType[0] === "Cerebrospinal fluid"
-                            ? [
-                                { label: "PCR", value: "pcr" },
-                                { label: "Culture", value: "culture" },
-                              ]
-                            : [
+                             [
                                 { label: "PCR", value: "pcr" },
                                 { label: "RDT", value: "rdt" },
                                 { label: "Culture", value: "culture" },
                               ]
                         }
-                        name="testConducted"
+                        name="bloodTestConducted"
                         onChange={(value) =>
-                          handleUpdateInputValues("testConducted", value)
+                          handleUpdateInputValues("bloodTestConducted", value)
                         }
                       />
                     </Form.Item>
                   </Col>
                 )}
 
-                {formValues?.testConducted?.includes("pcr") && (
+                {formValues?.bloodTestConducted?.includes("pcr") && (
                   <Row>
                     <Col lg={12} md={12} sm={24}>
                       <Form.Item
                         label="PCR Result"
-                        name="pcrRresult"
+                        name={['blood', 'pcr', 'result']}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -389,7 +369,7 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultAvailable"
+                        name={['blood','pcr','dateResultAvailable']}
                         rules={[
                           {
                             required: true,
@@ -414,7 +394,7 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultSentOut"
+                        name={['blood','pcr', 'dateResultSent']}
                         rules={[
                           {
                             required: true,
@@ -435,12 +415,12 @@ const LaboratoryInformation = () => {
                   </Row>
                 )}
 
-                {formValues?.testConducted?.includes("rdt") && (
+                {formValues?.bloodTestConducted?.includes("rdt") && (
                   <Row>
                     <Col lg={12} md={12} sm={24}>
                       <Form.Item
                         label="RDT Result"
-                        name="rdtResult"
+                        name={['blood', 'rdt', 'result']}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -468,7 +448,7 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultAvailable"
+                        name={['blood','rdt', 'dateResultAvailable']}
                         rules={[
                           {
                             required: true,
@@ -493,7 +473,7 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultSentOut"
+                        name={['blood','rdt', 'dateResultSent']}
                         rules={[
                           {
                             required: true,
@@ -514,11 +494,11 @@ const LaboratoryInformation = () => {
                   </Row>
                 )}
 
-                {formValues?.testConducted?.includes("culture") && (
+                {formValues?.bloodTestConducted?.includes("culture") && (
                   <Col lg={12} md={12} sm={24}>
                     <Form.Item
                       label="Culture Result"
-                      name="cultureResult"
+                      name={['blood', 'culture', 'result']}
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
@@ -549,7 +529,369 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultAvailable"
+                        name={['blood','culture', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Result Available Date",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['blood','culture', 'dateResultSent']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </>
+                )}
+                  </>
+                  )}
+                <Divider plain></Divider>
+                {formValues?.sampleType?.includes('cerebrospinalFluid') && (
+                <Col lg={24} md={24} sm={24}>
+                  <Form.Item
+                    label="Cerebrospinal fluid sample received"
+                    name="csfSampleReceived"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option ",
+                      },
+                    ]}
+                  >
+                    <Radio.Group
+                      buttonStyle="solid"
+                      name="csfSampleReceived"
+                      onChange={(e) =>
+                        handleUpdateInputValues(e.target.name, e.target.value)
+                      }
+                    >
+                      <Radio.Button value="yes">Yes</Radio.Button>
+                      <Radio.Button value="no">No</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+                  )}
+                {formValues?.csfSampleReceived === 'yes' && (
+                <>
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Date Specimen Received "
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    // initialValue={birth_date ? moment(birth_date) : null}
+                    name={['csf', 'dateSpecimenReceived']}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Date Specimen received",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      format="DD-MM-YYYY"
+                      disabledDate={(current) =>
+                        current.isAfter(moment()) || isDatePickerDisabled
+                      }
+                      style={{ width: "100%" }}
+                      placeholder="DD-MM-YYYY"
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Laboratory ID"
+                    name={['csf', 'laboratoryId']}
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                  >
+                    <Input
+                      placeholder="Enter Lab ID"
+                      id="labid"
+                      name="labid"
+                      onChange={(e) => {}}
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col lg={12} md={12} sm={24}>
+                  <Form.Item
+                    label="Specimen Condition"
+                    name={['csf', 'sampleCondition']}
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Select an Option",
+                      },
+                    ]}
+                  >
+                    <Radio.Group buttonStyle="solid">
+                      <Radio.Button value="adequate">Adequate</Radio.Button>
+                      <Radio.Button value="not adequate">
+                        Not Adequate
+                      </Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+
+                {formValues?.sampleType?.length >= 1 && (
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Test Conducted"
+                      name={['csf', 'testConducted']}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "select an option",
+                        },
+                      ]}
+                    >
+                      <CheckboxGroup
+                        options={
+                          [
+                            { label: "PCR", value: "pcr" },
+                            { label: "Culture", value: "culture" },
+                          ]
+                        }
+                        name="testConducted"
+                        onChange={(value) =>
+                          handleUpdateInputValues("testConducted", value)
+                        }
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
+
+                {formValues?.testConducted?.includes("pcr") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="PCR Result"
+                        name={['csf', 'pcr', 'result']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select PCR result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                          <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="indeterminate">
+                            Indeterminate
+                          </Radio.Button>
+                          <Radio.Button value="pending">Pending</Radio.Button>
+                          <Radio.Button value="not done">Not Done</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['csf','pcr', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "SelectDateResultAvailable",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['csf','pcr', 'dateResultSent']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+                {formValues?.testConducted?.includes("rdt") && (
+                  <Row>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="RDT Result"
+                        name={['csf','rdt', 'rdtResult']}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select RDT result",
+                          },
+                        ]}
+                      >
+                        <Radio.Group buttonStyle="solid">
+                          <Radio.Button value="positive">Positive</Radio.Button>
+                          <Radio.Button value="negative">Negative</Radio.Button>
+                          <Radio.Button value="indeterminate">
+                            Indeterminate
+                          </Radio.Button>
+                          <Radio.Button value="pending">Pending</Radio.Button>
+                          <Radio.Button value="not done">Not Done</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['csf','rdt', 'dateResultAvailable']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Available",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Sent Out "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['csf','rdt', 'dateResultSent']}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Date Result Sent Out",
+                          },
+                        ]}
+                      >
+                        <DatePicker
+                          format="DD-MM-YYYY"
+                          disabledDate={(current) =>
+                            current.isAfter(moment()) || isDatePickerDisabled
+                          }
+                          style={{ width: "100%" }}
+                          placeholder="DD-MM-YYYY"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                )}
+
+                {formValues?.testConducted?.includes("culture") && (
+                  <Col lg={12} md={12} sm={24}>
+                    <Form.Item
+                      label="Culture Result"
+                      name={['csf','culture', 'result']}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Select an Option ",
+                        },
+                      ]}
+                    >
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="cultureResult"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
+                        <Radio.Button value="growth">Growth</Radio.Button>
+                        <Radio.Button value="no growth">No Growth</Radio.Button>
+                      </Radio.Group>
+                    </Form.Item>
+                  </Col>
+                )}
+                {formValues?.cultureResult && (
+                  <>
+                    <Col lg={12} md={12} sm={24}>
+                      <Form.Item
+                        label="Date Result Available "
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name={['csf','culture', 'dateResultAvailable']}
                         rules={[
                           {
                             required: true,
@@ -574,7 +916,7 @@ const LaboratoryInformation = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         // initialValue={birth_date ? moment(birth_date) : null}
-                        name="dateResultSentOut"
+                        name={['csf','culture', 'dateResultSent']}
                         rules={[
                           {
                             required: true,
@@ -594,8 +936,11 @@ const LaboratoryInformation = () => {
                     </Col>
                   </>
                 )}
+                  </>
+                  )}
               </>
             )}
+
           </Row>
         </Panel>
       </Collapse>

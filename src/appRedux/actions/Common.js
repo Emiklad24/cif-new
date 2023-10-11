@@ -97,7 +97,7 @@ export const fetchStateList = (params) => {
   return async (dispatch) => {
     dispatch(fetchStart());
     await httpClient
-      .get("/state/", { params })
+      .get("/states/", { params })
       .then((data) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());

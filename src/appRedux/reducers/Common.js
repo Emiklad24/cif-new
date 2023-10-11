@@ -13,6 +13,7 @@ const INIT_STATE = {
   data: [],
   localGovernmentAreaList: [],
   caseList: [],
+  stateList: [],
   case: {},
 };
 
