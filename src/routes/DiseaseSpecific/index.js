@@ -34,7 +34,7 @@ import Dengue from "./Dengue";
 import CSM from "./CSM";
 import Covid19 from "./Covid19";
 import BuruliUlcer from "./BuruliUlcer";
-import { createCase, updateCase } from "appRedux/actions/Common";
+import { createCase } from "appRedux/actions/Common";
 
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -97,10 +97,10 @@ const App = () => {
   };
 
   /**
- * @function getDoBFromAge
- * @param {String} '1970-01-01'
- * @return {Object} {'53', '4'}
- */
+   * @function getDoBFromAge
+   * @param {String} '1970-01-01'
+   * @return {Object} {'53', '4'}
+   */
   const getDoBFromAge = (arg) => {
     const dob = new Date(arg);
     const today = new Date();
@@ -116,9 +116,9 @@ const App = () => {
   };
 
   /**
- * @function onChangeDoB
- * @description when the datepicker has a date calculate the year and month and update the fields and disable the year field else set them to empty and enable the year field
- */
+   * @function onChangeDoB
+   * @description when the datepicker has a date calculate the year and month and update the fields and disable the year field else set them to empty and enable the year field
+   */
   const onChangeDoB = (date, dateString) => {
     if (date) {
       const today = moment();
@@ -136,9 +136,9 @@ const App = () => {
   };
 
   /**
- * @function onChangeYear
- * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
- */
+   * @function onChangeYear
+   * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
+   */
   const onChangeYear = (e) => {
     const year = e.target.value;
     setAgeYear(year);
@@ -157,77 +157,155 @@ const App = () => {
   };
 
   const onChangeMonth = (e) => {
-    console.log(e.target)
-  }
+    console.log(e.target);
+  };
 
   const onChange = () => {
     console.log("Received values of form:");
   };
 
   const onFinish = async (fieldsValue) => {
-    let additionals = {}
+    console.log(fieldsValue);
+
+    let additionals = {};
     if (program === "Cholera") {
       additionals = {
-        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
-        'dateSpecimenTested': fieldsValue['dateSpecimenTested'].format('DD-MM-YYYY'),
-        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
-        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
-      }
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+        dateResultReleased:
+          fieldsValue["dateResultReleased"].format("DD-MM-YYYY"),
+        dateSpecimenTested:
+          fieldsValue["dateSpecimenTested"].format("DD-MM-YYYY"),
+        dateSpecimenSent: fieldsValue["dateSpecimenSent"].format("DD-MM-YYYY"),
+        dateSpecimenReceivedStool:
+          fieldsValue["dateSpecimenReceivedStool"].format("DD-MM-YYYY"),
+        dateSpecimenReceivedRectalSwab:
+          fieldsValue["dateSpecimenReceivedRectalSwab"].format("DD-MM-YYYY"),
+        dateOfSymptomOnset:
+          fieldsValue["dateOfSymptomOnset"].format("DD-MM-YYYY"),
+        datePatientAdmittedAtLeastOneNight:
+          fieldsValue["datePatientAdmittedAtLeastOneNight"].format(
+            "DD-MM-YYYY"
+          ),
+        datePatientDischargedAtLeastOneNight:
+          fieldsValue["datePatientDischargedAtLeastOneNight"].format(
+            "DD-MM-YYYY"
+          ),
+      };
     } else if (program === "Lassa Fever") {
       additionals = {
-        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
-        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
-        'dateSampleSent': fieldsValue['dateSampleSent'].format('DD-MM-YYYY'),
-        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
-        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
-        'dateResultSentOut': fieldsValue['dateResultSentOut'].format('DD-MM-YYYY'),
-        'startDateTraveled': fieldsValue['startDateTraveled'].format('DD-MM-YYYY'),
-        'endDateTraveled': fieldsValue['endDateTraveled'].format('DD-MM-YYYY'),
-        'dateHospitalVisitOrAdmission': fieldsValue['dateHospitalVisitOrAdmission'].format('DD-MM-YYYY'),
-        'dateHospitalVisit': fieldsValue['dateHospitalVisit'].format('DD-MM-YYYY'),
-        'dateIsolationAdmission': fieldsValue['dateIsolationAdmission'].format('DD-MM-YYYY'),
-        'dateDischarge': fieldsValue['dateDischarge'].format('DD-MM-YYYY'),
-        'dateLabPositiveResult': fieldsValue['dateLabPositiveResult'].format('DD-MM-YYYY'),
-      }
+        dateOfSymptomOnset:
+          fieldsValue["dateOfSymptomOnset"].format("DD-MM-YYYY"),
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+        dateSampleSent: fieldsValue["dateSampleSent"].format("DD-MM-YYYY"),
+        dateSpecimenReceived:
+          fieldsValue["dateSpecimenReceived"].format("DD-MM-YYYY"),
+        dateResultAvailable:
+          fieldsValue["dateResultAvailable"].format("DD-MM-YYYY"),
+        dateResultSentOut:
+          fieldsValue["dateResultSentOut"].format("DD-MM-YYYY"),
+        startDateTraveled:
+          fieldsValue["startDateTraveled"].format("DD-MM-YYYY"),
+        endDateTraveled: fieldsValue["endDateTraveled"].format("DD-MM-YYYY"),
+        dateHospitalVisitOrAdmission:
+          fieldsValue["dateHospitalVisitOrAdmission"].format("DD-MM-YYYY"),
+        dateHospitalVisit:
+          fieldsValue["dateHospitalVisit"].format("DD-MM-YYYY"),
+        dateIsolationAdmission:
+          fieldsValue["dateIsolationAdmission"].format("DD-MM-YYYY"),
+        dateDischarge: fieldsValue["dateDischarge"].format("DD-MM-YYYY"),
+        dateLabPositiveResult:
+          fieldsValue["dateLabPositiveResult"].format("DD-MM-YYYY"),
+      };
     } else if (program === "Anthrax") {
       additionals = {
-        'dateOfLastVaccination': fieldsValue['dateOfLastVaccination'].format('DD-MM-YYYY'),
-        'dateOfLastDose': fieldsValue['dateOfLastDose'].format('DD-MM-YYYY'),
-        'dateSeenAtHealthFacility': fieldsValue['dateSeenAtHealthFacility'].format('DD-MM-YYYY'),
-        'dateOfCaseInvestigation': fieldsValue['dateOfCaseInvestigation'].format('DD-MM-YYYY'),
-        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
-        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
-      }
+        dateOfLastVaccination:
+          fieldsValue["dateOfLastVaccination"].format("DD-MM-YYYY"),
+        dateOfLastDose: fieldsValue["dateOfLastDose"].format("DD-MM-YYYY"),
+        dateSeenAtHealthFacility:
+          fieldsValue["dateSeenAtHealthFacility"].format("DD-MM-YYYY"),
+        dateOfCaseInvestigation:
+          fieldsValue["dateOfCaseInvestigation"].format("DD-MM-YYYY"),
+        dateOfSymptomOnset:
+          fieldsValue["dateOfSymptomOnset"].format("DD-MM-YYYY"),
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+      };
     } else if (program === "Buruli Ulcer") {
       additionals = {
-        'referralDate': fieldsValue['referralDate'].format('DD-MM-YYYY'),
-        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
-        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
-        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
-        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
-        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
-      }
+        referralDate: fieldsValue["referralDate"].format("DD-MM-YYYY"),
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+        dateSpecimenSent: fieldsValue["dateSpecimenSent"].format("DD-MM-YYYY"),
+        dateSpecimenReceived:
+          fieldsValue["dateSpecimenReceived"].format("DD-MM-YYYY"),
+        dateResultAvailable:
+          fieldsValue["dateResultAvailable"].format("DD-MM-YYYY"),
+        dateResultSent: fieldsValue["dateResultSent"].format("DD-MM-YYYY"),
+      };
+    } else if (program === "Yellow Fever") {
+      additionals = {
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+        dateSpecimenSent: fieldsValue["dateSpecimenSent"].format("DD-MM-YYYY"),
+        dateSpecimenReceivedBlood:
+          fieldsValue["dateSpecimenReceivedBlood"].format("DD-MM-YYYY"),
+        dateResultAvailableBlood:
+          fieldsValue["dateResultAvailableBlood"].format("DD-MM-YYYY"),
+        dateResultSentBlood:
+          fieldsValue["dateResultSentBlood"].format("DD-MM-YYYY"),
+        dateResultSentOutBlood:
+          fieldsValue["dateResultSentOutBlood"].format("DD-MM-YYYY"),
+        dateResultAvailable:
+          fieldsValue["dateResultAvailable"].format("DD-MM-YYYY"),
+        dateResultSentOut:
+          fieldsValue["dateResultSentOut"].format("DD-MM-YYYY"),
+        dateMicroscopyResultAvailableBlood:
+          fieldsValue["dateMicroscopyResultAvailableBlood"].format(
+            "DD-MM-YYYY"
+          ),
+        dateMicroscopyResultSentOutBlood:
+          fieldsValue["dateMicroscopyResultSentOutBlood"].format("DD-MM-YYYY"),
+        datepcrRtPcrResultResultAvailableBlood:
+          fieldsValue["datepcrRtPcrResultResultAvailableBlood"].format(
+            "DD-MM-YYYY"
+          ),
+        datecrRtPcrResultSentOutBlood:
+          fieldsValue["datecrRtPcrResultSentOutBlood"].format("DD-MM-YYYY"),
+        datefOnset: fieldsValue["datefOnset"].format("DD-MM-YYYY"),
+      };
+
+      
     } else if (program === "Covid19") {
       additionals = {
-        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
-        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
-        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
-        'dateSpecimenReceived': fieldsValue['dateSpecimenReceived'].format('DD-MM-YYYY'),
-        'dateResultAvailable': fieldsValue['dateResultAvailable'].format('DD-MM-YYYY'),
-        'dateResultSent': fieldsValue['dateResultSent'].format('DD-MM-YYYY'),
-        'selectDateOfFirstVaccination': fieldsValue['selectDateOfFirstVaccination'].format('DD-MM-YYYY'),
-        'selectDateSecondOfVaccination': fieldsValue['selectDateSecondOfVaccination'].format('DD-MM-YYYY'),
-      }
+        dateOfSymptomOnset:
+          fieldsValue["dateOfSymptomOnset"].format("DD-MM-YYYY"),
+        dateSpecimenCollected:
+          fieldsValue["dateSpecimenCollected"].format("DD-MM-YYYY"),
+        dateSpecimenSent: fieldsValue["dateSpecimenSent"].format("DD-MM-YYYY"),
+        dateSpecimenReceived:
+          fieldsValue["dateSpecimenReceived"].format("DD-MM-YYYY"),
+        dateResultAvailable:
+          fieldsValue["dateResultAvailable"].format("DD-MM-YYYY"),
+        dateResultSent: fieldsValue["dateResultSent"].format("DD-MM-YYYY"),
+        selectDateOfFirstVaccination:
+          fieldsValue["selectDateOfFirstVaccination"].format("DD-MM-YYYY"),
+        selectDateSecondOfVaccination:
+          fieldsValue["selectDateSecondOfVaccination"].format("DD-MM-YYYY"),
+      };
     }
     const values = {
       ...fieldsValue,
-      'dateOfReport': fieldsValue['dateOfReport'].format('DD-MM-YYYY'),
-      'dateOfNotification': fieldsValue['dateOfNotification'].format('DD-MM-YYYY'),
-      'dateOfInvestigation': fieldsValue['dateOfInvestigation'].format('DD-MM-YYYY'),
-      'dateOfBirth': fieldsValue['dateOfBirth'].format('DD-MM-YYYY'),
-      ...additionals
+      dateOfReport: fieldsValue["dateOfReport"].format("DD-MM-YYYY"),
+      dateOfNotification:
+        fieldsValue["dateOfNotification"].format("DD-MM-YYYY"),
+      dateOfInvestigation:
+        fieldsValue["dateOfInvestigation"].format("DD-MM-YYYY"),
+      dateOfBirth: fieldsValue["dateOfBirth"].format("DD-MM-YYYY"),
+      ...additionals,
     };
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
     await dispatch(createCase(values));
     setTimeout(() => {
       history.push("/disease_specific");
@@ -246,43 +324,43 @@ const App = () => {
     if (program === "Yellow Fever") {
       return <YellowFever form={form} />;
     } else if (program === "Cholera") {
-      return <Cholera form={form}/>;
+      return <Cholera form={form} />;
     } else if (program === "Yaw") {
-      return <Yaw form={form}/>;
+      return <Yaw form={form} />;
     } else if (program === "Anthrax") {
-      return <Anthrax form={form}/>;
+      return <Anthrax form={form} />;
     } else if (program === "AFP") {
-      return <AFP form={form}/>;
+      return <AFP form={form} />;
     } else if (program === "Tetanus") {
-      return <Tetanus form={form}/>;
+      return <Tetanus form={form} />;
     } else if (program === "Rubella") {
-      return <Rubella form={form}/>;
+      return <Rubella form={form} />;
     } else if (program === "NOMA") {
-      return <NOMA form={form}/>;
+      return <NOMA form={form} />;
     } else if (program === "Mpox") {
-      return <Mpox form={form}/>;
+      return <Mpox form={form} />;
     } else if (program === "Measles") {
-      return <Measles form={form}/>;
+      return <Measles form={form} />;
     } else if (program === "Lassa Fever") {
       return <LassaFever form={form} />;
     } else if (program === "Influenza") {
-      return <Influenza form={form}/>;
+      return <Influenza form={form} />;
     } else if (program === "Guinea Worm") {
-      return <GuineaWorm form={form}/>;
+      return <GuineaWorm form={form} />;
     } else if (program === "Diphtheria") {
-      return <Diphtheria form={form}/>;
+      return <Diphtheria form={form} />;
     } else if (program === "Ebola") {
-      return <Ebola form={form}/>;
+      return <Ebola form={form} />;
     } else if (program === "Dengue") {
-      return <Dengue form={form}/>;
+      return <Dengue form={form} />;
     } else if (program === "CSM") {
-      return <CSM form={form}/>;
+      return <CSM form={form} />;
     } else if (program === "Buruli Ulcer") {
-      return <BuruliUlcer form={form}/>;
+      return <BuruliUlcer form={form} />;
     } else if (program === "Perinatal Death") {
-      return <PerinatalDeath form={form}/>;
+      return <PerinatalDeath form={form} />;
     } else if (program === "Maternal Death") {
-      return <MaternalDeath form={form}/>;
+      return <MaternalDeath form={form} />;
     } else if (program === "Covid19") {
       return <Covid19 form={form} />;
     } else {
@@ -321,9 +399,10 @@ const App = () => {
                   .includes(input.toLowerCase())
               }
               filterSort={(optionA, optionB) =>
-                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
               }
-
               options={diseaseData.map((disease, i) => ({
                 key: i,
                 label: disease,
@@ -386,7 +465,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {stateData.map((item) => (
@@ -421,7 +502,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {lga.map((item) => (
@@ -456,7 +539,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {lga.map((item) => (
@@ -491,7 +576,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {placeDetectedData.map((item) => (
@@ -526,9 +613,11 @@ const App = () => {
                           .includes(input.toLowerCase())
                       }
                       filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
                       }
-                    // onChange={handleStateChange}
+                      // onChange={handleStateChange}
                     >
                       {facilityData.map((item) => (
                         <Option label={item} value={item}>
@@ -542,23 +631,23 @@ const App = () => {
               {(place_of_detection === "Home" ||
                 place_of_detection === "IDP Camp" ||
                 place_of_detection === "NYSC Camp") && (
-                  <Col lg={6} md={6} sm={24} xs={24}>
-                    <Form.Item
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      label="Place Description"
-                      name="placeDescription"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input patient id!",
-                        },
-                      ]}
-                    >
-                      <Input size="large" />
-                    </Form.Item>
-                  </Col>
-                )}
+                <Col lg={6} md={6} sm={24} xs={24}>
+                  <Form.Item
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    label="Place Description"
+                    name="placeDescription"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input patient id!",
+                      },
+                    ]}
+                  >
+                    <Input size="large" />
+                  </Form.Item>
+                </Col>
+              )}
               <Col lg={6} md={6} sm={24} xs={24}>
                 <Form.Item
                   labelCol={{ span: 24 }}
@@ -592,7 +681,7 @@ const App = () => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
-                  // onChange={handleStateChange}
+                    // onChange={handleStateChange}
                   >
                     {notifiesBy.map((item) => (
                       <Option label={item} value={item}>
@@ -715,7 +804,7 @@ const App = () => {
                   <Input
                     type="phone"
                     size="large"
-                  // onChange={(e) => setPhone(e.target.value)}
+                    // onChange={(e) => setPhone(e.target.value)}
                   />
                 </Form.Item>
               </Col>
@@ -813,7 +902,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {stateData.map((item) => (
@@ -848,7 +939,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {lga.map((item) => (
@@ -883,7 +976,9 @@ const App = () => {
                         .includes(input.toLowerCase())
                     }
                     filterSort={(optionA, optionB) =>
-                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
                   >
                     {lga.map((item) => (
@@ -905,8 +1000,7 @@ const App = () => {
                     placeholder="Enter Address"
                     id="address"
                     name="address"
-                    onChange={(e) => {
-                    }}
+                    onChange={(e) => {}}
                   />
                 </Form.Item>
               </Col>
@@ -978,8 +1072,8 @@ const App = () => {
         </Collapse>
         {getProgram()}
         <Row>
-          <Col lg={6} md={6} sm={24}>
-            <Form.Item className="gx-m-3">
+          <Col span={24} style={{ textAlign: "right" }}>
+            <Form.Item className="gx-m-2">
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
