@@ -68,9 +68,6 @@ const Epidemiological = () => {
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Epidemiological Information" key="1">
           <Row>
-
-
-
             <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Patient Ever Received Any Meningococaal Vaccine?"
@@ -104,7 +101,7 @@ const Epidemiological = () => {
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       // initialValue={birth_date ? moment(birth_date) : null}
-                      name="selectDateOfVaccination"
+                      name="dateOfVaccination"
                       rules={[
                         {
                           required: true,
@@ -119,8 +116,8 @@ const Epidemiological = () => {
                         style={{ width: "100%" }}
                         placeholder="DD-MM-YYYY"
 
-                        name="selectDateOfVaccination"
-                        onChange={(_, dateString) => handleUpdateInputValues("selectDateOfVaccination", dateString)}
+                        name="dateOfVaccination"
+                        onChange={(_, dateString) => handleUpdateInputValues("dateOfVaccination", dateString)}
                       />
                     </Form.Item>
                   </Col>
@@ -220,7 +217,11 @@ const Epidemiological = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid"
+                name="travelInLast10Days"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }>
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -228,26 +229,23 @@ const Epidemiological = () => {
               </Form.Item>
 
             </Col>
+            {formValues?.travelInLast10Days === "yes" &&
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item
+                  label="If yes to above, where?"
+                  name="travelLocation"
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
 
-            ``
+                >
+                  <Input
+                    placeholder="Enter Address"
+                    id="addresstravel"
 
-            <Col lg={6} md={6} sm={24}>
-              <Form.Item
-                label="If yes to above, where?"
-                name="travelLocation"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-
-              >
-                <Input
-                  placeholder="Enter Address"
-                  id="addresstravel"
-                  name="travelAddress"
-                  onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-
+                  />
+                </Form.Item>
+              </Col>
+            }
 
             <Col lg={12} md={12} sm={24}>
               <Form.Item
@@ -262,37 +260,38 @@ const Epidemiological = () => {
                   },
                 ]}
               >
-                <Radio.Group buttonStyle="solid">
+                <Radio.Group buttonStyle="solid" name="contactWithAnyoneWithSymtomsOrConfirmed"
+                    onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)}>
                   <Radio.Button value="yes">Yes</Radio.Button>
                   <Radio.Button value="no">No</Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>
-
-            <Col lg={6} md={6} sm={24}>
-              <Form.Item
-                label="Location Of Contact(s)"
-                name="contactLocation"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Enter Contact Location ",
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="Enter Contact Location"
-                  id="contact"
+            {formValues?.contactWithAnyoneWithSymtomsOrConfirmed === "yes" &&
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item
+                  label="Location Of Contact(s)"
                   name="contactLocation"
-                  onChange={(e) => {
-                  }}
-                />
-              </Form.Item>
-            </Col>
-
+                  labelCol={{span: 24}}
+                  wrapperCol={{span: 24}}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Enter Contact Location ",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter Contact Location"
+                    id="contact"
+                    name="contactLocation"
+                    onChange={(e) => {
+                    }}
+                  />
+                </Form.Item>
+              </Col>
+            }
 
 
           </Row>

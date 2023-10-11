@@ -56,17 +56,16 @@ const LaboratoryInformation = ({form}) => {
   const [formValues, setFormValues] = useState(form);
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
 
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
 
+    if(formValues?.sampleCollected  === "no" || formValues?.sampleCollected ==="unknown"){
 
-    if(formValues?.sampleCollected === "no" || formValues?.sampleCollected ==="unknown"){
       form.setFieldsValue({
-          dateSpecimenCollected:null,specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null, sampleType:[]
+         specimenCollected:null, dateSpecimenSent:null,nameOfTestingLaboratory:null, sampleType:[]
         });
     }
   };

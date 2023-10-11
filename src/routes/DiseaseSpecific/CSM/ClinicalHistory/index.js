@@ -57,14 +57,14 @@ const ClinicalHistory = () => {
 
     }))
 
-    
+
   }
 
- 
 
 
 
-  
+
+
 
 
 
@@ -231,7 +231,7 @@ const ClinicalHistory = () => {
               </Form.Item>
             </Col>
 
-            
+
 
             <Col lg={8} md={12} sm={24}>
 
@@ -251,15 +251,15 @@ const ClinicalHistory = () => {
                   options={
 
                     [
-                      { label: 'bacteriemias', value: 'Bacteriemias' },
-                      { label: 'eningitis', value: 'Meningitis' },
-                      { label: 'pneumonia', value: 'Pneumonia' },
-                      { label: 'septic arthritis', value: 'Septic arthritis' },
-                      { label: 'sellulitis', value: 'Cellulitis' },
-                      { label: 'pericarditis', value: 'Pericarditis' },
-                      { label: 'osteomyelitis', value: 'Osteomyelitis' },
-                      { label: 'purpura fulminans', value: 'Purpura fulminans' },
-                     
+                      { value: 'bacteriemias', label: 'Bacteriemias' },
+                      { value: 'eningitis', label: 'Meningitis' },
+                      { value: 'pneumonia', label: 'Pneumonia' },
+                      { value: 'septic arthritis', label: 'Septic arthritis' },
+                      { value: 'sellulitis', label: 'Cellulitis' },
+                      { value: 'pericarditis', label: 'Pericarditis' },
+                      { value: 'osteomyelitis', label: 'Osteomyelitis' },
+                      { value: 'purpura fulminans', label: 'Purpura fulminans' },
+
 
                     ]
                   }
@@ -269,19 +269,14 @@ const ClinicalHistory = () => {
               </Form.Item>
             </Col>
 
-           
+
              <Col lg={12} md={8} sm={24}>
               <Form.Item
                 label="Other symptom please specify"
                 name="othersymptoms"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the date!",
-                  },
-                ]}
+
               >
                 <Input
                   placeholder="othersymptoms"
@@ -300,12 +295,7 @@ const ClinicalHistory = () => {
                 wrapperCol={{span: 24}}
                 // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateOfSymptomOnset"
-                rules={[
-                  {
-                    required: true,
-                    message: " date!",
-                  },
-                ]}
+
               >
                 <DatePicker
                   // onChange={onChangeDoB}

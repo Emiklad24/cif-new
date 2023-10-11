@@ -10,7 +10,7 @@ import {
   Button,
   Radio,
 } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "styles/pages/form.less";
 import moment from "moment";
 import YellowFever from "./YellowFever";
@@ -34,9 +34,8 @@ import Dengue from "./Dengue";
 import CSM from "./CSM";
 import Covid19 from "./Covid19";
 import BuruliUlcer from "./BuruliUlcer";
-import { createCase, updateCase } from "appRedux/actions/Common";
-
-import { useDispatch } from "react-redux";
+import { createCase, fetchStateList } from "appRedux/actions/Common";
+import { useDispatch,useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
@@ -79,6 +78,7 @@ const App = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useDispatch();
+  const { stateList } = useSelector(({ common }) => common);
 
   const { Panel } = Collapse;
 
@@ -95,6 +95,8 @@ const App = () => {
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
+
+  console.log(stateList)
 
   /**
  * @function getDoBFromAge
@@ -155,6 +157,10 @@ const App = () => {
     form.setFieldsValue({ dateOfBirth: null });
     setIsDatePickerDisabled(false);
   };
+
+  useEffect(() => {
+    dispatch(fetchStateList());
+  }, [dispatch]);
 
   const onChangeMonth = (e) => {
     console.log(e.target)
@@ -219,6 +225,252 @@ const App = () => {
         'selectDateSecondOfVaccination': fieldsValue['selectDateSecondOfVaccination'].format('DD-MM-YYYY'),
       }
     }
+    else if (program === "CSM") {
+      let _blood = fieldsValue['blood']
+      let pcr_blood = fieldsValue['blood']['pcr']
+      let rdt_blood = fieldsValue['blood']['rdt']
+      let culture_blood = fieldsValue['blood']['culture']
+      let _csf = fieldsValue['csf']
+      let pcr_csf = fieldsValue['csf']['pcr']
+      let rdt_csf = fieldsValue['csf']['rdt']
+      let culture_csf = fieldsValue['csf']['culture']
+      let _pcr, _rdt, _culture, _pcr_csf, _rdt_csf, _culture_csf = null
+
+
+      if (pcr_csf) {
+        _pcr_csf = {
+          ...pcr_csf,
+          'dateResultAvailable': pcr_csf['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_csf['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (rdt_csf) {
+        _rdt_csf = {
+          ...rdt_csf,
+          'dateResultAvailable': rdt_csf['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': rdt_csf['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (culture_csf) {
+        _culture_csf = {
+          ...culture_csf,
+          'dateResultAvailable': culture_csf['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': culture_csf['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+
+
+      if (pcr_blood) {
+        _pcr = {
+          ...pcr_blood,
+          'dateResultAvailable': pcr_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (rdt_blood) {
+        _rdt = {
+          ...rdt_blood,
+          'dateResultAvailable': rdt_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': rdt_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (culture_blood) {
+        _culture = {
+          ...culture_blood,
+          'dateResultAvailable': culture_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': culture_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      additionals = {
+        // 'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateOfVaccination': fieldsValue['dateOfVaccination'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'blood':{
+                ..._blood,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr,
+                'rdt':_rdt,
+                'culture':_culture
+              },
+        'csf':{
+                ..._csf,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr_csf,
+                'rdt':_rdt_csf,
+                'culture':_culture_csf
+              },
+
+      }
+    }
+    else if (program === "Mpox") {
+      let _blood = fieldsValue['blood']
+      let pcr_blood = fieldsValue['blood']['pcr']
+      let seriology_blood = fieldsValue['blood']['seriology']
+      let _swab = fieldsValue['swab']
+      let pcr_swab = fieldsValue['swab']['pcr']
+      let seriology_swab = fieldsValue['swab']['seriology']
+      let _crust = fieldsValue['crust']
+      let pcr_crust = fieldsValue['crust']['pcr']
+      let seriology_crust = fieldsValue['crust']['seriology']
+      let _pcr, _seriology, _pcr_swab, _seriology_swab, _pcr_crust, _seriology_crust  = null
+
+
+      if (seriology_blood) {
+        _seriology = {
+          ...seriology_blood,
+          'dateResultAvailable': seriology_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_blood) {
+        _pcr = {
+          ...pcr_blood,
+          'dateResultAvailable': pcr_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (seriology_swab) {
+        _seriology_swab = {
+          ...seriology_swab,
+          'dateResultAvailable': seriology_swab['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_swab['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_swab) {
+        _pcr_swab = {
+          ...pcr_swab,
+          'dateResultAvailable': pcr_swab['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_swab['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (seriology_crust) {
+        _seriology_crust = {
+          ...seriology_crust,
+          'dateResultAvailable': seriology_crust['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_crust['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_crust) {
+        _pcr_crust = {
+          ...pcr_crust,
+          'dateResultAvailable': pcr_crust['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_crust['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+
+
+      additionals = {
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateOfAnimalContact': fieldsValue['dateOfAnimalContact'].format('DD-MM-YYYY'),
+        'dateOfFeverOnset': fieldsValue['dateOfFeverOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'blood':{
+                ..._blood,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr,
+                'seriology':_seriology,
+              },
+        'swab':{
+                ..._swab,
+                'dateSpecimenReceived': _swab['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr_swab,
+                'seriology':_seriology_swab,
+              },
+        'crust':{
+                ..._crust,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr_crust,
+                'seriology':_seriology_crust,
+              },
+
+      }
+    }
+    else if (program === "Diphtheria") {
+      let _blood = fieldsValue['blood']
+      let pcr_blood = fieldsValue['blood']['pcr']
+      let seriology_blood = fieldsValue['blood']['seriology']
+      let _swab = fieldsValue['swab']
+      let pcr_swab = fieldsValue['swab']['pcr']
+      let seriology_swab = fieldsValue['swab']['seriology']
+      let _skinBiopsy = fieldsValue['skinBiopsy']
+      let pcr_skinBiopsy = fieldsValue['skinBiopsy']['pcr']
+      let seriology_skinBiopsy = fieldsValue['skinBiopsy']['seriology']
+      let _pcr, _seriology, _pcr_swab, _seriology_swab, _pcr_skinBiopsy, _seriology_skinBiopsy  = null
+
+
+      if (seriology_blood) {
+        _seriology = {
+          ...seriology_blood,
+          'dateResultAvailable': seriology_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_blood) {
+        _pcr = {
+          ...pcr_blood,
+          'dateResultAvailable': pcr_blood['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_blood['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (seriology_swab) {
+        _seriology_swab = {
+          ...seriology_swab,
+          'dateResultAvailable': seriology_swab['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_swab['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_swab) {
+        _pcr_swab = {
+          ...pcr_swab,
+          'dateResultAvailable': pcr_swab['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_swab['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (seriology_skinBiopsy) {
+        _seriology_skinBiopsy = {
+          ...seriology_skinBiopsy,
+          'dateResultAvailable': seriology_skinBiopsy['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': seriology_skinBiopsy['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+      if (pcr_skinBiopsy) {
+        _pcr_skinBiopsy = {
+          ...pcr_skinBiopsy,
+          'dateResultAvailable': pcr_skinBiopsy['dateResultAvailable'].format('DD-MM-YYYY'),
+          'dateResultSent': pcr_skinBiopsy['dateResultSent'].format('DD-MM-YYYY'),
+        }
+      }
+
+
+      additionals = {
+        'dateOfSymptomOnset': fieldsValue['dateOfSymptomOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenCollected': fieldsValue['dateSpecimenCollected'].format('DD-MM-YYYY'),
+        'dateOfAnimalContact': fieldsValue['dateOfAnimalContact'].format('DD-MM-YYYY'),
+        'dateOfFeverOnset': fieldsValue['dateOfFeverOnset'].format('DD-MM-YYYY'),
+        'dateSpecimenSent': fieldsValue['dateSpecimenSent'].format('DD-MM-YYYY'),
+        'blood':{
+                ..._blood,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr,
+                'seriology':_seriology,
+              },
+        'swab':{
+                ..._swab,
+                'dateSpecimenReceived': _swab['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr_swab,
+                'seriology':_seriology_swab,
+              },
+        'crust':{
+                ..._skinBiopsy,
+                'dateSpecimenReceived': _blood['dateSpecimenReceived'].format('DD-MM-YYYY'),
+                'pcr':_pcr_skinBiopsy,
+                'seriology':_seriology_skinBiopsy,
+              },
+
+      }
+    }
     const values = {
       ...fieldsValue,
       'dateOfReport': fieldsValue['dateOfReport'].format('DD-MM-YYYY'),
@@ -227,7 +479,7 @@ const App = () => {
       'dateOfBirth': fieldsValue['dateOfBirth'].format('DD-MM-YYYY'),
       ...additionals
     };
-    console.log('Received values of form: ', values);
+    console.log(values)
     await dispatch(createCase(values));
     setTimeout(() => {
       history.push("/disease_specific");

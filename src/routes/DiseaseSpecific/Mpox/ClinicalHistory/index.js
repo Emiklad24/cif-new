@@ -87,7 +87,7 @@ const ClinicalHistory = () => {
                             </Form.Item>
                         </Col>
 
-                        { 
+                        {
 
                             formValues?.fever === "yes" &&
                             (
@@ -591,7 +591,7 @@ const ClinicalHistory = () => {
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
                                 // initialValue={symptom_date ? moment(symptom_date) : null}
-                                name="date_of_onset"
+                                name="dateOfSymptomOnset"
                                 rules={[
                                     {
                                         required: true,
