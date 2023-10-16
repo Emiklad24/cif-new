@@ -1,18 +1,7 @@
 /* eslint-disable no-unused-vars */
-import {
-  Col,
-  Form,
-  Input,
-  Collapse,
-  DatePicker,
-  Row,
-  Tooltip,
-  Select,
-  Radio,
-} from "antd";
+import { Col, Input, Collapse, Row, Tooltip, Select, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
@@ -39,9 +28,8 @@ const lgaData = {
 const ContactTracing = ({ form }) => {
   const [lga, setLga] = useState([]);
   const { Panel } = Collapse;
-  
 
-  const [formValues, setFormValues] = useState({});
+  const [_, setFormValues] = useState({});
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -219,7 +207,7 @@ const ContactTracing = ({ form }) => {
                   onChange={handleStateChange}
                 >
                   {stateData.map((item) => (
-                    <Option label={item} value={item}>
+                    <Option label={item} value={item} key={item}>
                       {item}
                     </Option>
                   ))}
@@ -248,7 +236,7 @@ const ContactTracing = ({ form }) => {
                   placeholder={<>&nbsp; Select LGA</>}
                 >
                   {lga.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                    <Option key={item} label={item} value={item} >
                       {item}
                     </Option>
                   ))}
@@ -277,7 +265,7 @@ const ContactTracing = ({ form }) => {
                   placeholder={<>&nbsp; Select Ward</>}
                 >
                   {lga.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                    <Option key={item} label={item} value={item}>
                       {item}
                     </Option>
                   ))}
@@ -315,7 +303,6 @@ const ContactTracing = ({ form }) => {
                 label="Relationship with case"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                
                 name="relationshipWithCase"
                 rules={[
                   {
@@ -325,8 +312,8 @@ const ContactTracing = ({ form }) => {
                 ]}
               >
                 <Select showSearch allowClear optionLabelProp="label">
-                  {relationshipWithCase.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                  {relationshipWithCase?.map((item, i) => (
+                    <Option key={item} label={item} value={item}>
                       {item}
                     </Option>
                   ))}

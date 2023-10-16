@@ -263,7 +263,6 @@ const ClinicalHistory = ({ form }) => {
               label="Date of symptom onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(birth_date) : null}
               name="dateOfSymptomOnset"
             >
               <CustomDatePicker form={form} name="dateOfSymptomOnset" />

@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import {
   Col,
   Form,
   Input,
   Collapse,
-  DatePicker,
   Row,
   Tooltip,
   Select,
@@ -34,10 +34,10 @@ import Dengue from "./Dengue";
 import CSM from "./CSM";
 import Covid19 from "./Covid19";
 import BuruliUlcer from "./BuruliUlcer";
-import { createCase, fetchStateList } from "appRedux/actions/Common";
+import { fetchStateList } from "appRedux/actions/Common";
 import { useDispatch, useSelector } from "react-redux";
-
-import { useHistory } from "react-router-dom";
+import ClearableFormItem from "../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../components/Custom/CustomDatePicker";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -77,7 +77,6 @@ const lgaData = {
 
 const App = () => {
   const [form] = Form.useForm();
-  const history = useHistory();
   const dispatch = useDispatch();
   const { stateList } = useSelector(({ common }) => common);
 
@@ -96,8 +95,6 @@ const App = () => {
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
-
-  console.log(stateList);
 
   /**
    * @function getDoBFromAge
@@ -183,62 +180,46 @@ const App = () => {
     console.log("search:", value);
   };
 
+  const componentMap = {
+    "Yellow Fever": <YellowFever form={form} />,
+    Cholera: <Cholera form={form} />,
+    Yaw: <Yaw form={form} />,
+    Anthrax: <Anthrax form={form} />,
+    AFP: <AFP form={form} />,
+    Tetanus: <Tetanus form={form} />,
+    Rubella: <Rubella form={form} />,
+    NOMA: <NOMA form={form} />,
+    Mpox: <Mpox form={form} />,
+    Measles: <Measles form={form} />,
+    "Lassa Fever": <LassaFever form={form} />,
+    Influenza: <Influenza form={form} />,
+    "Guinea Worm": <GuineaWorm form={form} />,
+    Diphtheria: <Diphtheria form={form} />,
+    Ebola: <Ebola form={form} />,
+    Dengue: <Dengue form={form} />,
+    CSM: <CSM form={form} />,
+    "Buruli Ulcer": <BuruliUlcer form={form} />,
+    "Perinatal Death": <PerinatalDeath form={form} />,
+    "Maternal Death": <MaternalDeath form={form} />,
+    Covid19: <Covid19 form={form} />,
+  };
+
   const getProgram = () => {
-    if (program === "Yellow Fever") {
-      return <YellowFever form={form} />;
-    } else if (program === "Cholera") {
-      return <Cholera form={form} />;
-    } else if (program === "Yaw") {
-      return <Yaw form={form} />;
-    } else if (program === "Anthrax") {
-      return <Anthrax form={form} />;
-    } else if (program === "AFP") {
-      return <AFP form={form} />;
-    } else if (program === "Tetanus") {
-      return <Tetanus form={form} />;
-    } else if (program === "Rubella") {
-      return <Rubella form={form} />;
-    } else if (program === "NOMA") {
-      return <NOMA form={form} />;
-    } else if (program === "Mpox") {
-      return <Mpox form={form} />;
-    } else if (program === "Measles") {
-      return <Measles form={form} />;
-    } else if (program === "Lassa Fever") {
-      return <LassaFever form={form} />;
-    } else if (program === "Influenza") {
-      return <Influenza form={form} />;
-    } else if (program === "Guinea Worm") {
-      return <GuineaWorm form={form} />;
-    } else if (program === "Diphtheria") {
-      return <Diphtheria form={form} />;
-    } else if (program === "Ebola") {
-      return <Ebola form={form} />;
-    } else if (program === "Dengue") {
-      return <Dengue form={form} />;
-    } else if (program === "CSM") {
-      return <CSM form={form} />;
-    } else if (program === "Buruli Ulcer") {
-      return <BuruliUlcer form={form} />;
-    } else if (program === "Perinatal Death") {
-      return <PerinatalDeath form={form} />;
-    } else if (program === "Maternal Death") {
-      return <MaternalDeath form={form} />;
-    } else if (program === "Covid19") {
-      return <Covid19 form={form} />;
-    } else {
-      return null;
+    if (program && componentMap.hasOwnProperty(program)) {
+      return componentMap[program];
     }
+    return null;
   };
 
   return (
     <>
       <Row>
         <Col lg={12} md={12} sm={12} xs={24}>
-          <Form.Item
+          <ClearableFormItem
+            form={form}
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
-            label="Disease Name"
+            label="Disease name"
             name="diseaseName"
             rules={[
               {
@@ -267,12 +248,12 @@ const App = () => {
                   .localeCompare((optionB?.label ?? "").toLowerCase())
               }
               options={diseaseData.map((disease, i) => ({
-                key: i,
+                key: disease,
                 label: disease,
                 value: disease,
               }))}
             />
-          </Form.Item>
+          </ClearableFormItem>
         </Col>
       </Row>
       <Form form={form} name="register" onFinish={onFinish} scrollToFirstError>
@@ -280,8 +261,9 @@ const App = () => {
           <Panel header="Reporting Areas" key="1">
             <Row>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
-                  label="Date of Report"
+                <ClearableFormItem
+                  form={form}
+                  label="Date of report"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   // initialValue={birth_date ? moment(birth_date) : null}
@@ -293,19 +275,13 @@ const App = () => {
                     },
                   ]}
                 >
-                  <DatePicker
-                    format="DD-MM-YYYY"
-                    disabledDate={(current) =>
-                      current.isAfter(moment()) || isDatePickerDisabled
-                    }
-                    style={{ width: "100%" }}
-                    placeholder="DD-MM-YYYY"
-                  />
-                </Form.Item>
+                  <CustomDatePicker form={form} name="dateOfReport" />
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="State of Reporting"
+                <ClearableFormItem
+                  form={form}
+                  label="State of reporting"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="stateOfReporting"
@@ -334,16 +310,17 @@ const App = () => {
                     }
                   >
                     {stateData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="LGA of Reporting"
+                <ClearableFormItem
+                  form={form}
+                  label="LGA of reporting"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="lgaOfReporting"
@@ -371,16 +348,17 @@ const App = () => {
                     }
                   >
                     {lga.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="Ward of Reporting"
+                <ClearableFormItem
+                  form={form}
+                  label="Ward of reporting"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="wardOfReporting"
@@ -408,16 +386,17 @@ const App = () => {
                     }
                   >
                     {lga.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="Place of Detection"
+                <ClearableFormItem
+                  form={form}
+                  label="Place of detection"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="placeOfDetection"
@@ -445,17 +424,18 @@ const App = () => {
                     }
                   >
                     {placeDetectedData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               {place_of_detection === "Health Facility" && (
                 <Col lg={6} md={6} sm={12} xs={24}>
-                  <Form.Item
-                    label="Health Facility"
+                  <ClearableFormItem
+                    form={form}
+                    label="Health facility"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     name="placeOfDetectionFacility"
@@ -483,22 +463,23 @@ const App = () => {
                       // onChange={handleStateChange}
                     >
                       {facilityData.map((item) => (
-                        <Option label={item} value={item}>
+                        <Option label={item} value={item} key={item}>
                           {item}
                         </Option>
                       ))}
                     </Select>
-                  </Form.Item>
+                  </ClearableFormItem>
                 </Col>
               )}
               {(place_of_detection === "Home" ||
                 place_of_detection === "IDP Camp" ||
                 place_of_detection === "NYSC Camp") && (
                 <Col lg={6} md={6} sm={24} xs={24}>
-                  <Form.Item
+                  <ClearableFormItem
+                    form={form}
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-                    label="Place Description"
+                    label="Place description"
                     name="placeDescription"
                     rules={[
                       {
@@ -508,14 +489,15 @@ const App = () => {
                     ]}
                   >
                     <Input size="large" />
-                  </Form.Item>
+                  </ClearableFormItem>
                 </Col>
               )}
               <Col lg={6} md={6} sm={24} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  label="Epid Number"
+                  label="Epid number"
                   name="epidNumber"
                   rules={[
                     {
@@ -525,10 +507,11 @@ const App = () => {
                   ]}
                 >
                   <Input size="large" />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   label="Notified by"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -547,15 +530,16 @@ const App = () => {
                     // onChange={handleStateChange}
                   >
                     {notifiesBy.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   label="Date of notification"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -568,19 +552,13 @@ const App = () => {
                     },
                   ]}
                 >
-                  <DatePicker
-                    format="DD-MM-YYYY"
-                    disabledDate={(current) =>
-                      current.isAfter(moment()) || isDatePickerDisabled
-                    }
-                    style={{ width: "100%" }}
-                    placeholder="DD-MM-YYYY"
-                  />
-                </Form.Item>
+                  <CustomDatePicker form={form} name="dateOfNotification" />
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
-                  label="Date of Investigation"
+                <ClearableFormItem
+                  form={form}
+                  label="Date of investigation"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   // initialValue={birth_date ? moment(birth_date) : null}
@@ -592,15 +570,8 @@ const App = () => {
                     },
                   ]}
                 >
-                  <DatePicker
-                    format="DD-MM-YYYY"
-                    disabledDate={(current) =>
-                      current.isAfter(moment()) || isDatePickerDisabled
-                    }
-                    style={{ width: "100%" }}
-                    placeholder="DD-MM-YYYY"
-                  />
-                </Form.Item>
+                  <CustomDatePicker form={form} name="dateOfInvestigation" />
+                </ClearableFormItem>
               </Col>
             </Row>
           </Panel>
@@ -609,10 +580,11 @@ const App = () => {
           <Panel header="Patient Information" key="1">
             <Row>
               <Col lg={6} md={6} sm={24} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  label="First Name"
+                  label="First name"
                   name="firstName"
                   rules={[
                     {
@@ -622,23 +594,25 @@ const App = () => {
                   ]}
                 >
                   <Input size="large" />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  label="Middle Name"
+                  label="Middle name"
                   name="middleName"
                 >
                   <Input size="large" />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  label="Last Name"
+                  label="Last name"
                   name="lastName"
                   rules={[
                     {
@@ -648,13 +622,14 @@ const App = () => {
                   ]}
                 >
                   <Input size="large" />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  label="Patient/Caregiver Phone Number"
+                  label="Patient/Caregiver phone number"
                   // initialValue={phone}
                   name="phoneNumber"
                   rules={[
@@ -669,11 +644,12 @@ const App = () => {
                     size="large"
                     // onChange={(e) => setPhone(e.target.value)}
                   />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
-                  label="Date Of Birth"
+                <ClearableFormItem
+                  form={form}
+                  label="Date of birth"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   initialValue={
@@ -687,19 +663,12 @@ const App = () => {
                     },
                   ]}
                 >
-                  <DatePicker
-                    // format="DD-MM-YYYY"
-                    onChange={onChangeDoB}
-                    disabledDate={(current) =>
-                      current.isAfter(moment()) || isDatePickerDisabled
-                    }
-                    style={{ width: "100%" }}
-                    placeholder="DD-MM-YYYY"
-                  />
-                </Form.Item>
+                  <CustomDatePicker form={form} name="dateOfBirth" />
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   tooltip="Estimated age in years and months"
@@ -738,11 +707,12 @@ const App = () => {
                       </Col>
                     </Row>
                   </Input.Group>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="State of Residence"
+                <ClearableFormItem
+                  form={form}
+                  label="State of residence"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="stateOfResidence"
@@ -771,16 +741,17 @@ const App = () => {
                     }
                   >
                     {stateData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="LGA of Residence"
+                <ClearableFormItem
+                  form={form}
+                  label="LGA of residence"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="lgaOfResidence"
@@ -808,16 +779,17 @@ const App = () => {
                     }
                   >
                     {lga.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
-                  label="Ward of Residence"
+                <ClearableFormItem
+                  form={form}
+                  label="Ward of residence"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="wardOfResidence"
@@ -845,16 +817,17 @@ const App = () => {
                     }
                   >
                     {lga.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <Form.Item
-                  label="Patient’s Residential address "
+                <ClearableFormItem
+                  form={form}
+                  label="Patient’s residential address "
                   name="patientResidentialAddress"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -865,10 +838,11 @@ const App = () => {
                     name="address"
                     onChange={(e) => {}}
                   />
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   label="Settlement type"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -884,10 +858,11 @@ const App = () => {
                     <Radio.Button value="Urban">Urban</Radio.Button>
                     <Radio.Button value="Rural">Rural</Radio.Button>
                   </Radio.Group>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   label="Occupation"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -901,15 +876,16 @@ const App = () => {
                 >
                   <Select placeholder="Select an option" allowClear>
                     {occupationData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
-                <Form.Item
+                <ClearableFormItem
+                  form={form}
                   label="Education"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -923,12 +899,12 @@ const App = () => {
                 >
                   <Select placeholder="Select an option" allowClear>
                     {educationData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
                   </Select>
-                </Form.Item>
+                </ClearableFormItem>
               </Col>
             </Row>
           </Panel>
@@ -936,11 +912,11 @@ const App = () => {
         {getProgram()}
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
-            <Form.Item className="gx-m-2">
+            <ClearableFormItem form={form} className="gx-m-2">
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
         </Row>
       </Form>

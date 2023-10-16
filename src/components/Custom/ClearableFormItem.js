@@ -14,10 +14,12 @@ const ClearableFormItem = ({
 
     return () => {
       form.setFieldsValue({ [name]: undefined });
-      setFormValues((previousState) => ({
-        ...previousState,
-        [name]: undefined,
-      }));
+      if (setFormValues && typeof setFormValues === "function") {
+        setFormValues((previousState) => ({
+          ...previousState,
+          [name]: undefined,
+        }));
+      }
     };
   }, [form, name, setFormValues]);
 

@@ -39,10 +39,10 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
               label="Sample collected"
               name="sampleCollected"
+              setFormValues={setFormValues}
+              form={form}
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
@@ -70,12 +70,12 @@ const LaboratoryInformation = ({ form }) => {
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
-                   form={form}
-                   setFormValues={setFormValues}
                   label="Date specimen collected "
+                  name="dateSpecimenCollected"
+                  form={form}
+                  setFormValues={setFormValues}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  name="dateSpecimenCollected"
                   rules={[
                     {
                       required: true,
@@ -89,10 +89,10 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
-                   form={form}
-                   setFormValues={setFormValues}
                   label="Type of specimen collected?"
                   name="sampleType"
+                  form={form}
+                  setFormValues={setFormValues}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   rules={[
@@ -122,11 +122,11 @@ const LaboratoryInformation = ({ form }) => {
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
                     label="Date specimen Sent"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
                     name="dateSpecimenSent"
                     form={form}
                     setFormValues={setFormValues}
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
                     rules={[
                       {
                         required: true,
@@ -142,11 +142,11 @@ const LaboratoryInformation = ({ form }) => {
               <Col lg={24} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   label="Name of testing laboratory"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
+                  name="nameOfTestingLaboratory"
                   form={form}
                   setFormValues={setFormValues}
-                  name="nameOfTestingLaboratory"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
                   rules={[
                     {
                       required: true,
@@ -156,7 +156,7 @@ const LaboratoryInformation = ({ form }) => {
                 >
                   <Select showSearch allowClear optionLabelProp="label">
                     {testingLaboratoryData.map((item) => (
-                      <Option label={item} value={item}>
+                      <Option label={item} value={item} key={item}>
                         {item}
                       </Option>
                     ))}
@@ -168,9 +168,9 @@ const LaboratoryInformation = ({ form }) => {
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
                     label="Blood sample received"
+                    name="bloodSampleReceived"
                     form={form}
                     setFormValues={setFormValues}
-                    name="bloodSampleReceived"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     rules={[
@@ -199,11 +199,11 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Date specimen received"
+                      name="dateSpecimenReceivedBlood"
                       form={form}
                       setFormValues={setFormValues}
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-                      name="dateSpecimenReceivedBlood"
                       rules={[
                         {
                           required: true,
@@ -221,9 +221,9 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Laboratory ID"
+                      name="laboratoryIdBlood"
                       form={form}
                       setFormValues={setFormValues}
-                      name="laboratoryIdBlood"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
@@ -239,9 +239,9 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Specimen condition"
+                      name="sampleConditionBlood"
                       form={form}
                       setFormValues={setFormValues}
-                      name="sampleConditionBlood"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
@@ -329,11 +329,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result available "
+                          name="dateResultAvailableBloodPcr"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailableBloodPcr"
                           rules={[
                             {
                               required: true,
@@ -350,12 +350,12 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
+                          name="dateResultSentBloodPcr"
+                          form={form}
+                          setFormValues={setFormValues}
                           label="Date result sent out "
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          form={form}
-                          setFormValues={setFormValues}
-                          name="dateResultSentBloodPcr"
                           rules={[
                             {
                               required: true,
@@ -409,12 +409,12 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                         form={form}
-                         setFormValues={setFormValues}
                           label="Date result available "
+                          name="dateResultAvailableBloodRdt"
+                          form={form}
+                          setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailableBloodRdt"
                           rules={[
                             {
                               required: true,
@@ -432,11 +432,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
+                          name="dateResultSentBloodRdt"
                           form={form}
                           setFormValues={setFormValues}
-                          name="dateResultSentBloodRdt"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -492,11 +492,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result available "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
+                          name="dateResultAvailableBloodCulture"
                           form={form}
                           setFormValues={setFormValues}
-                          name="dateResultAvailableBloodCulture"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -513,11 +513,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
+                          name="dateResultSentBloodCulture"
                           form={form}
                           setFormValues={setFormValues}
-                          name="dateResultSentBloodCulture"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -570,11 +570,11 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Date specimen received "
-                      labelCol={{ span: 24 }}
+                      name="dateSpecimenReceivedCsf"
                       form={form}
                       setFormValues={setFormValues}
+                      labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-                      name="dateSpecimenReceivedCsf"
                       rules={[
                         {
                           required: true,
@@ -593,9 +593,9 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       label="Laboratory ID"
                       name="laboratoryIdCsf"
-                      labelCol={{ span: 24 }}
                       form={form}
                       setFormValues={setFormValues}
+                      labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
                       <Input
@@ -611,10 +611,10 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       label="Specimen condition"
                       name="sampleConditionCsf"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
                       form={form}
                       setFormValues={setFormValues}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
                       rules={[
                         {
                           required: true,
@@ -636,10 +636,10 @@ const LaboratoryInformation = ({ form }) => {
                       <ClearableFormItem
                         label="Test conducted"
                         name="testConductedCsf"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
                         form={form}
                         setFormValues={setFormValues}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
                         rules={[
                           {
                             required: true,
@@ -699,11 +699,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result available "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
                           name="dateResultAvailableCsfPcr"
                           form={form}
                           setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -721,11 +721,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
                           name="dateResultSentCsfPcr"
                           form={form}
                           setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -780,11 +780,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result available "
+                          name="dateResultAvailableCsfRdt"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailableCsfRdt"
                           rules={[
                             {
                               required: true,
@@ -802,11 +802,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
-                          labelCol={{ span: 24 }}
+                          name="dateResultSentCsfRdt"
                           form={form}
                           setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultSentCsfRdt"
                           rules={[
                             {
                               required: true,
@@ -862,11 +862,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result available "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
                           name="dateResultAvailableCsfCultre"
                           form={form}
                           setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
@@ -884,11 +884,11 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
                           name="dateResultSentCsfCulture"
                           form={form}
                           setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
