@@ -653,9 +653,6 @@ const App = () => {
                   label="Date of birth"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  initialValue={
-                    dateOfBirth !== null ? moment(dateOfBirth) : null
-                  }
                   name="dateOfBirth"
                   rules={[
                     {
