@@ -15,7 +15,7 @@ const CheckboxGroup = Checkbox.Group
 
 const { Option } = Select;
 
-const stateData = ['FCT', 'Enugu'];
+
 const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const vaccineType = ['Ad26.COV2.S', 'Novavax', 'Oxford–AstraZeneca', 'Pfizer–BioNTech', 'Sanofi-GSK', 'Unknown'];
 

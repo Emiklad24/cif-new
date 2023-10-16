@@ -1,36 +1,18 @@
-import { Col, Form, Input, Collapse, DatePicker, Row, Radio } from "antd";
+import { Col, Input, Collapse, Row, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
 const Epidemiological = ({ form }) => {
   const [formValues, setFormValues] = useState({});
   const { Panel } = Collapse;
-  const [isDatePickerDisabled] = useState(false);
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
-
-    if (
-      formValues?.vaccinationStatus === "notVaccinated" ||
-      formValues?.vaccinationStatus === "unknown"
-    ) {
-      form.setFieldsValue({
-        numberOfVaccineDose: null,
-        dateOfVaccination: null,
-        sourceVaccinationHistory: null,
-      });
-
-      setFormValues((previousState) => ({
-        ...previousState,
-        numberOfVaccineDose: null,
-        dateOfVaccination: null,
-        sourceVaccinationHistory: null,
-      }));
-    }
   };
 
   const onChange = (value) => {
@@ -42,8 +24,10 @@ const Epidemiological = ({ form }) => {
       <Panel header="Epidemiological Information" key="1">
         <Row>
           <Col lg={12} md={12} sm={24}>
-            <Form.Item
-              label="Vaccination Status"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Vaccination status"
               name="vaccinationStatus"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -63,16 +47,18 @@ const Epidemiological = ({ form }) => {
               >
                 <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
                 <Radio.Button value="notVaccinated">
-                  Not Vaccinated
+                  Not vaccinated
                 </Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           {formValues?.vaccinationStatus === "vaccinated" && (
             <Col lg={12} md={12} sm={24}>
-              <Form.Item
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
                 label="Number of vaccine doses"
                 name="numberOfVaccineDose"
                 labelCol={{ span: 24 }}
@@ -88,14 +74,16 @@ const Epidemiological = ({ form }) => {
                   <Radio.Button value="1">1</Radio.Button>
                   <Radio.Button value="2+">2+</Radio.Button>
                 </Radio.Group>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
           )}
 
           {formValues?.vaccinationStatus === "vaccinated" && (
             <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Date of Vaccination:"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of vaccination:"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={birth_date ? moment(birth_date) : null}
@@ -107,22 +95,16 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <DatePicker
-                  // onChange={onChangeDoB}
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
+                <CustomDatePicker form={form} name="dateOfVaccination" />
+              </ClearableFormItem>
             </Col>
           )}
 
           {formValues?.vaccinationStatus === "vaccinated" && (
             <Col lg={12} md={12} sm={24}>
-              <Form.Item
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
                 label="Source of vaccination history"
                 name="sourceVaccinationHistory"
                 labelCol={{ span: 24 }}
@@ -138,11 +120,13 @@ const Epidemiological = ({ form }) => {
                   <Radio.Button value="card">Vaccine card</Radio.Button>
                   <Radio.Button value="verbal">Verbal</Radio.Button>
                 </Radio.Group>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
           )}
           <Col lg={12} md={12} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="List names of villages, towns or LGAs that patient visited in the last 3 weeks"
               name="travelHistory"
               labelCol={{ span: 24 }}
@@ -154,11 +138,13 @@ const Epidemiological = ({ form }) => {
                 name="address"
                 onChange={(e) => {}}
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={24} md={12} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Have cases of fever and jaundice been seen or reported in places visited by the patient in the last 2 weeks
                 before onset of symptoms?"
               name="locationHistoryOfFever"
@@ -176,12 +162,14 @@ const Epidemiological = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={12} md={12} sm={24}>
-            <Form.Item
-              label="Patient Present Condition"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Patient present condition"
               name="patientPresentCondition"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -197,7 +185,7 @@ const Epidemiological = ({ form }) => {
                 <Radio.Button value="Dead">Dead</Radio.Button>
                 <Radio.Button value="Unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
         </Row>
       </Panel>

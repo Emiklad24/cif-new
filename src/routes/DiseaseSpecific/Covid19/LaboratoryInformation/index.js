@@ -5,7 +5,7 @@ import {
   Collapse,
   DatePicker,
   Row,
-  Tooltip,Divider,
+  Divider,
   Select,
   Radio,
 } from "antd";
@@ -18,10 +18,7 @@ const CheckboxGroup = Checkbox.Group;
 
 const { Option } = Select;
 
-const stateData = ["FCT", "Enugu"];
-const facilityData = ["Federal Medical Center", "Jabi Clinic"];
-const diseaseData = ["COVID-19", "Cholera", "Yellow Fever"];
-const cultureresultData = ["Positive", "Negative", "Pending", "indeterminate"];
+
 const testingLaboratoryData = [
   "National Reference Laboratory",
   "Central Public health laboratory ",

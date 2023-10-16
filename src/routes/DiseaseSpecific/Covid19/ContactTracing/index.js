@@ -2,7 +2,7 @@ import {
   Col,
   Form,
   Input,
-  Collapse, DatePicker,
+  Collapse,
   Row, Tooltip,
   Select, Radio,
 } from 'antd';

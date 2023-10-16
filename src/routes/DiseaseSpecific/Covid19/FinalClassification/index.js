@@ -13,7 +13,6 @@ import moment from "moment";
 const {Option} = Select;
 
 const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
 const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
 
 const lgaData = {

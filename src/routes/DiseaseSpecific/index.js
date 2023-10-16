@@ -38,6 +38,7 @@ import { fetchStateList } from "appRedux/actions/Common";
 import { useDispatch, useSelector } from "react-redux";
 import ClearableFormItem from "../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../components/Custom/CustomDatePicker";
+import ContactTracing from "../../components/ContactTracing/ContactTracing";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -910,6 +911,7 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
+        <ContactTracing form={form}/>
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">

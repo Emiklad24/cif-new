@@ -2,8 +2,8 @@
 import { Col, Input, Collapse, Row, Tooltip, Select, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import ClearableFormItem from "../Custom/ClearableFormItem";
+import CustomDatePicker from "../Custom/CustomDatePicker";
 
 const { Option } = Select;
 

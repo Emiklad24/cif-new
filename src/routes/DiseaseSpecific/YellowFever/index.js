@@ -1,20 +1,17 @@
-import React from 'react';
+import React from "react";
 import "styles/pages/form.less";
 import Epidemiological from "./Epidemiological";
-import ContactTracing from "./ContactTracing";
 import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
-const YellowFever = ({form}) => {
-
+const YellowFever = ({ form }) => {
   return (
     <>
-     <Epidemiological form={form}/>
-      <ClinicalHistory form={form}/>
-      <LaboratoryInformation form={form}/>
-      <FinalClassification form={form}/>
-      <ContactTracing form={form}/>
+      <Epidemiological form={form} />
+      <ClinicalHistory form={form} />
+      <LaboratoryInformation form={form} />
+      <FinalClassification form={form} />
     </>
   );
 };
