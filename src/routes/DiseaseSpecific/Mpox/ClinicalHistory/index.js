@@ -1,618 +1,630 @@
-import {
-    Col,
-    Form,
-    Input,
-    Collapse, DatePicker,
-    Row, Tooltip,
-    Select, Radio,
-} from 'antd';
-import React, { useState } from 'react';
+import { Col, Input, Collapse, Row, Radio } from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
-import { Checkbox } from 'antd';
+import { Checkbox } from "antd";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
 const CheckboxGroup = Checkbox.Group;
-const { Option } = Select;
 
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
+const ClinicalHistory = ({ form }) => {
+  const { Panel } = Collapse;
 
-const lgaData = {
-    FCT: ['AMAC', 'Bwari', 'Kwali'],
-    Enugu: ['Nsukka', 'Enugu south', 'Udi'],
-};
+  const onChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
-const ClinicalHistory = () => {
-    const [form] = Form.useForm();
-    const [lga, setLga] = useState([]);
-    const { Panel } = Collapse;
-    const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [formValues, setFormValues] = useState({});
 
-    const handleStateChange = (value) => {
-        setLga(lgaData[value]);
-    };
+  const handleUpdateInputValues = (inputName, value) => {
+    console.log(inputName, value);
 
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
-    const onChange = (value) => {
-        console.log(`selected ${value}`);
-    };
-    const onSearch = (value) => {
-        console.log('search:', value);
-    };
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+  };
 
-    const [formValues, setFormValues] = useState({});
+  return (
+    <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+      <Panel header="Clinical history: Sign and Symptoms" key="1">
+        <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Fever (≥38 °C)"
+              name="fever"
+              form={form}
+              setFormValues={setFormValues}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="fever"
+              >
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-    const handleUpdateInputValues = (inputName, value) => {
+          {formValues?.fever === "yes" && (
+            <>
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  label="Date Of Fever Onset"
+                  name="dateOfFeverOnset"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  // initialValue={feveronset_date ? moment(feveronset_date) : null}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Select a date!",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker form={form} name="dateOfFeverOnset" />
+                </ClearableFormItem>
+              </Col>
+            </>
+          )}
 
-        console.log(inputName, value)
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Present of lesions?"
+              name="presentOfLesion"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="presentOfLesion"
+              >
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-        setFormValues((previousState) => ({
-            ...previousState,
-            [inputName]: value
+          {formValues?.presentOfLesion === "yes" && (
+            <>
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  label="Are the lesions in the same state of development on the body?"
+                  name="lesionSameStateOnTheBody"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Select an option!",
+                    },
+                  ]}
+                >
+                  <Radio.Group
+                    buttonStyle="solid"
+                    onChange={(e) =>
+                      handleUpdateInputValues(e.target.name, e.target.value)
+                    }
+                    name="lesionSameStateOnTheBody"
+                  >
+                    <Radio.Button value="yes">Yes</Radio.Button>
+                    <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
 
-        }))
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  label="Are all of the lesions the same size?"
+                  name="leslesionSameSize"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Select an option!",
+                    },
+                  ]}
+                >
+                  <Radio.Group buttonStyle="solid">
+                    <Radio.Button value="yes">Yes</Radio.Button>
+                    <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
 
-    }
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  label="Are the lesions deep and profound?"
+                  name="lesionDeepAndProfound"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Select an option!",
+                    },
+                  ]}
+                >
+                  <Radio.Group buttonStyle="solid">
+                    <Radio.Button value="yes">Yes</Radio.Button>
+                    <Radio.Button value="no">No</Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+            </>
+          )}
 
-    console.log('form values', formValues)
+          <Col lg={16} md={16} sm={24}>
+            <ClearableFormItem
+              label="Localisation of the lesions?"
+              name="localisationOfLesions"
+              form={form}
+              setFormValues={setFormValues}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <CheckboxGroup
+                options={[
+                  { label: "Face", value: "face" },
+                  { label: "Leg", value: "leg" },
+                  { label: "Soles of the Feet", value: "soles of the feet" },
+                  {
+                    label: "Palms of the Hands",
+                    value: "palms of the hands",
+                  },
+                  { label: "Thorax", value: "thorax" },
+                  { label: "Arms", value: "arms" },
+                  { label: "Genitals", value: "genitals" },
+                  { label: "All over the Body", value: "All over the body" },
+                ]}
+                name="localisationOfLesions"
+              />
+            </ClearableFormItem>
+          </Col>
 
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Red eyes (Conjunctivities)"
+              name="redEyes"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-    return (
-        <>
-            <Collapse defaultActiveKey={['1']} onChange={onChange}>
-                <Panel header="Clinical history: Sign and Symptoms" key="1">
-                    <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Sensitivity to Light"
+              name="sensitivityToLight"
+              form={form}
+              setFormValues={setFormValues}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Fever (≥38 °C)"
-                                name="fever"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}
-                            >
-                                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="fever" >
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Vomitting or Nausea"
+              name="vomittingNausea"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an Option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                        {
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Cough"
+              name="cough"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                            formValues?.fever === "yes" &&
-                            (
-                                <>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Oral Ulcer"
+              name="oralUlcer"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Lymphadenopathy"
+              name="lymphadenopathy"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                                    <Col lg={8} md={8} sm={24}>
-                                        <Form.Item
-                                            label="Date Of Fever Onset"
-                                            labelCol={{ span: 24 }}
-                                            wrapperCol={{ span: 24 }}
-                                            // initialValue={feveronset_date ? moment(feveronset_date) : null}
-                                            name="dateOfFeverOnset"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Select a date!",
-                                                },
-                                            ]}
-                                        >
-                                            <DatePicker
-                                                format="DD-MM-YYYY"
-                                                disabledDate={(current) =>
-                                                    current.isAfter(moment()) || isDatePickerDisabled
-                                                }
-                                                style={{ width: "100%" }}
-                                                placeholder="DD-MM-YYYY"
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Sore Throat"
+              name="soreThroat"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                                                name="dateOfFeverOnset"
-                                                onChange={(_, dateString) => handleUpdateInputValues("dateOfFeverOnset", dateString)}
-                                            />
-                                        </Form.Item>
-                                    </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Muscle Pain"
+              name="musclePain"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                                </>
-                            )
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Headache"
+              name="headache"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                        }
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Chills or Sweats"
+              name="chillsOrSweats"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Fatigue"
+              name="fatigue"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Present of Lesions?"
-                                name="presentOfLesion"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                >
-                                <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="presentOfLesion">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Pruritus"
+              name="pruritus"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Pregnancy status"
+              name="pregnancyStatus"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                        {
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Skin Ulcer"
+              name="skinUlcer"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                            formValues?.presentOfLesion === "yes" &&
-                            (
-                                <>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="HIV AIDS Status"
+              name="hivAidsStatus"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="positive">Positive</Radio.Button>
+                <Radio.Button value="negative">Negative</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
+          <Col lg={12} md={12} sm={24}>
+            <ClearableFormItem
+              label="Other Symptoms(s): (specify)"
+              name="otherSymptom"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input placeholder="Enter other symptoms" onChange={(e) => {}} />
+            </ClearableFormItem>
+          </Col>
 
-                                    <Col lg={8} md={8} sm={24}>
-                                        <Form.Item
-                                            label="Are the lesions in the same state of development on the body?"
-                                            name="lesionSameStateOnTheBody"
-                                            labelCol={{ span: 24 }}
-                                            wrapperCol={{ span: 24 }}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Select an option!",
-                                                },
-                                            ]}                >
-                                            <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="lesionSameStateOnTheBody">
-                                                <Radio.Button value="yes">Yes</Radio.Button>
-                                                <Radio.Button value="no">No</Radio.Button>
-                                                <Radio.Button value="unknown">Unknown</Radio.Button>
-                                            </Radio.Group>
-                                        </Form.Item>
-                                    </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Outcome"
+              name="outcome"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="alive">Alive</Radio.Button>
+                <Radio.Button value="dead">Dead</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-                                    <Col lg={8} md={8} sm={24}>
-                                        <Form.Item
-                                            label="Are all of the lesions the same size?"
-                                            name="leslesionSameSize"
-                                            labelCol={{ span: 24 }}
-                                            wrapperCol={{ span: 24 }}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Select an option!",
-                                                },
-                                            ]}                >
-                                            <Radio.Group buttonStyle="solid">
-                                                <Radio.Button value="yes">Yes</Radio.Button>
-                                                <Radio.Button value="no">No</Radio.Button>
-                                                <Radio.Button value="unknown">Unknown</Radio.Button>
-                                            </Radio.Group>
-                                        </Form.Item>
-                                    </Col>
-
-                                    <Col lg={8} md={8} sm={24}>
-                                        <Form.Item
-                                            label="Are the lesions deep and profound?"
-                                            name="lesionDeepAndProfound"
-                                            labelCol={{ span: 24 }}
-                                            wrapperCol={{ span: 24 }}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Select an option!",
-                                                },
-                                            ]}                >
-                                            <Radio.Group buttonStyle="solid">
-                                                <Radio.Button value="yes">Yes</Radio.Button>
-                                                <Radio.Button value="no">No</Radio.Button>
-                                                <Radio.Button value="unknown">Unknown</Radio.Button>
-                                            </Radio.Group>
-                                        </Form.Item>
-                                    </Col>
-
-                                </>
-                            )
-
-                        }
-
-                        <Col lg={16} md={16} sm={24}>
-                            <Form.Item
-                                label="Localisation of the lesions?"
-                                name="localisationOfLesions"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <CheckboxGroup
-                                    options={
-                                        [
-                                            { label: 'Face', value: 'face' },
-                                            { label: 'Leg', value: 'leg' },
-                                            { label: 'Soles of the Feet', value: 'soles of the feet' },
-                                            { label: 'Palms of the Hands', value: 'palms of the hands' },
-                                            { label: 'Thorax', value: 'thorax' },
-                                            { label: 'Arms', value: 'arms' },
-                                            { label: 'Genitals', value: 'genitals' },
-                                            { label: 'All over the Body', value: 'All over the body' },
-                                        ]
-                                    }
-                                    name="localisationOfLesions"
-                                />
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Red eyes (Conjunctivities)"
-                                name="redEyes"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Sensitivity to Light"
-                                name="sensitivityToLight"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Vomitting or Nausea"
-                                name="vomittingNausea"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an Option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Cough"
-                                name="cough"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Oral Ulcer"
-                                name="oralUlcer"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Lymphadenopathy"
-                                name="lymphadenopathy"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Sore Throat"
-                                name="soreThroat"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Muscle Pain"
-                                name="musclePain"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Headache"
-                                name="headache"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Chills or Sweats"
-                                name="chillsOrSweats"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Fatigue"
-                                name="fatigue"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Pruritus"
-                                name="pruritus"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Pregnancy status"
-                                name="pregnancyStatus"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Skin Ulcer"
-                                name="skinUlcer"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="yes">Yes</Radio.Button>
-                                    <Radio.Button value="no">No</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="HIV AIDS Status"
-                                name="hivAidsStatus"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="positive">Positive</Radio.Button>
-                                    <Radio.Button value="negative">Negative</Radio.Button>
-                                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={12} md={12} sm={24}>
-                            <Form.Item
-                                label="Other Symptoms(s): (specify)"
-                                name="otherSymptom"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                            >
-                                <Input
-                                    placeholder="Enter other symptoms"
-                                    onChange={(e) => {
-                                    }}
-                                />
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Outcome"
-                                name="outcome"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select an option!",
-                                    },
-                                ]}                            >
-                                <Radio.Group buttonStyle="solid">
-                                    <Radio.Button value="alive">Alive</Radio.Button>
-                                    <Radio.Button value="dead">Dead</Radio.Button>
-                                </Radio.Group>
-                            </Form.Item>
-                        </Col>
-
-                        <Col lg={8} md={8} sm={24}>
-                            <Form.Item
-                                label="Date Of Symptom Onset"
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                // initialValue={symptom_date ? moment(symptom_date) : null}
-                                name="dateOfSymptomOnset"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Select a date!",
-                                    },
-                                ]}
-                            >
-                                <DatePicker
-                                    format="DD-MM-YYYY"
-                                    disabledDate={(current) =>
-                                        current.isAfter(moment()) || isDatePickerDisabled
-                                    }
-                                    style={{ width: "100%" }}
-                                    placeholder="DD-MM-YYYY"
-                                />
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                </Panel>
-            </Collapse>
-        </>
-    );
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Date Of Symptom Onset"
+              name="dateOfSymptomOnset"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select a date!",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
+        </Row>
+      </Panel>
+    </Collapse>
+  );
 };
 export default ClinicalHistory;
