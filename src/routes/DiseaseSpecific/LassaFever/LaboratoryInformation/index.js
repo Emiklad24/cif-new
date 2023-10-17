@@ -31,7 +31,6 @@ const LaboratoryInformation = ({ form }) => {
   const [formValues, setFormValues] = useState({});
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -54,7 +53,7 @@ const LaboratoryInformation = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -85,7 +84,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select a date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -124,7 +123,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -148,7 +147,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select a date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -171,7 +170,7 @@ const LaboratoryInformation = ({ form }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Select a date!",
+                    message: "This field is required",
                   },
                 ]}
               >
@@ -201,7 +200,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -232,7 +231,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select a date!",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -253,7 +252,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an Option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -276,7 +275,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an option!",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -299,7 +298,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select PCR/RT-PCR result",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -337,7 +336,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Fill this field!",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -368,7 +367,7 @@ const LaboratoryInformation = ({ form }) => {
                             rules={[
                               {
                                 required: true,
-                                message: "Select a Date!",
+                                message: "This field is required",
                               },
                             ]}
                           >
@@ -396,7 +395,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -427,7 +426,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select a date!",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -448,7 +447,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an Option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -471,7 +470,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an option!",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -495,7 +494,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select PCR/RT-PCR result",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -532,7 +531,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Fill this field!",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -562,7 +561,7 @@ const LaboratoryInformation = ({ form }) => {
                             rules={[
                               {
                                 required: true,
-                                message: "Select a Date!",
+                                message: "This field is required",
                               },
                             ]}
                           >

@@ -50,7 +50,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -81,7 +81,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select start date of travel!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -100,7 +100,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select end date of travel!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -119,7 +119,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select State of Travel!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -149,7 +149,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select Travel LGA!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -198,7 +198,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -229,7 +229,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -244,14 +244,14 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Did You Eat any Rodent(Rat) in the Last Three Weeks Before Becoming ill? "
+                  label="Did you eat any rodent(Rat) in the last three weeks before becoming ill? "
                   name="eatAnyRodent"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -273,7 +273,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -295,7 +295,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -319,7 +319,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -370,7 +370,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -401,7 +401,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select Date of Visit or Admission!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -416,13 +416,13 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Name/Address of health facility visited or admitted in"
+                  label="Name/address of health facility visited or admitted in"
                   name="nameorAddressOfHealthFacilityVisitedOrAdmitted"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                 >
                   <Input
-                    placeholder="Enter Name/Address"
+                    placeholder="Enter name/Address"
                     id="nameorAddressOfHealthFacilityVisitedOrAdmitted"
                     name="nameorAddressOfHealthFacilityVisitedOrAdmitted"
                     onChange={(e) => {}}
@@ -443,7 +443,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -474,7 +474,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select Date of Visit!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -486,7 +486,7 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Name/Address of outpatient health facility visited"
+                  label="Name/address of outpatient health facility visited"
                   name="nameOrAddressOfOutpatientHealthFacilityVisited"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -513,7 +513,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -536,7 +536,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -582,7 +582,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -612,7 +612,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -636,7 +636,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
