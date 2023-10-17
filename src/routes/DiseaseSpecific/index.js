@@ -39,6 +39,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ClearableFormItem from "../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../components/Custom/CustomDatePicker";
 import ContactTracing from "../../components/ContactTracing/ContactTracing";
+import PRSD from "./PRSD";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -53,6 +54,7 @@ const diseaseData = [
   "Yaw",
   "Anthrax",
   "AFP",
+  "PRSD",
   "Tetanus",
   "Rubella",
   "Perinatal Death",
@@ -140,22 +142,22 @@ const App = () => {
    * @function onChangeYear
    * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
    */
-  const onChangeYear = (e) => {
-    const year = e.target.value;
-    setAgeYear(year);
-    if (year) {
-      const calculatedDate = moment()
-        .subtract(year, "years")
-        .set({ month: 0, date: 1 });
-      form.setFieldsValue({ dateOfBirth: calculatedDate });
-      setBirthDate(calculatedDate.format("YYYY-MM-DD"));
-      setIsDatePickerDisabled(true);
-      setAgeMonth(0);
-      return;
-    }
-    form.setFieldsValue({ dateOfBirth: null });
-    setIsDatePickerDisabled(false);
-  };
+  // const onChangeYear = (e) => {
+  //   const year = e.target.value;
+  //   setAgeYear(year);
+  //   if (year) {
+  //     const calculatedDate = moment()
+  //       .subtract(year, "years")
+  //       .set({ month: 0, date: 1 });
+  //     form.setFieldsValue({ dateOfBirth: calculatedDate });
+  //     setBirthDate(calculatedDate.format("YYYY-MM-DD"));
+  //     setIsDatePickerDisabled(true);
+  //     setAgeMonth(0);
+  //     return;
+  //   }
+  //   form.setFieldsValue({ dateOfBirth: null });
+  //   setIsDatePickerDisabled(false);
+  // };
 
   useEffect(() => {
     dispatch(fetchStateList());
@@ -200,6 +202,7 @@ const App = () => {
     Dengue: <Dengue form={form} />,
     CSM: <CSM form={form} />,
     "Buruli Ulcer": <BuruliUlcer form={form} />,
+    PRSD: <PRSD form={form} />,
     "Perinatal Death": <PerinatalDeath form={form} />,
     "Maternal Death": <MaternalDeath form={form} />,
     Covid19: <Covid19 form={form} />,
@@ -267,8 +270,7 @@ const App = () => {
                   label="Date of report"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  // initialValue={birth_date ? moment(birth_date) : null}
-                  name="dateOfReport"
+                  name="dateOfReportReportingAreas"
                   rules={[
                     {
                       required: true,
@@ -276,7 +278,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfReport" />
+                  <CustomDatePicker form={form} name="dateOfReportReportingAreas" />
                 </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
@@ -545,7 +547,7 @@ const App = () => {
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   // initialValue={birth_date ? moment(birth_date) : null}
-                  name="dateOfNotification"
+                  name="dateOfNotificationReportingAreas"
                   rules={[
                     {
                       required: true,
@@ -553,7 +555,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfNotification" />
+                  <CustomDatePicker form={form} name="dateOfNotificationReportingAreas" />
                 </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
@@ -562,8 +564,7 @@ const App = () => {
                   label="Date of investigation"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  // initialValue={birth_date ? moment(birth_date) : null}
-                  name="dateOfInvestigation"
+                  name="dateOfInvestigationReportingAreas"
                   rules={[
                     {
                       required: true,
@@ -571,7 +572,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfInvestigation" />
+                  <CustomDatePicker form={form} name="dateOfInvestigationReportingAreas" />
                 </ClearableFormItem>
               </Col>
             </Row>
@@ -653,7 +654,7 @@ const App = () => {
                   label="Date of birth"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  name="dateOfBirth"
+                  name="dateOfBirthPersonalInformation"
                   rules={[
                     {
                       required: true,
@@ -661,7 +662,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfBirth" />
+                  <CustomDatePicker form={form} name="dateOfBirthPersonalInformation" />
                 </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
@@ -683,7 +684,6 @@ const App = () => {
                         >
                           <Input
                             value={age_year}
-                            onChange={onChangeYear}
                             placeholder="Estimated Years"
                             disabled={isYearDisabled}
                           />
@@ -908,7 +908,7 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
-        <ContactTracing form={form}/>
+        <ContactTracing form={form} />
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">

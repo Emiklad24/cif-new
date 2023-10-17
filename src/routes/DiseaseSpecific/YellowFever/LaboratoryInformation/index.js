@@ -10,14 +10,15 @@ const CheckboxGroup = Checkbox.Group;
 const { Option } = Select;
 
 const testingLaboratoryData = [
-  "NRL, Gaduwa",
-  "CPHL",
-  "YDMH",
-  "UBTH",
-  "MAITAMA DISTRICT HOSPITAL LABORATORY",
-  "IP DAKAR",
-  "GOMBE SPECIALIST HOSPITAL",
-  "UNTH",
+  "ACEGID -African Centre of Excellence for Genomics of Infectious Diseases, Ogun",
+  "AE-FUTHA -Alex Ekwueme Federal University Teaching Hospital Virology Laboratory",
+  "BUK -Bayero University Kano Centre for Infectious Disease and Research, Kano",
+  "FMC JALINGO -Federal Medical Centre, Jalingo, Taraba",
+  "FMC OWO -Federal Medical Centre Owo, Ondo",
+  "ISTH -Irrua Specialist Teaching Hospital, Edo",
+  "LUTH -Lagos University Teaching Hospital Virology Laboratory, Lagos",
+  "MOGID -Molecular Genetics and Infectious Diseases Research Laboratory, Bauchi",
+  "NRL -National Reference Laboratory Gaduwa, FCT",
 ];
 
 const LaboratoryInformation = ({ form }) => {

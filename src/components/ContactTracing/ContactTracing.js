@@ -99,7 +99,7 @@ const ContactTracing = ({ form }) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               // initialValue={sample_date ? moment(sample_date) : null}
-              name="contactDateOfBirth"
+              name="dateOfBirthOfContact"
               rules={[
                 {
                   required: true,
@@ -107,7 +107,7 @@ const ContactTracing = ({ form }) => {
                 },
               ]}
             >
-              <CustomDatePicker form={form} name="contactDateOfBirth" />
+              <CustomDatePicker form={form} name="dateOfBirthOfContact" />
             </ClearableFormItem>
           </Col>
 
@@ -148,12 +148,7 @@ const ContactTracing = ({ form }) => {
                       title="Estimated Months"
                       arrowPointAtCenter
                     >
-                      <Input
-                        // onChange={onChangeMonth}
-                        // value={age_month}
-                        placeholder="Estimated Months"
-                        disabled
-                      />
+                      <Input placeholder="Estimated Months" disabled />
                     </Tooltip>
                   </Col>
                 </Row>
