@@ -54,7 +54,7 @@ const LaboratoryInformation = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option ",
+                  message: "Select an option ",
                 },
               ]}
             >
@@ -85,7 +85,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select Date Of specimen collected",
+                      message: "Select date Of specimen collected",
                     },
                   ]}
                 >
@@ -104,7 +104,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option",
+                      message: "Select an option",
                     },
                   ]}
                 >
@@ -136,7 +136,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select Date Specimen Sent",
+                        message: "Select date specimen sent",
                       },
                     ]}
                   >
@@ -185,7 +185,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select an Option ",
+                        message: "Select an option ",
                       },
                     ]}
                   >
@@ -238,7 +238,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "Select an option",
                         },
                       ]}
                     >
@@ -793,7 +793,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select an Option ",
+                        message: "Select an option",
                       },
                     ]}
                   >
@@ -846,7 +846,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "Select an option",
                         },
                       ]}
                     >
