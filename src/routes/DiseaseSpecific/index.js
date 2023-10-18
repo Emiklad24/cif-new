@@ -137,14 +137,16 @@ const App = () => {
     const numberPattern = /^[0-9]*$/;
     if (!value || numberPattern.test(value)) {
       if (value && value.length > 11) {
-        callback('Number must have a maximum of 11 digits.');
+        callback("Number must have a maximum of 11 digits.");
+      } else if (value && value.length < 8) {
+        callback("Number must have a minimum of 8 digits.");
       } else {
         callback();
       }
     } else {
-      callback('Please enter a valid number.');
+      callback("Please enter a valid number.");
     }
-  }
+  };
 
   const [formValues, setFormValues] = useState({});
 
@@ -631,7 +633,7 @@ const App = () => {
                   // initialValue={phone}
                   name="phoneNumber"
                   rules={[
-                    { required: true, message: 'Number is required' },
+                    { required: true, message: "Number is required" },
                     { validator: validateNumber },
                   ]}
                 >
