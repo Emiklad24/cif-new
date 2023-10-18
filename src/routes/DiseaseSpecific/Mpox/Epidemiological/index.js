@@ -67,13 +67,40 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
+              <Radio.Group
+                buttonStyle="solid"
+                name="patientHaveCutaneousEruption"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              >
                 <Radio.Button value="yes">Yes</Radio.Button>
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>
+
+          {formValues?.patientHaveCutaneousEruption === "yes" && (
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of onset of rash"
+                name="dateOnsetOfRash"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <CustomDatePicker name="dateOnsetOfRash" form={form} />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
@@ -124,6 +151,26 @@ const Epidemiological = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={12} md={12} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Name of village patient fell ill"
+              name="nameOfVillagePatientFellIll"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
+                placeholder="Name of the village the patient fell ill"
+                id="nameOfVillagePatientFellIll"
+                name="nameOfVillagePatientFellIll"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
             </ClearableFormItem>
           </Col>
 

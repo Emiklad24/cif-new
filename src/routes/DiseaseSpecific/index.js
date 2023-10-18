@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import {
   Col,
@@ -90,8 +91,8 @@ const App = () => {
   const [place_of_detection, setPlaceOfDetection] = useState("");
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
-  const [age_year, setAgeYear] = useState(0);
-  const [age_month, setAgeMonth] = useState(0);
+  const [ageYear, setAgeYear] = useState(0);
+  const [ageMonth, setAgeMonth] = useState(0);
   const [dateOfBirth, setBirthDate] = useState(null);
   const [isYearDisabled, setIsYearDisabled] = useState(false);
 
@@ -99,73 +100,45 @@ const App = () => {
     setLga(lgaData[value]);
   };
 
-  /**
-   * @function getDoBFromAge
-   * @param {String} '1970-01-01'
-   * @return {Object} {'53', '4'}
-   */
   const getDoBFromAge = (arg) => {
-    const dob = new Date(arg);
-    const today = new Date();
-    let ageYear = today.getFullYear() - dob.getFullYear();
-    let ageMonth = today.getMonth() - dob.getMonth();
+    if (arg) {
+      // Assuming arg is in the format DD-MM-YYYY
+      const parts = arg.split("-");
+      if (parts.length !== 3) {
+        throw new Error("Invalid date format. Please use DD-MM-YYYY.");
+      }
 
-    if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
-      ageYear--;
-      ageMonth += 12;
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
+      const year = parseInt(parts[2], 10);
+
+      const dob = new Date(year, month, day);
+      const today = new Date();
+      let ageYear = today.getFullYear() - dob.getFullYear();
+      let ageMonth = today.getMonth() - dob.getMonth();
+
+      if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
+        ageYear--;
+        ageMonth += 12;
+      }
+      setAgeMonth(ageMonth);
+      setAgeYear(ageYear);
+
+      form.setFieldsValue({
+        age: ageYear,
+      });
+
+      return { ageYear, ageMonth };
     }
-
-    return { ageYear, ageMonth };
+    return 0;
   };
 
-  /**
-   * @function onChangeDoB
-   * @description when the datepicker has a date calculate the year and month and update the fields and disable the year field else set them to empty and enable the year field
-   */
-  const onChangeDoB = (date, dateString) => {
-    if (date) {
-      const today = moment();
-      const age = today.diff(date, "years");
-      setAgeYear(age);
-      setIsYearDisabled(true);
-    } else {
-      setAgeYear(null);
-      setIsYearDisabled(false);
-    }
-
-    const { ageMonth } = getDoBFromAge(dateString);
-    setBirthDate(dateString);
-    setAgeMonth(ageMonth);
-  };
-
-  /**
-   * @function onChangeYear
-   * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
-   */
-  // const onChangeYear = (e) => {
-  //   const year = e.target.value;
-  //   setAgeYear(year);
-  //   if (year) {
-  //     const calculatedDate = moment()
-  //       .subtract(year, "years")
-  //       .set({ month: 0, date: 1 });
-  //     form.setFieldsValue({ dateOfBirth: calculatedDate });
-  //     setBirthDate(calculatedDate.format("YYYY-MM-DD"));
-  //     setIsDatePickerDisabled(true);
-  //     setAgeMonth(0);
-  //     return;
-  //   }
-  //   form.setFieldsValue({ dateOfBirth: null });
-  //   setIsDatePickerDisabled(false);
-  // };
+  const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
     dispatch(fetchStateList());
-  }, [dispatch]);
-
-  const onChangeMonth = (e) => {
-    console.log(e.target);
-  };
+    getDoBFromAge(formValues?.dateOfBirthPersonalInformation);
+  }, [dispatch, formValues]);
 
   const onChange = () => {
     console.log("Received values of form:");
@@ -178,6 +151,7 @@ const App = () => {
   const onChangeDisease = (value) => {
     setProgram(value);
     form.resetFields();
+    setFormValues({})
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -228,7 +202,7 @@ const App = () => {
             rules={[
               {
                 required: true,
-                message: "Please select disease!",
+                message: "This field is required",
               },
             ]}
             initialValue={program}
@@ -274,11 +248,14 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfReportReportingAreas" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateOfReportReportingAreas"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={12} xs={24}>
@@ -291,7 +268,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the reporting state!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -330,7 +307,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the reporting LGA!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -368,7 +345,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the reporting Ward!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -406,7 +383,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please select an option !",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -445,7 +422,7 @@ const App = () => {
                     rules={[
                       {
                         required: true,
-                        message: "Please select option!",
+                        message: "This field is required",
                       },
                     ]}
                   >
@@ -487,7 +464,7 @@ const App = () => {
                     rules={[
                       {
                         required: true,
-                        message: "Please input patient id!",
+                        message: "This field is required",
                       },
                     ]}
                   >
@@ -505,7 +482,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input epid number!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -522,7 +499,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please select",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -551,11 +528,14 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfNotificationReportingAreas" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateOfNotificationReportingAreas"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={6} md={6} sm={24}>
@@ -568,11 +548,14 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfInvestigationReportingAreas" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateOfInvestigationReportingAreas"
+                  />
                 </ClearableFormItem>
               </Col>
             </Row>
@@ -591,7 +574,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input your first name",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -619,7 +602,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input your last name",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -637,7 +620,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input phone number",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -651,6 +634,7 @@ const App = () => {
               <Col lg={6} md={6} sm={24}>
                 <ClearableFormItem
                   form={form}
+                  setFormValues={setFormValues}
                   label="Date of birth"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -658,13 +642,18 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date of birth!",
+                      message: "This field is required",
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateOfBirthPersonalInformation" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateOfBirthPersonalInformation"
+                    setFormValues={setFormValues}
+                  />
                 </ClearableFormItem>
               </Col>
+
               <Col lg={6} md={6} sm={24}>
                 <ClearableFormItem
                   form={form}
@@ -679,13 +668,13 @@ const App = () => {
                       <Col span={12}>
                         <Tooltip
                           placement="topLeft"
-                          title="Estimated Years"
+                          title="Estimated years"
                           arrowPointAtCenter
                         >
                           <Input
-                            value={age_year}
-                            placeholder="Estimated Years"
-                            disabled={isYearDisabled}
+                            placeholder="Estimated years"
+                            disabled
+                            value={ageYear}
                           />
                         </Tooltip>
                       </Col>
@@ -696,10 +685,9 @@ const App = () => {
                           arrowPointAtCenter
                         >
                           <Input
-                            value={age_month}
-                            placeholder="Estimated Months"
-                            onChange={onChangeMonth}
-                            // disabled
+                            placeholder="Estimated months"
+                            value={ageMonth}
+                            disabled
                           />
                         </Tooltip>
                       </Col>
@@ -707,6 +695,29 @@ const App = () => {
                   </Input.Group>
                 </ClearableFormItem>
               </Col>
+
+              <Col lg={6} md={6} sm={12} xs={24}>
+                <ClearableFormItem
+                  form={form}
+                  label="Sex"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  name="sex"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Radio.Group buttonStyle="solid">
+                    <Radio.Button value="female">Female</Radio.Button>
+                    <Radio.Button value="male">Male</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+
+
               <Col lg={6} md={6} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
@@ -717,7 +728,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the residence state!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -756,7 +767,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the residence LGA!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -794,7 +805,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the residence Ward!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -848,7 +859,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the facility address!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -868,7 +879,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the facility Type!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -891,7 +902,7 @@ const App = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the facility Type!",
+                      message: "This field is required",
                     },
                   ]}
                 >

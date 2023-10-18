@@ -180,7 +180,13 @@ const ClinicalHistory = ({ form }) => {
                     },
                   ]}
                 >
-                  <Radio.Group buttonStyle="solid">
+                  <Radio.Group
+                    buttonStyle="solid"
+                    name="lesionDeepAndProfound"
+                    onChange={(e) =>
+                      handleUpdateInputValues(e.target.name, e.target.value)
+                    }
+                  >
                     <Radio.Button value="yes">Yes</Radio.Button>
                     <Radio.Button value="no">No</Radio.Button>
                     <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -190,39 +196,41 @@ const ClinicalHistory = ({ form }) => {
             </>
           )}
 
-          <Col lg={16} md={16} sm={24}>
-            <ClearableFormItem
-              label="Localisation of the lesions?"
-              name="localisationOfLesions"
-              form={form}
-              setFormValues={setFormValues}
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "Select an option!",
-                },
-              ]}
-            >
-              <CheckboxGroup
-                options={[
-                  { label: "Face", value: "face" },
-                  { label: "Leg", value: "leg" },
-                  { label: "Soles of the Feet", value: "soles of the feet" },
-                  {
-                    label: "Palms of the Hands",
-                    value: "palms of the hands",
-                  },
-                  { label: "Thorax", value: "thorax" },
-                  { label: "Arms", value: "arms" },
-                  { label: "Genitals", value: "genitals" },
-                  { label: "All over the Body", value: "All over the body" },
-                ]}
+          {formValues?.presentOfLesion === "yes" && (
+            <Col lg={24} md={24} sm={24}>
+              <ClearableFormItem
+                label="Localisation of the lesions?"
                 name="localisationOfLesions"
-              />
-            </ClearableFormItem>
-          </Col>
+                form={form}
+                setFormValues={setFormValues}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
+              >
+                <CheckboxGroup
+                  options={[
+                    { label: "Face", value: "face" },
+                    { label: "Leg", value: "leg" },
+                    { label: "Soles of the Feet", value: "soles of the feet" },
+                    {
+                      label: "Palms of the Hands",
+                      value: "palms of the hands",
+                    },
+                    { label: "Thorax", value: "thorax" },
+                    { label: "Arms", value: "arms" },
+                    { label: "Genitals", value: "genitals" },
+                    { label: "All over the Body", value: "All over the body" },
+                  ]}
+                  name="localisationOfLesions"
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -597,14 +605,62 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
+              <Radio.Group
+                buttonStyle="solid"
+                name="outcome"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              >
                 <Radio.Button value="alive">Alive</Radio.Button>
                 <Radio.Button value="dead">Dead</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          {formValues?.outcome === "dead" && (
+            <>
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  label="Date of death"
+                  name="dateOfDeath"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker form={form} name="dateOfDeath" />
+                </ClearableFormItem>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  label="Place of death"
+                  name="placeOfDeath"
+                  setFormValues={setFormValues}
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Input id="placeOfDeath" placeholder="Place of death" />
+                </ClearableFormItem>
+              </Col>
+            </>
+          )}
+
+          <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
               label="Date of symptom onset"
               name="dateOfSymptomOnset"

@@ -2,7 +2,7 @@ import { DatePicker } from "antd";
 import moment from "moment";
 import React, { useState } from "react";
 
-const CustomDatePicker = ({ form, name }) => {
+const CustomDatePicker = ({ form, name , setFormValues    }) => {
   const [isDatePickerDisabled] = useState(false);
   return (
     <DatePicker
@@ -17,6 +17,12 @@ const CustomDatePicker = ({ form, name }) => {
         form.setFieldsValue({
           [name]: dateString,
         });
+        if (setFormValues){
+          setFormValues((previousState) => ({
+            ...previousState,
+            [name]: dateString,
+          }));
+        }
       }}
     />
   );
