@@ -133,6 +133,19 @@ const App = () => {
     return 0;
   };
 
+  const validateNumber = (rule, value, callback) => {
+    const numberPattern = /^[0-9]*$/;
+    if (!value || numberPattern.test(value)) {
+      if (value && value.length > 11) {
+        callback('Number must have a maximum of 11 digits.');
+      } else {
+        callback();
+      }
+    } else {
+      callback('Please enter a valid number.');
+    }
+  }
+
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
@@ -618,10 +631,8 @@ const App = () => {
                   // initialValue={phone}
                   name="phoneNumber"
                   rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
+                    { required: true, message: 'Number is required' },
+                    { validator: validateNumber },
                   ]}
                 >
                   <Input
