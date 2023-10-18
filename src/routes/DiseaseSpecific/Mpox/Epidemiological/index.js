@@ -40,7 +40,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -63,7 +63,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -86,7 +86,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -109,7 +109,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -133,7 +133,7 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="What Kind of Animal?"
+                  label="What kind of animal?"
                   name="kindOfAnimal"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -153,7 +153,7 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Date of Animal Contact"
+                  label="Date of animal contact"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   // initialValue={symptom_date ? moment(symptom_date) : null}
@@ -161,7 +161,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select a date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -185,15 +185,15 @@ const Epidemiological = ({ form }) => {
                         value: "rodents_alive_in_the_house",
                       },
                       {
-                        label: "Dead Animal found in the Forest",
+                        label: "Dead animal found in the forest",
                         value: "dead_animal_found_in_the_forest",
                       },
                       {
-                        label: "Alive Animal Living in the Forest",
+                        label: "Alive animal living in the forest",
                         value: "alive_animal_living_in_the_forest",
                       },
                       {
-                        label: "Animal bought for Meat",
+                        label: "Animal bought for meat",
                         value: "animal_bought_for_meat",
                       },
                     ]}
@@ -208,14 +208,14 @@ const Epidemiological = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Is a Smallpox vaccination scar present?"
+              label="Is a smallpox vaccination scar present?"
               name="smallpoxVaccineScarPresent"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >

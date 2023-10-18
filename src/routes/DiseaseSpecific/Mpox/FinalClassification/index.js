@@ -21,14 +21,14 @@ const FinalClassification = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Final Classification"
+              label="Final classification"
               name="finalClassification"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >

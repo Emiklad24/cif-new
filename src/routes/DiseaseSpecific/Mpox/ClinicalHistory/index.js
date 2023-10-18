@@ -62,7 +62,7 @@ const ClinicalHistory = ({ form }) => {
             <>
               <Col lg={8} md={8} sm={24}>
                 <ClearableFormItem
-                  label="Date Of Fever Onset"
+                  label="Date of fever onset"
                   name="dateOfFeverOnset"
                   setFormValues={setFormValues}
                   form={form}
@@ -249,7 +249,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Sensitivity to Light"
+              label="Sensitivity to light"
               name="sensitivityToLight"
               form={form}
               setFormValues={setFormValues}
@@ -318,7 +318,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Oral Ulcer"
+              label="Oral ulcer"
               name="oralUlcer"
               setFormValues={setFormValues}
               form={form}
@@ -364,7 +364,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Sore Throat"
+              label="Sore throat"
               name="soreThroat"
               setFormValues={setFormValues}
               form={form}
@@ -387,7 +387,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Muscle Pain"
+              label="Muscle pain"
               name="musclePain"
               setFormValues={setFormValues}
               form={form}
@@ -525,7 +525,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Skin Ulcer"
+              label="Skin ulcer"
               name="skinUlcer"
               setFormValues={setFormValues}
               form={form}
@@ -548,7 +548,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="HIV AIDS Status"
+              label="HIV/AIDS status"
               name="hivAidsStatus"
               setFormValues={setFormValues}
               form={form}
@@ -571,7 +571,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
-              label="Other Symptoms(s): (specify)"
+              label="Other symptoms(s): (specify)"
               name="otherSymptom"
               setFormValues={setFormValues}
               form={form}
@@ -606,7 +606,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Date Of Symptom Onset"
+              label="Date of symptom onset"
               name="dateOfSymptomOnset"
               setFormValues={setFormValues}
               form={form}
