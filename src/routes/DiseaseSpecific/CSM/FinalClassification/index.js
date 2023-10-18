@@ -27,7 +27,7 @@ const FinalClassification = ({ form }) => {
             rules={[
               {
                 required: true,
-                message: "Select Final Result",
+                message: "This field is required",
               },
             ]}
           >

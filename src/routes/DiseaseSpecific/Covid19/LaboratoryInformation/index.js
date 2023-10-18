@@ -450,10 +450,10 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="Date PCR result available"
+                          label="Date PCR result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailablePcr"
+                          name="dateResultReleasedPcr"
                           rules={[
                             {
                               required: true,
@@ -463,12 +463,12 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailablePcr"
+                            name="dateResultReleasedPcr"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
+                      {/* <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
@@ -488,7 +488,7 @@ const LaboratoryInformation = ({ form }) => {
                             name="dateResultSentPCR"
                           />
                         </ClearableFormItem>
-                      </Col>
+                      </Col> */}
                       <Divider />
                     </Row>
                   )}
@@ -580,14 +580,14 @@ const LaboratoryInformation = ({ form }) => {
                         </Col>
                       )}
 
-                      <Col lg={12} md={12} sm={24}>
+                      <Col lg={24} md={24} sm={24}>
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="Date RDT result available"
+                          label="Date RDT result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailableRdt"
+                          name="dateResultReleasedRdt"
                           rules={[
                             {
                               required: true,
@@ -597,12 +597,12 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableRdt"
+                            name="dateResultReleasedRdt"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
+                      {/* <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
@@ -622,20 +622,20 @@ const LaboratoryInformation = ({ form }) => {
                             name="dateResultSentOutNasal"
                           />
                         </ClearableFormItem>
-                      </Col>
+                      </Col> */}
                     </Row>
                   )}
 
-                  {formValues?.serologyResult && (
+                  {/* {formValues?.serologyResultBlood && (
                     <Row>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="Date result available"
+                          label="Date result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-                          name="dateResultAvailableBlood"
+                          name="dateResultReleasedBlood"
                           rules={[
                             {
                               required: true,
@@ -645,7 +645,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableBlood"
+                            name="dateResultReleasedBlood"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -672,11 +672,11 @@ const LaboratoryInformation = ({ form }) => {
                         </ClearableFormItem>
                       </Col>
                     </Row>
-                  )}
+                  )} */}
                 </>
               )}
 
-              {formValues?.serologyResult && (
+              {/* {formValues?.serologyResultBlood && (
                 <Row>
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -685,7 +685,7 @@ const LaboratoryInformation = ({ form }) => {
                       label="Date result available "
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-                      name="dateResultAvailableBlood"
+                      name="dateResultReleasedBlood"
                       rules={[
                         {
                           required: true,
@@ -695,7 +695,7 @@ const LaboratoryInformation = ({ form }) => {
                     >
                       <CustomDatePicker
                         form={form}
-                        name="dateResultAvailableBlood"
+                        name="dateResultReleasedBlood"
                       />
                     </ClearableFormItem>
                   </Col>
@@ -722,7 +722,7 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
                 </Row>
-              )}
+              )} */}
 
               {formValues?.specimenType?.includes("blood") && (
                 <Col lg={24} md={24} sm={24}>

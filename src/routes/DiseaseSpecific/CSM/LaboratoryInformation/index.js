@@ -45,8 +45,8 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
-              label="Sample collected"
-              name="sampleCollected"
+              label="Specimen collected"
+              name="specimenCollected"
               setFormValues={setFormValues}
               form={form}
               labelCol={{ span: 24 }}
@@ -54,25 +54,25 @@ const LaboratoryInformation = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option ",
+                  message: "This field is required",
                 },
               ]}
             >
               <Radio.Group
                 buttonStyle="solid"
-                name="sampleCollected"
+                name="specimenCollected"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
               >
                 <Radio.Button value="yes">Yes</Radio.Button>
                 <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
+                {/* <Radio.Button value="unknown">Unknown</Radio.Button> */}
               </Radio.Group>
             </ClearableFormItem>
           </Col>
 
-          {formValues?.sampleCollected === "yes" && (
+          {formValues?.specimenCollected === "yes" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -85,7 +85,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select date Of specimen collected",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -96,7 +96,7 @@ const LaboratoryInformation = ({ form }) => {
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   label="Type of specimen collected?"
-                  name="sampleType"
+                  name="specimenType"
                   form={form}
                   setFormValues={setFormValues}
                   labelCol={{ span: 24 }}
@@ -104,7 +104,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -116,15 +116,15 @@ const LaboratoryInformation = ({ form }) => {
                       },
                       { label: "Blood", value: "blood" },
                     ]}
-                    name="sampleType"
+                    name="specimenType"
                     onChange={(value) =>
-                      handleUpdateInputValues("sampleType", value)
+                      handleUpdateInputValues("specimenType", value)
                     }
                   />
                 </ClearableFormItem>
               </Col>
 
-              {formValues?.sampleType?.length >= 1 && (
+              {formValues?.specimenType?.length >= 1 && (
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
                     label="Date specimen Sent"
@@ -136,7 +136,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select Date Specimen Sent",
+                        message: "This field is required",
                       },
                     ]}
                   >
@@ -156,7 +156,7 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select laboratory!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -170,10 +170,10 @@ const LaboratoryInformation = ({ form }) => {
                 </ClearableFormItem>
               </Col>
               <Divider plain>Laboratory result</Divider>
-              {formValues?.sampleType?.includes("blood") && (
+              {formValues?.specimenType?.includes("blood") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
-                    label="Blood sample received"
+                    label="Blood specimen received"
                     name="bloodSampleReceived"
                     form={form}
                     setFormValues={setFormValues}
@@ -182,7 +182,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select an Option ",
+                        message: "This field is required",
                       },
                     ]}
                   >
@@ -213,7 +213,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Date Specimen received",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -245,7 +245,7 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Specimen condition"
-                      name="sampleConditionBlood"
+                      name="specimenConditionBlood"
                       form={form}
                       setFormValues={setFormValues}
                       labelCol={{ span: 24 }}
@@ -253,7 +253,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -266,7 +266,7 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
 
-                  {formValues?.sampleType?.length >= 1 && (
+                  {formValues?.specimenType?.length >= 1 && (
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
                         label="Test conducted"
@@ -278,7 +278,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "select an option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -310,7 +310,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select PCR result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -343,7 +343,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "SelectDateResultAvailable",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -365,7 +365,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -391,7 +391,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select RDT result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -424,7 +424,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Available",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -446,7 +446,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -471,7 +471,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an Option ",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -506,7 +506,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Result Available Date",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -527,7 +527,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -542,10 +542,10 @@ const LaboratoryInformation = ({ form }) => {
                 </>
               )}
               <Divider plain></Divider>
-              {formValues?.sampleType?.includes("cerebrospinalFluid") && (
+              {formValues?.specimenType?.includes("cerebrospinalFluid") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
-                    label="Cerebrospinal fluid sample received"
+                    label="Cerebrospinal fluid specimen received"
                     name="csfSampleReceived"
                     form={form}
                     setFormValues={setFormValues}
@@ -554,7 +554,7 @@ const LaboratoryInformation = ({ form }) => {
                     rules={[
                       {
                         required: true,
-                        message: "Select an Option ",
+                        message: "This field is required",
                       },
                     ]}
                   >
@@ -584,7 +584,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Date Specimen received",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -616,7 +616,7 @@ const LaboratoryInformation = ({ form }) => {
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
                       label="Specimen condition"
-                      name="sampleConditionCsf"
+                      name="specimenConditionCsf"
                       form={form}
                       setFormValues={setFormValues}
                       labelCol={{ span: 24 }}
@@ -624,7 +624,7 @@ const LaboratoryInformation = ({ form }) => {
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -637,7 +637,7 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
 
-                  {formValues?.sampleType?.length >= 1 && (
+                  {formValues?.specimenType?.length >= 1 && (
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
                         label="Test conducted"
@@ -649,7 +649,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "select an option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -680,7 +680,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select PCR result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -713,7 +713,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "SelectDateResultAvailable",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -735,7 +735,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -761,7 +761,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select RDT result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -794,7 +794,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Available",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -816,7 +816,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -841,7 +841,7 @@ const LaboratoryInformation = ({ form }) => {
                         rules={[
                           {
                             required: true,
-                            message: "Select an Option ",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -876,7 +876,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Result Available Date",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -898,7 +898,7 @@ const LaboratoryInformation = ({ form }) => {
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Sent Out",
+                              message: "This field is required",
                             },
                           ]}
                         >

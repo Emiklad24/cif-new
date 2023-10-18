@@ -57,7 +57,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select Date!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -80,7 +80,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -102,7 +102,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -125,7 +125,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select of an Option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -147,7 +147,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select Date!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -169,7 +169,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "select!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -192,7 +192,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -215,7 +215,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option",
+                  message: "This field is required",
                 },
               ]}
             >

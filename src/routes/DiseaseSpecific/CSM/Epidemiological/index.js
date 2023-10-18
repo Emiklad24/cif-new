@@ -38,7 +38,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -72,7 +72,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -97,7 +97,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -121,7 +121,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option ",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -147,7 +147,7 @@ const Epidemiological = ({ form }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Enter Reason ",
+                    message: "This field is required",
                   },
                 ]}
               >
@@ -180,7 +180,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Enter Travel History ",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -223,7 +223,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an Option ",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -252,7 +252,7 @@ const Epidemiological = ({ form }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Enter Contact Location ",
+                    message: "This field is required",
                   },
                 ]}
               >

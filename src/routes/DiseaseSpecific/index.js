@@ -166,7 +166,8 @@ const App = () => {
   const onChangeDisease = (value) => {
     setProgram(value);
     form.resetFields();
-    setFormValues({});
+    setFormValues(
+    {});
   };
   const onSearch = (value) => {
     console.log("search:", value);
