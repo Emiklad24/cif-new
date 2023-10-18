@@ -303,7 +303,7 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Date Of symptom onset"
+              label="Date of symptom onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               // initialValue={symptom_date ? moment(symptom_date) : null}

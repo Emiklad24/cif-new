@@ -29,7 +29,7 @@ const ContactTracing = ({ form }) => {
   const [lga, setLga] = useState([]);
   const { Panel } = Collapse;
 
-  const [_, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({});
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -39,11 +39,20 @@ const ContactTracing = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
+  const handleUpdateInputValues = (inputName, value) => {
+    console.log(inputName, value);
+
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+  };
+
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Contact Tracing Information" key="1">
         <Row>
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -54,20 +63,19 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Enter Contact First Name!",
+                  message: "This field is required",
                 },
               ]}
             >
               <Input
                 placeholder="Enter First Name"
-                id="address"
-                name="address"
-                onChange={(e) => {}}
+                id="contactFirstNameContact"
+                name="contactFirstNameContact"
               />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -78,32 +86,30 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Enter Contact Last Name!",
+                  message: "This field is required",
                 },
               ]}
             >
               <Input
                 placeholder="Enter Last Name"
-                id="lastName"
-                name="lastName"
-                onChange={(e) => {}}
+                id="contactLastName"
+                name="contactLastName"
               />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
               label="Date of birth"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={sample_date ? moment(sample_date) : null}
               name="dateOfBirthOfContact"
               rules={[
                 {
                   required: true,
-                  message: "Select a date!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -111,7 +117,7 @@ const ContactTracing = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -122,7 +128,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Enter age!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -156,7 +162,7 @@ const ContactTracing = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -167,7 +173,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -178,7 +184,7 @@ const ContactTracing = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={8} md={12} sm={24} xs={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -189,7 +195,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -208,7 +214,7 @@ const ContactTracing = ({ form }) => {
               </Select>
             </ClearableFormItem>
           </Col>
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={8} md={12} sm={24} xs={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -219,7 +225,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -237,7 +243,7 @@ const ContactTracing = ({ form }) => {
               </Select>
             </ClearableFormItem>
           </Col>
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={8} md={12} sm={24} xs={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -248,7 +254,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please select an option",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -266,7 +272,7 @@ const ContactTracing = ({ form }) => {
               </Select>
             </ClearableFormItem>
           </Col>
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -277,7 +283,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select Relationship!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -285,12 +291,11 @@ const ContactTracing = ({ form }) => {
                 placeholder="Enter Contact Address"
                 id="address"
                 name="address"
-                onChange={(e) => {}}
               />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          <Col lg={8} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -301,7 +306,7 @@ const ContactTracing = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select Relationship!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -314,6 +319,82 @@ const ContactTracing = ({ form }) => {
               </Select>
             </ClearableFormItem>
           </Col>
+
+          <Col lg={8} md={12} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Contact categorization"
+              name="contactCategorization"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="no risk">No risk</Radio.Button>
+                <Radio.Button value="low risk">Low risk</Radio.Button>
+                <Radio.Button value="high risk">High risk</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={12} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Health worker ?"
+              name="isContactAHealthWorker"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                name="isContactAHealthWorker"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              >
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
+
+          {formValues?.isContactAHealthWorker === "yes" && (
+            <Col lg={8} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Name of health facility"
+                name="nameOfHwHealthFacility"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter health care facility Address"
+                  id="nameOfHwHealthFacility"
+                  name="nameOfHwHealthFacility"
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
         </Row>
       </Panel>
     </Collapse>

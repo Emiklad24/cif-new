@@ -151,7 +151,7 @@ const App = () => {
   const onChangeDisease = (value) => {
     setProgram(value);
     form.resetFields();
-    setFormValues({})
+    setFormValues({});
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -238,7 +238,7 @@ const App = () => {
         <Collapse defaultActiveKey={["1"]} onChange={onChange}>
           <Panel header="Reporting Areas" key="1">
             <Row>
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   label="Date of report"
@@ -258,7 +258,7 @@ const App = () => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="State of reporting"
@@ -297,7 +297,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="LGA of reporting"
@@ -335,7 +335,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Ward of reporting"
@@ -373,7 +373,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Place of detection"
@@ -412,7 +412,7 @@ const App = () => {
                 </ClearableFormItem>
               </Col>
               {place_of_detection === "Health Facility" && (
-                <Col lg={6} md={6} sm={12} xs={24}>
+                <Col lg={8} md={12} sm={12} xs={24}>
                   <ClearableFormItem
                     form={form}
                     label="Health facility"
@@ -454,7 +454,7 @@ const App = () => {
               {(place_of_detection === "Home" ||
                 place_of_detection === "IDP Camp" ||
                 place_of_detection === "NYSC Camp") && (
-                <Col lg={6} md={6} sm={24} xs={24}>
+                <Col lg={8} md={12} sm={24} xs={24}>
                   <ClearableFormItem
                     form={form}
                     labelCol={{ span: 24 }}
@@ -472,7 +472,7 @@ const App = () => {
                   </ClearableFormItem>
                 </Col>
               )}
-              <Col lg={6} md={6} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -489,7 +489,7 @@ const App = () => {
                   <Input size="large" />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Notified by"
@@ -517,7 +517,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   label="Date of notification"
@@ -538,7 +538,7 @@ const App = () => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   label="Date of investigation"
@@ -564,7 +564,7 @@ const App = () => {
         <Collapse defaultActiveKey={["1"]} onChange={onChange}>
           <Panel header="Patient Information" key="1">
             <Row>
-              <Col lg={6} md={6} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -581,7 +581,7 @@ const App = () => {
                   <Input size="large" />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -592,7 +592,7 @@ const App = () => {
                   <Input size="large" />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -609,7 +609,7 @@ const App = () => {
                   <Input size="large" />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -631,7 +631,7 @@ const App = () => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
@@ -654,7 +654,7 @@ const App = () => {
                 </ClearableFormItem>
               </Col>
 
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   labelCol={{ span: 24 }}
@@ -696,7 +696,7 @@ const App = () => {
                 </ClearableFormItem>
               </Col>
 
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Sex"
@@ -710,15 +710,56 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Radio.Group buttonStyle="solid">
+                  <Radio.Group
+                    buttonStyle="solid"
+                    name="sex"
+                    onChange={(e) =>
+                      setFormValues((previousState) => ({
+                        ...previousState,
+                        sex: e.target.value,
+                      }))
+                    }
+                  >
                     <Radio.Button value="female">Female</Radio.Button>
                     <Radio.Button value="male">Male</Radio.Button>
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
 
+              {formValues?.sex === "female" && (
+                <Col lg={8} md={12} sm={12} xs={24}>
+                  <ClearableFormItem
+                    form={form}
+                    label="Pregnancy status"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    name="pregnancyStatus"
+                    rules={[
+                      {
+                        required: true,
+                        message: "This field is required",
+                      },
+                    ]}
+                  >
+                    <Radio.Group
+                      buttonStyle="solid"
+                      onChange={(e) =>
+                        setFormValues((previousState) => ({
+                          ...previousState,
+                          pregnancyStatus: e.target.value,
+                        }))
+                      }
+                    >
+                      <Radio.Button value="pregnant">Pregnant</Radio.Button>
+                      <Radio.Button value="not pregnant">
+                        Not Pregnant
+                      </Radio.Button>
+                    </Radio.Group>
+                  </ClearableFormItem>
+                </Col>
+              )}
 
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="State of residence"
@@ -757,7 +798,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="LGA of residence"
@@ -795,7 +836,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Ward of residence"
@@ -833,7 +874,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={24}>
+              <Col lg={8} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   label="Patient’s residential address "
@@ -849,7 +890,7 @@ const App = () => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Settlement type"
@@ -869,7 +910,7 @@ const App = () => {
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Occupation"
@@ -892,7 +933,7 @@ const App = () => {
                   </Select>
                 </ClearableFormItem>
               </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
                   label="Education"

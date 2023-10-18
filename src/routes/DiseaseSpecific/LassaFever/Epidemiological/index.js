@@ -510,6 +510,7 @@ const Epidemiological = ({ form }) => {
               name="participateInBurialrite"
               labelCol={{ span: 27 }}
               wrapperCol={{ span: 24 }}
+              colon={false}
               rules={[
                 {
                   required: true,
