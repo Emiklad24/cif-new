@@ -973,7 +973,7 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
-        <ContactTracing form={form} />
+       {program !=="Yellow Fever" && <ContactTracing form={form} />}
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">
