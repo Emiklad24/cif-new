@@ -67,7 +67,7 @@ const FinalClassification = ({form}) => {
               rules={[
                 {
                   required: true,
-                  message: "Make a selection!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -75,7 +75,7 @@ const FinalClassification = ({form}) => {
                 placeholder="Enter diagnosis"
                 id="diagnosis"
                 name="diagnosis"
-                onChange={(e) => {}}
+                
               />
             </ClearableFormItem>
           </Col>

@@ -60,7 +60,7 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
-                  label="Number of diphtheria containing vaccine dose received:"
+                  label="Number of diphtheria containing vaccine dose received"
                   name="numberOfDiphtheriaContainingVaccine"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -146,15 +146,15 @@ const Epidemiological = ({ form }) => {
                   }
                   name="notVaccinated"
                 >
-                  <Radio.Button value="religious_exemption">
+                  <Radio.Button value="religious exemption">
                     {" "}
                     Religious Exemption
                   </Radio.Button>
-                  <Radio.Button value="medical_contraindication">
+                  <Radio.Button value="medical contraindication">
                     Medical Contraindication
                   </Radio.Button>
-                  <Radio.Button value="under_age">Under age</Radio.Button>
-                  <Radio.Button value="parental_refusal">
+                  <Radio.Button value="under age">Under age</Radio.Button>
+                  <Radio.Button value="parental refusal">
                     Parental Refusal
                   </Radio.Button>
                   <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -175,12 +175,7 @@ const Epidemiological = ({ form }) => {
                     name="otherReasonNoVaccine"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
+                  
                   >
                     <Input
                       placeholder="Enter place Address"
@@ -242,7 +237,7 @@ const Epidemiological = ({ form }) => {
                   ]}
                 >
                   <Input
-                    placeholder="If Yes, enter address visited"
+                    placeholder="If yes, enter address visited"
                     id="clientAddress"
                     name="clientAddress"
                     onChange={(e) => {}}

@@ -1,25 +1,30 @@
-import { Col, Form, Input, Collapse, DatePicker, Row, Radio } from "antd";
+/* eslint-disable no-unused-vars */
+import { Col, Input, Collapse, Row, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 import { Checkbox } from "antd";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
 const CheckboxGroup = Checkbox.Group;
 
 const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
-  const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
+
+  const [formValues, setFormValues] = useState({});
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Fever (≥38 °C)"
               name="fever"
               labelCol={{ span: 24 }}
@@ -27,7 +32,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select an option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -36,61 +41,54 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Date Of Fever Onset"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date of fever onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={feveronset_date ? moment(feveronset_date) : null}
               name="dateOfFeverOnset"
               rules={[
                 {
                   required: true,
-                  message: "Select a date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                format="DD-MM-YYYY"
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="DD-MM-YYYY"
-              />
-            </Form.Item>
+              <CustomDatePicker form={form} name="dateOfFeverOnset" />
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Date Seen at the Health Facility"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date seen at the health facility"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={hf_visit_date ? moment(visit_date) : null}
               name="dateOfVisitToHealthFacility"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
+              <CustomDatePicker
+                form={form}
+                name="dateOfVisitToHealthFacility"
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Neck swelling"
               name="neckSwelling"
               labelCol={{ span: 24 }}
@@ -98,7 +96,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -107,11 +105,13 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Pharyngitis/Tonsilitis"
               name="pharyngitisTonsilitis"
               labelCol={{ span: 24 }}
@@ -119,7 +119,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -128,18 +128,20 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Presence of Adherent pseudo-membrane ?"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Presence of adherent pseudo-membrane ?"
               name="presenceOfAdherentPseudoMembrane"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -148,11 +150,13 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Location of adherent pseudo-membrane?"
               name="locationOfAdherentPseudoMembrane"
               labelCol={{ span: 24 }}
@@ -160,7 +164,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -172,11 +176,13 @@ const ClinicalHistory = ({ form }) => {
                 ]}
                 name="locationAdherentPseudoMembrane"
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Laryngitis"
               name="laryngitis"
               labelCol={{ span: 24 }}
@@ -184,7 +190,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -193,10 +199,12 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Bleeding (from orifices)"
               name="bleeding"
               labelCol={{ span: 24 }}
@@ -204,7 +212,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -213,18 +221,20 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="skin leisions"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Skin leisions"
               name="skinLeisions"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -233,11 +243,13 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Others (Specify)"
               name="others"
               labelCol={{ span: 24 }}
@@ -245,7 +257,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -255,85 +267,72 @@ const ClinicalHistory = ({ form }) => {
                 name="specifyOthers"
                 onChange={(e) => {}}
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Date of symptom onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(birth_date) : null}
               name="dateOfOnset"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
-              />
-            </Form.Item>
+              <CustomDatePicker form={form} name="dateOfOnset" />
+            </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Date Health facility Notified LGA"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date health facility notified LGA"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(birth_date) : null}
               name="dateHealthFacilityNotifiedLga"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
+              <CustomDatePicker
+                form={form}
+                name="dateHealthFacilityNotifiedLga"
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Date of hopsitalization"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(birth_date) : null}
               name="dateOfHospitalization"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
-              />
-            </Form.Item>
+              <CustomDatePicker form={form} name="dateOfHospitalization" />
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Antibiotics administered"
               name="antibioticsAdministered"
               labelCol={{ span: 24 }}
@@ -341,7 +340,7 @@ const ClinicalHistory = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -350,19 +349,21 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Name antibiotics"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Name of antibiotics"
               name="nameAntibiotics"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -372,44 +373,40 @@ const ClinicalHistory = ({ form }) => {
                 name="antibioticsName"
                 onChange={(e) => {}}
               />
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Date of first dose"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(first_dose_date) : null}
               name="dateOfFirstDose"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
-              />
-            </Form.Item>
+              <CustomDatePicker form={form} name="dateOfFirstDose" />
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
-              label="Antitoxin Administered?"
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Antitoxin administered?"
               name="antitoxinAdministered"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -418,32 +415,26 @@ const ClinicalHistory = ({ form }) => {
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </ClearableFormItem>
           </Col>
 
           <Col lg={8} md={8} sm={24}>
-            <Form.Item
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
               label="Date of antitoxin"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={birth_date ? moment(first_dose_date) : null}
-              name="date_of_antitoxin"
+              name="dateOfAntitoxin"
               rules={[
                 {
                   required: true,
-                  message: "Fill this field!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <DatePicker
-                // onChange={onChangeDoB}
-                disabledDate={(current) =>
-                  current.isAfter(moment()) || isDatePickerDisabled
-                }
-                style={{ width: "100%" }}
-                placeholder="YYYY-MM-DD"
-              />
-            </Form.Item>
+              <CustomDatePicker form={form} name="dateOfAntitoxin" />
+            </ClearableFormItem>
           </Col>
         </Row>
       </Panel>

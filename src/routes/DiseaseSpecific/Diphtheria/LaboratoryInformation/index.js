@@ -1,17 +1,6 @@
-import {
-  Col,
-  Form,
-  Input,
-  Collapse,
-  DatePicker,
-  Row,
-  Select,
-  Radio,
-  Divider,
-} from "antd";
+import { Col, Input, Collapse, Row, Select, Radio, Divider } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
@@ -32,7 +21,6 @@ const { Option } = Select;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
-  const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -93,18 +81,11 @@ const LaboratoryInformation = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Select Date Of specimen collected",
+                      message: "This field is required",
                     },
                   ]}
                 >
-                  <DatePicker
-                    format="DD-MM-YYYY"
-                    disabledDate={(current) =>
-                      current.isAfter(moment()) || isDatePickerDisabled
-                    }
-                    style={{ width: "100%" }}
-                    placeholder="DD-MM-YYYY"
-                  />
+                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
                 </ClearableFormItem>
               </Col>
 
@@ -112,14 +93,14 @@ const LaboratoryInformation = ({ form }) => {
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
-                  label="Type of Specimen collected?"
+                  label="Type of specimen collected?"
                   name="specimenType"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   rules={[
                     {
                       required: true,
-                      message: "Select an Option",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -142,26 +123,18 @@ const LaboratoryInformation = ({ form }) => {
                   <ClearableFormItem
                     form={form}
                     setFormValues={setFormValues}
-                    label="Date Specimen Sent"
+                    label="Date specimen sent"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-
                     name="dateSpecimenSent"
                     rules={[
                       {
                         required: true,
-                        message: "Select Date Specimen Sent",
+                        message: "This field is required",
                       },
                     ]}
                   >
-                    <DatePicker
-                      format="DD-MM-YYYY"
-                      disabledDate={(current) =>
-                        current.isAfter(moment()) || isDatePickerDisabled
-                      }
-                      style={{ width: "100%" }}
-                      placeholder="DD-MM-YYYY"
-                    />
+                    <CustomDatePicker form={form} name="dateSpecimenSent" />
                   </ClearableFormItem>
                 </Col>
               )}
@@ -170,14 +143,14 @@ const LaboratoryInformation = ({ form }) => {
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
-                  label="Name Of Testing Laboratory"
+                  label="Name Of testing laboratory"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="nameOfTestingLaboratory"
                   rules={[
                     {
                       required: true,
-                      message: "Select laboratory!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -226,25 +199,20 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Date Specimen Received "
+                      label="Date specimen received "
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-  
-                      name={["blood", "dateSpecimenReceived"]}
+                      name="dateSpecimenReceivedBlood"
                       rules={[
                         {
                           required: true,
-                          message: "Date Specimen received",
+                          message: "This field is required",
                         },
                       ]}
                     >
-                      <DatePicker
-                        format="DD-MM-YYYY"
-                        disabledDate={(current) =>
-                          current.isAfter(moment()) || isDatePickerDisabled
-                        }
-                        style={{ width: "100%" }}
-                        placeholder="DD-MM-YYYY"
+                      <CustomDatePicker
+                        form={form}
+                        name="dateSpecimenReceivedBlood"
                       />
                     </ClearableFormItem>
                   </Col>
@@ -254,7 +222,7 @@ const LaboratoryInformation = ({ form }) => {
                       form={form}
                       setFormValues={setFormValues}
                       label="Laboratory ID"
-                      name={["blood", "laboratoryId"]}
+                      name="laboratoryIdBlood"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
@@ -271,14 +239,14 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Specimen Condition"
-                      name={["blood", "specimenCondition"]}
+                      label="Specimen condition"
+                      name="specimenConditionBlood"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -296,14 +264,14 @@ const LaboratoryInformation = ({ form }) => {
                       <ClearableFormItem
                         form={form}
                         setFormValues={setFormValues}
-                        label="Test Conducted"
-                        name={["blood", "testConducted"]}
+                        label="Test conducted"
+                        name="testConductedBlood"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
                           {
                             required: true,
-                            message: "select an option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -327,14 +295,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="PCR Result"
-                          name={["blood", "pcr", "result"]}
+                          label="PCR result"
+                          name="resultBloodPcr"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select PCR result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -360,55 +328,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available "
+                          label="Date result released "
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={["blood", "pcr", "dateResultAvailable"]}
+                          name="dateResultReleasedBloodPcr"
                           rules={[
                             {
                               required: true,
-                              message: "SelectDateResultAvailable",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedBloodPcr"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["blood", "pcr", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                   
                     </Row>
                   )}
 
@@ -418,14 +356,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Serology Result"
-                          name={["blood", "serology", "result"]}
+                          label="Serology result"
+                          name="resultBloodSerology"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select RDT result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -451,55 +389,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available"
+                          label="Date result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={["blood", "serology", "dateResultAvailable"]}
+                          name="dateResultReleasedBloodSerology"
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Available",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedBloodSerology"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["blood", "serology", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                    
                     </Row>
                   )}
                 </>
@@ -510,7 +418,7 @@ const LaboratoryInformation = ({ form }) => {
                   <ClearableFormItem
                     form={form}
                     setFormValues={setFormValues}
-                    label="Skin Biopsy specimen received"
+                    label="Skin biopsy specimen received"
                     name="skinBiopsySampleReceived"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
@@ -540,25 +448,20 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Date Specimen Received "
+                      label="Date specimen received "
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-  
-                      name={["skinBiopsy", "dateSpecimenReceived"]}
+                      name="dateSpecimenReceivedSkinBiopsy"
                       rules={[
                         {
                           required: true,
-                          message: "Date Specimen received",
+                          message: "This field is required",
                         },
                       ]}
                     >
-                      <DatePicker
-                        format="DD-MM-YYYY"
-                        disabledDate={(current) =>
-                          current.isAfter(moment()) || isDatePickerDisabled
-                        }
-                        style={{ width: "100%" }}
-                        placeholder="DD-MM-YYYY"
+                      <CustomDatePicker
+                        form={form}
+                        name="dateSpecimenReceivedSkinBiopsy"
                       />
                     </ClearableFormItem>
                   </Col>
@@ -568,7 +471,7 @@ const LaboratoryInformation = ({ form }) => {
                       form={form}
                       setFormValues={setFormValues}
                       label="Laboratory ID"
-                      name={["skinBiopsy", "laboratoryId"]}
+                      name="laboratoryIdSkinBiopsy"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
@@ -585,14 +488,14 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Specimen Condition"
-                      name={["skinBiopsy", "specimenCondition"]}
+                      label="Specimen condition"
+                      name="specimenConditionSkinBiopsy"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -610,14 +513,14 @@ const LaboratoryInformation = ({ form }) => {
                       <ClearableFormItem
                         form={form}
                         setFormValues={setFormValues}
-                        label="Test Conducted"
-                        name={["skinBiopsy", "testConducted"]}
+                        label="Test conducted"
+                        name="testConductedSkinBiopsy"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
                           {
                             required: true,
-                            message: "select an option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -641,14 +544,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="PCR Result"
-                          name={["skinBiopsy", "pcr", "result"]}
+                          label="PCR result"
+                          name="resultSkinBiopsyPcr"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select PCR result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -674,55 +577,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available "
+                          label="Date result released "
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={["skinBiopsy", "pcr", "dateResultAvailable"]}
+                          name="dateResultReleasedSkinBiopsyPcr"
                           rules={[
                             {
                               required: true,
-                              message: "SelectDateResultAvailable",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedSkinBiopsyPcr"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["skinBiopsy", "pcr", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                    
                     </Row>
                   )}
 
@@ -732,14 +605,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Serology Result"
-                          name={["skinBiopsy", "serology", "result"]}
+                          label="Serology result"
+                          name="resultSkinBiopsySerology"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select RDT result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -765,59 +638,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available"
+                          label="Date result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={[
-                            "skinBiopsy",
-                            "serology",
-                            "dateResultAvailable",
-                          ]}
+                          name="dateResultReleasedSkinBiopsySerology"
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Available",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedSkinBiopsySerology"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["skinBiopsy", "serology", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                      
                     </Row>
                   )}
                 </>
@@ -858,25 +697,20 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Date Specimen Received "
+                      label="Date specimen received "
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-  
-                      name={["swab", "dateSpecimenReceived"]}
+                      name="dateSpecimenReceivedSwab"
                       rules={[
                         {
                           required: true,
-                          message: "Date Specimen received",
+                          message: "This field is required",
                         },
                       ]}
                     >
-                      <DatePicker
-                        format="DD-MM-YYYY"
-                        disabledDate={(current) =>
-                          current.isAfter(moment()) || isDatePickerDisabled
-                        }
-                        style={{ width: "100%" }}
-                        placeholder="DD-MM-YYYY"
+                      <CustomDatePicker
+                        form={form}
+                        name="dateSpecimenReceivedSwab"
                       />
                     </ClearableFormItem>
                   </Col>
@@ -886,7 +720,7 @@ const LaboratoryInformation = ({ form }) => {
                       form={form}
                       setFormValues={setFormValues}
                       label="Laboratory ID"
-                      name={["swab", "laboratoryId"]}
+                      name="laboratoryIdSwab"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
@@ -903,14 +737,14 @@ const LaboratoryInformation = ({ form }) => {
                     <ClearableFormItem
                       form={form}
                       setFormValues={setFormValues}
-                      label="Specimen Condition"
-                      name={["swab", "specimenCondition"]}
+                      label="Specimen condition"
+                      name="specimenConditionSwab"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                       rules={[
                         {
                           required: true,
-                          message: "Select an Option",
+                          message: "This field is required",
                         },
                       ]}
                     >
@@ -928,14 +762,14 @@ const LaboratoryInformation = ({ form }) => {
                       <ClearableFormItem
                         form={form}
                         setFormValues={setFormValues}
-                        label="Test Conducted"
-                        name={["swab", "testConducted"]}
+                        label="Test conducted"
+                        name="testConductedSwab"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
                           {
                             required: true,
-                            message: "select an option",
+                            message: "This field is required",
                           },
                         ]}
                       >
@@ -959,14 +793,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="PCR Result"
-                          name={["swab", "pcr", "result"]}
+                          label="PCR result"
+                          name="resultSwabPcr"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select PCR result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -992,55 +826,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available "
+                          label="Date result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={["swab", "pcr", "dateResultAvailable"]}
+                          name="dateResultReleasedSwabPcr"
                           rules={[
                             {
                               required: true,
-                              message: "SelectDateResultAvailable",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedSwabPcr"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["swab", "pcr", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                      
                     </Row>
                   )}
 
@@ -1050,14 +854,14 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Serology Result"
-                          name={["swab", "serology", "result"]}
+                          label="Serology result"
+                          name="resultSwabSerology"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
                             {
                               required: true,
-                              message: "Select RDT result",
+                              message: "This field is required",
                             },
                           ]}
                         >
@@ -1083,55 +887,25 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           form={form}
                           setFormValues={setFormValues}
-                          label="Date Result Available"
+                          label="Date result released"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
-      
-                          name={["swab", "serology", "dateResultAvailable"]}
+                          name="dateResultReleasedSwabSerology"
                           rules={[
                             {
                               required: true,
-                              message: "Select Date Result Available",
+                              message: "This field is required",
                             },
                           ]}
                         >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedSwabSerology"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date Result Sent Out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-      
-                          name={["swab", "serology", "dateResultSent"]}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Select Date Result Sent Out",
-                            },
-                          ]}
-                        >
-                          <DatePicker
-                            format="DD-MM-YYYY"
-                            disabledDate={(current) =>
-                              current.isAfter(moment()) || isDatePickerDisabled
-                            }
-                            style={{ width: "100%" }}
-                            placeholder="DD-MM-YYYY"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                   
                     </Row>
                   )}
                 </>

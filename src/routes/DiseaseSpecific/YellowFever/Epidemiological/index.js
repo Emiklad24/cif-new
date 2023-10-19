@@ -34,7 +34,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please choose one!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -66,7 +66,7 @@ const Epidemiological = ({ form }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Select this option!",
+                    message: "This field is required",
                   },
                 ]}
               >
@@ -86,12 +86,12 @@ const Epidemiological = ({ form }) => {
                 label="Date of vaccination:"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                // initialValue={birth_date ? moment(birth_date) : null}
+                
                 name="dateOfVaccination"
                 rules={[
                   {
                     required: true,
-                    message: "Input the date!",
+                    message: "This field is required",
                   },
                 ]}
               >
@@ -112,7 +112,7 @@ const Epidemiological = ({ form }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Select this option!",
+                    message: "This field is required",
                   },
                 ]}
               >
@@ -153,7 +153,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select this option!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -176,7 +176,7 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Select this option!",
+                  message: "This field is required",
                 },
               ]}
             >
