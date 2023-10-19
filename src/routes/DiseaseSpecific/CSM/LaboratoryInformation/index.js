@@ -334,8 +334,8 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableBloodPcr"
+                          label="Date result released"
+                          name="dateResultReleasedBloodPcr"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -349,29 +349,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableBloodPcr"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          name="dateResultSentBloodPcr"
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date result sent out "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentBloodPcr"
+                            name="dateResultReleasedBloodPcr"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -415,8 +393,8 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableBloodRdt"
+                          label="Date result released "
+                          name="dateResultReleasedBloodRdt"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -430,29 +408,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableBloodRdt"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          label="Date result sent out "
-                          name="dateResultSentBloodRdt"
-                          form={form}
-                          setFormValues={setFormValues}
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentBloodRdt"
+                            name="dateResultReleasedBloodRdt"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -497,8 +453,8 @@ const LaboratoryInformation = ({ form }) => {
                     <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableBloodCulture"
+                          label="Date result released "
+                          name="dateResultReleasedBloodCulture"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -512,28 +468,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableBloodCulture"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          label="Date result sent out "
-                          name="dateResultSentBloodCulture"
-                          form={form}
-                          setFormValues={setFormValues}
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentBloodCulture"
+                            name="dateResultReleasedBloodCulture"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -704,8 +639,8 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableCsfPcr"
+                          label="Date result released "
+                          name="dateResultAvailablCsfPcr"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -719,7 +654,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableCsfPcr"
+                            name="dateResultAvailablCsfPcr"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -785,8 +720,8 @@ const LaboratoryInformation = ({ form }) => {
 
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableCsfRdt"
+                          label="Date result released "
+                          name="dateResultReleasedCsfRdt"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -800,7 +735,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableCsfRdt"
+                            name="dateResultReleasedCsfRdt"
                           />
                         </ClearableFormItem>
                       </Col>
@@ -867,8 +802,8 @@ const LaboratoryInformation = ({ form }) => {
                     <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
-                          label="Date result available "
-                          name="dateResultAvailableCsfCultre"
+                          label="Date result released"
+                          name="dateResultReleasedCsfCultre"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -882,29 +817,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailableCsfCultre"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          label="Date result sent out "
-                          name="dateResultSentCsfCulture"
-                          form={form}
-                          setFormValues={setFormValues}
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentCsfCulture"
+                            name="dateResultReleasedCsfCultre"
                           />
                         </ClearableFormItem>
                       </Col>
