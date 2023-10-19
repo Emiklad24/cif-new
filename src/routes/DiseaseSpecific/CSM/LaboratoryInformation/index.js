@@ -640,7 +640,7 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result released "
-                          name="dateResultAvailablCsfPcr"
+                          name="dateResultReleasedCsfPcr"
                           form={form}
                           setFormValues={setFormValues}
                           labelCol={{ span: 24 }}
@@ -654,12 +654,12 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <CustomDatePicker
                             form={form}
-                            name="dateResultAvailablCsfPcr"
+                            name="dateResultReleasedCsfPcr"
                           />
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
+                      {/* <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
                           name="dateResultSentCsfPcr"
@@ -679,7 +679,7 @@ const LaboratoryInformation = ({ form }) => {
                             name="dateResultSentCsfPcr"
                           />
                         </ClearableFormItem>
-                      </Col>
+                      </Col> */}
                     </Row>
                   )}
 
@@ -740,7 +740,7 @@ const LaboratoryInformation = ({ form }) => {
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
+                      {/* <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           label="Date result sent out "
                           name="dateResultSentCsfRdt"
@@ -760,7 +760,7 @@ const LaboratoryInformation = ({ form }) => {
                             name="dateResultSentCsfRdt"
                           />
                         </ClearableFormItem>
-                      </Col>
+                      </Col> */}
                     </Row>
                   )}
 

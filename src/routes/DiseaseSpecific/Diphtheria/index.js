@@ -12,7 +12,6 @@ const Diphtheria = ({form}) => {
       <ClinicalHistory form={form}/>
       <LaboratoryInformation form={form}/>
       <FinalClassification form={form}/>
-     
     </>
   );
 };
