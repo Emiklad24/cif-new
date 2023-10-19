@@ -99,6 +99,12 @@ const LaboratoryInformation = ({ form }) => {
                   name="specimenType"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
                 >
                   <CheckboxGroup
                     options={[
@@ -197,6 +203,7 @@ const LaboratoryInformation = ({ form }) => {
                       label="Blood specimen received"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
+                      name="bloodSpecimenReceived"
                       rules={[
                         {
                           required: true,
@@ -392,6 +399,7 @@ const LaboratoryInformation = ({ form }) => {
                       label="Breast milk specimen received"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
+                      name="breastmilkSpecimenReceived"
                       rules={[
                         {
                           required: true,

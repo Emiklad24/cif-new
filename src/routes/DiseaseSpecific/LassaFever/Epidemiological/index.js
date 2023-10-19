@@ -244,7 +244,7 @@ const Epidemiological = ({ form }) => {
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Did you eat any rodent(Rat) in the last three weeks before becoming ill? "
+                  label="Did you eat any rodent (rat) in the last three weeks before becoming ill? "
                   name="eatAnyRodent"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
