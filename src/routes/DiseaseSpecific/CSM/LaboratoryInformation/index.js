@@ -658,28 +658,6 @@ const LaboratoryInformation = ({ form }) => {
                           />
                         </ClearableFormItem>
                       </Col>
-
-                      {/* <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          label="Date result sent out "
-                          name="dateResultSentCsfPcr"
-                          form={form}
-                          setFormValues={setFormValues}
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentCsfPcr"
-                          />
-                        </ClearableFormItem>
-                      </Col> */}
                     </Row>
                   )}
 
@@ -739,28 +717,6 @@ const LaboratoryInformation = ({ form }) => {
                           />
                         </ClearableFormItem>
                       </Col>
-
-                      {/* <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          label="Date result sent out "
-                          name="dateResultSentCsfRdt"
-                          form={form}
-                          setFormValues={setFormValues}
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultSentCsfRdt"
-                          />
-                        </ClearableFormItem>
-                      </Col> */}
                     </Row>
                   )}
 
