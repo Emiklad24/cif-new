@@ -433,7 +433,7 @@ const LaboratoryInformation = ({ form }) => {
                       >
                         <Radio.Group
                           buttonStyle="solid"
-                          name="cultureResult"
+                          name="resultBloodCulture"
                           onChange={(e) =>
                             handleUpdateInputValues(
                               e.target.name,
@@ -449,7 +449,7 @@ const LaboratoryInformation = ({ form }) => {
                       </ClearableFormItem>
                     </Col>
                   )}
-                  {formValues?.cultureResult && (
+                  {formValues?.resultBloodCulture === "growth" && (
                     <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
@@ -738,7 +738,7 @@ const LaboratoryInformation = ({ form }) => {
                       >
                         <Radio.Group
                           buttonStyle="solid"
-                          name="cultureResult"
+                          name="resultCsfCulture"
                           onChange={(e) =>
                             handleUpdateInputValues(
                               e.target.name,
@@ -754,7 +754,7 @@ const LaboratoryInformation = ({ form }) => {
                       </ClearableFormItem>
                     </Col>
                   )}
-                  {formValues?.cultureResult && (
+                  {formValues?.resultCsfCulture === "growth" && (
                     <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
