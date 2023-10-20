@@ -8,7 +8,7 @@ import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
 
-  const [formValues, setFormValues] = useState(form);
+  const [formValues, setFormValues] = useState({});
 
   const onChange = (value) => {
     console.log(`selected ${value}`);

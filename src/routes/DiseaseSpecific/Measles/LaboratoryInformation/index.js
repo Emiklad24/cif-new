@@ -118,25 +118,6 @@ const LaboratoryInformation = ({ form }) => {
                     name="sampleType"
                     onChange={(value) => {
                       handleUpdateInputValues("sampleType", value);
-
-                      form.setFieldsValue({
-                        nasopharyngealSwabReceived: undefined,
-                        dateSecimenReceivedNasopharyngealSwab: undefined,
-                        laboratoryIdNasopharyngealSwab: undefined,
-                        sampleConditionNasopharyngealSwab: undefined,
-                        pcrResult: undefined,
-                        dateResultReleasedpcr: undefined,
-                      });
-
-                      setFormValues((previousState) => ({
-                        ...previousState,
-                        nasopharyngealSwabReceived: undefined,
-                        dateSecimenReceivedNasopharyngealSwab: undefined,
-                        laboratoryIdNasopharyngealSwab: undefined,
-                        sampleConditionNasopharyngealSwab: undefined,
-                        pcrResult: undefined,
-                        dateResultReleasedpcr: undefined,
-                      }));
                     }}
                   />
                 </ClearableFormItem>
@@ -437,21 +418,6 @@ const LaboratoryInformation = ({ form }) => {
                       name="nasopharyngealSwabReceived"
                       onChange={(e) => {
                         handleUpdateInputValues(e.target.name, e.target.value);
-                        form.setFieldsValue({
-                          dateSecimenReceivedNasopharyngealSwab: undefined,
-                          laboratoryIdNasopharyngealSwab: undefined,
-                          sampleConditionNasopharyngealSwab: undefined,
-                          pcrResult: undefined,
-                          dateResultReleasedpcr: undefined,
-                        });
-                        setFormValues((previousState) => ({
-                          ...previousState,
-                          dateSecimenReceivedNasopharyngealSwab: undefined,
-                          laboratoryIdNasopharyngealSwab: undefined,
-                          sampleConditionNasopharyngealSwab: undefined,
-                          pcrResult: undefined,
-                          dateResultReleasedpcr: undefined,
-                        }));
                       }}
                     >
                       <Radio.Button value="yes">Yes</Radio.Button>

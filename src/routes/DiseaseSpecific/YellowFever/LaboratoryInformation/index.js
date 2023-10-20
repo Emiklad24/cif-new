@@ -28,7 +28,7 @@ const LaboratoryInformation = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState(form);
+  const [formValues, setFormValues] = useState({});
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
