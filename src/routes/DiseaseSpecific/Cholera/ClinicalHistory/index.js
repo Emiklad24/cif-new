@@ -298,7 +298,7 @@ const ClinicalHistory = ({ form }) => {
                   <ClearableFormItem
                     form={form}
                     setFormValues={setFormValues}
-                    label="Date Of admission"
+                    label="Date of admission"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     name="datePatientAdmittedAtLeastOneNight"
