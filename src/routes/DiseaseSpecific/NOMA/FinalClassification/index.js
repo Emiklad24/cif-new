@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
-
 const { Option } = Select;
 
 const FinalClassification = ({ form }) => {
@@ -16,11 +15,7 @@ const FinalClassification = ({ form }) => {
 
   const [formValues, setFormValues] = useState({});
 
-  const finalClassificationOptions = [
-    "Lab confirmed",
-    "Epidemiologically Link",
-    "Discarded",
-  ];
+  const finalClassificationOptions = ["Epidemiologically Link", "Discarded"];
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Final Classification" key="1">

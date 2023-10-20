@@ -28,6 +28,12 @@ const Epidemiological = ({ form }) => {
               name="familyOccupation"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <Select
                 placeholder="Select occupation"
@@ -52,6 +58,12 @@ const Epidemiological = ({ form }) => {
               name="confirmedImmunocompromisedPatient"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <Radio.Group buttonStyle="solid">
                 <Radio.Button value="yes">Yes</Radio.Button>
@@ -69,6 +81,12 @@ const Epidemiological = ({ form }) => {
               name="vaccinationStatus"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <Radio.Group buttonStyle="solid">
                 <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
@@ -91,6 +109,12 @@ const Epidemiological = ({ form }) => {
               name="anyFamilyHistoryOfNoma"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <Radio.Group buttonStyle="solid">
                 <Radio.Button value="yes">Yes</Radio.Button>
@@ -108,6 +132,12 @@ const Epidemiological = ({ form }) => {
               name="oralHygiene"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <Radio.Group buttonStyle="solid">
                 <Radio.Button value="good">Good</Radio.Button>

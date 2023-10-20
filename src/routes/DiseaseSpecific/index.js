@@ -166,8 +166,7 @@ const App = () => {
   const onChangeDisease = (value) => {
     setProgram(value);
     form.resetFields();
-    setFormValues(
-    {});
+    setFormValues({});
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -974,7 +973,9 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
-       {program !=="Yellow Fever" && <ContactTracing form={form} />}
+        {!["Yellow Fever", "NOMA"].includes(program) && (
+          <ContactTracing form={form} />
+        )}
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">
