@@ -40,7 +40,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ClearableFormItem from "../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../components/Custom/CustomDatePicker";
 import ContactTracing from "../../components/ContactTracing/ContactTracing";
-import PRSD from "./PRSD";
+import PRDS from "./PRDS";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -191,7 +191,7 @@ const App = () => {
     Dengue: <Dengue form={form} />,
     CSM: <CSM form={form} />,
     "Buruli Ulcer": <BuruliUlcer form={form} />,
-    PRDS: <PRSD form={form} />,
+    PRDS: <PRDS form={form} />,
     "Perinatal Death": <PerinatalDeath form={form} />,
     "Maternal Death": <MaternalDeath form={form} />,
     Covid19: <Covid19 form={form} />,

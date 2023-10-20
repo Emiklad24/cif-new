@@ -5,7 +5,7 @@ import ClinicalHistory from "./ClinicalHistory";
 import FinalClassification from "./FinalClassification";
 import LaboratoryInformation from "./LaboratoryInformation";
 
-const PRSD = ({ form }) => {
+const PRDS = ({ form }) => {
   return (
     <>
       <Epidemiological form={form} />
@@ -15,4 +15,4 @@ const PRSD = ({ form }) => {
     </>
   );
 };
-export default PRSD;
+export default PRDS;
