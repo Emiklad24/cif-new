@@ -230,7 +230,7 @@ const ClinicalHistory = ({ form }) => {
                 label="Blood in stool"
                 name="bloodInStool"
                 labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }} 
                 rules={[
                   {
                     required: true,

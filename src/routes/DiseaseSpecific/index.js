@@ -973,7 +973,7 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
-        {!["Yellow Fever", "NOMA"].includes(program) && (
+        {!["Yellow Fever", "NOMA", "Measles"].includes(program) && (
           <ContactTracing form={form} />
         )}
         <Row>
