@@ -1,0 +1,1 @@
+export const GET_ALL_LOOK_UPS = "GET_ALL_LOOK_UPS"

@@ -41,6 +41,10 @@ import ClearableFormItem from "../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../components/Custom/CustomDatePicker";
 import ContactTracing from "../../components/ContactTracing/ContactTracing";
 import PRDS from "./PRDS";
+import { useQuery } from "react-query";
+import getAllLookups from "../../services/getAllLookups";
+import { GET_ALL_LOOK_UPS } from "../../constants/queryKeys";
+import useFetchAllLookup from "../../hooks/useFetchAllLookups.hooks";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -89,12 +93,8 @@ const App = () => {
   const [lga, setLga] = useState([]);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
-  const [dateOfBirth, setBirthDate] = useState(null);
-  const [isYearDisabled, setIsYearDisabled] = useState(false);
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
@@ -203,6 +203,8 @@ const App = () => {
     }
     return null;
   };
+
+  const { data } = useFetchAllLookup();
 
   return (
     <>
