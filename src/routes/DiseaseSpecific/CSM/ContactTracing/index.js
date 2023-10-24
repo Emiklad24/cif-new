@@ -1,17 +1,9 @@
-import {
-  Col,
-  Form,
-  Input,
-  Collapse,
-  DatePicker,
-  Row,
-  Tooltip,
-  Select,
-  Radio,
-} from "antd";
+/* eslint-disable no-unused-vars */
+import { Col, Input, Collapse, Row, Tooltip, Select, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
 const { Option } = Select;
 
@@ -27,32 +19,24 @@ const relationshipWithCase = [
 ];
 
 const stateData = ["FCT", "Enugu"];
-const facilityData = ["Federal Medical Center", "Jabi Clinic"];
-const diseaseData = ["COVID-19", "Cholera", "Yellow Fever"];
 
 const lgaData = {
   FCT: ["AMAC", "Bwari", "Kwali"],
   Enugu: ["Nsukka", "Enugu south", "Udi"],
 };
 
-const ContactTracing = () => {
-  const [form] = Form.useForm();
+const ContactTracing = ({ form }) => {
   const [lga, setLga] = useState([]);
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+
+  const [_, setFormValues] = useState({});
 
   const handleStateChange = (value) => {
     setLga(lgaData[value]);
   };
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
   const onChange = (value) => {
     console.log(`selected ${value}`);
-  };
-  const onSearch = (value) => {
-    console.log("search:", value);
   };
 
   return (
@@ -61,8 +45,10 @@ const ContactTracing = () => {
         <Panel header="Contact Tracing Information" key="1">
           <Row>
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Contact First Name"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact first name"
                 name="contactFirstNameContact"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -77,14 +63,16 @@ const ContactTracing = () => {
                   placeholder="Enter First Name"
                   id="address"
                   name="address"
-                  onChange={(e) => { }}
+                  onChange={(e) => {}}
                 />
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
 
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Contact Last Name"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact last name"
                 name="contactLastName"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -99,14 +87,16 @@ const ContactTracing = () => {
                   placeholder="Enter Last Name"
                   id="lastName"
                   name="lastName"
-                  onChange={(e) => { }}
+                  onChange={(e) => {}}
                 />
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
 
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Date of Birth"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of birth"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 // initialValue={sample_date ? moment(sample_date) : null}
@@ -118,23 +108,18 @@ const ContactTracing = () => {
                   },
                 ]}
               >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
+                <CustomDatePicker form={form} name="contactDateOfBirth" />
+              </ClearableFormItem>
             </Col>
 
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 tooltip="Estimated age in years and months"
-                label="Contact Age"
+                label="Contact age"
                 rules={[
                   {
                     required: true,
@@ -154,7 +139,7 @@ const ContactTracing = () => {
                           // value={age_year}
                           // onChange={onChangeYear}
                           placeholder="Estimated Years"
-                        // disabled={isYearDisabled}
+                          // disabled={isYearDisabled}
                         />
                       </Tooltip>
                     </Col>
@@ -174,12 +159,14 @@ const ContactTracing = () => {
                     </Col>
                   </Row>
                 </Input.Group>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
 
             <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Contact Sex"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact sex"
                 name="contactSex"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -194,12 +181,14 @@ const ContactTracing = () => {
                   <Radio.Button value="male">Male</Radio.Button>
                   <Radio.Button value="female">Female</Radio.Button>
                 </Radio.Group>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
 
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Form.Item
-                label="Contact State of Residence"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact state of residence"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 name="contactStateOfResidence"
@@ -218,16 +207,18 @@ const ContactTracing = () => {
                   onChange={handleStateChange}
                 >
                   {stateData.map((item) => (
-                    <Option label={item} value={item}>
+                    <Option label={item} value={item} key={item}>
                       {item}
                     </Option>
                   ))}
                 </Select>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Form.Item
-                label="Contact LGA of Residence"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact LGA of residence"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 name="contatcLgaOfResidence"
@@ -245,16 +236,18 @@ const ContactTracing = () => {
                   placeholder={<>&nbsp; Select LGA</>}
                 >
                   {lga.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                    <Option key={item} label={item} value={item} >
                       {item}
                     </Option>
                   ))}
                 </Select>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Form.Item
-                label="Contact Ward of Residence"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact ward of residence"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 name="contactWardOfResidence"
@@ -272,16 +265,18 @@ const ContactTracing = () => {
                   placeholder={<>&nbsp; Select Ward</>}
                 >
                   {lga.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                    <Option key={item} label={item} value={item}>
                       {item}
                     </Option>
                   ))}
                 </Select>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Contact Residential Address "
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Contact residential address "
                 name="contactResidentialAddress"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
@@ -296,17 +291,18 @@ const ContactTracing = () => {
                   placeholder="Enter Contact Address"
                   id="address"
                   name="address"
-                  onChange={(e) => { }}
+                  onChange={(e) => {}}
                 />
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
 
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Relationship with Case"
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Relationship with case"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                // initialValue={birth_date ? moment(birth_date) : null}
                 name="relationshipWithCase"
                 rules={[
                   {
@@ -315,18 +311,14 @@ const ContactTracing = () => {
                   },
                 ]}
               >
-                <Select
-                  showSearch
-                  allowClear
-                  optionLabelProp="label"
-                >
-                  {relationshipWithCase.map((item, i) => (
-                    <Option key={i} label={item} value={item}>
+                <Select showSearch allowClear optionLabelProp="label">
+                  {relationshipWithCase?.map((item, i) => (
+                    <Option key={item} label={item} value={item}>
                       {item}
                     </Option>
                   ))}
                 </Select>
-              </Form.Item>
+              </ClearableFormItem>
             </Col>
           </Row>
         </Panel>

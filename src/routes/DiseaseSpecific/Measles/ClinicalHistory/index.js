@@ -1,316 +1,361 @@
-import {
-  Col,
-  Form,
-  Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
-} from 'antd';
-import React, { useState } from 'react';
+import { Col, Input, Collapse, Row, Radio } from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 
-const { Option } = Select;
-
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
-
-const lgaData = {
-  FCT: ['AMAC', 'Bwari', 'Kwali'],
-  Enugu: ['Nsukka', 'Enugu south', 'Udi'],
-};
-
-const ClinicalHistory = () => {
-  const [form] = Form.useForm();
-  const [lga, setLga] = useState([]);
+const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
-  };
-
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const onSearch = (value) => {
-    console.log('search:', value);
+
+  const [formValues, setFormValues] = useState({});
+
+  const handleUpdateInputValues = (inputName, value) => {
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
   };
 
-
-
   return (
-    <>
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="Clinical History: Sign and Symptoms" key="1">
-          <Row>
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Fever"
-                name="fever"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+    <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+      <Panel header="Clinical History: Sign and Symptoms" key="1">
+        <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Fever"
+              name="fever"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Rash"
-                name="rash"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Rash"
+              name="rash"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Date of Symptom Onset"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                // initialValue={birth_date ? moment(birth_date) : null}
-                name="dateSymptomOnset"
-                rules={[
-                  {
-                    required: true,
-                    message: "Select a date!",
-                  },
-                ]}
-              >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
-            </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Cough"
+              name="cough"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-          </Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Runny nose (Catarrh)"
+              name="catarrh"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-          <Row>
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Cough"
-                name="cough"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Red eyes (Conjuctivities)"
+              name="conjuctivities"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Runny Nose (Catarrh)"
-                name="catarrh"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Joint swelling/pain"
+              name="jointSwellingPain"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Red Eyes (Conjuctivities)"
-                name="conjuctivities"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
-          </Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Swollen lymph nodes behind Ears"
+              name="swollenLymphNodesBehindEars"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                <Radio.Button value="yes">Yes</Radio.Button>
+                <Radio.Button value="no">No</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-          <Row>
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Joint Swelling/Pain"
-                name="jointSwellingPain"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="History of hospitalization"
+              name="historyOfHospitalization"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                name="historyOfHospitalization"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+                <Radio.Button value="inPatient">In patient</Radio.Button>
+                <Radio.Button value="outPatient">Out patient</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Swollen lymph Nodes Behind Ears"
-                name="swollenLymphNodesBehindEars"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+          {formValues?.historyOfHospitalization === "inPatient" && (
+            <>
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Name of hospital"
+                  name="inpatientNameOfHospital"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Name of hospital"
+                    id="inpatientNameOfHospital"
+                    name="inpatientNameOfHospital"
+                    type="text"
+                  />
+                </ClearableFormItem>
+              </Col>
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Others (Specify)"
-                name="otherSymptoms"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  placeholder="Specify other symptoms"
-                  id="otherSymptoms "
-                  name="otherSymptoms"
-                  type="Text"
-                />
-              </Form.Item>
-            </Col>
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Date of hospitalization"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  name="dateOfHospitalization"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker form={form} name="dateOfHospitalization" />
+                </ClearableFormItem>
+              </Col>
+            </>
+          )}
 
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="History of Hospitalization"
-                name="hospitalization"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="inPatient">In patient</Radio.Button>
-                  <Radio.Button value="outPatient">Out patient</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
-            
-            <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Outcome"
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Outcome"
+              name="outcome"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
                 name="outcome"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
+                onChange={(e) => {
+                  handleUpdateInputValues(e.target.name, e.target.value);
+                  form.setFieldsValue({
+                    dateDeath: undefined,
+                  });
+                  setFormValues((previousState) => ({
+                    ...previousState,
+                    dateDeath: undefined,
+                  }));
+                }}
               >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="alive">Alive</Radio.Button>
-                  <Radio.Button value="dead">Dead</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
+                <Radio.Button value="alive">Alive</Radio.Button>
+                <Radio.Button value="dead">Dead</Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
+          {formValues?.outcome === "dead" && (
             <Col lg={8} md={8} sm={24}>
-              <Form.Item
-                label="Date of Death"
+              <ClearableFormItem
+                form={form}
+                setFormValues={setFormValues}
+                label="Date of death"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                // initialValue={birth_date ? moment(birth_date) : null}
                 name="dateDeath"
                 rules={[
                   {
                     required: true,
-                    message: "Select a date!",
+                    message: "This field is required",
                   },
                 ]}
               >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  disabledDate={(current) =>
-                    current.isAfter(moment()) || isDatePickerDisabled
-                  }
-                  style={{ width: "100%" }}
-                  placeholder="DD-MM-YYYY"
-                />
-              </Form.Item>
+                <CustomDatePicker form={form} name="dateDeath" />
+              </ClearableFormItem>
             </Col>
-          </Row>
+          )}
 
-        </Panel>
-      </Collapse>
-    </>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Others (Specify)"
+              name="otherSymptoms"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
+                placeholder="Specify other symptoms"
+                id="otherSymptoms "
+                name="otherSymptoms"
+                type="text"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateSymptomOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
+        </Row>
+      </Panel>
+    </Collapse>
   );
 };
 export default ClinicalHistory;

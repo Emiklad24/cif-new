@@ -1,73 +1,48 @@
-import {
-  Col,
-  Form,
-  Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
-} from 'antd';
-import React, {useState} from 'react';
+/* eslint-disable no-unused-vars */
+import { Col, Collapse, Radio } from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
-const {Option} = Select;
+const FinalClassification = ({ form }) => {
+  const [formValues, setFormValues] = useState({});
 
-const stateData = ['FCT', 'Enugu'];
-const facilityData = ['Federal Medical Center', 'Jabi Clinic'];
-const diseaseData = ['COVID-19', 'Cholera', 'Yellow Fever'];
+  const { Panel } = Collapse;
 
-const lgaData = {
-  FCT: ['AMAC', 'Bwari', 'Kwali'],
-  Enugu: ['Nsukka', 'Enugu south', 'Udi'],
-};
-
-const FinalClassification = () => {
-  const [form] = Form.useForm();
-  const [lga, setLga] = useState([]);
-  const {Panel} = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
-  };
-
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const onSearch = (value) => {
-    console.log('search:', value);
-  };
 
   return (
-    <>
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="Final Classification" key="1">
-        <Col lg={12} md={12} sm={24}>
-              <Form.Item
-                label="Final Classification"
-                name="finalClassification"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "Select an option!",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="lab_confirmed">Lab Confirmed</Radio.Button>
-                  <Radio.Button value="probable">Probable</Radio.Button>
-                  <Radio.Button value="not_a_case">Not a Case</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-            </Col>
-        </Panel>
-      </Collapse>
-    </>
+    <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+      <Panel header="Final Classification" key="1">
+        <Col lg={24} md={24} sm={24}>
+          <ClearableFormItem
+            setFormValues={setFormValues}
+            form={form}
+            label="Final classification"
+            name="finalClassification"
+            labelCol={{ span: 24 }}
+            wrapperCol={{ span: 24 }}
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+          >
+            <Radio.Group buttonStyle="solid">
+              <Radio.Button value="labConfirmed">
+                Laboratory confirmed
+              </Radio.Button>
+              <Radio.Button value="probable">Probable</Radio.Button>
+              <Radio.Button value="notACase">Not a case</Radio.Button>
+              <Radio.Button value="pending">Pending</Radio.Button>
+            </Radio.Group>
+          </ClearableFormItem>
+        </Col>
+      </Panel>
+    </Collapse>
   );
 };
 export default FinalClassification;
