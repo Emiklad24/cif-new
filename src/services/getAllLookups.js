@@ -1,8 +1,9 @@
 import axios from "axios";
+import { apiUrl } from "../constants/apiURL";
 
 const getAllLookups = async () => {
   const res = await axios?.get(
-    `http://staging.sormas.org.ng/sormas-integration-v1/api/lookup/all-look-ups`
+    `${apiUrl}all-look-ups`
   );
 
   return res?.data;
