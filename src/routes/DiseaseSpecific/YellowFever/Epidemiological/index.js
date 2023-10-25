@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const Epidemiological = ({ form }) => {
   const [formValues, setFormValues] = useState({});
@@ -18,6 +20,8 @@ const Epidemiological = ({ form }) => {
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
+
+  const { data: allLookup } = useFetchAllLookup();
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -86,7 +90,6 @@ const Epidemiological = ({ form }) => {
                 label="Date of vaccination:"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                
                 name="dateOfVaccination"
                 rules={[
                   {
@@ -157,11 +160,12 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -180,11 +184,12 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="Alive">Alive</Radio.Button>
-                <Radio.Button value="Dead">Dead</Radio.Button>
-                <Radio.Button value="Unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.present_condition_type || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
         </Row>

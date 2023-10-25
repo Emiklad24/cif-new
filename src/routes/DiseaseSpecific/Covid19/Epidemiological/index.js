@@ -3,6 +3,12 @@ import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import DynamicSelect from "../../../../components/Custom/DynamicSelect";
+import useFetchAllStates from "../../../../hooks/useFetchAllStates.hooks";
+import useFetchAllLGA from "../../../../hooks/useFetchLga.hook";
+
 const { Option } = Select;
 const countryData = ["China", "United Kingdom", "USA", "India", "Ghana"];
 const gatheringType = [
@@ -12,26 +18,29 @@ const gatheringType = [
   "Wedding",
   "Others",
 ];
-const stateData = ["FCT", "Enugu"];
-const vaccineType = [
-  "Ad26.COV2.S",
-  "Novavax",
-  "Oxford–AstraZeneca",
-  "Pfizer–BioNTech",
-  "Sanofi-GSK",
-  "Unknown",
-];
-const lgaData = {
-  FCT: ["AMAC", "Bwari", "Kwali"],
-  Enugu: ["Nsukka", "Enugu south", "Udi"],
-};
+
 
 const Epidemiological = ({ form }) => {
-  const [lga, setLga] = useState([]);
+  const [lga] = useState([]);
   const { Panel } = Collapse;
+  const [selectedState, setSelectedState] = useState(null);
+  
 
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
+  const handleStateChange = (value, name) => {
+    setSelectedState((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+    if (name === "stateOfTravel") {
+      form.setFieldsValue({
+        lgaOfTravel: null,
+      });
+    }
+    if (name === "stateOfEvent") {
+      form.setFieldsValue({
+        lgaOfEvent: null,
+      });
+    }
   };
 
   const onChange = (value) => {
@@ -39,6 +48,10 @@ const Epidemiological = ({ form }) => {
   };
 
   const [formValues, setFormValues] = useState({});
+  const { data: allLookup } = useFetchAllLookup();
+  const lgaOfTravelQuery = useFetchAllLGA(selectedState?.stateOfTravel);
+  const lgaOfEvent = useFetchAllLGA(selectedState?.stateOfEvent);
+
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
@@ -70,6 +83,8 @@ const Epidemiological = ({ form }) => {
     { label: "Liver diseases", value: "Liver disease" },
     { label: "Neurological conditions", value: "Neurological conditions" },
   ];
+  const { data: allStates } = useFetchAllStates();
+
   return (
     <>
       <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -122,7 +137,7 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       placeholder="Select a vaccine"
                       optionFilterProp="children"
@@ -137,10 +152,9 @@ const Epidemiological = ({ form }) => {
                           ?.toLowerCase()
                           .localeCompare(optionB.children?.toLowerCase())
                       }
-                      options={vaccineType.map((vaccine) => ({
-                        label: vaccine,
-                        value: vaccine,
-                      }))}
+                      valueProperty="id"
+                      labelProperty="value"
+                      options={allLookup?.vaccine_type || []}
                     />
                   </ClearableFormItem>
                 </Col>
@@ -216,21 +230,20 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="returnedFromLocalTravel14Days"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
 
-            {formValues?.returnedFromLocalTravel14Days === "yes" && (
+            {formValues?.returnedFromLocalTravel14Days === "YES" && (
               <Row>
                 <Divider />
                 <Col lg={12} md={12} sm={24}>
@@ -288,19 +301,26 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
                       placeholder={<>&nbsp; Select State</>}
-                      onChange={handleStateChange}
-                    >
-                      {stateData.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={allStates}
+                      valueProperty="id"
+                      labelProperty="name"
+                      onChange={(v) => handleStateChange(v, "stateOfTravel")}
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
+                    />
                   </ClearableFormItem>
                 </Col>
                 <Col lg={12} md={12} sm={24}>
@@ -316,20 +336,27 @@ const Epidemiological = ({ form }) => {
                         message: "This field is required",
                       },
                     ]}
+                    name="lgaOfTravel"
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
                       placeholder={<>&nbsp; Select LGA</>}
-                      name="clientTravelAddress"
-                    >
-                      {lga.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
+                      options={lgaOfTravelQuery?.data}
+                      valueProperty="id"
+                      labelProperty="name"
+                    />
                   </ClearableFormItem>
                 </Col>
                 <Col lg={12} md={12} sm={24}>
@@ -367,21 +394,20 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="returnedFromnInternationalTravel14Days"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
 
-            {formValues?.returnedFromnInternationalTravel14Days === "yes" && (
+            {formValues?.returnedFromnInternationalTravel14Days === "YES" && (
               <Row>
                 <Divider />
                 <Col lg={12} md={12} sm={24}>
@@ -525,21 +551,20 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="contactWithSuspectedConfirmedCase"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
 
-            {formValues?.contactWithSuspectedConfirmedCase === "yes" && (
+            {formValues?.contactWithSuspectedConfirmedCase === "YES" && (
               <>
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
@@ -576,20 +601,19 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="attendedAnyEvent"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
-            {formValues?.attendedAnyEvent === "yes" && (
+            {formValues?.attendedAnyEvent === "YES" && (
               <Row>
                 <Divider />
                 <Col lg={12} md={12} sm={12} xs={24}>
@@ -683,20 +707,27 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
                       placeholder={<>&nbsp; Select State</>}
                       name="stateOfEvent"
-                      onChange={handleStateChange}
-                    >
-                      {stateData.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={allStates}
+                      valueProperty="id"
+                      labelProperty="name"
+                      onChange={(v) => handleStateChange(v, "stateOfEvent")}
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
+                    />
                   </ClearableFormItem>
                 </Col>
                 <Col lg={12} md={12} sm={24}>
@@ -714,19 +745,26 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
                       placeholder={<>&nbsp; Select LGA</>}
                       name="lgaOfEvent"
-                    >
-                      {lga.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={lgaOfEvent?.data}
+                      valueProperty="id"
+                      labelProperty="name"
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
+                    />
                   </ClearableFormItem>
                 </Col>
                 <Col lg={12} md={12} sm={24}>
@@ -764,21 +802,20 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="visitedOrAdmittedInpatient"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
 
-            {formValues?.visitedOrAdmittedInpatient === "yes" && (
+            {formValues?.visitedOrAdmittedInpatient === "YES" && (
               <>
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
@@ -837,21 +874,20 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   onChange={(e) =>
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                   name="visitOutpatient"
-                >
-                  <Radio.Button value="yes">Yes</Radio.Button>
-                  <Radio.Button value="no">No</Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                </Radio.Group>
+                />
               </ClearableFormItem>
             </Col>
 
-            {formValues?.visitOutpatient === "yes" && (
+            {formValues?.visitOutpatient === "YES" && (
               <>
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
@@ -907,20 +943,21 @@ const Epidemiological = ({ form }) => {
                   },
                 ]}
               >
-                <Radio.Group
+                <DynamicRadio
                   buttonStyle="solid"
+                  options={allLookup?.present_condition_type || []}
+                  valueProperty="id"
+                  labelProperty="value"
                   name="personOutcome"
                   onChange={(e) => {
                     handleUpdateInputValues(e.target.name, e.target.value);
                   }}
-                >
-                  <Radio.Button value="alive">Alive</Radio.Button>
-                  <Radio.Button value="dead">Dead</Radio.Button>
-                </Radio.Group>
+                />
+                
               </ClearableFormItem>
             </Col>
 
-            {formValues?.personOutcome === "dead" && (
+            {formValues?.personOutcome === "DEAD" && (
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   label="Date of death"
@@ -954,11 +991,12 @@ const Epidemiological = ({ form }) => {
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                 >
-                  <Radio.Group buttonStyle="solid" name={el.value}>
-                    <Radio.Button value="yes">Yes</Radio.Button>
-                    <Radio.Button value="no">No</Radio.Button>
-                    <Radio.Button value="unknown">Unknown</Radio.Button>
-                  </Radio.Group>
+                  <DynamicRadio
+                    buttonStyle="solid"
+                    options={allLookup?.yes_no_unknown || []}
+                    valueProperty="id"
+                    labelProperty="value"
+                  />
                 </ClearableFormItem>
               </Col>
             ))}

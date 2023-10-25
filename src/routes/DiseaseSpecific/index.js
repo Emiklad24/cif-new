@@ -13,7 +13,6 @@ import {
 } from "antd";
 import React, { useState, useEffect } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 import YellowFever from "./YellowFever";
 import Cholera from "./Cholera";
 import Yaw from "./Yaw";
@@ -41,14 +40,19 @@ import ClearableFormItem from "../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../components/Custom/CustomDatePicker";
 import ContactTracing from "../../components/ContactTracing/ContactTracing";
 import PRDS from "./PRDS";
+import useFetchAllLookup from "../../hooks/useFetchAllLookups.hooks";
+import useFetchAllStates from "../../hooks/useFetchAllStates.hooks";
+import useFetchAllLGA from "../../hooks/useFetchLga.hook";
+import DynamicSelect from "../../components/Custom/DynamicSelect";
+import useFetchWard from "../../hooks/useFetchWard.hook";
+import useGetHealthFacilities from "../../hooks/useGetHealthFacilities.hook";
+import useGetAllSettlementType from "../../hooks/useGetAllSettlementType.hook";
+import DynamicRadio from "../../components/Custom/DynamicRadio";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
 const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
-const stateData = ["FCT", "Enugu"];
-const facilityData = ["Federal Medical Center", "Jabi Clinic"];
-const occupationData = ["Business", "Public Health"];
-const educationData = ["PHD", "Master"];
+
 const diseaseData = [
   "Cholera",
   "Yellow Fever",
@@ -74,11 +78,6 @@ const diseaseData = [
   "Buruli Ulcer",
 ];
 
-const lgaData = {
-  FCT: ["AMAC", "Bwari", "Kwali"],
-  Enugu: ["Nsukka", "Enugu south", "Udi"],
-};
-
 const App = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -87,17 +86,50 @@ const App = () => {
   const { Panel } = Collapse;
 
   const [lga, setLga] = useState([]);
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedLga, setSelectedLga] = useState(null);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
-
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
-  const [dateOfBirth, setBirthDate] = useState(null);
-  const [isYearDisabled, setIsYearDisabled] = useState(false);
 
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
+  const handleStateChange = (value, name) => {
+    setSelectedState((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+    if (name === "stateOfReporting") {
+      setSelectedLga(null);
+      form.setFieldsValue({
+        lgaOfReporting: null,
+        wardOfReporting: null,
+      });
+    }
+    if (name === "stateOfResidence") {
+      setSelectedLga(null);
+      form.setFieldsValue({
+        lgaOfResidence: null,
+        wardOfResidence: null,
+      });
+    }
+  };
+
+  const handleLgaChange = (value, name) => {
+    setSelectedLga((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+
+    if (name === "lgaOfReporting") {
+      form.setFieldsValue({
+        wardOfReporting: null,
+      });
+    }
+    if (name === "lgaOfResidence") {
+      form.setFieldsValue({
+        wardOfResidence: null,
+      });
+    }
   };
 
   const getDoBFromAge = (arg) => {
@@ -165,9 +197,14 @@ const App = () => {
 
   const onChangeDisease = (value) => {
     setProgram(value);
+    setSelectedLga(null);
+    setSelectedState(null);
     form.resetFields();
     setFormValues({});
+    setAgeYear(0);
+    setAgeMonth(0);
   };
+
   const onSearch = (value) => {
     console.log("search:", value);
   };
@@ -203,6 +240,15 @@ const App = () => {
     }
     return null;
   };
+
+  const { data: allLookup } = useFetchAllLookup();
+  const { data: allStates } = useFetchAllStates();
+  const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
+  const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
+  const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
+  const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
+  const AllHealthFacilitiesQuery = useGetHealthFacilities();
+  const AllSettlementTypeQuery = useGetAllSettlementType();
 
   return (
     <>
@@ -287,29 +333,28 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
                     placeholder={<>&nbsp; Select State</>}
-                    onChange={handleStateChange}
                     filterOption={(input, option) =>
                       (option?.label ?? "")
                         .toLowerCase()
                         .includes(input.toLowerCase())
+                    }
+                    onChange={(value) =>
+                      handleStateChange(value, "stateOfReporting")
                     }
                     filterSort={(optionA, optionB) =>
                       (optionA?.label ?? "")
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {stateData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    options={allStates}
+                    valueProperty="id"
+                    labelProperty="name"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
@@ -326,7 +371,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
@@ -341,19 +386,21 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {lga.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    options={lgaOfReportingQuery?.data || []}
+                    valueProperty="id"
+                    labelProperty="name"
+                    onChange={(value) =>
+                      handleLgaChange(value, "lgaOfReporting")
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
-                  label="Ward of reporting"
+                  label={`Ward of reporting ${
+                    wardQuery?.isLoading ? "Loading..." : ""
+                  }`}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="wardOfReporting"
@@ -364,7 +411,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
@@ -379,13 +426,14 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {lga.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    options={
+                      wardQuery?.isLoading
+                        ? []
+                        : wardQuery?.data?.[selectedLga?.lgaOfReporting]
+                    }
+                    valueProperty="id"
+                    labelProperty="name"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
@@ -441,7 +489,7 @@ const App = () => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
@@ -455,14 +503,10 @@ const App = () => {
                           .toLowerCase()
                           .localeCompare((optionB?.label ?? "").toLowerCase())
                       }
-                      // onChange={handleStateChange}
-                    >
-                      {facilityData.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={AllHealthFacilitiesQuery?.data}
+                      valueProperty="id"
+                      labelProperty="name"
+                    />
                   </ClearableFormItem>
                 </Col>
               )}
@@ -518,12 +562,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
-                    showSearch
-                    allowClear
-                    optionLabelProp="label"
-                    // onChange={handleStateChange}
-                  >
+                  <Select showSearch allowClear optionLabelProp="label">
                     {notifiesBy.map((item) => (
                       <Option label={item} value={item} key={item}>
                         {item}
@@ -733,13 +772,13 @@ const App = () => {
                       }))
                     }
                   >
-                    <Radio.Button value="female">Female</Radio.Button>
-                    <Radio.Button value="male">Male</Radio.Button>
+                    <Radio.Button value="MALE">Male</Radio.Button>
+                    <Radio.Button value="FEMALE">Female</Radio.Button>
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
 
-              {formValues?.sex === "female" && (
+              {formValues?.sex === "FEMALE" && ageYear >= 10 && (
                 <Col lg={8} md={12} sm={12} xs={24}>
                   <ClearableFormItem
                     form={form}
@@ -786,12 +825,11 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
                     placeholder={<>&nbsp; Select State</>}
-                    onChange={handleStateChange}
                     filterOption={(input, option) =>
                       (option?.label ?? "")
                         .toLowerCase()
@@ -802,13 +840,13 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {stateData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    options={allStates}
+                    valueProperty="id"
+                    labelProperty="name"
+                    onChange={(value) =>
+                      handleStateChange(value, "stateOfResidence")
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
@@ -825,7 +863,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
@@ -840,19 +878,21 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {lga.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    onChange={(value) =>
+                      handleLgaChange(value, "lgaOfResidence")
+                    }
+                    options={lgaOfResidenceQuery?.data}
+                    valueProperty="id"
+                    labelProperty="name"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   form={form}
-                  label="Ward of residence"
+                  label={`Ward of residence ${
+                    wardOfResidenceQuery?.isLoading ? "Loading..." : ""
+                  }`}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="wardOfResidence"
@@ -863,7 +903,7 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     showSearch
                     allowClear
                     optionLabelProp="label"
@@ -878,13 +918,16 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                  >
-                    {lga.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                    options={
+                      wardOfResidenceQuery?.isLoading
+                        ? []
+                        : wardOfResidenceQuery?.data?.[
+                            selectedLga?.lgaOfResidence
+                          ]
+                    }
+                    valueProperty="id"
+                    labelProperty="name"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={24}>
@@ -917,10 +960,12 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="Urban">Urban</Radio.Button>
-                    <Radio.Button value="Rural">Rural</Radio.Button>
-                  </Radio.Group>
+                  <DynamicRadio
+                    buttonStyle="solid"
+                    options={AllSettlementTypeQuery?.data || []}
+                    valueProperty="id"
+                    labelProperty="value"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
@@ -937,13 +982,23 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="Select an option" allowClear>
-                    {occupationData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                  <DynamicSelect
+                    placeholder="Select an option"
+                    allowClear
+                    options={allLookup?.occupation_type || []}
+                    valueProperty="id"
+                    labelProperty="value"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      optionA.children
+                        ?.toLowerCase()
+                        .localeCompare(optionB.children?.toLowerCase())
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={8} md={12} sm={12} xs={24}>
@@ -960,13 +1015,23 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="Select an option" allowClear>
-                    {educationData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                  <DynamicSelect
+                    placeholder="Select an option"
+                    allowClear
+                    options={allLookup?.educational_levels || []}
+                    valueProperty="id"
+                    labelProperty="value"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      optionA.children
+                        ?.toLowerCase()
+                        .localeCompare(optionB.children?.toLowerCase())
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
             </Row>

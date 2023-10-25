@@ -44,7 +44,7 @@ const LaboratoryInformation = ({ form }) => {
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
               form={form}
-              setFormValues={setFormValues}
+              setFormValues={setFormValues} 
               label="Specimen collected"
               name="specimenCollected"
               labelCol={{ span: 24 }}
