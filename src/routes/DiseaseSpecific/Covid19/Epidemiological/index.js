@@ -310,6 +310,16 @@ const Epidemiological = ({ form }) => {
                       valueProperty="id"
                       labelProperty="name"
                       onChange={(v) => handleStateChange(v, "stateOfTravel")}
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
                     />
                   </ClearableFormItem>
                 </Col>
@@ -707,6 +717,16 @@ const Epidemiological = ({ form }) => {
                       valueProperty="id"
                       labelProperty="name"
                       onChange={(v) => handleStateChange(v, "stateOfEvent")}
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
                     />
                   </ClearableFormItem>
                 </Col>
@@ -734,6 +754,16 @@ const Epidemiological = ({ form }) => {
                       options={lgaOfEvent?.data}
                       valueProperty="id"
                       labelProperty="name"
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? "")
+                          .toLowerCase()
+                          .localeCompare((optionB?.label ?? "").toLowerCase())
+                      }
                     />
                   </ClearableFormItem>
                 </Col>

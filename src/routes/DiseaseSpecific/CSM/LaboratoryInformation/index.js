@@ -1,25 +1,15 @@
-import { Col, Input, Collapse, Row, Select, Radio, Divider } from "antd";
+import { Col, Input, Collapse, Row, Radio, Divider } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import DynamicSelect from "../../../../components/Custom/DynamicSelect";
+import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const CheckboxGroup = Checkbox.Group;
-
-const { Option } = Select;
-
-const testingLaboratoryData = [
-  "ACEGID -African Centre of Excellence for Genomics of Infectious Diseases, Ogun",
-  "AE-FUTHA -Alex Ekwueme Federal University Teaching Hospital Virology Laboratory",
-  "BUK -Bayero University Kano Centre for Infectious Disease and Research, Kano",
-  "FMC JALINGO -Federal Medical Centre, Jalingo, Taraba",
-  "FMC OWO -Federal Medical Centre Owo, Ondo",
-  "ISTH -Irrua Specialist Teaching Hospital, Edo",
-  "LUTH -Lagos University Teaching Hospital Virology Laboratory, Lagos",
-  "MOGID -Molecular Genetics and Infectious Diseases Research Laboratory, Bauchi",
-  "NRL -National Reference Laboratory Gaduwa, FCT",
-];
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
@@ -38,6 +28,13 @@ const LaboratoryInformation = ({ form }) => {
       [inputName]: value,
     }));
   };
+
+  const allHealthFacilitiesQuery = useGetHealthFacilities();
+  const testingLaboratoryData = allHealthFacilitiesQuery?.data?.filter(
+    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  );
+
+  const { data: allLookup } = useFetchAllLookup();
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -58,21 +55,20 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                valueProperty="id"
+                labelProperty="value"
                 name="specimenCollected"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                {/* <Radio.Button value="unknown">Unknown</Radio.Button> */}
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
 
-          {formValues?.specimenCollected === "yes" && (
+          {formValues?.specimenCollected === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -160,13 +156,24 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <Select showSearch allowClear optionLabelProp="label">
-                    {testingLaboratoryData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                  <DynamicSelect
+                    showSearch
+                    allowClear
+                    optionLabelProp="label"
+                    options={testingLaboratoryData}
+                    valueProperty="id"
+                    labelProperty="name"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
               <Divider plain>Laboratory result</Divider>
@@ -186,21 +193,21 @@ const LaboratoryInformation = ({ form }) => {
                       },
                     ]}
                   >
-                    <Radio.Group
+                    <DynamicRadio
                       buttonStyle="solid"
+                      options={allLookup?.yes_no_type || []}
+                      valueProperty="id"
+                      labelProperty="value"
                       name="bloodSampleReceived"
                       onChange={(e) =>
                         handleUpdateInputValues(e.target.name, e.target.value)
                       }
-                    >
-                      <Radio.Button value="yes">Yes</Radio.Button>
-                      <Radio.Button value="no">No</Radio.Button>
-                    </Radio.Group>
+                    />
                   </ClearableFormItem>
                 </Col>
               )}
 
-              {formValues?.bloodSampleReceived === "yes" && (
+              {formValues?.bloodSampleReceived === "YES" && (
                 <>
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -493,20 +500,21 @@ const LaboratoryInformation = ({ form }) => {
                       },
                     ]}
                   >
-                    <Radio.Group
+                     <DynamicRadio
                       buttonStyle="solid"
+                      options={allLookup?.yes_no_type || []}
+                      valueProperty="id"
+                      labelProperty="value"
                       name="csfSampleReceived"
                       onChange={(e) =>
                         handleUpdateInputValues(e.target.name, e.target.value)
                       }
-                    >
-                      <Radio.Button value="yes">Yes</Radio.Button>
-                      <Radio.Button value="no">No</Radio.Button>
-                    </Radio.Group>
+                    />
+                   
                   </ClearableFormItem>
                 </Col>
               )}
-              {formValues?.csfSampleReceived === "yes" && (
+              {formValues?.csfSampleReceived === "YES" && (
                 <>
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem

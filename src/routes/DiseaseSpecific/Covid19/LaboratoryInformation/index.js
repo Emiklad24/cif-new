@@ -158,6 +158,16 @@ const LaboratoryInformation = ({ form }) => {
                     options={testingLaboratoryData}
                     valueProperty="id"
                     labelProperty="name"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
+                    }
                   />
                 </ClearableFormItem>
               </Col>

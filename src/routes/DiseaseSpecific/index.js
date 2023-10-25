@@ -386,7 +386,7 @@ const App = () => {
                         .toLowerCase()
                         .localeCompare((optionB?.label ?? "").toLowerCase())
                     }
-                    options={lgaOfReportingQuery?.data}
+                    options={lgaOfReportingQuery?.data || []}
                     valueProperty="id"
                     labelProperty="name"
                     onChange={(value) =>
@@ -988,6 +988,16 @@ const App = () => {
                     options={allLookup?.occupation_type || []}
                     valueProperty="id"
                     labelProperty="value"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      optionA.children
+                        ?.toLowerCase()
+                        .localeCompare(optionB.children?.toLowerCase())
+                    }
                   />
                 </ClearableFormItem>
               </Col>
@@ -1005,12 +1015,22 @@ const App = () => {
                     },
                   ]}
                 >
-                  <Select
+                  <DynamicSelect
                     placeholder="Select an option"
                     allowClear
                     options={allLookup?.educational_levels || []}
                     valueProperty="id"
                     labelProperty="value"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      optionA.children
+                        ?.toLowerCase()
+                        .localeCompare(optionB.children?.toLowerCase())
+                    }
                   />
                 </ClearableFormItem>
               </Col>
