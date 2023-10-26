@@ -107,10 +107,11 @@ const LaboratoryInformation = ({ form }) => {
                       { label: "Blood", value: "blood" },
                       { label: "Breast milk", value: "breastmilk" },
                     ]}
-                    // name="specimenType"
-                    onChange={(value) =>
+                    name="specimenType"
+                    onChange={(value) =>{
+                      console.log(value)
                       handleUpdateInputValues("specimenType", value)
-                    }
+                    }}
                   />
                 </ClearableFormItem>
               </Col>
