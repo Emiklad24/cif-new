@@ -220,7 +220,7 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          {formValues?.didThePatientTravelDuringOrAfterIllness === "yes" && (
+          {formValues?.didThePatientTravelDuringOrAfterIllness === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -277,7 +277,7 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.patientHospitalizedOrVisitAnyoneInTheHospitalBeforeIllness ===
-            "yes" && (
+            "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
