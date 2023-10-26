@@ -236,7 +236,7 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Skin leisions"
+              label="Skin lesions"
               name="skinLeisions"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -324,7 +324,7 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Date of hopsitalization"
+              label="Date of hospitalization"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               name="dateOfHospitalization"

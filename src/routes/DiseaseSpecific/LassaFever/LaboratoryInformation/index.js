@@ -197,11 +197,11 @@ const LaboratoryInformation = ({ form }) => {
             </Col>
           )}
 
-          {formValues?.specimenCollected === "yes" && (
+          {formValues?.specimenCollected === "YES" && (
             <>
               <Divider plain>Laboratory result</Divider>
               {formValues?.specimenType?.includes("blood") &&
-                formValues?.specimenCollected === "yes" && (
+                formValues?.specimenCollected === "YES" && (
                   <Col lg={24} md={24} sm={24}>
                     <ClearableFormItem
                       setFormValues={setFormValues}
@@ -366,7 +366,7 @@ const LaboratoryInformation = ({ form }) => {
                     {(formValues?.bloodPcrResult === "positive" ||
                       formValues?.bloodPcrResult === "negative" ||
                       formValues?.bloodPcrResult === "indeterminate") &&
-                      formValues?.bloodSpecimenReceived === "yes" &&
+                      formValues?.bloodSpecimenReceived === "YES" &&
                       formValues?.specimenType?.includes("blood") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
@@ -397,7 +397,7 @@ const LaboratoryInformation = ({ form }) => {
               <Divider />
               {/* breastmilk Form fields */}
               {formValues?.specimenType?.includes("breastmilk") &&
-                formValues?.specimenCollected === "yes" && (
+                formValues?.specimenCollected === "YES" && (
                   <Col lg={24} md={24} sm={24}>
                     <ClearableFormItem
                       setFormValues={setFormValues}
@@ -561,7 +561,7 @@ const LaboratoryInformation = ({ form }) => {
                     {(formValues?.breastmilkPcrResult === "positive" ||
                       formValues?.breastmilkPcrResult === "negative" ||
                       formValues?.breastmilkPcrResult === "indeterminate") &&
-                      formValues?.breastmilkSpecimenReceived === "yes" &&
+                      formValues?.breastmilkSpecimenReceived === "YES" &&
                       formValues?.specimenType?.includes("breastmilk") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
