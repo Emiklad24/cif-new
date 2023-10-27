@@ -42,8 +42,8 @@ const FinalClassification = ({ form }) => {
                 Clinically Compatible
               </Radio.Button>
               <Radio.Button value="probable">Probable</Radio.Button>
-              <Radio.Button value="not a case/discarded">
-                Not a Case/Discarded
+              <Radio.Button value="not a case">
+                Not a Case
               </Radio.Button>
               <Radio.Button value="pending">Pending</Radio.Button>
             </Radio.Group>

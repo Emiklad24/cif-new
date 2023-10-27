@@ -558,33 +558,32 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
 
-                  {
-                  formValues?.sampleConditionNasopharyngealSwab === "not adequate" && (
+                  {formValues?.sampleConditionNasopharyngealSwab ===
+                    "not adequate" && (
                     <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      form={form}
-                      setFormValues={setFormValues}
-                      label="Reason why specimen is not adequate"
-                      name="reasonSampleConditionNasopharyngealSwab"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <Input
-                        placeholder="Reason"
-                        id="reasonSampleConditionNasopharyngealSwab"
+                      <ClearableFormItem
+                        form={form}
+                        setFormValues={setFormValues}
+                        label="Reason why specimen is not adequate"
                         name="reasonSampleConditionNasopharyngealSwab"
-                        onChange={(e) => {}}
-                      />
-                    </ClearableFormItem>
-                  </Col>
-                    )
-                  }
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Reason"
+                          id="reasonSampleConditionNasopharyngealSwab"
+                          name="reasonSampleConditionNasopharyngealSwab"
+                          onChange={(e) => {}}
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  )}
 
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -620,7 +619,9 @@ const LaboratoryInformation = ({ form }) => {
                   </Col>
 
                   {formValues?.pcrResult &&
-                    formValues?.pcrResult !== "pending" && (
+                    !["pending", "not done"].includes(
+                      formValues?.pcrResult
+                    ) && (
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           form={form}

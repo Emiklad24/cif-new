@@ -464,7 +464,9 @@ const LaboratoryInformation = ({ form }) => {
                   </Col>
 
                   {formValues?.testResultStool &&
-                    formValues?.testResultStool !== "pending" && (
+                    !["pending", "not done"].includes(
+                      formValues?.testResultStool
+                    ) && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
                           form={form}
@@ -734,7 +736,9 @@ const LaboratoryInformation = ({ form }) => {
                   </Col>
 
                   {formValues?.testResultRectalSwab &&
-                    formValues?.testResultRectalSwab !== "pending" && (
+                    !["pending", "not done"].includes(
+                      formValues?.testResultRectalSwab
+                    )  && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
                           form={form}
