@@ -17,7 +17,7 @@ const ClinicalHistory = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Fever (≥38 °C)"
               name="fever"
@@ -40,7 +40,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Jaundice"
               name="jaundice"
@@ -63,7 +63,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="General weakness"
               name="generalWeakness"
@@ -86,7 +86,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Abdominal pain"
               name="abdominalPain"
@@ -109,7 +109,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Convulsion"
               name="convulsion"
@@ -132,7 +132,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Bleeding from nose,gums,skin or gastrointestinal tract"
               name="bleedingFromBodySites"
@@ -155,7 +155,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Headache"
               name="headache"
@@ -178,7 +178,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Vomiting"
               name="vomiting"
@@ -201,7 +201,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Other symptoms, please specify"
               name="otherSymptoms"
@@ -219,7 +219,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={10} md={8} sm={24}>
+          <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
               label="Date of symptom onset"
               name="dateOfOnset"

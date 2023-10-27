@@ -331,24 +331,6 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
-              label="Others (Specify)"
-              name="otherSymptoms"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-              <Input
-                placeholder="Specify other symptoms"
-                id="otherSymptoms "
-                name="otherSymptoms"
-                type="text"
-              />
-            </ClearableFormItem>
-          </Col>
-
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
               label="Date of symptom onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -361,6 +343,24 @@ const ClinicalHistory = ({ form }) => {
               ]}
             >
               <CustomDatePicker form={form} name="dateSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Others (Specify)"
+              name="otherSymptoms"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
+                placeholder="Specify other symptoms"
+                id="otherSymptoms "
+                name="otherSymptoms"
+                type="text"
+              />
             </ClearableFormItem>
           </Col>
         </Row>

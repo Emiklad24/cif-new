@@ -107,7 +107,7 @@ const LaboratoryInformation = ({ form }) => {
                         label: "Blood",
                         value: "blood",
                       },
-                      { label: "Sera", value: "sera" },
+                      { label: "Serum", value: "serum" },
                     ]}
                     name="specimenType"
                     onChange={(value) => {
@@ -126,12 +126,7 @@ const LaboratoryInformation = ({ form }) => {
                     form={form}
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
+                    
                   >
                     <CustomDatePicker form={form} name="dateSpecimenSent" />
                   </ClearableFormItem>
@@ -256,7 +251,7 @@ const LaboratoryInformation = ({ form }) => {
                   </Col>
 
                   {formValues?.specimenType?.length >= 1 && (
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={24} md={24} sm={24}>
                       <ClearableFormItem
                         setFormValues={setFormValues}
                         form={form}
@@ -653,13 +648,13 @@ const LaboratoryInformation = ({ form }) => {
                 </>
               )}
 
-              {formValues?.specimenType?.includes("sera") && (
+              {formValues?.specimenType?.includes("serum") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
                     setFormValues={setFormValues}
                     form={form}
-                    label="Sera specimen received"
-                    name="seraspecimenReceived"
+                    label="Serum specimen received"
+                    name="serumSpecimenReceived"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     rules={[
@@ -674,7 +669,7 @@ const LaboratoryInformation = ({ form }) => {
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
                       labelProperty="value"
-                      name="seraspecimenReceived"
+                      name="serumSpecimenReceived"
                       onChange={(e) => {
                         handleUpdateInputValues(e.target.name, e.target.value);
                       }}
@@ -683,7 +678,7 @@ const LaboratoryInformation = ({ form }) => {
                 </Col>
               )}
 
-              {formValues?.seraspecimenReceived === "YES" && (
+              {formValues?.serumSpecimenReceived === "YES" && (
                 <>
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -732,7 +727,7 @@ const LaboratoryInformation = ({ form }) => {
                   </Col>
 
                   {formValues?.specimenType?.length >= 1 && (
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={24} md={24} sm={24}>
                       <ClearableFormItem
                         setFormValues={setFormValues}
                         form={form}
@@ -774,7 +769,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="Igm result for sera specimen"
+                          label="Igm result for serum specimen"
                           name="igmResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
@@ -833,7 +828,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="IgG(Acute) result for sera specimen"
+                          label="IgG(Acute) result for serum specimen"
                           name="iggAcuteResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
@@ -894,7 +889,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="IgG(convalescent) result for sera specimen"
+                          label="IgG(convalescent) result for serum specimen"
                           name="iggConvalescentResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
@@ -953,7 +948,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="Microscopy result for sera"
+                          label="Microscopy result for serum"
                           name="microscopyResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
@@ -1012,7 +1007,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="PCR/RT-PCR result for sera"
+                          label="PCR/RT-PCR result for serum"
                           name="pcrRtPcrResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
@@ -1071,7 +1066,7 @@ const LaboratoryInformation = ({ form }) => {
                         <ClearableFormItem
                           setFormValues={setFormValues}
                           form={form}
-                          label="PRNT result for sera specimen"
+                          label="PRNT result for serum specimen"
                           name="prntResultSera"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}

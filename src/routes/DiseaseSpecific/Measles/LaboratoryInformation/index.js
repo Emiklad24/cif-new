@@ -1,4 +1,4 @@
-import { Col, Input, Collapse, Row, Divider, Select, Radio } from "antd";
+import { Col, Input, Collapse, Row, Divider, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import { Checkbox } from "antd";
@@ -126,12 +126,6 @@ const LaboratoryInformation = ({ form }) => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     name="dateSpecimenSent"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
                   >
                     <CustomDatePicker form={form} name="dateSpecimenSent" />
                   </ClearableFormItem>
@@ -239,6 +233,12 @@ const LaboratoryInformation = ({ form }) => {
                       name="laboratoryIdBloodSerum"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
                     >
                       <Input
                         placeholder="Enter Lab ID"
@@ -264,14 +264,46 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="sampleConditionBloodSerum"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="adequate">Adequate</Radio.Button>
-                        <Radio.Button value="not adequate">
+                        <Radio.Button value="notAdequate">
                           Not Adequate
                         </Radio.Button>
                       </Radio.Group>
                     </ClearableFormItem>
                   </Col>
+
+                  {formValues?.sampleConditionBloodSerum &&
+                    formValues?.sampleConditionBloodSerum === "notAdequate" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          form={form}
+                          setFormValues={setFormValues}
+                          label="Reason why specimen is not adequate"
+                          name="reasonSampleConditionBloodSerum"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            placeholder="Reason"
+                            id="reasonSampleConditionBloodSerum"
+                            name="reasonSampleConditionBloodSerum"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
 
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -310,27 +342,31 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
 
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      form={form}
-                      setFormValues={setFormValues}
-                      label="Date result released"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="dateResultReleasedMeasles"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <CustomDatePicker
-                        form={form}
-                        name="dateResultReleasedMeasles"
-                      />
-                    </ClearableFormItem>
-                  </Col>
+                  {formValues?.measlesSerologyResultBloodSerum &&
+                    formValues?.measlesSerologyResultBloodSerum !==
+                      "pending" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          form={form}
+                          setFormValues={setFormValues}
+                          label="Date result released"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="dateResultReleasedMeasles"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedMeasles"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
 
                   {formValues?.measlesSerologyResultBloodSerum?.includes(
                     "igm negative"
@@ -354,7 +390,16 @@ const LaboratoryInformation = ({ form }) => {
                             },
                           ]}
                         >
-                          <Radio.Group buttonStyle="solid">
+                          <Radio.Group
+                            buttonStyle="solid"
+                            name="rubellaSerologyResultBloodSerum"
+                            onChange={(e) =>
+                              handleUpdateInputValues(
+                                e.target.name,
+                                e.target.value
+                              )
+                            }
+                          >
                             <Radio.Button value="igm positive">
                               IgM Positive
                             </Radio.Button>
@@ -372,27 +417,31 @@ const LaboratoryInformation = ({ form }) => {
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          form={form}
-                          setFormValues={setFormValues}
-                          label="Date result released"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedRubella"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            form={form}
-                            name="dateResultReleasedRubella"
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                      {formValues?.rubellaSerologyResultBloodSerum &&
+                        formValues?.rubellaSerologyResultBloodSerum !==
+                          "pending" && (
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              form={form}
+                              setFormValues={setFormValues}
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedRubella"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                form={form}
+                                name="dateResultReleasedRubella"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        )}
 
                       <Divider />
                     </Row>
@@ -464,6 +513,12 @@ const LaboratoryInformation = ({ form }) => {
                       name="laboratoryIdNasopharyngealSwab"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
                     >
                       <Input
                         placeholder="Enter Lab ID"
@@ -488,7 +543,13 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="sampleConditionNasopharyngealSwab"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="adequate">Adequate</Radio.Button>
                         <Radio.Button value="not adequate">
                           Not Adequate
@@ -496,6 +557,34 @@ const LaboratoryInformation = ({ form }) => {
                       </Radio.Group>
                     </ClearableFormItem>
                   </Col>
+
+                  {
+                  formValues?.sampleConditionNasopharyngealSwab === "not adequate" && (
+                    <Col lg={12} md={12} sm={24}>
+                    <ClearableFormItem
+                      form={form}
+                      setFormValues={setFormValues}
+                      label="Reason why specimen is not adequate"
+                      name="reasonSampleConditionNasopharyngealSwab"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Reason"
+                        id="reasonSampleConditionNasopharyngealSwab"
+                        name="reasonSampleConditionNasopharyngealSwab"
+                        onChange={(e) => {}}
+                      />
+                    </ClearableFormItem>
+                  </Col>
+                    )
+                  }
 
                   <Col lg={12} md={12} sm={24}>
                     <ClearableFormItem
@@ -512,7 +601,13 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="pcrResult"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="positive">Positive</Radio.Button>
                         <Radio.Button value="negative">Negative</Radio.Button>
                         <Radio.Button value="indeterminate">
@@ -524,27 +619,30 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
 
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      form={form}
-                      setFormValues={setFormValues}
-                      label="Date result released"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="dateResultReleasedpcr"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <CustomDatePicker
-                        form={form}
-                        name="dateResultReleasedpcr"
-                      />
-                    </ClearableFormItem>
-                  </Col>
+                  {formValues?.pcrResult &&
+                    formValues?.pcrResult !== "pending" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          form={form}
+                          setFormValues={setFormValues}
+                          label="Date result released"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="dateResultReleasedpcr"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <CustomDatePicker
+                            form={form}
+                            name="dateResultReleasedpcr"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
                 </>
               )}
             </>

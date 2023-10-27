@@ -86,33 +86,7 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
-              label="Vaccination status"
-              name="vaccinationStatus"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
-                <Radio.Button value="notvaccinated">
-                  Not vaccinated
-                </Radio.Button>
-                <Radio.Button value="partialvaccinated">
-                  Partial vaccinated
-                </Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
-            </ClearableFormItem>
-          </Col>
+          
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
