@@ -15,6 +15,12 @@ const Epidemiological = ({ form }) => {
 
   const [formValues, setFormValues] = useState({});
   const { data: allLookup } = useFetchAllLookup();
+  const handleUpdateInputValues = (inputName, value) => {
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+  };
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -40,27 +46,32 @@ const Epidemiological = ({ form }) => {
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
+                name="exposureDetails"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               />
             </ClearableFormItem>
           </Col>
-
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
-              label=" Activity details"
-              name="activityDetails"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-               <DynamicRadio
-                buttonStyle="solid"
-                options={allLookup?.yes_no_unknown || []}
-                valueProperty="id"
-                labelProperty="value"
-              />
-            </ClearableFormItem>
-          </Col>
+          {formValues?.exposureDetails === "YES" && (
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                form={form}
+                setFormValues={setFormValues}
+                label=" Activity details"
+                name="activityDetails"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <DynamicRadio
+                  buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
@@ -89,7 +100,7 @@ const Epidemiological = ({ form }) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
-               <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
