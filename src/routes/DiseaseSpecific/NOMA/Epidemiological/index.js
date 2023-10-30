@@ -16,7 +16,6 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  
   const [formValues, setFormValues] = useState({});
   const { data: allLookup } = useFetchAllLookup();
 
@@ -86,8 +85,6 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          
-
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               form={form}
@@ -109,7 +106,6 @@ const Epidemiological = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
             </ClearableFormItem>
           </Col>
 
@@ -128,11 +124,12 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="good">Good</Radio.Button>
-                <Radio.Button value="fair">Fair</Radio.Button>
-                <Radio.Button value="poor">Poor</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.oral_hygiene_type || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
         </Row>
