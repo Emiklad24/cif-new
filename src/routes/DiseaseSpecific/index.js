@@ -48,6 +48,8 @@ import useFetchWard from "../../hooks/useFetchWard.hook";
 import useGetHealthFacilities from "../../hooks/useGetHealthFacilities.hook";
 import useGetAllSettlementType from "../../hooks/useGetAllSettlementType.hook";
 import DynamicRadio from "../../components/Custom/DynamicRadio";
+import useFormStore from "../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -79,6 +81,11 @@ const diseaseData = [
 ];
 
 const App = () => {
+  const { labFormName } = useFormStore(
+    useShallow((state) => ({
+      labFormName: state.labFormName,
+    }))
+  );
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { stateList } = useSelector(({ common }) => common);
@@ -192,7 +199,22 @@ const App = () => {
   };
 
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue);
+    const extractedProperties = {};
+    const tempFormValues = { ...fieldsValue };
+
+    for (const key of labFormName) {
+      if (key in tempFormValues) {
+        extractedProperties[key] = tempFormValues[key];
+        delete tempFormValues[key];
+      }
+    }
+
+    const payloadToBeSubmitted = {
+      ...tempFormValues,
+      specimen: { ...extractedProperties },
+    };
+
+    console.log(payloadToBeSubmitted);
   };
 
   const onChangeDisease = (value) => {
@@ -245,7 +267,6 @@ const App = () => {
   const { data: allStates } = useFetchAllStates();
   const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
   const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
-  console.log(lgaOfResidenceQuery)
   const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
   const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
