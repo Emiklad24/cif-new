@@ -4,10 +4,13 @@ import React, { useState } from "react";
 import "styles/pages/form.less";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
   const [formValues, setFormValues] = useState({});
+  const { data: allLookup } = useFetchAllLookup();
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -32,11 +35,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -55,11 +58,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -78,11 +81,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -101,11 +104,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -124,11 +127,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -147,11 +150,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -170,11 +173,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -193,11 +196,11 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+              />
             </ClearableFormItem>
           </Col>
 

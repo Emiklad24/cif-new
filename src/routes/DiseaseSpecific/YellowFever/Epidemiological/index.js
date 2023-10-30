@@ -142,7 +142,7 @@ const Epidemiological = ({ form }) => {
               ]}
             >
               <DynamicRadio
-                options={allLookup?.yes_no_unknown}
+                options={allLookup?.yes_no_unknown || []}
                 labelProperty="value"
                 valueProperty="id"
                 name="travelHistory"

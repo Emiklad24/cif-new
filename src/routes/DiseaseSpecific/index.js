@@ -245,6 +245,7 @@ const App = () => {
   const { data: allStates } = useFetchAllStates();
   const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
   const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
+  console.log(lgaOfResidenceQuery)
   const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
   const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
   const AllHealthFacilitiesQuery = useGetHealthFacilities();

@@ -14,7 +14,7 @@ const DynamicRadio = ({
       disabled={!options || !isArray(options) || options?.length === 0}
       {...otherProps}
     >
-      {options.map((option, index) => (
+      {options?.map?.((option, index) => (
         <Radio.Button
           key={option?.name || option?.id || index}
           value={option[valueProperty || "id"]}
