@@ -518,29 +518,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              label="Pregnancy status"
-              name="pregnancyStatus"
-              setFormValues={setFormValues}
-              form={form}
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "Select an option!",
-                },
-              ]}
-            >
-              <DynamicRadio
-                buttonStyle="solid"
-                options={allLookup?.yes_no_unknown || []}
-                valueProperty="id"
-                labelProperty="value"
-              />
-            </ClearableFormItem>
-          </Col>
+       
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem

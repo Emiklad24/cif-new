@@ -50,15 +50,41 @@ const Epidemiological = ({ form }) => {
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
+                name="travelledWithinLastThreeweeks"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               />
             </ClearableFormItem>
           </Col>
+
+          {formValues?.travelledWithinLastThreeweeks === "YES" && (
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Name of village patient fell ill"
+                name="nameOfVillagePatientFellIll"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Input
+                  placeholder="Name of the village the patient fell ill"
+                  id="nameOfVillagePatientFellIll"
+                  name="nameOfVillagePatientFellIll"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Does the patient have a cutaneous eruption?"
+              label="Does the patient have a cutaneous eruption (Rash)?"
               name="patientHaveCutaneousEruption"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -151,26 +177,6 @@ const Epidemiological = ({ form }) => {
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
                 name="patientTouchAnimals"
-              />
-            </ClearableFormItem>
-          </Col>
-
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Name of village patient fell ill"
-              name="nameOfVillagePatientFellIll"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-              <Input
-                placeholder="Name of the village the patient fell ill"
-                id="nameOfVillagePatientFellIll"
-                name="nameOfVillagePatientFellIll"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
               />
             </ClearableFormItem>
           </Col>

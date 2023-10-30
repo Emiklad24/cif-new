@@ -9,7 +9,6 @@ import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hoo
 import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
-
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
@@ -235,12 +234,17 @@ const LaboratoryInformation = ({ form }) => {
                       setFormValues={setFormValues}
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
                     >
                       <Input
                         placeholder="Enter Lab ID"
-                        id="labid"
-                        name="labid"
-                        onChange={(e) => {}}
+                        id="laboratoryIdBlood"
+                        name="laboratoryIdBlood"
                       />
                     </ClearableFormItem>
                   </Col>
@@ -260,7 +264,13 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="specimenConditionBlood"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="adequate">Adequate</Radio.Button>
                         <Radio.Button value="not adequate">
                           Not Adequate
@@ -268,6 +278,30 @@ const LaboratoryInformation = ({ form }) => {
                       </Radio.Group>
                     </ClearableFormItem>
                   </Col>
+
+                  {formValues?.specimenConditionBlood === "not adequate" && (
+                    <Col lg={12} md={12} sm={24}>
+                      <ClearableFormItem
+                        setFormValues={setFormValues}
+                        form={form}
+                        label="Reason why specimen is not adequate"
+                        name="reasonSpecimenNotAdequateBloodSpecimen"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input
+                          name="reasonSpecimenNotAdequateBloodSpecimen"
+                          placeholder="Reason why"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  )}
 
                   {formValues?.specimenType?.length >= 1 && (
                     <Col lg={12} md={12} sm={24}>
@@ -336,9 +370,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
@@ -410,9 +441,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
@@ -476,7 +504,6 @@ const LaboratoryInformation = ({ form }) => {
                         handleUpdateInputValues(e.target.name, e.target.value)
                       }
                     />
-                   
                   </ClearableFormItem>
                 </Col>
               )}
@@ -537,7 +564,13 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="specimenConditionCrust"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="adequate">Adequate</Radio.Button>
                         <Radio.Button value="not adequate">
                           Not Adequate
@@ -545,6 +578,30 @@ const LaboratoryInformation = ({ form }) => {
                       </Radio.Group>
                     </ClearableFormItem>
                   </Col>
+
+                  {formValues?.specimenConditionCrust === "not adequate" && (
+                    <Col lg={12} md={12} sm={24}>
+                      <ClearableFormItem
+                        setFormValues={setFormValues}
+                        form={form}
+                        label="Reason why specimen is not adequate"
+                        name="reasonSpecimenNotAdequateCrustSpecimen"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input
+                          name="reasonSpecimenNotAdequateCrustSpecimen"
+                          placeholder="Reason why"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  )}
 
                   {formValues?.specimenType?.length >= 1 && (
                     <Col lg={12} md={12} sm={24}>
@@ -613,9 +670,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
@@ -687,9 +741,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
@@ -743,7 +794,7 @@ const LaboratoryInformation = ({ form }) => {
                       },
                     ]}
                   >
-                     <DynamicRadio
+                    <DynamicRadio
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -753,7 +804,6 @@ const LaboratoryInformation = ({ form }) => {
                         handleUpdateInputValues(e.target.name, e.target.value)
                       }
                     />
-                    
                   </ClearableFormItem>
                 </Col>
               )}
@@ -814,7 +864,13 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group buttonStyle="solid">
+                      <Radio.Group
+                        buttonStyle="solid"
+                        name="specimenConditionSwab"
+                        onChange={(e) =>
+                          handleUpdateInputValues(e.target.name, e.target.value)
+                        }
+                      >
                         <Radio.Button value="adequate">Adequate</Radio.Button>
                         <Radio.Button value="not adequate">
                           Not Adequate
@@ -822,6 +878,30 @@ const LaboratoryInformation = ({ form }) => {
                       </Radio.Group>
                     </ClearableFormItem>
                   </Col>
+
+                  {formValues?.specimenConditionSwab === "not adequate" && (
+                    <Col lg={12} md={12} sm={24}>
+                      <ClearableFormItem
+                        setFormValues={setFormValues}
+                        form={form}
+                        label="Reason why specimen is not adequate"
+                        name="reasonSpecimenNotAdequateSwabSpecimen"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input
+                          name="reasonSpecimenNotAdequateSwabSpecimen"
+                          placeholder="Reason why"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  )}
 
                   {formValues?.specimenType?.length >= 1 && (
                     <Col lg={12} md={12} sm={24}>
@@ -890,9 +970,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
@@ -964,9 +1041,6 @@ const LaboratoryInformation = ({ form }) => {
                               Indeterminate
                             </Radio.Button>
                             <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="not done">
-                              Not Done
-                            </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
