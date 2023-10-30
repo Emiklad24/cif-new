@@ -11,8 +11,6 @@ import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const CheckboxGroup = Checkbox.Group;
 
-
-
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
 
@@ -108,9 +106,9 @@ const LaboratoryInformation = ({ form }) => {
                       { label: "Breast milk", value: "breastmilk" },
                     ]}
                     name="specimenType"
-                    onChange={(value) =>{
-                      console.log(value)
-                      handleUpdateInputValues("specimenType", value)
+                    onChange={(value) => {
+                      console.log(value);
+                      handleUpdateInputValues("specimenType", value);
                     }}
                   />
                 </ClearableFormItem>
@@ -270,7 +268,16 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          buttonStyle="solid"
+                          name="bloodSpecimenCondition"
+                          onChange={(e) =>
+                            handleUpdateInputValues(
+                              e.target.name,
+                              e.target.value
+                            )
+                          }
+                        >
                           <Radio.Button value="adequate">Adequate</Radio.Button>
                           <Radio.Button value="not adequate">
                             Not adequate
@@ -278,6 +285,30 @@ const LaboratoryInformation = ({ form }) => {
                         </Radio.Group>
                       </ClearableFormItem>
                     </Col>
+                    {formValues?.bloodSpecimenCondition === "not adequate" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Reason why specimen is not adequate"
+                          name="reasonSpecimenNotAdequateBloodSpecimen"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            name="reasonSpecimenNotAdequateBloodSpecimen"
+                            placeholder="Reason why"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
                         setFormValues={setFormValues}
@@ -474,6 +505,32 @@ const LaboratoryInformation = ({ form }) => {
                         </Radio.Group>
                       </ClearableFormItem>
                     </Col>
+
+                    {formValues?.breastmilkSpecimenCondition ===
+                      "not adequate" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Reason why specimen is not adequate"
+                          name="reasonSpecimenNotAdequateBreastMilkSpecimen"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            name="reasonSpecimenNotAdequateBloodSpecimen"
+                            placeholder="Reason why"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
                         setFormValues={setFormValues}
