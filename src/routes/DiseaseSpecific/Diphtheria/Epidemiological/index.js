@@ -126,46 +126,49 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          {formValues?.vaccinationStatus === "notVaccinated" && (
-            <Col lg={12} md={12} sm={24}>
-              <ClearableFormItem
-                form={form}
-                setFormValues={setFormValues}
-                label="If not vaccinated, indicate reason"
-                name="notVaccinated"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <Radio.Group
-                  buttonStyle="solid"
-                  onChange={(e) =>
-                    handleUpdateInputValues(e.target.name, e.target.value)
-                  }
+          {formValues?.vaccinationStatus &&
+            formValues?.vaccinationStatus === "notVaccinated" && (
+              <Col lg={24} md={24} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="If not vaccinated, indicate reason"
                   name="notVaccinated"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
                 >
-                  <Radio.Button value="religious exemption">
-                    {" "}
-                    Religious Exemption
-                  </Radio.Button>
-                  <Radio.Button value="medical contraindication">
-                    Medical Contraindication
-                  </Radio.Button>
-                  <Radio.Button value="under age">Under age</Radio.Button>
-                  <Radio.Button value="parental refusal">
-                    Parental Refusal
-                  </Radio.Button>
-                  <Radio.Button value="unknown">Unknown</Radio.Button>
-                  <Radio.Button value="others">Others</Radio.Button>
-                </Radio.Group>
-              </ClearableFormItem>
-            </Col>
-          )}
+                  <Radio.Group
+                    buttonStyle="solid"
+                    onChange={(e) =>
+                      handleUpdateInputValues(e.target.name, e.target.value)
+                    }
+                    name="notVaccinated"
+                  >
+                    <Radio.Button value="religious exemption">
+                      {" "}
+                      Religious ExemptionDid the patient have contact with a
+                      known suspect / confirmed case anytime in the three weeks
+                      before becoming ill?
+                    </Radio.Button>
+                    <Radio.Button value="medical contraindication">
+                      Medical Contraindication
+                    </Radio.Button>
+                    <Radio.Button value="under age">Under age</Radio.Button>
+                    <Radio.Button value="parental refusal">
+                      Parental Refusal
+                    </Radio.Button>
+                    <Radio.Button value="unknown">Unknown</Radio.Button>
+                    <Radio.Button value="others">Others</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+            )}
 
           {formValues?.vaccinationStatus === "notVaccinated" &&
             formValues?.notVaccinated === "others" && (
@@ -180,9 +183,9 @@ const Epidemiological = ({ form }) => {
                     wrapperCol={{ span: 24 }}
                   >
                     <Input
-                      placeholder="Enter place Address"
-                      id="address"
-                      name="address"
+                      placeholder="Enter reason"
+                      id="otherReasonNoVaccine"
+                      name="otherReasonNoVaccine"
                       onChange={(e) =>
                         handleUpdateInputValues(e.target.name, e.target.value)
                       }
@@ -241,7 +244,6 @@ const Epidemiological = ({ form }) => {
                     placeholder="If yes, enter address visited"
                     id="clientAddress"
                     name="clientAddress"
-                    onChange={(e) => {}}
                   />
                 </ClearableFormItem>
               </Col>
@@ -609,7 +611,7 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={24} md={24} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -639,6 +641,65 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.contactSuspectConfirmed === "YES" && (
             <>
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Date seen at Health fcility"
+                  name="dateSeenAtHelthFacility"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSeenAtHelthFacility"
+                  />
+                </ClearableFormItem>
+              </Col>
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Date of discharge"
+                  name="dateOfDischargeOfPatient"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                >
+                  <CustomDatePicker
+                    form={form}
+                    name="dateOfDischargeOfPatient"
+                  />
+                </ClearableFormItem>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Patient status"
+                  name="patientCurrentStatus"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Radio.Group buttonStyle="solid">
+                    <Radio.Button value="in-patient">In-Patient</Radio.Button>
+                    <Radio.Button value="out-patient">Out-Patient</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+
               <Col lg={12} md={12} sm={12}>
                 <ClearableFormItem
                   form={form}
