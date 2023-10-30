@@ -44,6 +44,7 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
+             collectFormName={true}
               form={form}
               setFormValues={setFormValues}
               label="Specimen collected"
@@ -74,6 +75,7 @@ const LaboratoryInformation = ({ form }) => {
             <>
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
+                 collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Date specimen was collected"
@@ -93,6 +95,7 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
+                 collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Type of specimen collected"
@@ -121,6 +124,7 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
+                 collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Name of testing laboratory"
@@ -157,6 +161,7 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
+                 collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Date specimen was sent"
@@ -179,6 +184,7 @@ const LaboratoryInformation = ({ form }) => {
               </Divider>
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
+                 collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="RDT result conducted"
@@ -208,6 +214,7 @@ const LaboratoryInformation = ({ form }) => {
               {formValues?.rdtTestConducted === "YES" && (
                 <Col lg={8} md={24} sm={24}>
                   <ClearableFormItem
+                   collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="RDT result"
@@ -233,6 +240,7 @@ const LaboratoryInformation = ({ form }) => {
               {formValues?.specimenType?.includes("stool") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
+                   collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="Stool specimen received"
@@ -264,6 +272,7 @@ const LaboratoryInformation = ({ form }) => {
                 <Row>
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date specimen received"
@@ -286,6 +295,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Specimen condition?"
@@ -317,6 +327,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.specimenConditionStool === "notadequate" && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Please specify reason why specimen is not adequate"
@@ -336,6 +347,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Type of test done"
@@ -365,6 +377,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.typeOfTestDoneStool?.includes("microscopy") && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Microscopy test result"
@@ -390,6 +403,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.typeOfTestDoneStool?.includes("culture") && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Culture test result"
@@ -414,6 +428,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date of specimen tested"
@@ -436,6 +451,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Test result"
@@ -469,6 +485,7 @@ const LaboratoryInformation = ({ form }) => {
                     ) && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
+                         collectFormName={true}
                           form={form}
                           setFormValues={setFormValues}
                           label="Date result released"
@@ -497,6 +514,7 @@ const LaboratoryInformation = ({ form }) => {
               {formValues?.specimenType?.includes("rectal swab") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
+                   collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="Rectal swab specimen received"
@@ -528,6 +546,7 @@ const LaboratoryInformation = ({ form }) => {
                 <Row>
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date specimen received"
@@ -550,6 +569,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Specimen condition?"
@@ -582,6 +602,7 @@ const LaboratoryInformation = ({ form }) => {
                     "notadequate" && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Please specify reason why specimen is not adequate"
@@ -601,6 +622,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Type of test done"
@@ -635,6 +657,7 @@ const LaboratoryInformation = ({ form }) => {
                   ) && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Microscopy test result"
@@ -662,6 +685,7 @@ const LaboratoryInformation = ({ form }) => {
                   ) && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
+                       collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Culture test result"
@@ -686,6 +710,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date of specimen tested"
@@ -708,6 +733,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
+                     collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Test result"
@@ -741,6 +767,7 @@ const LaboratoryInformation = ({ form }) => {
                     )  && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
+                         collectFormName={true}
                           form={form}
                           setFormValues={setFormValues}
                           label="Date result released"
