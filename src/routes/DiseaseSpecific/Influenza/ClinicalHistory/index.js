@@ -266,7 +266,6 @@ const ClinicalHistory = ({ form }) => {
               label="Date of symptom onset"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // initialValue={symptom_date ? moment(symptom_date) : null}
               name="dateOfOnset"
               rules={[
                 {

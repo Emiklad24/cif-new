@@ -463,9 +463,9 @@ const ContactTracing = ({ form }) => {
               ]}
             >
               <Radio.Group buttonStyle="solid">
-                <Radio.Button value="no risk">No risk</Radio.Button>
-                <Radio.Button value="low risk">Low risk</Radio.Button>
-                <Radio.Button value="high risk">High risk</Radio.Button>
+                <Radio.Button value="no_risk">No risk</Radio.Button>
+                <Radio.Button value="low_risk">Low risk</Radio.Button>
+                <Radio.Button value="high_risk">High risk</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>
