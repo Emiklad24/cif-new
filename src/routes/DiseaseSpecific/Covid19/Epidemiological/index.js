@@ -466,7 +466,7 @@ const Epidemiological = ({ form }) => {
                       name="countryOfTravel"
                       options={Countries}
                       labelProperty="name"
-                      valueProperty="code"
+                      valueProperty="name"
                     />
                   </ClearableFormItem>
                 </Col>
