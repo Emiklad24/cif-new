@@ -261,7 +261,7 @@ const App = () => {
       internationalTravel: { ...extractedPropertiesInternationalTravel },
     };
 
-    console.log(payloadToBeSubmitted)
+    // console.log(payloadToBeSubmitted)
 
     return payloadToBeSubmitted
   
@@ -282,6 +282,10 @@ const App = () => {
       ...tempFormValues,
       specimen: { ...extractedProperties },
     };
+
+    console.log(payloadToBeSubmitted)
+
+    return payloadToBeSubmitted
   };
 
   const onChangeDisease = (value) => {
