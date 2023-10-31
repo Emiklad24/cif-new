@@ -11,10 +11,10 @@ const ClearableFormItem = ({
   collectFormName,
   ...rest
 }) => {
-  const { populateLabFormName, expugeFormName } = useFormStore(
+  const { populateLabFormName, expungeFormName } = useFormStore(
     useShallow((state) => ({
       populateLabFormName: state.populateLabFormName,
-      expugeFormName: state.expugeFormName,
+      expungeFormName: state.expungeFormName,
     }))
   );
 
@@ -29,7 +29,7 @@ const ClearableFormItem = ({
 
     return () => {
       if (collectFormName && name) {
-        expugeFormName(name);
+        expungeFormName(name);
       }
       form.setFieldsValue({ [name]: undefined });
       if (setFormValues && typeof setFormValues === "function") {
@@ -39,7 +39,7 @@ const ClearableFormItem = ({
         }));
       }
     };
-  }, [collectFormName, form, name, populateLabFormName, expugeFormName, setFormValues]);
+  }, [collectFormName, form, name, populateLabFormName, expungeFormName, setFormValues]);
 
   return (
     <Form.Item name={name} shouldUpdate={true} {...rest}>

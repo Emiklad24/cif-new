@@ -207,7 +207,7 @@ const Epidemiological = ({ form }) => {
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
                 label="Have you returned from a local travel within the last 14 days?"
-                form={form}
+                form={form} 
                 setFormValues={setFormValues}
                 name="returnedFromLocalTravel14Days"
                 labelCol={{ span: 24 }}
@@ -230,7 +230,7 @@ const Epidemiological = ({ form }) => {
                   name="returnedFromLocalTravel14Days"
                 />
               </ClearableFormItem>
-            </Col>
+            </Col> 
 
             {formValues?.returnedFromLocalTravel14Days === "YES" && (
               <Row>

@@ -198,23 +198,90 @@ const App = () => {
     console.log("Received values of form:");
   };
 
+  const localTravel = [
+    "returnedFromLocalTravel14Days",
+    "dateOfLocalTravelStart",
+    "dateOfTravelEndLocal",
+    "stateOfTravel",
+    "lgaOfTravel",
+    "clientTravelAddressLocal",
+  ];
+
+  const internationalTravel = [
+    "returnedFromnInternationalTravel14Days",
+    "dateOfInternationalTravelStart",
+    "dateOfInternationalTravelEnd",
+    "countryOfTravel",
+    "cityOfTravel",
+    "clientTravelAddressInternational",
+  ];
+
   const onFinish = async (fieldsValue) => {
+    if (program === "Covid19") {
+      const data = mutateCovidPayload(
+        fieldsValue,
+        localTravel,
+        internationalTravel
+      );
+      const payload = mutatePayload(data, labFormName);
+    }
+  };
+
+  const mutateCovidPayload = (
+    fieldsValue,
+    localTravel,
+    internationalTravel
+  ) => {
+    const extractedPropertiesLocalTravel = {};
+    const extractedPropertiesInternationalTravel = {};
+
+
+    const tempFormValuesLocalTravel = { ...fieldsValue };
+    const tempFormValuesInternationalTravel = { ...fieldsValue };
+
+    for (const key of localTravel) {
+      if (key in tempFormValuesLocalTravel) {
+        extractedPropertiesLocalTravel[key] = tempFormValuesLocalTravel[key];
+        delete tempFormValuesLocalTravel[key];
+      }
+    }
+
+
+    for (const key of internationalTravel) {
+      if (key in tempFormValuesInternationalTravel) {
+        extractedPropertiesInternationalTravel[key] = tempFormValuesInternationalTravel[key];
+        delete tempFormValuesInternationalTravel[key];
+      }
+    }
+
+
+    const payloadToBeSubmitted = {
+      ...tempFormValuesLocalTravel,
+      localTravel: { ...extractedPropertiesLocalTravel },
+      internationalTravelTravel: { ...extractedPropertiesInternationalTravel },
+    };
+
+    console.log(payloadToBeSubmitted)
+
+    return payloadToBeSubmitted
+  
+  
+  };
+
+  const mutatePayload = (fieldsValue, arrayOfKeys) => {
     const extractedProperties = {};
     const tempFormValues = { ...fieldsValue };
 
-    for (const key of labFormName) {
+    for (const key of arrayOfKeys) {
       if (key in tempFormValues) {
         extractedProperties[key] = tempFormValues[key];
         delete tempFormValues[key];
       }
     }
-
     const payloadToBeSubmitted = {
       ...tempFormValues,
       specimen: { ...extractedProperties },
     };
-
-    console.log(payloadToBeSubmitted);
   };
 
   const onChangeDisease = (value) => {

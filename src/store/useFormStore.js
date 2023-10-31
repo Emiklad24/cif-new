@@ -4,6 +4,8 @@ import { globalStorePersist, storeVersion } from "./config";
 
 let store = (set, get) => ({
   labFormName: [],
+  
+
 
   populateLabFormName: (payload) => {
     const currentLabFormName1 = get().labFormName;
@@ -13,11 +15,10 @@ let store = (set, get) => ({
     set((state) => ({ labFormName: uniqueArray }));
   },
 
-  expugeFormName: (nameToRemove) => {
+  expungeFormName: (nameToRemove) => {
     const currentLabFormName2 = get().labFormName;
     const newArray = currentLabFormName2.filter((item) => item !== nameToRemove);
     const uniqueArray = [...new Set(newArray)];
-
     set((state) => ({ labFormName: uniqueArray }));
   },
 
