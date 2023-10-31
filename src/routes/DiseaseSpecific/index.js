@@ -258,7 +258,7 @@ const App = () => {
     const payloadToBeSubmitted = {
       ...tempFormValuesLocalTravel,
       localTravel: { ...extractedPropertiesLocalTravel },
-      internationalTravelTravel: { ...extractedPropertiesInternationalTravel },
+      internationalTravel: { ...extractedPropertiesInternationalTravel },
     };
 
     console.log(payloadToBeSubmitted)
