@@ -160,6 +160,8 @@ const Epidemiological = ({ form }) => {
                         message: "This field is required",
                       },
                     ]}
+                    name="numberofVaccineDoses"
+
                   >
                     <Radio.Group
                       buttonStyle="solid"

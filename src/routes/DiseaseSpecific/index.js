@@ -216,6 +216,23 @@ const App = () => {
     "clientTravelAddressInternational",
   ];
 
+  const contactTracingKeys = [
+    "contactFirstNameContact",
+    "contactLastName",
+    "dateOfBirthOfContact",
+    "contactEstimatedAge",
+    "contactSex",
+    "contactPregnancyStatus",
+    "contactStateOfResidence",
+    "contactLgaOfResidence",
+    "contactWardOfResidence",
+    "contactResidentialAddress",
+    "relationshipWithCase",
+    "contactCategorization",
+    "isContactAHealthWorker",
+    "nameOfHwHealthFacility",
+  ];
+
   const onFinish = async (fieldsValue) => {
     if (program === "Covid19") {
       const data = mutateCovidPayload(
@@ -223,7 +240,28 @@ const App = () => {
         localTravel,
         internationalTravel
       );
-      const payload = mutatePayload(data, labFormName);
+      const payloadForSpecimen = mutatePayload(data, labFormName, "specimen");
+      const payloadForContactTracing = mutatePayload(
+        payloadForSpecimen,
+        contactTracingKeys,
+        "contact"
+      );
+
+      //make API call here
+    } else {
+      const payloadForSpecimen = mutatePayload(
+        fieldsValue,
+        labFormName,
+        "specimen"
+      );
+      const payloadForContactTracing = mutatePayload(
+        payloadForSpecimen,
+        contactTracingKeys,
+        "contact"
+      );
+
+
+      //make API call here
     }
   };
 
@@ -235,7 +273,6 @@ const App = () => {
     const extractedPropertiesLocalTravel = {};
     const extractedPropertiesInternationalTravel = {};
 
-
     const tempFormValuesLocalTravel = { ...fieldsValue };
     const tempFormValuesInternationalTravel = { ...fieldsValue };
 
@@ -246,14 +283,13 @@ const App = () => {
       }
     }
 
-
     for (const key of internationalTravel) {
       if (key in tempFormValuesInternationalTravel) {
-        extractedPropertiesInternationalTravel[key] = tempFormValuesInternationalTravel[key];
+        extractedPropertiesInternationalTravel[key] =
+          tempFormValuesInternationalTravel[key];
         delete tempFormValuesInternationalTravel[key];
       }
     }
-
 
     const payloadToBeSubmitted = {
       ...tempFormValuesLocalTravel,
@@ -263,12 +299,10 @@ const App = () => {
 
     // console.log(payloadToBeSubmitted)
 
-    return payloadToBeSubmitted
-  
-  
+    return payloadToBeSubmitted;
   };
 
-  const mutatePayload = (fieldsValue, arrayOfKeys) => {
+  const mutatePayload = (fieldsValue, arrayOfKeys, newObjectName) => {
     const extractedProperties = {};
     const tempFormValues = { ...fieldsValue };
 
@@ -280,12 +314,12 @@ const App = () => {
     }
     const payloadToBeSubmitted = {
       ...tempFormValues,
-      specimen: { ...extractedProperties },
+      [newObjectName]: { ...extractedProperties },
     };
 
-    console.log(payloadToBeSubmitted)
+    console.log(payloadToBeSubmitted);
 
-    return payloadToBeSubmitted
+    return payloadToBeSubmitted;
   };
 
   const onChangeDisease = (value) => {
