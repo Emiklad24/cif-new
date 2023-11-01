@@ -3,7 +3,7 @@ import { apiUrl } from "../constants/apiURL";
 
 const getAllLookups = async () => {
   const res = await axios?.get(
-    `${apiUrl}all-look-ups`
+    `${apiUrl}lookup/all-look-ups`
   );
 
   return res?.data;

@@ -50,6 +50,7 @@ import useGetAllSettlementType from "../../hooks/useGetAllSettlementType.hook";
 import DynamicRadio from "../../components/Custom/DynamicRadio";
 import useFormStore from "../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
+import { usePostFormData } from "../../hooks/usePostFormData.hook";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -233,7 +234,10 @@ const App = () => {
     "nameOfHwHealthFacility",
   ];
 
+  const { isLoading, mutate } = usePostFormData();
+
   const onFinish = async (fieldsValue) => {
+    console.log(fieldsValue)
     if (program === "Covid19") {
       const data = mutateCovidPayload(
         fieldsValue,
@@ -248,20 +252,25 @@ const App = () => {
       );
 
       //make API call here
+      mutate(payloadForContactTracing);
     } else {
       const payloadForSpecimen = mutatePayload(
         fieldsValue,
         labFormName,
         "specimen"
       );
-      const payloadForContactTracing = mutatePayload(
-        payloadForSpecimen,
-        contactTracingKeys,
-        "contact"
-      );
 
-
-      //make API call here
+      if (!["Yellow Fever", "NOMA", "Measles"].includes(program)) {
+        const payloadForContactTracing = mutatePayload(
+          payloadForSpecimen,
+          contactTracingKeys,
+          "contact"
+        );
+        //make API call here
+        mutate(payloadForContactTracing);
+      } else {
+        mutate(payloadForSpecimen);
+      }
     }
   };
 
@@ -422,7 +431,7 @@ const App = () => {
           </ClearableFormItem>
         </Col>
       </Row>
-      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError>
+      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError >
         <Collapse defaultActiveKey={["1"]} onChange={onChange}>
           <Panel header="Reporting Areas" key="1">
             <Row>
@@ -1171,8 +1180,8 @@ const App = () => {
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">
-              <Button type="primary" htmlType="submit">
-                Submit
+              <Button type="primary" htmlType="submit" disabled={isLoading}>
+                {isLoading ? "Please wait" : "Submit"}
               </Button>
             </ClearableFormItem>
           </Col>

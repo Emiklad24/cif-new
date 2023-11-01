@@ -202,12 +202,7 @@ const ContactTracing = ({ form }) => {
               tooltip="Estimated age in years and months"
               label="Contact age"
               name="contactEstimatedAge"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
+              
             >
               <Input.Group size="large">
                 <Row gutter={8}>
