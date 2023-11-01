@@ -10,6 +10,8 @@ import App from "./containers/App/index";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import queryClientSettings from "./constants/queryClientSettings";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const store = configureStore();
 const queryClient = new QueryClient(queryClientSettings);
@@ -23,6 +25,18 @@ const NextApp = () => (
         </Switch>
       </ConnectedRouter>
     </Provider>
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 );

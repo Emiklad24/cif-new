@@ -386,6 +386,8 @@ const App = () => {
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
   const AllSettlementTypeQuery = useGetAllSettlementType();
 
+  
+
   return (
     <>
       <Row>
