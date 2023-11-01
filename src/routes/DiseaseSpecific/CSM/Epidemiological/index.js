@@ -34,7 +34,7 @@ const Epidemiological = ({ form }) => {
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
-              label="Patient ever received any meningococaal vaccine?"
+              label="Patient ever received any meningococcal vaccine?"
               name="patientEverReceivedAnyMeningococalVaccine"
               form={form}
               setFormValues={setFormValues}
@@ -131,9 +131,9 @@ const Epidemiological = ({ form }) => {
                   ]}
                 >
                   <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="card">Card</Radio.Button>
+                    <Radio.Button value="vaccine card">Vaccine Card</Radio.Button>
                     <Radio.Button value="verbal">Verbal</Radio.Button>
-                    <Radio.Button value="no">No</Radio.Button>
+                   
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>

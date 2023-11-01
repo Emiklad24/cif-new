@@ -1,4 +1,4 @@
-import { Col, Input, Collapse, Row, Select, Radio, Divider } from "antd";
+import { Col, Input, Collapse, Row, Radio, Divider } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
@@ -8,23 +8,13 @@ import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 import useFetchAllStates from "../../../../hooks/useFetchAllStates.hooks";
 import useFetchAllLGA from "../../../../hooks/useFetchLga.hook";
-
-const { Option } = Select;
-const countryData = ["China", "United Kingdom", "USA", "India", "Ghana"];
-const gatheringType = [
-  "Burial",
-  "Religious gathering",
-  "Sport events",
-  "Wedding",
-  "Others",
-];
+import Countries from "../../../../constants/JSON/Countries.json";
 
 
 const Epidemiological = ({ form }) => {
-  const [lga] = useState([]);
+  
   const { Panel } = Collapse;
   const [selectedState, setSelectedState] = useState(null);
-  
 
   const handleStateChange = (value, name) => {
     setSelectedState((previousState) => ({
@@ -51,7 +41,6 @@ const Epidemiological = ({ form }) => {
   const { data: allLookup } = useFetchAllLookup();
   const lgaOfTravelQuery = useFetchAllLGA(selectedState?.stateOfTravel);
   const lgaOfEvent = useFetchAllLGA(selectedState?.stateOfEvent);
-
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
@@ -171,13 +160,15 @@ const Epidemiological = ({ form }) => {
                         message: "This field is required",
                       },
                     ]}
+                    name="numberofVaccineDoses"
+
                   >
                     <Radio.Group
                       buttonStyle="solid"
                       name="numberofVaccineDoses"
                     >
                       <Radio.Button value="1">1</Radio.Button>
-                      <Radio.Button value="2">2</Radio.Button>
+                      <Radio.Button value="2+">2+</Radio.Button>
                     </Radio.Group>
                   </ClearableFormItem>
                 </Col>
@@ -218,10 +209,10 @@ const Epidemiological = ({ form }) => {
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
                 label="Have you returned from a local travel within the last 14 days?"
-                labelCol={{ span: 24 }}
-                form={form}
+                form={form} 
                 setFormValues={setFormValues}
                 name="returnedFromLocalTravel14Days"
+                labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[
                   {
@@ -241,7 +232,7 @@ const Epidemiological = ({ form }) => {
                   name="returnedFromLocalTravel14Days"
                 />
               </ClearableFormItem>
-            </Col>
+            </Col> 
 
             {formValues?.returnedFromLocalTravel14Days === "YES" && (
               <Row>
@@ -469,19 +460,16 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       allowClear
                       optionLabelProp="label"
                       placeholder={<>&nbsp; Select country</>}
                       name="countryOfTravel"
-                    >
-                      {countryData?.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={Countries}
+                      labelProperty="name"
+                      valueProperty="name"
+                    />
                   </ClearableFormItem>
                 </Col>
 
@@ -500,19 +488,7 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      name="cityOfTravel"
-                      placeholder={<>&nbsp; Select LGA</>}
-                    >
-                      {lga.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
+                    <Input placeholder="City" name="cityOfTravel" />
                   </ClearableFormItem>
                 </Col>
 
@@ -631,13 +607,11 @@ const Epidemiological = ({ form }) => {
                       },
                     ]}
                   >
-                    <Select
+                    <DynamicSelect
                       showSearch
                       placeholder="Select gathering type"
                       name="gatheringType"
                       optionFilterProp="children"
-                      // onChange={onChangeDisease}
-                      // onSearch={onSearch}
                       filterOption={(input, option) =>
                         (option?.label ?? "")
                           .toLowerCase()
@@ -648,10 +622,9 @@ const Epidemiological = ({ form }) => {
                           ?.toLowerCase()
                           .localeCompare(optionB.children?.toLowerCase())
                       }
-                      options={gatheringType.map((disease) => ({
-                        label: disease,
-                        value: disease,
-                      }))}
+                      options={allLookup?.gathering_type}
+                      labelProperty="value"
+                      valueProperty="id"
                     />
                   </ClearableFormItem>
                 </Col>
@@ -930,10 +903,10 @@ const Epidemiological = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
-                label="Person outcome"
+                label="Outcome"
                 form={form}
                 setFormValues={setFormValues}
-                name="personOutcome"
+                name="outcome"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[
@@ -948,16 +921,15 @@ const Epidemiological = ({ form }) => {
                   options={allLookup?.present_condition_type || []}
                   valueProperty="id"
                   labelProperty="value"
-                  name="personOutcome"
+                  name="outcome"
                   onChange={(e) => {
                     handleUpdateInputValues(e.target.name, e.target.value);
                   }}
                 />
-                
               </ClearableFormItem>
             </Col>
 
-            {formValues?.personOutcome === "DEAD" && (
+            {formValues?.outcome === "DEAD" && (
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   label="Date of death"

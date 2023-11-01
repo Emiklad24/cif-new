@@ -31,24 +31,6 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
-              label="Date of symptom onset"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfSymptomOnset"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
-            </ClearableFormItem>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
               label="Diarrhea"
               name="diarrhea"
               labelCol={{ span: 24 }}
@@ -60,7 +42,6 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              
               <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
@@ -335,12 +316,7 @@ const ClinicalHistory = ({ form }) => {
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   name="datePatientDischargedAtLeastOneNight"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
+                 
                 >
                   <CustomDatePicker
                     form={form}
@@ -350,6 +326,24 @@ const ClinicalHistory = ({ form }) => {
               </Col>
             </>
           )}
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateOfSymptomOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
         </Row>
       </Panel>
     </Collapse>

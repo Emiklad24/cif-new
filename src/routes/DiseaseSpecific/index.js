@@ -48,6 +48,9 @@ import useFetchWard from "../../hooks/useFetchWard.hook";
 import useGetHealthFacilities from "../../hooks/useGetHealthFacilities.hook";
 import useGetAllSettlementType from "../../hooks/useGetAllSettlementType.hook";
 import DynamicRadio from "../../components/Custom/DynamicRadio";
+import useFormStore from "../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
+import { usePostFormData } from "../../hooks/usePostFormData.hook";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -79,6 +82,11 @@ const diseaseData = [
 ];
 
 const App = () => {
+  const { labFormName } = useFormStore(
+    useShallow((state) => ({
+      labFormName: state.labFormName,
+    }))
+  );
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { stateList } = useSelector(({ common }) => common);
@@ -191,8 +199,136 @@ const App = () => {
     console.log("Received values of form:");
   };
 
+  const localTravel = [
+    "returnedFromLocalTravel14Days",
+    "dateOfLocalTravelStart",
+    "dateOfTravelEndLocal",
+    "stateOfTravel",
+    "lgaOfTravel",
+    "clientTravelAddressLocal",
+  ];
+
+  const internationalTravel = [
+    "returnedFromnInternationalTravel14Days",
+    "dateOfInternationalTravelStart",
+    "dateOfInternationalTravelEnd",
+    "countryOfTravel",
+    "cityOfTravel",
+    "clientTravelAddressInternational",
+  ];
+
+  const contactTracingKeys = [
+    "contactFirstNameContact",
+    "contactLastName",
+    "dateOfBirthOfContact",
+    "contactEstimatedAge",
+    "contactSex",
+    "contactPregnancyStatus",
+    "contactStateOfResidence",
+    "contactLgaOfResidence",
+    "contactWardOfResidence",
+    "contactResidentialAddress",
+    "relationshipWithCase",
+    "contactCategorization",
+    "isContactAHealthWorker",
+    "nameOfHwHealthFacility",
+  ];
+
+  const { isLoading, mutate } = usePostFormData();
+
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue);
+    console.log(fieldsValue)
+    if (program === "Covid19") {
+      const data = mutateCovidPayload(
+        fieldsValue,
+        localTravel,
+        internationalTravel
+      );
+      const payloadForSpecimen = mutatePayload(data, labFormName, "specimen");
+      const payloadForContactTracing = mutatePayload(
+        payloadForSpecimen,
+        contactTracingKeys,
+        "contact"
+      );
+
+      //make API call here
+      mutate(payloadForContactTracing);
+    } else {
+      const payloadForSpecimen = mutatePayload(
+        fieldsValue,
+        labFormName,
+        "specimen"
+      );
+
+      if (!["Yellow Fever", "NOMA", "Measles"].includes(program)) {
+        const payloadForContactTracing = mutatePayload(
+          payloadForSpecimen,
+          contactTracingKeys,
+          "contact"
+        );
+        //make API call here
+        mutate(payloadForContactTracing);
+      } else {
+        mutate(payloadForSpecimen);
+      }
+    }
+  };
+
+  const mutateCovidPayload = (
+    fieldsValue,
+    localTravel,
+    internationalTravel
+  ) => {
+    const extractedPropertiesLocalTravel = {};
+    const extractedPropertiesInternationalTravel = {};
+
+    const tempFormValuesLocalTravel = { ...fieldsValue };
+    const tempFormValuesInternationalTravel = { ...fieldsValue };
+
+    for (const key of localTravel) {
+      if (key in tempFormValuesLocalTravel) {
+        extractedPropertiesLocalTravel[key] = tempFormValuesLocalTravel[key];
+        delete tempFormValuesLocalTravel[key];
+      }
+    }
+
+    for (const key of internationalTravel) {
+      if (key in tempFormValuesInternationalTravel) {
+        extractedPropertiesInternationalTravel[key] =
+          tempFormValuesInternationalTravel[key];
+        delete tempFormValuesInternationalTravel[key];
+      }
+    }
+
+    const payloadToBeSubmitted = {
+      ...tempFormValuesLocalTravel,
+      localTravel: { ...extractedPropertiesLocalTravel },
+      internationalTravel: { ...extractedPropertiesInternationalTravel },
+    };
+
+    // console.log(payloadToBeSubmitted)
+
+    return payloadToBeSubmitted;
+  };
+
+  const mutatePayload = (fieldsValue, arrayOfKeys, newObjectName) => {
+    const extractedProperties = {};
+    const tempFormValues = { ...fieldsValue };
+
+    for (const key of arrayOfKeys) {
+      if (key in tempFormValues) {
+        extractedProperties[key] = tempFormValues[key];
+        delete tempFormValues[key];
+      }
+    }
+    const payloadToBeSubmitted = {
+      ...tempFormValues,
+      [newObjectName]: { ...extractedProperties },
+    };
+
+    console.log(payloadToBeSubmitted);
+
+    return payloadToBeSubmitted;
   };
 
   const onChangeDisease = (value) => {
@@ -250,6 +386,8 @@ const App = () => {
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
   const AllSettlementTypeQuery = useGetAllSettlementType();
 
+  
+
   return (
     <>
       <Row>
@@ -295,7 +433,7 @@ const App = () => {
           </ClearableFormItem>
         </Col>
       </Row>
-      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError>
+      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError >
         <Collapse defaultActiveKey={["1"]} onChange={onChange}>
           <Panel header="Reporting Areas" key="1">
             <Row>
@@ -1044,8 +1182,8 @@ const App = () => {
         <Row>
           <Col span={24} style={{ textAlign: "right" }}>
             <ClearableFormItem form={form} className="gx-m-2">
-              <Button type="primary" htmlType="submit">
-                Submit
+              <Button type="primary" htmlType="submit" disabled={isLoading}>
+                {isLoading ? "Please wait" : "Submit"}
               </Button>
             </ClearableFormItem>
           </Col>

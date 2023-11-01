@@ -91,7 +91,7 @@ const ContactTracing = ({ form }) => {
     if (name === "contactStateOfResidence") {
       setSelectedLga(null);
       form.setFieldsValue({
-        contatcLgaOfResidence: null,
+        contactLgaOfResidence: null,
         contactWardOfResidence: null,
       });
     }
@@ -103,7 +103,7 @@ const ContactTracing = ({ form }) => {
       [name]: value,
     }));
 
-    if (name === "contatcLgaOfResidence") {
+    if (name === "contactLgaOfResidence") {
       form.setFieldsValue({
         contactWardOfResidence: null,
       });
@@ -118,7 +118,7 @@ const ContactTracing = ({ form }) => {
   const lgaOfResidenceQuery = useFetchAllLGA(
     selectedState?.contactStateOfResidence
   );
-  const wardOfResidenceQuery = useFetchWard(selectedLga?.contatcLgaOfResidence);
+  const wardOfResidenceQuery = useFetchWard(selectedLga?.contactLgaOfResidence);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -201,12 +201,8 @@ const ContactTracing = ({ form }) => {
               wrapperCol={{ span: 24 }}
               tooltip="Estimated age in years and months"
               label="Contact age"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
+              name="contactEstimatedAge"
+              
             >
               <Input.Group size="large">
                 <Row gutter={8}>
@@ -333,7 +329,7 @@ const ContactTracing = ({ form }) => {
               label="Contact LGA of residence"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              name="contatcLgaOfResidence"
+              name="contactLgaOfResidence"
               rules={[
                 {
                   required: true,
@@ -347,7 +343,7 @@ const ContactTracing = ({ form }) => {
                 optionLabelProp="label"
                 placeholder={<>&nbsp; Select LGA</>}
                 onChange={(value) =>
-                  handleLgaChange(value, "contatcLgaOfResidence")
+                  handleLgaChange(value, "contactLgaOfResidence")
                 }
                 options={lgaOfResidenceQuery?.data}
                 valueProperty="id"
@@ -391,7 +387,7 @@ const ContactTracing = ({ form }) => {
                   wardOfResidenceQuery?.isLoading
                     ? []
                     : wardOfResidenceQuery?.data?.[
-                        selectedLga?.contatcLgaOfResidence
+                        selectedLga?.contactLgaOfResidence
                       ]
                 }
                 valueProperty="id"
@@ -463,9 +459,9 @@ const ContactTracing = ({ form }) => {
               ]}
             >
               <Radio.Group buttonStyle="solid">
-                <Radio.Button value="no risk">No risk</Radio.Button>
-                <Radio.Button value="low risk">Low risk</Radio.Button>
-                <Radio.Button value="high risk">High risk</Radio.Button>
+                <Radio.Button value="no_risk">No risk</Radio.Button>
+                <Radio.Button value="low_risk">Low risk</Radio.Button>
+                <Radio.Button value="high_risk">High risk</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>

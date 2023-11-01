@@ -1,9 +1,11 @@
-import { Col, Input, Collapse, Row, Radio } from "antd";
+import { Col, Input, Collapse, Row, Radio, Divider } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
@@ -13,6 +15,7 @@ const Epidemiological = ({ form }) => {
   };
 
   const [formValues, setFormValues] = useState({});
+  const { data: allLookup } = useFetchAllLookup();
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
@@ -31,14 +34,14 @@ const Epidemiological = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Vaccination status"
-              name="vaccinationStatus"
+              label="Influenza vaccination status"
+              name="vaccinationStatusInfluenza"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Please choose one!",
+                  message: "This field is required",
                 },
               ]}
             >
@@ -47,7 +50,7 @@ const Epidemiological = ({ form }) => {
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="vaccinationStatus"
+                name="vaccinationStatusInfluenza"
               >
                 <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
                 <Radio.Button value="notVaccinated">
@@ -57,29 +60,41 @@ const Epidemiological = ({ form }) => {
               </Radio.Group>
             </ClearableFormItem>
           </Col>
-          {formValues?.vaccinationStatus === "vaccinated" && (
-            <>
-              <Col lg={8} md={8} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Number of COVID 19 doses"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "select an option!",
-                    },
-                  ]}
-                  name="numberofCovidDoses"
-                >
-                  <Radio.Group buttonStyle="solid" name="numberofCovidDoses">
-                    <Radio.Button value="1">1</Radio.Button>
-                    <Radio.Button value="2">2</Radio.Button>
-                  </Radio.Group>
-                </ClearableFormItem>
-              </Col>
+
+          <Col lg={12} md={12} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="COVID-19 vaccination status"
+              name="vaccinationStatusCovid"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="vaccinationStatusCovid"
+              >
+                <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
+                <Radio.Button value="notVaccinated">
+                  Not Vaccinated
+                </Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
+
+          {formValues?.vaccinationStatusInfluenza === "vaccinated" && (
+            <Row>
+              <Divider/>
               <Col lg={8} md={8} sm={24}>
                 <ClearableFormItem
                   setFormValues={setFormValues}
@@ -91,7 +106,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "select an Option!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -104,6 +119,7 @@ const Epidemiological = ({ form }) => {
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
+
               <Col lg={8} md={8} sm={24}>
                 <ClearableFormItem
                   setFormValues={setFormValues}
@@ -111,9 +127,18 @@ const Epidemiological = ({ form }) => {
                   label=" Date of first vaccination"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  name="dateFirstVaccination"
+                  name="dateFirstVaccinationInfluenza"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
                 >
-                  <CustomDatePicker form={form} name="dateFirstVaccination" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateFirstVaccinationInfluenza"
+                  />
                 </ClearableFormItem>
               </Col>
 
@@ -124,13 +149,123 @@ const Epidemiological = ({ form }) => {
                   label=" Date of second vaccination"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  name="dateSecondVaccination" 
+                  name="dateSecondVaccinationInfluenza"
                 >
-                  <CustomDatePicker form={form} name="dateSecondVaccination" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSecondVaccinationInfluenza"
+                  />
                 </ClearableFormItem>
               </Col>
-            </>
+            </Row>
           )}
+
+          {formValues?.vaccinationStatusCovid === "vaccinated" && (
+            <Row>
+              <Divider/>
+              <Col lg={12} md={12} sm={12} xs={24}>
+                <ClearableFormItem
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  label="Vaccine type"
+                  name="vaccineType"
+                  form={form}
+                  setFormValues={setFormValues}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <DynamicSelect
+                    showSearch
+                    placeholder="Select a vaccine"
+                    optionFilterProp="children"
+                    name="vaccineType"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      optionA.children
+                        ?.toLowerCase()
+                        .localeCompare(optionB.children?.toLowerCase())
+                    }
+                    valueProperty="id"
+                    labelProperty="value"
+                    options={allLookup?.vaccine_type || []}
+                  />
+                </ClearableFormItem>
+              </Col>
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  label="Number of vaccine doses"
+                  form={form}
+                  name="numberofCovidVaccineDoses"
+                  setFormValues={setFormValues}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Radio.Group buttonStyle="solid" name="numberofCovidVaccineDoses">
+                    <Radio.Button value="1">1</Radio.Button>
+                    <Radio.Button value="2+">2+</Radio.Button>
+                  </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+
+
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  label=" Date of first vaccination"
+                  labelCol={{ span: 24 }}
+                  form={form}
+                  setFormValues={setFormValues}
+                  wrapperCol={{ span: 24 }}
+                  name="dateOfFirstVaccinationCovid"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker
+                    name="dateOfFirstVaccinationCovid"
+                    form={form}
+                   
+                  />
+                </ClearableFormItem>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  label=" Date of second vaccination"
+                  form={form}
+                  setFormValues={setFormValues}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  name="dateOfSecondVaccinationCovid"
+                >
+                  <CustomDatePicker
+                    name="dateOfSecondVaccinationCovid"
+                    form={form}
+                  />
+                </ClearableFormItem>
+              </Col>
+              <Divider/>
+            </Row>
+          )}
+
+          
 
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
@@ -143,25 +278,24 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
                 name="returnedFromLocalTravel14Days"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
 
-          {formValues?.returnedFromLocalTravel14Days === "yes" && (
+          {formValues?.returnedFromLocalTravel14Days === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -174,7 +308,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the location!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -201,24 +335,23 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                name="returnedFromInternationalTravel14Days"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="returnedFromInternationalTravel14Days"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
-          {formValues?.returnedFromInternationalTravel14Days === "yes" && (
+          {formValues?.returnedFromInternationalTravel14Days === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -231,7 +364,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the location!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -258,24 +391,23 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the contact details!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                name="contactWithSuspectedConfirmed"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="contactWithSuspectedConfirmed"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
-          {formValues?.contactWithSuspectedConfirmed === "yes" && (
+          {formValues?.contactWithSuspectedConfirmed === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -288,7 +420,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -315,24 +447,23 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                name="attendedAnyEvent"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="attendedAnyEvent"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
-          {formValues?.attendedAnyEvent === "yes" && (
+          {formValues?.attendedAnyEvent === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -345,7 +476,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -372,24 +503,23 @@ const Epidemiological = ({ form }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                name="admittedInpatient"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="admittedInpatient"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
-          {formValues?.admittedInpatient === "yes" && (
+          {formValues?.admittedInpatient === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -402,7 +532,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -426,28 +556,26 @@ const Epidemiological = ({ form }) => {
               name="visitOutpatient"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
                 name="visitOutpatient"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
-          {formValues?.visitOutpatient === "yes" && (
+          {formValues?.visitOutpatient === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -460,7 +588,7 @@ const Epidemiological = ({ form }) => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the date!",
+                      message: "This field is required",
                     },
                   ]}
                 >
@@ -480,24 +608,50 @@ const Epidemiological = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Present condition"
-              name="presentCondition"
+              label="Outcome"
+              name="outcome"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
                   required: true,
-                  message: "Please input the date!",
+                  message: "This field is required",
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="Alive">Alive</Radio.Button>
-                <Radio.Button value="Dead">Dead</Radio.Button>
-                <Radio.Button value="Hospitalized">Hospitalized</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                labelProperty="value"
+                valueProperty="id"
+                options={allLookup?.present_condition_type || []}
+                name="outcome"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
             </ClearableFormItem>
           </Col>
+
+          {formValues?.outcome === "DEAD" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of date"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+                name="dateOfDeathOutcom"
+              >
+                <CustomDatePicker form={form} name="dateOfDeathOutcom" />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={24} md={24} sm={24}>
             <ClearableFormItem
@@ -508,21 +662,19 @@ const Epidemiological = ({ form }) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
-              <Checkbox.Group
+              <Radio.Group
                 buttonStyle="solid"
-                options={[
-                  { label: "Asthma", value: "asthma" },
-                  {
-                    label: "Recurrent chest pain ",
-                    value: "recurrent chest pain",
-                  },
-                  {
-                    label: "Immuno-compromised conditions",
-                    value: "Immuno-compromised conditions",
-                  },
-                  { label: "Heart disease", value: "heart disease" },
-                ]}
-              />
+                name="comobiditypreexistingMedicalConditions"
+              >
+                <Radio.Button value="asthma">Asthma</Radio.Button>
+                <Radio.Button value="recurrent chest pain">
+                  Recurrent chest pain
+                </Radio.Button>
+                <Radio.Button value="Immuno-compromised conditions">
+                  Immuno-compromised conditions
+                </Radio.Button>
+                <Radio.Button value="heart disease">Heart disease</Radio.Button>
+              </Radio.Group>
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -531,19 +683,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Does patient smoke?"
               name="patientSmoke"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
-                name="patientSmoke"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+                name="patientSmoke"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -552,19 +704,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Chronic liver disease?"
               name="chronicLiverDisease"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
-                name="chronicLiverDisease"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+                name="chronicLiverDisease"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -573,19 +725,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Chronic renal disease?"
               name="chronicRenalDisease"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
-                name="chronicRenalDisease"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+                name="chronicRenalDisease"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -594,19 +746,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="HIV/AIDS"
               name="hivAids"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 name="hivAids"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -615,19 +767,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Pregnancy?"
               name="pregnancy"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 name="pregnancy"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} xs={24}>
@@ -636,19 +788,19 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Diabetes"
               name="diabetes"
-              labelCol={{ span: 12 }}
-              wrapperCol={{ span: 12 }}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                labelProperty="value"
+                valueProperty="id"
                 name="diabetes"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
         </Row>

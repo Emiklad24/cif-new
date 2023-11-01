@@ -620,8 +620,8 @@ const Epidemiological = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Present condition"
-              name="presentCondition"
+              label="Outcome"
+              name="outcome"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
@@ -639,18 +639,18 @@ const Epidemiological = ({ form }) => {
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
-                name="presentCondition"
+                name="outcome"
               />
             </ClearableFormItem>
           </Col>
 
-          {formValues?.presentCondition === "DEAD" && (
+          {formValues?.outcome === "DEAD" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
-                  label="Where did the patient die?"
+                  label="Where did the case die?"
                   name="wherePatientDied"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
@@ -689,6 +689,19 @@ const Epidemiological = ({ form }) => {
                     <Radio.Button value="safe">Safe</Radio.Button>
                     <Radio.Button value="unsafe">Unsafe</Radio.Button>
                   </Radio.Group>
+                </ClearableFormItem>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  setFormValues={setFormValues}
+                  form={form}
+                  label="Date of death"
+                  name="dateOfDeathOfCase"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                >
+                  <CustomDatePicker name="dateOfDeathOfCase" form={form} />
                 </ClearableFormItem>
               </Col>
             </>
