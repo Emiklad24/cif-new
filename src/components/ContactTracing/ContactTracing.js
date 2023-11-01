@@ -5,6 +5,10 @@ import React, { useEffect, useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../Custom/ClearableFormItem";
 import CustomDatePicker from "../Custom/CustomDatePicker";
+import DynamicSelect from "../Custom/DynamicSelect";
+import useFetchAllStates from "../../hooks/useFetchAllStates.hooks";
+import useFetchAllLGA from "../../hooks/useFetchLga.hook";
+import useFetchWard from "../../hooks/useFetchWard.hook";
 
 const { Option } = Select;
 
@@ -32,10 +36,8 @@ const ContactTracing = ({ form }) => {
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
   const [formValues, setFormValues] = useState({});
-
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
-  };
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedLga, setSelectedLga] = useState(null);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -50,14 +52,13 @@ const ContactTracing = ({ form }) => {
 
   const getDoBFromAge = (arg) => {
     if (arg) {
-      // Assuming arg is in the format DD-MM-YYYY
       const parts = arg.split("-");
       if (parts.length !== 3) {
         throw new Error("Invalid date format. Please use DD-MM-YYYY.");
       }
 
       const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
+      const month = parseInt(parts[1], 10) - 1;
       const year = parseInt(parts[2], 10);
 
       const dob = new Date(year, month, day);
@@ -81,9 +82,43 @@ const ContactTracing = ({ form }) => {
     return 0;
   };
 
+  const handleStateChange = (value, name) => {
+    setSelectedState((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+
+    if (name === "contactStateOfResidence") {
+      setSelectedLga(null);
+      form.setFieldsValue({
+        contactLgaOfResidence: null,
+        contactWardOfResidence: null,
+      });
+    }
+  };
+
+  const handleLgaChange = (value, name) => {
+    setSelectedLga((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+
+    if (name === "contactLgaOfResidence") {
+      form.setFieldsValue({
+        contactWardOfResidence: null,
+      });
+    }
+  };
+
   useEffect(() => {
     getDoBFromAge(formValues?.dateOfBirthOfContact);
   }, [formValues]);
+
+  const { data: allStates } = useFetchAllStates();
+  const lgaOfResidenceQuery = useFetchAllLGA(
+    selectedState?.contactStateOfResidence
+  );
+  const wardOfResidenceQuery = useFetchWard(selectedLga?.contactLgaOfResidence);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -166,12 +201,8 @@ const ContactTracing = ({ form }) => {
               wrapperCol={{ span: 24 }}
               tooltip="Estimated age in years and months"
               label="Contact age"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
+              name="contactEstimatedAge"
+              
             >
               <Input.Group size="large">
                 <Row gutter={8}>
@@ -229,34 +260,38 @@ const ContactTracing = ({ form }) => {
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
               >
-                <Radio.Button value="male">Male</Radio.Button>
-                <Radio.Button value="female">Female</Radio.Button>
+                <Radio.Button value="MALE">Male</Radio.Button>
+                <Radio.Button value="FEMALE">Female</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>
 
-          {formValues?.contactSex === "female" && (
-            <Col lg={8} md={12} sm={12} xs={24}>
-              <ClearableFormItem
-                form={form}
-                label="Pregnancy status"
-                labelCol={{ span: 24 }}
-                wrapperCol={{ span: 24 }}
-                name="contactPregnancyStatus"
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="pregnant">Pregnant</Radio.Button>
-                  <Radio.Button value="not pregnant">Not Pregnant</Radio.Button>
-                </Radio.Group>
-              </ClearableFormItem>
-            </Col>
-          )}
+          {formValues?.contactSex === "FEMALE" &&
+            ageYear >=
+              10 && (
+                <Col lg={8} md={12} sm={12} xs={24}>
+                  <ClearableFormItem
+                    form={form}
+                    label="Pregnancy status"
+                    labelCol={{ span: 24 }}
+                    wrapperCol={{ span: 24 }}
+                    name="contactPregnancyStatus"
+                    rules={[
+                      {
+                        required: true,
+                        message: "This field is required",
+                      },
+                    ]}
+                  >
+                    <Radio.Group buttonStyle="solid">
+                      <Radio.Button value="pregnant">Pregnant</Radio.Button>
+                      <Radio.Button value="not pregnant">
+                        Not Pregnant
+                      </Radio.Button>
+                    </Radio.Group>
+                  </ClearableFormItem>
+                </Col>
+              )}
 
           <Col lg={8} md={12} sm={24} xs={24}>
             <ClearableFormItem
@@ -273,19 +308,18 @@ const ContactTracing = ({ form }) => {
                 },
               ]}
             >
-              <Select
+              <DynamicSelect
                 showSearch
                 allowClear
                 optionLabelProp="label"
                 placeholder={<>&nbsp; Select State</>}
-                onChange={handleStateChange}
-              >
-                {stateData.map((item) => (
-                  <Option label={item} value={item} key={item}>
-                    {item}
-                  </Option>
-                ))}
-              </Select>
+                onChange={(value) =>
+                  handleStateChange(value, "contactStateOfResidence")
+                }
+                options={allStates}
+                valueProperty="id"
+                labelProperty="name"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={12} sm={24} xs={24}>
@@ -295,7 +329,7 @@ const ContactTracing = ({ form }) => {
               label="Contact LGA of residence"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              name="contatcLgaOfResidence"
+              name="contactLgaOfResidence"
               rules={[
                 {
                   required: true,
@@ -303,25 +337,27 @@ const ContactTracing = ({ form }) => {
                 },
               ]}
             >
-              <Select
+              <DynamicSelect
                 showSearch
                 allowClear
                 optionLabelProp="label"
                 placeholder={<>&nbsp; Select LGA</>}
-              >
-                {lga.map((item, i) => (
-                  <Option key={item} label={item} value={item}>
-                    {item}
-                  </Option>
-                ))}
-              </Select>
+                onChange={(value) =>
+                  handleLgaChange(value, "contactLgaOfResidence")
+                }
+                options={lgaOfResidenceQuery?.data}
+                valueProperty="id"
+                labelProperty="name"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={12} sm={24} xs={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Contact ward of residence"
+              label={`Contact ward of residence ${
+                wardOfResidenceQuery?.isLoading ? "Loading..." : ""
+              }`}
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               name="contactWardOfResidence"
@@ -332,18 +368,31 @@ const ContactTracing = ({ form }) => {
                 },
               ]}
             >
-              <Select
+              <DynamicSelect
                 showSearch
                 allowClear
                 optionLabelProp="label"
                 placeholder={<>&nbsp; Select Ward</>}
-              >
-                {lga.map((item, i) => (
-                  <Option key={item} label={item} value={item}>
-                    {item}
-                  </Option>
-                ))}
-              </Select>
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                filterSort={(optionA, optionB) =>
+                  (optionA?.label ?? "")
+                    .toLowerCase()
+                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                }
+                options={
+                  wardOfResidenceQuery?.isLoading
+                    ? []
+                    : wardOfResidenceQuery?.data?.[
+                        selectedLga?.contactLgaOfResidence
+                      ]
+                }
+                valueProperty="id"
+                labelProperty="name"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={12} sm={24}>
@@ -410,9 +459,9 @@ const ContactTracing = ({ form }) => {
               ]}
             >
               <Radio.Group buttonStyle="solid">
-                <Radio.Button value="no risk">No risk</Radio.Button>
-                <Radio.Button value="low risk">Low risk</Radio.Button>
-                <Radio.Button value="high risk">High risk</Radio.Button>
+                <Radio.Button value="no_risk">No risk</Radio.Button>
+                <Radio.Button value="low_risk">Low risk</Radio.Button>
+                <Radio.Button value="high_risk">High risk</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
           </Col>

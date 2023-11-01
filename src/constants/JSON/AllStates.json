@@ -1,0 +1,150 @@
+[
+    {
+        "id": 99383,
+        "name": "Abia"
+    },
+    {
+        "id": 100323,
+        "name": "Adamawa"
+    },
+    {
+        "id": 101453,
+        "name": "Akwa-Ibom"
+    },
+    {
+        "id": 102324,
+        "name": "Anambra"
+    },
+    {
+        "id": 103315,
+        "name": "Bauchi"
+    },
+    {
+        "id": 104449,
+        "name": "Bayelsa"
+    },
+    {
+        "id": 104870,
+        "name": "Benue"
+    },
+    {
+        "id": 105858,
+        "name": "Borno"
+    },
+    {
+        "id": 106235,
+        "name": "Cross River"
+    },
+    {
+        "id": 107346,
+        "name": "Delta"
+    },
+    {
+        "id": 108138,
+        "name": "Ebonyi"
+    },
+    {
+        "id": 108859,
+        "name": "Edo"
+    },
+    {
+        "id": 109499,
+        "name": "Ekiti"
+    },
+    {
+        "id": 110159,
+        "name": "Enugu"
+    },
+    {
+        "id": 110901,
+        "name": "Fct"
+    },
+    {
+        "id": 111335,
+        "name": "Gombe"
+    },
+    {
+        "id": 112183,
+        "name": "Imo"
+    },
+    {
+        "id": 113124,
+        "name": "Jigawa"
+    },
+    {
+        "id": 114057,
+        "name": "Kaduna"
+    },
+    {
+        "id": 115706,
+        "name": "Kano"
+    },
+    {
+        "id": 117185,
+        "name": "Katsina"
+    },
+    {
+        "id": 119047,
+        "name": "Kebbi"
+    },
+    {
+        "id": 120056,
+        "name": "Kogi"
+    },
+    {
+        "id": 121065,
+        "name": "Kwara"
+    },
+    {
+        "id": 121877,
+        "name": "Lagos"
+    },
+    {
+        "id": 123780,
+        "name": "Nasarawa"
+    },
+    {
+        "id": 124898,
+        "name": "Niger"
+    },
+    {
+        "id": 126438,
+        "name": "Ogun"
+    },
+    {
+        "id": 127351,
+        "name": "Ondo"
+    },
+    {
+        "id": 128314,
+        "name": "Osun"
+    },
+    {
+        "id": 129533,
+        "name": "Oyo"
+    },
+    {
+        "id": 131164,
+        "name": "Plateau"
+    },
+    {
+        "id": 132465,
+        "name": "Rivers"
+    },
+    {
+        "id": 133429,
+        "name": "Sokoto"
+    },
+    {
+        "id": 134351,
+        "name": "Taraba"
+    },
+    {
+        "id": 135251,
+        "name": "Yobe"
+    },
+    {
+        "id": 135834,
+        "name": "Zamfara"
+    }
+]

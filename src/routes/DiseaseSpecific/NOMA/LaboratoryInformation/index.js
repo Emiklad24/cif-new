@@ -1,12 +1,13 @@
-import { Col, Collapse, Row, Select, Radio } from "antd";
+import { Col, Collapse, Row, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import DynamicSelect from "../../../../components/Custom/DynamicSelect";
+import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
 
 const CheckboxGroup = Checkbox.Group;
-const { Option } = Select;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
@@ -15,17 +16,11 @@ const LaboratoryInformation = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const laboratoryOptions = [
-    "ACEGID -African Centre of Excellence for Genomics of Infectious Diseases, Ogun",
-    "AE-FUTHA -Alex Ekwueme Federal University Teaching Hospital Virology Laboratory",
-    "BUK -Bayero University Kano Centre for Infectious Disease and Research, Kano",
-    "FMC JALINGO -Federal Medical Centre, Jalingo, Taraba",
-    "FMC OWO -Federal Medical Centre Owo, Ondo",
-    "ISTH -Irrua Specialist Teaching Hospital, Edo",
-    "LUTH -Lagos University Teaching Hospital Virology Laboratory, Lagos",
-    "MOGID -Molecular Genetics and Infectious Diseases Research Laboratory, Bauchi",
-    "NRL -National Reference Laboratory Gaduwa, FCT",
-  ];
+  const allHealthFacilitiesQuery = useGetHealthFacilities();
+  const nameOfTestingLaboratory = allHealthFacilitiesQuery?.data?.filter(
+    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  );
+
   const conditionOfSampleOptions = ["Adequate", "Not adequate"];
 
   const [formValues, setFormValues] = useState({});
@@ -43,6 +38,7 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
+              collectFormName={true}
               form={form}
               setFormValues={setFormValues}
               label="Specimen collected"
@@ -75,6 +71,7 @@ const LaboratoryInformation = ({ form }) => {
           <Row>
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Type of specimen collected"
@@ -101,6 +98,7 @@ const LaboratoryInformation = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Date specimen collected"
@@ -120,6 +118,7 @@ const LaboratoryInformation = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Date specimen sent"
@@ -139,6 +138,7 @@ const LaboratoryInformation = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Name of testing laboratory"
@@ -146,23 +146,31 @@ const LaboratoryInformation = ({ form }) => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
-                <Select
-                  placeholder="Select Laboratory Name"
+                <DynamicSelect
+                  showSearch
                   allowClear
-                  id="nameOfTestingLaboratory"
-                  name="nameOfTestingLaboratory"
-                >
-                  {laboratoryOptions.map((item) => (
-                    <Option label={item} value={item} key={item}>
-                      {item}
-                    </Option>
-                  ))}
-                </Select>
+                  optionLabelProp="label"
+                  options={nameOfTestingLaboratory}
+                  valueProperty="id"
+                  labelProperty="name"
+                  placeholder="Select Laboratory Name"
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  filterSort={(optionA, optionB) =>
+                    (optionA?.label ?? "")
+                      .toLowerCase()
+                      .localeCompare((optionB?.label ?? "").toLowerCase())
+                  }
+                />
               </ClearableFormItem>
             </Col>
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Specimen recieved"
@@ -195,6 +203,7 @@ const LaboratoryInformation = ({ form }) => {
           <Row>
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Type of specimen recieved"
@@ -221,6 +230,7 @@ const LaboratoryInformation = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Date specimen recieved"
@@ -240,6 +250,7 @@ const LaboratoryInformation = ({ form }) => {
 
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 form={form}
                 setFormValues={setFormValues}
                 label="Specimen condition"

@@ -39,7 +39,7 @@ const FinalClassification = ({ form }) => {
               <Radio.Button value="laboratoryConfirmed">Laboratory Confirmed</Radio.Button>
               <Radio.Button value="epidemiologicallyLinked">Epidemiologically Linked</Radio.Button>
               <Radio.Button value="clinicallyCompatible">Clinically Compatible</Radio.Button>
-              <Radio.Button value="discardedNotACase">Discarded/Not a Case</Radio.Button>
+              <Radio.Button value="notACase">Not a Case</Radio.Button>
               <Radio.Button value="pending">Pending</Radio.Button>
             </Radio.Group>
           </ClearableFormItem>

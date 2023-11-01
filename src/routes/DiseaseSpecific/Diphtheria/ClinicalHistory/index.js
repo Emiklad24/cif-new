@@ -5,6 +5,8 @@ import "styles/pages/form.less";
 import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -16,7 +18,13 @@ const ClinicalHistory = ({ form }) => {
   };
 
   const [formValues, setFormValues] = useState({});
-
+  const { data: allLookup } = useFetchAllLookup();
+  const handleUpdateInputValues = (inputName, value) => {
+    setFormValues((previousState) => ({
+      ...previousState,
+      [inputName]: value,
+    }));
+  };
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
@@ -36,15 +44,16 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
+          {/* <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -61,7 +70,7 @@ const ClinicalHistory = ({ form }) => {
             >
               <CustomDatePicker form={form} name="dateOfFeverOnset" />
             </ClearableFormItem>
-          </Col>
+          </Col> */}
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -100,11 +109,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -123,11 +133,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -145,11 +156,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -194,11 +206,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -216,19 +229,20 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Skin leisions"
-              name="skinLeisions"
+              label="Skin lesions"
+              name="skinLesions"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
@@ -238,11 +252,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -314,7 +329,7 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
-              label="Date of hopsitalization"
+              label="Date of hospitalization"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               name="dateOfHospitalization"
@@ -344,56 +359,65 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
-            </ClearableFormItem>
-          </Col>
-
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Name of antibiotics"
-              name="nameAntibiotics"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter name of antibiotics"
-                id="address"
-                name="antibioticsName"
-                onChange={(e) => {}}
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+                name="antibioticsAdministered"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date of first dose"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfFirstDose"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfFirstDose" />
-            </ClearableFormItem>
-          </Col>
+          {formValues?.antibioticsAdministered === "YES" && (
+            <>
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  setFormValues={setFormValues}
+                  form={form}
+                  label="Name of antibiotics"
+                  name="nameAntibiotics"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter name of antibiotics"
+                    id="address"
+                    name="antibioticsName"
+                    onChange={(e) => {}}
+                  />
+                </ClearableFormItem>
+              </Col>
+
+              <Col lg={8} md={8} sm={24}>
+                <ClearableFormItem
+                  setFormValues={setFormValues}
+                  form={form}
+                  label="Date antibiotics was administered"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  name="dateOfFirstDose"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker form={form} name="dateOfFirstDose" />
+                </ClearableFormItem>
+              </Col>
+            </>
+          )}
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -410,32 +434,39 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+                name="antitoxinAdministered"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date of antitoxin"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfAntitoxin"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfAntitoxin" />
-            </ClearableFormItem>
-          </Col>
+          {formValues?.antitoxinAdministered === "YES" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of antitoxin"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                name="dateOfAntitoxin"
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <CustomDatePicker form={form} name="dateOfAntitoxin" />
+              </ClearableFormItem>
+            </Col>
+          )}
         </Row>
       </Panel>
     </Collapse>

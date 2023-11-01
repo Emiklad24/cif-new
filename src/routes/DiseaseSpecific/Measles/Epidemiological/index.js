@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
@@ -20,6 +22,7 @@ const Epidemiological = ({ form }) => {
       [inputName]: value,
     }));
   };
+  const { data: allLookup } = useFetchAllLookup();
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -139,11 +142,12 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -156,11 +160,12 @@ const Epidemiological = ({ form }) => {
               wrapperCol={{ span: 24 }}
               name="ongoingMeaslesOutbreakCommunity"
             >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="yse">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
             </ClearableFormItem>
           </Col>
         </Row>

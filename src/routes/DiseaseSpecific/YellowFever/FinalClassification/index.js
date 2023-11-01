@@ -45,12 +45,12 @@ const FinalClassification = ({form}) => {
               }
               name="finalClassification"
             >
-              <Radio.Button value="pending">Pending</Radio.Button>
               <Radio.Button value="confirmed">Confirmed</Radio.Button>
               <Radio.Button value="presumptive positive">
                 Presumptive positive
               </Radio.Button>
               <Radio.Button value="discarded">Discarded</Radio.Button>
+              <Radio.Button value="pending">Pending</Radio.Button>
             </Radio.Group>
           </ClearableFormItem>
         </Col>

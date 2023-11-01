@@ -4,6 +4,8 @@ import "styles/pages/form.less";
 
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
@@ -23,13 +25,16 @@ const Epidemiological = ({ form }) => {
     }));
   };
 
+  const { data: allLookup } = useFetchAllLookup();
+
+
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
-              label="Patient ever received any meningococaal vaccine?"
+              label="Patient ever received any meningococcal vaccine?"
               name="patientEverReceivedAnyMeningococalVaccine"
               form={form}
               setFormValues={setFormValues}
@@ -126,9 +131,9 @@ const Epidemiological = ({ form }) => {
                   ]}
                 >
                   <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="card">Card</Radio.Button>
+                    <Radio.Button value="vaccine card">Vaccine Card</Radio.Button>
                     <Radio.Button value="verbal">Verbal</Radio.Button>
-                    <Radio.Button value="no">No</Radio.Button>
+                   
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
@@ -184,20 +189,20 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group
-                buttonStyle="solid"
-                name="travelInLast10Days"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+              <DynamicRadio
+                  buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
+                  name="travelInLast10Days"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              
             </ClearableFormItem>
           </Col>
-          {formValues?.travelInLast10Days === "yes" && (
+          {formValues?.travelInLast10Days === "YES" && (
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
                 label="If yes to above, where?"
@@ -227,20 +232,21 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group
-                buttonStyle="solid"
-                name="contactWithAnyoneWithSymtomsOrConfirmed"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
+               <DynamicRadio
+                  buttonStyle="solid"
+                  options={allLookup?.yes_no_unknown || []}
+                  valueProperty="id"
+                  labelProperty="value"
+                  name="contactWithAnyoneWithSymtomsOrConfirmed"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+
+              
             </ClearableFormItem>
           </Col>
-          {formValues?.contactWithAnyoneWithSymtomsOrConfirmed === "yes" && (
+          {formValues?.contactWithAnyoneWithSymtomsOrConfirmed === "YES" && (
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
                 label="Location of contact(s)"

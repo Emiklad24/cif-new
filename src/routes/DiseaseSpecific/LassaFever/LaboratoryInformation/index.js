@@ -1,25 +1,15 @@
-import { Col, Input, Collapse, Row, Divider, Select, Radio } from "antd";
+import { Col, Input, Collapse, Row, Divider, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const CheckboxGroup = Checkbox.Group;
-
-const { Option } = Select;
-
-const laboratoryData = [
-  "ACEGID -African Centre of Excellence for Genomics of Infectious Diseases, Ogun",
-  "AE-FUTHA -Alex Ekwueme Federal University Teaching Hospital Virology Laboratory",
-  "BUK -Bayero University Kano Centre for Infectious Disease and Research, Kano",
-  "FMC JALINGO -Federal Medical Centre, Jalingo, Taraba",
-  "FMC OWO -Federal Medical Centre Owo, Ondo",
-  "ISTH -Irrua Specialist Teaching Hospital, Edo",
-  "LUTH -Lagos University Teaching Hospital Virology Laboratory, Lagos",
-  "MOGID -Molecular Genetics and Infectious Diseases Research Laboratory, Bauchi",
-  "NRL -National Reference Laboratory Gaduwa, FCT",
-];
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
@@ -29,9 +19,13 @@ const LaboratoryInformation = ({ form }) => {
   };
 
   const [formValues, setFormValues] = useState({});
+  const { data: allLookup } = useFetchAllLookup();
+  const allHealthFacilitiesQuery = useGetHealthFacilities();
+  const nameOfTestingLaboratory = allHealthFacilitiesQuery?.data?.filter(
+    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  );
 
   const handleUpdateInputValues = (inputName, value) => {
-
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
@@ -44,6 +38,7 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={12} md={12} sm={24}>
             <ClearableFormItem
+              collectFormName={true}
               setFormValues={setFormValues}
               form={form}
               label="Specimen collected"
@@ -57,23 +52,24 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group
+              <DynamicRadio
                 buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                valueProperty="id"
+                labelProperty="value"
                 onChange={(e) =>
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
                 name="specimenCollected"
-              >
-                <Radio.Button value="yes">Yes</Radio.Button>
-                <Radio.Button value="no">No</Radio.Button>
-              </Radio.Group>
+              />
             </ClearableFormItem>
           </Col>
 
-          {formValues?.specimenCollected === "yes" && (
+          {formValues?.specimenCollected === "YES" && (
             <>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
+                  collectFormName={true}
                   setFormValues={setFormValues}
                   form={form}
                   label="Date specimen collected"
@@ -93,6 +89,7 @@ const LaboratoryInformation = ({ form }) => {
               </Col>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
+                  collectFormName={true}
                   setFormValues={setFormValues}
                   form={form}
                   label="Type of specimen collected"
@@ -111,15 +108,17 @@ const LaboratoryInformation = ({ form }) => {
                       { label: "Blood", value: "blood" },
                       { label: "Breast milk", value: "breastmilk" },
                     ]}
-                    // name="specimenType"
-                    onChange={(value) =>
-                      handleUpdateInputValues("specimenType", value)
-                    }
+                    name="specimenType"
+                    onChange={(value) => {
+                      console.log(value);
+                      handleUpdateInputValues("specimenType", value);
+                    }}
                   />
                 </ClearableFormItem>
               </Col>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
+                  collectFormName={true}
                   setFormValues={setFormValues}
                   form={form}
                   label="Name of testing laboratory"
@@ -133,17 +132,29 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <Select showSearch allowClear optionLabelProp="label">
-                    {laboratoryData.map((item) => (
-                      <Option label={item} value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>
+                  <DynamicSelect
+                    showSearch
+                    allowClear
+                    optionLabelProp="label"
+                    options={nameOfTestingLaboratory}
+                    valueProperty="id"
+                    labelProperty="name"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? "")
+                        .toLowerCase()
+                        .localeCompare((optionB?.label ?? "").toLowerCase())
+                    }
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
+                  collectFormName={true}
                   setFormValues={setFormValues}
                   form={form}
                   label="Date specimen sent"
@@ -166,6 +177,7 @@ const LaboratoryInformation = ({ form }) => {
           {formValues?.specimenCollected === "no" && (
             <Col lg={12} md={12} sm={24}>
               <ClearableFormItem
+                collectFormName={true}
                 setFormValues={setFormValues}
                 form={form}
                 label="Why was specimen not collected?"
@@ -190,14 +202,14 @@ const LaboratoryInformation = ({ form }) => {
             </Col>
           )}
 
-          {formValues?.specimenCollected === "yes" && (
-            
+          {formValues?.specimenCollected === "YES" && (
             <>
               <Divider plain>Laboratory result</Divider>
               {formValues?.specimenType?.includes("blood") &&
-                formValues?.specimenCollected === "yes" && (
+                formValues?.specimenCollected === "YES" && (
                   <Col lg={24} md={24} sm={24}>
                     <ClearableFormItem
+                      collectFormName={true}
                       setFormValues={setFormValues}
                       form={form}
                       label="Blood specimen received"
@@ -211,24 +223,25 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group
+                      <DynamicRadio
                         buttonStyle="solid"
+                        options={allLookup?.yes_no_type || []}
+                        valueProperty="id"
+                        labelProperty="value"
                         name="bloodSpecimenReceived"
                         onChange={(e) =>
                           handleUpdateInputValues(e.target.name, e.target.value)
                         }
-                      >
-                        <Radio.Button value="yes">Yes</Radio.Button>
-                        <Radio.Button value="no">No</Radio.Button>
-                      </Radio.Group>
+                      />
                     </ClearableFormItem>
                   </Col>
                 )}
-              {formValues?.bloodSpecimenReceived === "yes" &&
+              {formValues?.bloodSpecimenReceived === "YES" &&
                 formValues?.specimenType?.includes("blood") && (
                   <>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Date specimen received"
@@ -250,6 +263,7 @@ const LaboratoryInformation = ({ form }) => {
                     </Col>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Specimen condition"
@@ -263,7 +277,16 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          buttonStyle="solid"
+                          name="bloodSpecimenCondition"
+                          onChange={(e) =>
+                            handleUpdateInputValues(
+                              e.target.name,
+                              e.target.value
+                            )
+                          }
+                        >
                           <Radio.Button value="adequate">Adequate</Radio.Button>
                           <Radio.Button value="not adequate">
                             Not adequate
@@ -271,8 +294,35 @@ const LaboratoryInformation = ({ form }) => {
                         </Radio.Group>
                       </ClearableFormItem>
                     </Col>
+
+                    {formValues?.bloodSpecimenCondition === "not adequate" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Reason why specimen is not adequate"
+                          name="reasonSpecimenNotAdequateBloodSpecimen"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            name="reasonSpecimenNotAdequateBloodSpecimen"
+                            placeholder="Reason why"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Laboratory ID"
@@ -296,6 +346,7 @@ const LaboratoryInformation = ({ form }) => {
                     </Col>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="PCR/RT-PCR result"
@@ -333,6 +384,7 @@ const LaboratoryInformation = ({ form }) => {
                     {formValues?.bloodPcrResult === "notDone" && (
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
+                          collectFormName={true}
                           setFormValues={setFormValues}
                           form={form}
                           label="Why was test not done?"
@@ -360,10 +412,11 @@ const LaboratoryInformation = ({ form }) => {
                     {(formValues?.bloodPcrResult === "positive" ||
                       formValues?.bloodPcrResult === "negative" ||
                       formValues?.bloodPcrResult === "indeterminate") &&
-                      formValues?.bloodSpecimenReceived === "yes" &&
+                      formValues?.bloodSpecimenReceived === "YES" &&
                       formValues?.specimenType?.includes("blood") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
+                            collectFormName={true}
                             setFormValues={setFormValues}
                             form={form}
                             label="Date result released"
@@ -391,9 +444,10 @@ const LaboratoryInformation = ({ form }) => {
               <Divider />
               {/* breastmilk Form fields */}
               {formValues?.specimenType?.includes("breastmilk") &&
-                formValues?.specimenCollected === "yes" && (
+                formValues?.specimenCollected === "YES" && (
                   <Col lg={24} md={24} sm={24}>
                     <ClearableFormItem
+                      collectFormName={true}
                       setFormValues={setFormValues}
                       form={form}
                       label="Breast milk specimen received"
@@ -407,24 +461,25 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <Radio.Group
+                      <DynamicRadio
                         buttonStyle="solid"
+                        options={allLookup?.yes_no_type || []}
+                        valueProperty="id"
+                        labelProperty="value"
                         name="breastmilkSpecimenReceived"
                         onChange={(e) =>
                           handleUpdateInputValues(e.target.name, e.target.value)
                         }
-                      >
-                        <Radio.Button value="yes">Yes</Radio.Button>
-                        <Radio.Button value="no">No</Radio.Button>
-                      </Radio.Group>
+                      />
                     </ClearableFormItem>
                   </Col>
                 )}
-              {formValues?.breastmilkSpecimenReceived === "yes" &&
+              {formValues?.breastmilkSpecimenReceived === "YES" &&
                 formValues?.specimenType?.includes("breastmilk") && (
                   <>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Date specimen received"
@@ -446,6 +501,7 @@ const LaboratoryInformation = ({ form }) => {
                     </Col>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Specimen condition"
@@ -467,8 +523,36 @@ const LaboratoryInformation = ({ form }) => {
                         </Radio.Group>
                       </ClearableFormItem>
                     </Col>
+
+                    {formValues?.breastmilkSpecimenCondition ===
+                      "not adequate" && (
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Reason why specimen is not adequate"
+                          name="reasonSpecimenNotAdequateBreastMilkSpecimen"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            name="reasonSpecimenNotAdequateBloodSpecimen"
+                            placeholder="Reason why"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="Laboratory ID"
@@ -484,8 +568,8 @@ const LaboratoryInformation = ({ form }) => {
                       >
                         <Input
                           placeholder="Enter lab ID"
-                          id="breastmilkLabid"
-                          name="breastmilkLabid"
+                          id="breastmilkLaboratoryId"
+                          name="breastmilkLaboratoryId"
                           onChange={(e) => {}}
                         />
                       </ClearableFormItem>
@@ -493,6 +577,7 @@ const LaboratoryInformation = ({ form }) => {
 
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
+                        collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
                         label="PCR/RT-PCR result"
@@ -529,6 +614,7 @@ const LaboratoryInformation = ({ form }) => {
                     {formValues?.breastmilkPcrResult === "notDone" && (
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
+                          collectFormName={true}
                           setFormValues={setFormValues}
                           form={form}
                           label="Why was test not done?"
@@ -555,10 +641,11 @@ const LaboratoryInformation = ({ form }) => {
                     {(formValues?.breastmilkPcrResult === "positive" ||
                       formValues?.breastmilkPcrResult === "negative" ||
                       formValues?.breastmilkPcrResult === "indeterminate") &&
-                      formValues?.breastmilkSpecimenReceived === "yes" &&
+                      formValues?.breastmilkSpecimenReceived === "YES" &&
                       formValues?.specimenType?.includes("breastmilk") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
+                            collectFormName={true}
                             setFormValues={setFormValues}
                             form={form}
                             label="Date result released"
