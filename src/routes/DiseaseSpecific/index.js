@@ -395,7 +395,7 @@ const App = () => {
     return null;
   };
 
-  const { data: allLookup } = useFetchAllLookup();
+  const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
   const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
   const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
@@ -412,7 +412,9 @@ const App = () => {
             form={form}
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
-            label={`Disease name`}
+            label={`Disease name ${
+              allLookupLoading ? "Loading please wait...": ""
+            }`}
             name="diseaseName"
             rules={[
               {
