@@ -51,6 +51,8 @@ import DynamicRadio from "../../components/Custom/DynamicRadio";
 import useFormStore from "../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
 import { usePostFormData } from "../../hooks/usePostFormData.hook";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -252,7 +254,13 @@ const App = () => {
       );
 
       //make API call here
-      mutate(payloadForContactTracing);
+      mutate({
+        
+        applicationUuid: uuidv4(),
+        diseaseName: "CORONAVIRUS",
+        ...payloadForContactTracing
+      
+      });
     } else {
       const payloadForSpecimen = mutatePayload(
         fieldsValue,
