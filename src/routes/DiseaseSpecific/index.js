@@ -51,8 +51,7 @@ import DynamicRadio from "../../components/Custom/DynamicRadio";
 import useFormStore from "../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
 import { usePostFormData } from "../../hooks/usePostFormData.hook";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -239,7 +238,7 @@ const App = () => {
   const { isLoading, mutate } = usePostFormData();
 
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue)
+    console.log(fieldsValue);
     if (program === "Covid19") {
       const data = mutateCovidPayload(
         fieldsValue,
@@ -255,11 +254,9 @@ const App = () => {
 
       //make API call here
       mutate({
-        
         applicationUuid: uuidv4(),
-        diseaseName: "CORONAVIRUS",
-        ...payloadForContactTracing
-      
+        diseaseName: program?.id,
+        ...payloadForContactTracing,
       });
     } else {
       const payloadForSpecimen = mutatePayload(
@@ -275,9 +272,17 @@ const App = () => {
           "contact"
         );
         //make API call here
-        mutate(payloadForContactTracing);
+        mutate({
+          applicationUuid: uuidv4(),
+          diseaseName: program?.id,
+          ...payloadForContactTracing,
+        });
       } else {
-        mutate(payloadForSpecimen);
+        mutate({
+          applicationUuid: uuidv4(),
+          diseaseName: program?.id,
+          ...payloadForSpecimen,
+        });
       }
     }
   };
@@ -340,7 +345,11 @@ const App = () => {
   };
 
   const onChangeDisease = (value) => {
-    setProgram(value);
+    setProgram({
+      value: allLookup?.disease_id?.filter((item) => item?.id === value)[0]
+        ?.value,
+      id: value,
+    });
     setSelectedLga(null);
     setSelectedState(null);
     form.resetFields();
@@ -369,18 +378,19 @@ const App = () => {
     "Guinea Worm": <GuineaWorm form={form} />,
     Diphtheria: <Diphtheria form={form} />,
     Ebola: <Ebola form={form} />,
-    Dengue: <Dengue form={form} />,
+    "Dengue Fever": <Dengue form={form} />,
     CSM: <CSM form={form} />,
     "Buruli Ulcer": <BuruliUlcer form={form} />,
     PRDS: <PRDS form={form} />,
     "Perinatal Death": <PerinatalDeath form={form} />,
     "Maternal Death": <MaternalDeath form={form} />,
-    Covid19: <Covid19 form={form} />,
+    "COVID-19": <Covid19 form={form} />,
   };
 
   const getProgram = () => {
-    if (program && componentMap.hasOwnProperty(program)) {
-      return componentMap[program];
+    console.log(program);
+    if (program?.value && componentMap.hasOwnProperty(program?.value)) {
+      return componentMap[program?.value];
     }
     return null;
   };
@@ -394,8 +404,6 @@ const App = () => {
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
   const AllSettlementTypeQuery = useGetAllSettlementType();
 
-  
-
   return (
     <>
       <Row>
@@ -404,7 +412,7 @@ const App = () => {
             form={form}
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
-            label="Disease name"
+            label={`Disease name`}
             name="diseaseName"
             rules={[
               {
@@ -414,7 +422,7 @@ const App = () => {
             ]}
             initialValue={program}
           >
-            <Select
+            <DynamicSelect
               showSearch
               value={program}
               placeholder="Select a disease"
@@ -432,16 +440,14 @@ const App = () => {
                   .toLowerCase()
                   .localeCompare((optionB?.label ?? "").toLowerCase())
               }
-              options={diseaseData.map((disease, i) => ({
-                key: disease,
-                label: disease,
-                value: disease,
-              }))}
+              options={allLookup?.disease_id}
+              valueProperty="id"
+              labelProperty="value"
             />
           </ClearableFormItem>
         </Col>
       </Row>
-      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError >
+      <Form form={form} name="register" onFinish={onFinish} scrollToFirstError>
         <Collapse defaultActiveKey={["1"]} onChange={onChange}>
           <Panel header="Reporting Areas" key="1">
             <Row>
@@ -1184,7 +1190,7 @@ const App = () => {
           </Panel>
         </Collapse>
         {getProgram()}
-        {!["Yellow Fever", "NOMA", "Measles"].includes(program) && (
+        {!["Yellow Fever", "NOMA", "Measles"].includes(program?.value) && (
           <ContactTracing form={form} />
         )}
         <Row>
