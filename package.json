@@ -78,12 +78,13 @@
     "rheostat": "^4.1.1",
     "slick-carousel": "^1.8.1",
     "url-search-params": "^1.1.0",
+    "uuid": "^9.0.1",
     "victory": "^35.4.6",
     "zustand": "^4.4.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "yarn install --force && react-app-rewired build",
     "test": "react-app-rewired --env=jsdom",
     "less": "lessc --js src/styles/wieldy.less public/css/style.css && lessc --js src/styles/wieldy.less public/css/style.min.css --compress -x",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/"
