@@ -52,6 +52,7 @@ import useFormStore from "../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
 import { usePostFormData } from "../../hooks/usePostFormData.hook";
 import { v4 as uuidv4 } from "uuid";
+import mutateCovidPayloadForSpecimen from "../../services/customPayloadConstructor/CovidPayloadConstructor";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -200,23 +201,23 @@ const App = () => {
     console.log("Received values of form:");
   };
 
-  const localTravel = [
-    "returnedFromLocalTravel14Days",
-    "dateOfLocalTravelStart",
-    "dateOfTravelEndLocal",
-    "stateOfTravel",
-    "lgaOfTravel",
-    "clientTravelAddressLocal",
-  ];
+  // const localTravel = [
+  //   "returnedFromLocalTravel14Days",
+  //   "dateOfLocalTravelStart",
+  //   "dateOfTravelEndLocal",
+  //   "stateOfTravel",
+  //   "lgaOfTravel",
+  //   "clientTravelAddressLocal",
+  // ];
 
-  const internationalTravel = [
-    "returnedFromnInternationalTravel14Days",
-    "dateOfInternationalTravelStart",
-    "dateOfInternationalTravelEnd",
-    "countryOfTravel",
-    "cityOfTravel",
-    "clientTravelAddressInternational",
-  ];
+  // const internationalTravel = [
+  //   "returnedFromnInternationalTravel14Days",
+  //   "dateOfInternationalTravelStart",
+  //   "dateOfInternationalTravelEnd",
+  //   "countryOfTravel",
+  //   "cityOfTravel",
+  //   "clientTravelAddressInternational",
+  // ];
 
   const contactTracingKeys = [
     "contactFirstNameContact",
@@ -237,27 +238,12 @@ const App = () => {
 
   const { isLoading, mutate } = usePostFormData();
 
+  
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue);
-    if (program === "Covid19") {
-      const data = mutateCovidPayload(
-        fieldsValue,
-        localTravel,
-        internationalTravel
-      );
-      const payloadForSpecimen = mutatePayload(data, labFormName, "specimen");
-      const payloadForContactTracing = mutatePayload(
-        payloadForSpecimen,
-        contactTracingKeys,
-        "contact"
-      );
-
-      //make API call here
-      mutate({
-        applicationUuid: uuidv4(),
-        diseaseName: program?.id,
-        ...payloadForContactTracing,
-      });
+    if (program?.value === "COVID-19") {
+      const covidPayload = mutateCovidPayloadForSpecimen(fieldsValue, labFormName, program?.id)
+      console.log(covidPayload)
+      // mutate(covidPayload);
     } else {
       const payloadForSpecimen = mutatePayload(
         fieldsValue,
@@ -265,7 +251,7 @@ const App = () => {
         "specimen"
       );
 
-      if (!["Yellow Fever", "NOMA", "Measles"].includes(program)) {
+      if (!["Yellow Fever", "NOMA", "Measles"].includes(program?.value)) {
         const payloadForContactTracing = mutatePayload(
           payloadForSpecimen,
           contactTracingKeys,
@@ -287,42 +273,42 @@ const App = () => {
     }
   };
 
-  const mutateCovidPayload = (
-    fieldsValue,
-    localTravel,
-    internationalTravel
-  ) => {
-    const extractedPropertiesLocalTravel = {};
-    const extractedPropertiesInternationalTravel = {};
+  // const mutateCovidPayload = (
+  //   fieldsValue,
+  //   localTravel,
+  //   internationalTravel
+  // ) => {
+  //   const extractedPropertiesLocalTravel = {};
+  //   const extractedPropertiesInternationalTravel = {};
 
-    const tempFormValuesLocalTravel = { ...fieldsValue };
-    const tempFormValuesInternationalTravel = { ...fieldsValue };
+  //   const tempFormValuesLocalTravel = { ...fieldsValue };
+  //   const tempFormValuesInternationalTravel = { ...fieldsValue };
 
-    for (const key of localTravel) {
-      if (key in tempFormValuesLocalTravel) {
-        extractedPropertiesLocalTravel[key] = tempFormValuesLocalTravel[key];
-        delete tempFormValuesLocalTravel[key];
-      }
-    }
+  //   for (const key of localTravel) {
+  //     if (key in tempFormValuesLocalTravel) {
+  //       extractedPropertiesLocalTravel[key] = tempFormValuesLocalTravel[key];
+  //       delete tempFormValuesLocalTravel[key];
+  //     }
+  //   }
 
-    for (const key of internationalTravel) {
-      if (key in tempFormValuesInternationalTravel) {
-        extractedPropertiesInternationalTravel[key] =
-          tempFormValuesInternationalTravel[key];
-        delete tempFormValuesInternationalTravel[key];
-      }
-    }
+  //   for (const key of internationalTravel) {
+  //     if (key in tempFormValuesInternationalTravel) {
+  //       extractedPropertiesInternationalTravel[key] =
+  //         tempFormValuesInternationalTravel[key];
+  //       delete tempFormValuesInternationalTravel[key];
+  //     }
+  //   }
 
-    const payloadToBeSubmitted = {
-      ...tempFormValuesLocalTravel,
-      localTravel: { ...extractedPropertiesLocalTravel },
-      internationalTravel: { ...extractedPropertiesInternationalTravel },
-    };
+  //   const payloadToBeSubmitted = {
+  //     ...tempFormValuesLocalTravel,
+  //     localTravel: { ...extractedPropertiesLocalTravel },
+  //     internationalTravel: { ...extractedPropertiesInternationalTravel },
+  //   };
 
-    // console.log(payloadToBeSubmitted)
+  //   // console.log(payloadToBeSubmitted)
 
-    return payloadToBeSubmitted;
-  };
+  //   return payloadToBeSubmitted;
+  // };
 
   const mutatePayload = (fieldsValue, arrayOfKeys, newObjectName) => {
     const extractedProperties = {};
@@ -388,7 +374,6 @@ const App = () => {
   };
 
   const getProgram = () => {
-    console.log(program);
     if (program?.value && componentMap.hasOwnProperty(program?.value)) {
       return componentMap[program?.value];
     }
@@ -422,11 +407,11 @@ const App = () => {
                 message: "This field is required",
               },
             ]}
-            initialValue={program}
+            initialValue={program?.value}
           >
             <DynamicSelect
               showSearch
-              value={program}
+              value={program?.value}
               placeholder="Select a disease"
               optionFilterProp="children"
               onChange={onChangeDisease}

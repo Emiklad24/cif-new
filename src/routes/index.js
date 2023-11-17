@@ -9,7 +9,7 @@ const App = ({ match }) => {
       <Switch>
 
         <Route
-          path={`${match.url}disease_specific`}
+          path={`${match.url}disease-specific`}
           component={asyncComponent(() => import("./DiseaseSpecific"))}
         />
 

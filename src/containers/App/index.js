@@ -113,7 +113,7 @@ const App = () => {
       if (authUser === null) {
         history.push('/signin');
       } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-        history.push('/disease_specific');
+        history.push('/disease-specific');
       } else {
         history.push(initURL);
       }

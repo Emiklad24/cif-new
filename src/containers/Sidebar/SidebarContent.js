@@ -42,8 +42,8 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
 
-            <Menu.Item key="disease_specific">
-              <Link to="/disease_specific"><i className="icon icon-widgets"/>
+            <Menu.Item key="disease-specific">
+              <Link to="/disease-specific"><i className="icon icon-widgets"/>
                 <span><IntlMessages id="sidebar.samplePage"/></span>
               </Link>
             </Menu.Item>
