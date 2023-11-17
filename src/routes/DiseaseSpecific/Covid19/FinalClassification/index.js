@@ -33,7 +33,7 @@ const FinalClassification = ({ form }) => {
             <Radio.Group buttonStyle="solid">
               <Radio.Button value="confirmed">Confirmed</Radio.Button>
               <Radio.Button value="probable">Probable</Radio.Button>
-              <Radio.Button value="notacase">Not a Case</Radio.Button>
+              <Radio.Button value="notAcase">Not a Case</Radio.Button>
               <Radio.Button value="pending">Pending</Radio.Button>
               <Radio.Button value="not_done">Not Done</Radio.Button>
             </Radio.Group>

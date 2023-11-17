@@ -8,7 +8,9 @@ import createRootReducer from '../reducers'
 const createBrowserHistory = require('history').createBrowserHistory;
 
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: '/specific-cif'
+});
 
 const routeMiddleware = routerMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();

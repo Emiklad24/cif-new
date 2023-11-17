@@ -1,7 +1,7 @@
 const queryClientSettings = {
     defaultOptions: {
       queries: {
-        retry: 5,
+        retry: 3,
         refetchOnMount: "always",
         refetchOnWindowFocus: "always",
         refetchOnReconnect: "always",
@@ -12,7 +12,7 @@ const queryClientSettings = {
         staleTime: 2.628e9,
       },
       mutations: {
-        retry: 7,
+        retry: 2,
       },
     },
   }
