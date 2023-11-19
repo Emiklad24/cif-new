@@ -104,6 +104,8 @@ const mutateCovidPayloadForSpecimen = (fieldsValue, labFormName, programId) => {
   const specimenData = payloadForMutation["specimen"];
 
   const newSpecimenData = {
+    legacySpecimenData: specimenData,
+
     nameOfTestingLaboratory: specimenData?.nameOfTestingLaboratory,
     dateSpecimenCollected: specimenData?.dateSpecimenCollected,
     specimenCollected: specimenData?.specimenCollected,
