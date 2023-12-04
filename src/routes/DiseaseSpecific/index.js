@@ -238,12 +238,12 @@ const App = () => {
 
   const { isLoading, mutate } = usePostFormData();
 
-  
+
   const onFinish = async (fieldsValue) => {
     if (program?.value === "COVID-19") {
       const covidPayload = mutateCovidPayloadForSpecimen(fieldsValue, labFormName, program?.id)
       console.log(covidPayload)
-      // mutate(covidPayload);
+      mutate(covidPayload);
     } else {
       const payloadForSpecimen = mutatePayload(
         fieldsValue,
