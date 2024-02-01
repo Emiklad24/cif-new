@@ -53,6 +53,7 @@ import { useShallow } from "zustand/react/shallow";
 import { usePostFormData } from "../../hooks/usePostFormData.hook";
 import { v4 as uuidv4 } from "uuid";
 import mutateCovidPayloadForSpecimen from "../../services/customPayloadConstructor/CovidPayloadConstructor";
+// import COVID_initial from "constants/JSON/Covid.json";
 
 const { Option } = Select;
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
@@ -240,6 +241,7 @@ const App = () => {
 
 
   const onFinish = async (fieldsValue) => {
+    console.log(fieldsValue)
     if (program?.value === "COVID-19") {
       const covidPayload = mutateCovidPayloadForSpecimen(fieldsValue, labFormName, program?.id)
       console.log(covidPayload)
@@ -387,7 +389,7 @@ const App = () => {
   const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
   const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
-  const AllSettlementTypeQuery = useGetAllSettlementType();
+  const AllSettlementTypeQuery = useGetAllSettlementType(allLookup?.settlement_type);
 
   return (
     <>
@@ -677,12 +679,7 @@ const App = () => {
                   wrapperCol={{ span: 24 }}
                   label="Epid number"
                   name="epidNumber"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
+
                 >
                   <Input size="large" />
                 </ClearableFormItem>

@@ -4,8 +4,6 @@ import { globalStorePersist, storeVersion } from "./config";
 
 let store = (set, get) => ({
   labFormName: [],
-  
-
 
   populateLabFormName: (payload) => {
     const currentLabFormName1 = get().labFormName;
