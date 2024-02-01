@@ -1,11 +1,10 @@
-import { Col, Input, Collapse, Row } from "antd";
+import { Checkbox, Col, Collapse, Input, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -16,7 +15,7 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { data: allLookup } = useFetchAllLookup();
 
   const handleUpdateInputValues = (inputName, value) => {

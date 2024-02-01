@@ -1,46 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import {
-  Button,
-  Checkbox,
-  Col,
-  Collapse,
-  Form,
-  Input,
-  Radio,
-  Row,
-  Select,
-  Tooltip,
-  notification,
+    Button,
+    Checkbox,
+    Col,
+    Collapse,
+    Form,
+    Input,
+    Radio,
+    Row,
+    Select,
+    Tooltip,
 } from "antd";
-import {
-  createSormasCaseAction,
-  getSormasCaseAction,
-  setUserRole,
-  updateSormasCaseAction,
-} from "appRedux/actions";
 import { fetchStateList } from "appRedux/actions/Common";
-import ContactTracing from "components/ContactTracing/ContactTracing";
-import ClearableFormItem from "components/Custom/ClearableFormItem";
-import CustomDatePicker from "components/Custom/CustomDatePicker";
-import DynamicRadio from "components/Custom/DynamicRadio";
-import DynamicSelect from "components/Custom/DynamicSelect";
-import { SORMAS_ROLE, SORMAS_UUID, USER_ROLE } from "constants/ActionTypes";
-import GenerateEpid from "constants/JSON/GenerateEpid.json";
-import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
-import useFetchAllStates from "hooks/useFetchAllStates.hooks";
-import useFetchAllLGA from "hooks/useFetchLga.hook";
-import useFetchWard from "hooks/useFetchWard.hook";
-import useGetAllSettlementType from "hooks/useGetAllSettlementType.hook";
-import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
-import { usePostFormData } from "hooks/usePostFormData.hook";
-import moment from "moment";
+import { SORMAS_UUID } from "constants/ActionTypes";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import constructPayload from "services/customPayloadConstructor/PayloadConstructor";
-import useFormStore from "store/useFormStore";
 import "styles/pages/form.less";
+import { v4 as uuidv4 } from "uuid";
 import { useShallow } from "zustand/react/shallow";
+import { getSormasCaseAction } from "../../appRedux/actions";
+import ContactTracing from "../../components/ContactTracing/ContactTracing";
+import ClearableFormItem from "../../components/Custom/ClearableFormItem";
+import CustomDatePicker from "../../components/Custom/CustomDatePicker";
+import DynamicRadio from "../../components/Custom/DynamicRadio";
+import DynamicSelect from "../../components/Custom/DynamicSelect";
+import useFetchAllLookup from "../../hooks/useFetchAllLookups.hooks";
+import useFetchAllStates from "../../hooks/useFetchAllStates.hooks";
+import useFetchAllLGA from "../../hooks/useFetchLga.hook";
+import useFetchWard from "../../hooks/useFetchWard.hook";
+import useGetAllSettlementType from "../../hooks/useGetAllSettlementType.hook";
+import useGetHealthFacilities from "../../hooks/useGetHealthFacilities.hook";
+import { usePostFormData } from "../../hooks/usePostFormData.hook";
+import mutateCovidPayloadForSpecimen from "../../services/customPayloadConstructor/CovidPayloadConstructor";
+import useFormStore from "../../store/useFormStore";
 import AFP from "./AFP";
 import Anthrax from "./Anthrax";
 import BuruliUlcer from "./BuruliUlcer";
@@ -65,24 +58,47 @@ import Yaw from "./Yaw";
 import YellowFever from "./YellowFever";
 
 const { Option } = Select;
-const { Panel } = Collapse;
-
 const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
 const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
 
-const App = () => {
-  const dispatch = useDispatch();
+const diseaseData = [
+  "Cholera",
+  "Yellow Fever",
+  "Yaw",
+  "Anthrax",
+  "AFP",
+  "PRDS",
+  "Tetanus",
+  "Rubella",
+  "Perinatal Death",
+  "NOMA",
+  "Mpox",
+  "Measles",
+  "Maternal Death",
+  "Lassa Fever",
+  "Influenza",
+  "Guinea Worm",
+  "Ebola",
+  "Diphtheria",
+  "Dengue",
+  "CSM",
+  "Covid19",
+  "Buruli Ulcer",
+];
 
+const App = () => {
   const { labFormName } = useFormStore(
     useShallow((state) => ({
       labFormName: state.labFormName,
     }))
   );
   const [form] = Form.useForm();
-  const { loading, sormasCase } = useSelector(({ common }) => common);
-  const { error, isSuccess, isLoading, mutate } = usePostFormData();
+  const dispatch = useDispatch();
+  const { loading, sormas_case } = useSelector(({ common }) => common);
 
-  const [componentDisabled, setComponentDisabled] = useState(false);
+  const { Panel } = Collapse;
+
+  const [lga, setLga] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedLga, setSelectedLga] = useState(null);
   const [program, setProgram] = useState("");
@@ -90,32 +106,7 @@ const App = () => {
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
   const [epidNumberIsDisabled, setEpidNumberIsDisabled] = useState(false);
-  const [residenceLga, setResidenceLga] = useState("");
-  const [epidNumberAddon, setEpidNumberAddon] = useState("");
-  // const [formValues, setFormValues] = useState({});
-  const [formIsLoading, setFormIsLoading] = useState(false);
-  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const sormasCaseUuid = urlParams.get(SORMAS_UUID);
-  const userRoleFromUrl = urlParams.get(SORMAS_ROLE);
-
-  const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
-  const { data: allStates } = useFetchAllStates();
-  const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
-  const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
-  const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
-  const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
-  const AllHealthFacilitiesQuery = useGetHealthFacilities();
-  const AllSettlementTypeQuery = useGetAllSettlementType(
-    allLookup?.settlement_type
-  );
-
-  /**
-   * -----------------------------------------
-   * @function handleStateChange
-   * @description Handle state change
-   */
   const handleStateChange = (value, name) => {
     setSelectedState((previousState) => ({
       ...previousState,
@@ -136,13 +127,7 @@ const App = () => {
       });
     }
   };
-  // -----------------------------------------
 
-  /**
-   * -----------------------------------------
-   * @function handleLgaChange
-   * @description Handle LGA change
-   */
   const handleLgaChange = (value, name) => {
     setSelectedLga((previousState) => ({
       ...previousState,
@@ -161,22 +146,13 @@ const App = () => {
     }
   };
 
-  /**
-   * -----------------------------------------
-   * @function getDoBFromAge
-   * @description Get date of birth from age
-   */
-  const getDoBFromAge = (dateString) => {
-    if (dateString) {
-      const formattedDate =
-        typeof dateString === "string"
-          ? dateString
-          : moment(dateString).format("DD-MM-YYYY");
+  const getDoBFromAge = (arg) => {
+    if (arg) {
       // Assuming arg is in the format DD-MM-YYYY
-      const parts = formattedDate.split("-");
-      // if (parts.length !== 3) {
-      //   throw new Error("Invalid date format. Please use DD-MM-YYYY.");
-      // }
+      const parts = arg.split("-");
+      if (parts.length !== 3) {
+        throw new Error("Invalid date format. Please use DD-MM-YYYY.");
+      }
 
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
@@ -203,11 +179,6 @@ const App = () => {
     return 0;
   };
 
-  /**
-   * -----------------------------------------
-   * @function validateNumber
-   * @description Validate number
-   */
   const validateNumber = (rule, value, callback) => {
     const numberPattern = /^[0-9]*$/;
     if (!value || numberPattern.test(value)) {
@@ -223,100 +194,174 @@ const App = () => {
     }
   };
 
-  /**
-   * -----------------------------------------
-   * @function onFinish
-   * @description On finish submit form
-   */
-  const isUpdate = sormasCaseUuid && sormasCase?.applicationUuid;
+  const [formValues, setFormValues] = useState({});
+
+  useEffect(() => {
+    dispatch(fetchStateList());
+    getDoBFromAge(formValues?.dateOfBirthPersonalInformation);
+  }, [dispatch, formValues]);
+
+  const onChange = () => {
+    console.log("Received values of form:");
+  };
+
+  // const localTravel = [
+  //   "returnedFromLocalTravel14Days",
+  //   "dateOfLocalTravelStart",
+  //   "dateOfTravelEndLocal",
+  //   "stateOfTravel",
+  //   "lgaOfTravel",
+  //   "clientTravelAddressLocal",
+  // ];
+
+  // const internationalTravel = [
+  //   "returnedFromInternationalTravel14Days",
+  //   "dateOfInternationalTravelStart",
+  //   "dateOfInternationalTravelEnd",
+  //   "countryOfTravel",
+  //   "cityOfTravel",
+  //   "clientTravelAddressInternational",
+  // ];
+
+  const contactTracingKeys = [
+    "contactFirstNameContact",
+    "contactLastName",
+    "dateOfBirthOfContact",
+    "contactEstimatedAge",
+    "contactSex",
+    "contactPregnancyStatus",
+    "contactStateOfResidence",
+    "contactLgaOfResidence",
+    "contactWardOfResidence",
+    "contactResidentialAddress",
+    "relationshipWithCase",
+    "contactCategorization",
+    "isContactAHealthWorker",
+    "nameOfHwHealthFacility",
+  ];
+
+  const { isLoading, mutate } = usePostFormData();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const sormasCaseUuid = urlParams.get(SORMAS_UUID);
+  const userRoleFromUrl = urlParams.get("role");
+
   const onFinish = async (fieldsValue) => {
-    setFormIsLoading(true);
+    console.log(fieldsValue);
+    if (program?.value === "COVID-19") {
+      const covidPayload = mutateCovidPayloadForSpecimen(
+        fieldsValue,
+        labFormName,
+        program?.id
+      );
+      console.log(covidPayload);
+      mutate(covidPayload);
+    } else {
+      const payloadForSpecimen = mutatePayload(
+        fieldsValue,
+        labFormName,
+        "specimen"
+      );
 
-    // Attach epidAddOn to epidNumber if epidNumber is not empty
-    if (fieldsValue.epidNumber) {
-      fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
-    }
-
-    // construct payload
-    const reconstructedPayload = await constructPayload(
-      fieldsValue,
-      program?.id,
-      labFormName
-    );
-
-    try {
-      // Update or create sormas case
-      const updateAction = isUpdate
-        ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
-        : createSormasCaseAction({ ...reconstructedPayload });
-
-      const response = await dispatch(updateAction);
-
-      notification.success({
-        message: response?.message ?? "Success",
-        description: isUpdate
-          ? "Case updated successfully"
-          : "Case created successfully",
-      });
-
-      if (!isUpdate) resetForm();
-    } catch (error) {
-      const { message, validationMessages } = error;
-
-      if (validationMessages) {
-        validationMessages.forEach((item) => {
-          notification.error({
-            message: message ?? "Validation Error",
-            description: item,
-          });
+      if (!["Yellow Fever", "NOMA", "Measles"].includes(program?.value)) {
+        const payloadForContactTracing = mutatePayload(
+          payloadForSpecimen,
+          contactTracingKeys,
+          "contact"
+        );
+        //make API call here
+        mutate({
+          applicationUuid: uuidv4(),
+          diseaseName: program?.id,
+          ...payloadForContactTracing,
         });
       } else {
-        notification.error({
-          message: error?.message ?? "Error",
-          description: isUpdate
-            ? "Error updating case"
-            : "Failed to create case",
+        mutate({
+          applicationUuid: uuidv4(),
+          diseaseName: program?.id,
+          ...payloadForSpecimen,
         });
       }
-    } finally {
-      setFormIsLoading(false);
     }
   };
 
-  /**
-   * -----------------------------------------
-   * @function onChangeDisease
-   * @description On change disease
-   */
-  const onChangeDisease = async (value, reset = true) => {
+  // const mutateCovidPayload = (
+  //   fieldsValue,
+  //   localTravel,
+  //   internationalTravel
+  // ) => {
+  //   const extractedPropertiesLocalTravel = {};
+  //   const extractedPropertiesInternationalTravel = {};
+
+  //   const tempFormValuesLocalTravel = { ...fieldsValue };
+  //   const tempFormValuesInternationalTravel = { ...fieldsValue };
+
+  //   for (const key of localTravel) {
+  //     if (key in tempFormValuesLocalTravel) {
+  //       extractedPropertiesLocalTravel[key] = tempFormValuesLocalTravel[key];
+  //       delete tempFormValuesLocalTravel[key];
+  //     }
+  //   }
+
+  //   for (const key of internationalTravel) {
+  //     if (key in tempFormValuesInternationalTravel) {
+  //       extractedPropertiesInternationalTravel[key] =
+  //         tempFormValuesInternationalTravel[key];
+  //       delete tempFormValuesInternationalTravel[key];
+  //     }
+  //   }
+
+  //   const payloadToBeSubmitted = {
+  //     ...tempFormValuesLocalTravel,
+  //     localTravel: { ...extractedPropertiesLocalTravel },
+  //     internationalTravel: { ...extractedPropertiesInternationalTravel },
+  //   };
+
+  //   // console.log(payloadToBeSubmitted)
+
+  //   return payloadToBeSubmitted;
+  // };
+
+  const mutatePayload = (fieldsValue, arrayOfKeys, newObjectName) => {
+    const extractedProperties = {};
+    const tempFormValues = { ...fieldsValue };
+
+    for (const key of arrayOfKeys) {
+      if (key in tempFormValues) {
+        extractedProperties[key] = tempFormValues[key];
+        delete tempFormValues[key];
+      }
+    }
+    const payloadToBeSubmitted = {
+      ...tempFormValues,
+      [newObjectName]: { ...extractedProperties },
+    };
+
+    console.log(payloadToBeSubmitted);
+
+    return payloadToBeSubmitted;
+  };
+
+  const onChangeDisease = (value, reset = true) => {
     setProgram({
       value: allLookup?.disease_id?.find((item) => item?.id === value)?.value,
       id: value,
     });
 
     if (!reset) return;
-    resetForm();
-  };
 
-  const resetForm = () => {
     setSelectedLga(null);
     setSelectedState(null);
+    form.resetFields();
     setFormValues({});
     setAgeYear(0);
     setAgeMonth(0);
-    setEpidNumberAddon("");
-    setFormValues({});
-    setResidenceLga("");
-    setPlaceOfDetection("");
-    setComponentDisabled(false);
-    form.resetFields();
   };
 
-  /**
-   * -----------------------------------------
-   * @function componentMap
-   * @description Component map for the different diseases
-   */
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
+
   const componentMap = {
     "Yellow Fever": <YellowFever form={form} />,
     Cholera: <Cholera form={form} />,
@@ -342,11 +387,6 @@ const App = () => {
     "COVID-19": <Covid19 form={form} />,
   };
 
-  /**
-   * -----------------------------------------
-   * @function getProgram
-   * @description Get program
-   */
   const getProgram = () => {
     if (program?.value && componentMap.hasOwnProperty(program?.value)) {
       return componentMap[program?.value];
@@ -354,106 +394,52 @@ const App = () => {
     return null;
   };
 
-  /**
-   * -----------------------------------------
-   * @function generateEpidNumberVal
-   * @description Generate Epid Number
-   */
-  const generateEpidNumberVal = async (_lgaId = null) => {
-    const _reportingLga = _lgaId ?? residenceLga;
+  const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
+  const { data: allStates } = useFetchAllStates();
+  const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
+  const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
+  const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
+  const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
+  const AllHealthFacilitiesQuery = useGetHealthFacilities();
+  const AllSettlementTypeQuery = useGetAllSettlementType(
+    allLookup?.settlement_type
+  );
 
-    const filteredGenerateEpid = GenerateEpid.filter(
-      (item) => item.lgaid === _reportingLga
-    );
-    // get the current year, i.e 24
-    const year = new Date().getFullYear().toString().slice(-2);
-    const EpidNumber = `${filteredGenerateEpid[0].stateepidcode}-${filteredGenerateEpid[0].lgaepidcode}-${year}-`;
+  useEffect(() => {
+    if (!sormas_case?.applicationUuid || loading) return;
 
-    setEpidNumberAddon(EpidNumber);
-  };
-
-  /**
-   * -----------------------------------------
-   * @function populateForm
-   * @description Populate form with data from sormas gotten from the sormas case uuid
-   */
-  const populateForm = async () => {
-    if (!sormasCase?.applicationUuid || loading) return;
-
-    handleStateChange(sormasCase.stateOfResidence, "stateOfResidence");
-    handleLgaChange(sormasCase.lgaOfResidence, "lgaOfResidence");
-    handleStateChange(sormasCase.stateOfReporting, "stateOfReporting");
-    handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
-    onChangeDisease(sormasCase?.diseaseName, false);
-
-    getDoBFromAge(sormasCase?.dateOfBirthPersonalInformation);
+    onChangeDisease(sormas_case?.diseaseName, false);
     form.setFieldsValue({
-      ...sormasCase,
-      specimenCollected: sormasCase?.specimenCollected || "NO",
+      ...sormas_case,
     });
-
-    if (sormasCase?.epidNumber) {
-      setEpidNumberAddon(sormasCase?.epidNumber?.slice(0, -3));
-      form.setFieldsValue({
-        epidNumber: sormasCase?.epidNumber?.split("-")[4],
-      });
-    }
-
-    if (sormasCase?.specimenCollected) {
-      form.setFieldsValue({
-        specimenCollected: sormasCase?.specimenCollected,
-      });
-    }
-
-    if (!sormasCase?.epidNumber && sormasCase?.lgaOfResidence) {
-      generateEpidNumberVal(sormasCase?.lgaOfResidence);
-    }
-    setPlaceOfDetection(sormasCase?.placeOfDetection);
-  };
+  }, [sormas_case]);
 
   useEffect(() => {
-    dispatch(fetchStateList());
-    getDoBFromAge(formValues?.dateOfBirthPersonalInformation);
-  }, [dispatch, formValues]);
-
-  useEffect(() => {
-    populateForm();
-  }, [sormasCase]);
-
-  useEffect(() => {
-    if (!sormasCaseUuid) {
-      window.history.replaceState(
-        {},
-        "",
-        `${window.location.pathname}?role=edit`
-      );
-      return;
-    }
+    if (!sormasCaseUuid) return;
+    console.log(userRoleFromUrl);
     dispatch(getSormasCaseAction(sormasCaseUuid));
   }, [sormasCaseUuid]);
-
-  useEffect(() => {
-    if (!userRoleFromUrl) return;
-    dispatch(setUserRole(userRoleFromUrl));
-    if (userRoleFromUrl === USER_ROLE.EDIT) {
-      setComponentDisabled(false);
-    } else {
-      setComponentDisabled(true);
-    }
-  }, [userRoleFromUrl]);
-
-  useEffect(() => {
-    if (residenceLga === "") return;
-    generateEpidNumberVal();
-  }, [residenceLga, program]);
-
-  const onChange = () => {};
-  const onSearch = () => {};
 
   return (
     <>
       <Row>
         <Col lg={12} md={12} sm={12} xs={24}>
+          {/* <ClearableFormItem
+            form={form}
+            labelCol={{ span: 24 }}
+            wrapperCol={{ span: 24 }}
+            label={`Disease name ${
+              allLookupLoading ? "Loading please wait..." : ""
+            }`}
+            name="diseaseName"
+            rules={[
+              {
+                required: true,
+                message: "This field is required",
+              },
+            ]}
+            initialValue={program?.value}
+          > */}
           <DynamicSelect
             showSearch
             value={program?.value}
@@ -477,10 +463,11 @@ const App = () => {
             wrapperCol={{ span: 24 }}
             className="gx-w-100 gx-mb-3"
           />
+          {/* </ClearableFormItem> */}
         </Col>
       </Row>
 
-      {sormasCaseUuid && !sormasCase?.applicationUuid ? (
+      {sormasCaseUuid && !sormas_case?.applicationUuid ? (
         <div className="card_loading_container">
           <div className="card_loading gx-shadow">
             <div className="spinner" /> Populating Form ....
@@ -490,16 +477,15 @@ const App = () => {
         <Form
           form={form}
           name="register"
-          disabled={componentDisabled}
           onFinish={onFinish}
           scrollToFirstError
-          initialValues={sormasCase?.applicationUuid ? sormasCase : {}}
+          initialValues={sormas_case?.applicationUuid ? sormas_case : undefined}
         >
           <Collapse defaultActiveKey={["1"]} onChange={onChange}>
             <Panel header="Reporting Areas" key="1">
               <Row>
                 <Col lg={8} md={12} sm={24}>
-                  <Form.Item
+                  <ClearableFormItem
                     form={form}
                     label="Date of report"
                     labelCol={{ span: 24 }}
@@ -516,7 +502,7 @@ const App = () => {
                       form={form}
                       name="dateOfReportReportingAreas"
                     />
-                  </Form.Item>
+                  </ClearableFormItem>
                 </Col>
                 <Col lg={8} md={12} sm={12} xs={24}>
                   <ClearableFormItem
@@ -588,9 +574,9 @@ const App = () => {
                       options={lgaOfReportingQuery?.data || []}
                       valueProperty="id"
                       labelProperty="name"
-                      onChange={(value) => {
-                        handleLgaChange(value, "lgaOfReporting");
-                      }}
+                      onChange={(value) =>
+                        handleLgaChange(value, "lgaOfReporting")
+                      }
                     />
                   </ClearableFormItem>
                 </Col>
@@ -730,6 +716,32 @@ const App = () => {
                     </ClearableFormItem>
                   </Col>
                 )}
+                <Col lg={8} md={12} sm={24} xs={24}>
+                  <div className="gx-d-flex gx-align-items-center">
+                    <Checkbox
+                      color="primary"
+                      className="gx-pr-2"
+                      checked={epidNumberIsDisabled}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEpidNumberIsDisabled(e.target.checked);
+                      }}
+                      value="epidNumberIsDisabled"
+                    />
+                    <ClearableFormItem
+                      form={form}
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      label="Epid number"
+                      name="epidNumber"
+                      help={
+                        <small>Check the box to edit the Epid Number</small>
+                      }
+                    >
+                      <Input size="large" disabled={!epidNumberIsDisabled} />
+                    </ClearableFormItem>
+                  </div>
+                </Col>
                 <Col lg={8} md={12} sm={12} xs={24}>
                   <ClearableFormItem
                     form={form}
@@ -1060,10 +1072,9 @@ const App = () => {
                           .toLowerCase()
                           .localeCompare((optionB?.label ?? "").toLowerCase())
                       }
-                      onChange={(value) => {
-                        handleLgaChange(value, "lgaOfResidence");
-                        setResidenceLga(value);
-                      }}
+                      onChange={(value) =>
+                        handleLgaChange(value, "lgaOfResidence")
+                      }
                       options={lgaOfResidenceQuery?.data}
                       valueProperty="id"
                       labelProperty="name"
@@ -1112,49 +1123,6 @@ const App = () => {
                       labelProperty="name"
                     />
                   </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <div className="gx-d-flex gx-align-items-center">
-                    <Checkbox
-                      color="primary"
-                      className="gx-pr-2"
-                      checked={epidNumberIsDisabled}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEpidNumberIsDisabled(e.target.checked);
-                      }}
-                      value="epidNumberIsDisabled"
-                      disabled={userRoleFromUrl !== USER_ROLE.EDIT}
-                    />
-                    <ClearableFormItem
-                      form={form}
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      label="Epid number"
-                      name="epidNumber"
-                      help={
-                        <small>Check the box to edit the Epid Number</small>
-                      }
-                      rules={[
-                        {
-                          required: false,
-                          message: "Required Field",
-                        },
-                        {
-                          pattern: /^[0-9]*$/,
-                          message: "Only Numbers",
-                        },
-                      ]}
-                    >
-                      <Input
-                        addonBefore={epidNumberAddon || " "}
-                        size="large"
-                        disabled={
-                          !epidNumberIsDisabled || epidNumberAddon === ""
-                        }
-                      />
-                    </ClearableFormItem>
-                  </div>
                 </Col>
                 <Col lg={8} md={12} sm={24}>
                   <ClearableFormItem
@@ -1270,19 +1238,8 @@ const App = () => {
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <ClearableFormItem form={form} className="gx-m-2">
-                <Button
-                  loading={formIsLoading}
-                  type="primary"
-                  htmlType="submit"
-                  disabled={isLoading}
-                >
-                  {formIsLoading
-                    ? isUpdate
-                      ? "Updating Case ..."
-                      : "Creating Case ..."
-                    : isUpdate
-                    ? "Update Case"
-                    : "Create Case"}
+                <Button type="primary" htmlType="submit" disabled={isLoading}>
+                  {isLoading ? "Please wait" : "Submit"}
                 </Button>
               </ClearableFormItem>
             </Col>

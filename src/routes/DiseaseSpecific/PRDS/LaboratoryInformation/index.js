@@ -1,13 +1,12 @@
-import { Col, Input, Collapse, Row, Divider, Radio } from "antd";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -18,7 +17,7 @@ const LaboratoryInformation = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { data: allLookup } = useFetchAllLookup();
   const allHealthFacilitiesQuery = useGetHealthFacilities();
   const nameOfTestingLaboratory = allHealthFacilitiesQuery?.data?.filter(
@@ -317,7 +316,7 @@ const LaboratoryInformation = ({ form }) => {
                       label="Date specimen received "
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-                      name="dateSecimenReceivedNasalThroatNp"
+                      name="dateSpecimenReceivedNasalThroatNp"
                       rules={[
                         {
                           required: true,
@@ -327,7 +326,7 @@ const LaboratoryInformation = ({ form }) => {
                     >
                       <CustomDatePicker
                         form={form}
-                        name="dateSecimenReceivedNasalThroatNp"
+                        name="dateSpecimenReceivedNasalThroatNp"
                       />
                     </ClearableFormItem>
                   </Col>

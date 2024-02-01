@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { Col, Form, Collapse, Radio } from "antd";
+import { Col, Collapse, Radio } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
 const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;
@@ -33,7 +33,7 @@ const FinalClassification = ({ form }) => {
             <Radio.Group buttonStyle="solid">
               <Radio.Button value="confirmed">Confirmed</Radio.Button>
               <Radio.Button value="probable">Probable</Radio.Button>
-              <Radio.Button value="notacase">Not a Case</Radio.Button>
+              <Radio.Button value="notAcase">Not a Case</Radio.Button>
               <Radio.Button value="pending">Pending</Radio.Button>
               <Radio.Button value="not_done">Not Done</Radio.Button>
             </Radio.Group>

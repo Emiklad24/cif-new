@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Row, Select, Radio } from "antd";
+import { Col, Collapse, Row, Select } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const { Option } = Select;
 

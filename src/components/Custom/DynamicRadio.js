@@ -11,7 +11,7 @@ const DynamicRadio = ({
   return (
     <Radio.Group
       buttonStyle="solid"
-      disabled={!options || !isArray(options) || options?.length === 0}
+      // disabled={!options || !isArray(options) || options?.length === 0}
       {...otherProps}
     >
       {options?.map?.((option, index) => (

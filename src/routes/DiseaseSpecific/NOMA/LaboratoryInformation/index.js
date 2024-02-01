@@ -1,11 +1,10 @@
-import { Col, Collapse, Row, Radio } from "antd";
+import { Checkbox, Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -23,7 +22,7 @@ const LaboratoryInformation = ({ form }) => {
 
   const conditionOfSampleOptions = ["Adequate", "Not adequate"];
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({

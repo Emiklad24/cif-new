@@ -1,13 +1,13 @@
-import { Col, Input, Collapse, Row, Radio } from "antd";
+import { Col, Collapse, Input, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const Epidemiological = ({ form }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { Panel } = Collapse;
 
   const handleUpdateInputValues = (inputName, value) => {
@@ -64,7 +64,7 @@ const Epidemiological = ({ form }) => {
                 setFormValues={setFormValues}
                 form={form}
                 label="Number of vaccine doses"
-                name="numberOfVaccineDose"
+                name="numberofVaccineDoses"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[

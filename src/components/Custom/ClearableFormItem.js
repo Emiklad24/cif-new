@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import { Form } from "antd";
+import React, { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
 import useFormStore from "../../store/useFormStore";
 
@@ -39,10 +39,21 @@ const ClearableFormItem = ({
         }));
       }
     };
-  }, [collectFormName, form, name, populateLabFormName, expungeFormName, setFormValues]);
+  }, [
+    collectFormName,
+    form,
+    name,
+    populateLabFormName,
+    expungeFormName,
+    setFormValues,
+  ]);
 
   return (
-    <Form.Item name={name} shouldUpdate={true} {...rest}>
+    <Form.Item
+      name={name}
+      shouldUpdate={true}
+      {...rest}
+    >
       {children}
     </Form.Item>
   );

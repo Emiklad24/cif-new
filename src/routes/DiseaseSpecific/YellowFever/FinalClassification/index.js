@@ -1,10 +1,10 @@
 import { Col, Input, Collapse, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 
 const FinalClassification = ({form}) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { Panel } = Collapse;
 
   const handleUpdateInputValues = (inputName, value) => {
@@ -75,7 +75,7 @@ const FinalClassification = ({form}) => {
                 placeholder="Enter diagnosis"
                 id="diagnosis"
                 name="diagnosis"
-                
+
               />
             </ClearableFormItem>
           </Col>

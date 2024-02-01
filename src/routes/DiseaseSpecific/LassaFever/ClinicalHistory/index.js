@@ -2,10 +2,10 @@
 import { Col, Input, Collapse, Row, Radio } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import DynamicRadio from "components/Custom/DynamicRadio";
 
 const ClinicalHistory = ({ form }) => {
   const [formValues, setFormValues] = useState({});

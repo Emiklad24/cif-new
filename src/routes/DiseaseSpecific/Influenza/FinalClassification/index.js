@@ -1,15 +1,14 @@
 import {
-  Col,
-  Form,
-  Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
+    Checkbox,
+    Col,
+    Collapse,
+    Form,
+    Radio,
+    Row,
+    Select
 } from 'antd';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "styles/pages/form.less";
-import moment from "moment";
-import { Checkbox } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -53,7 +52,7 @@ const FinalClassification = () => {
         <Col lg={24} md={12} sm={24}>
               <Form.Item
                 label="Final Classification"
-                name="final_classification"
+                name="finalClassification"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 rules={[

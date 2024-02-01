@@ -14,7 +14,7 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
@@ -133,7 +133,7 @@ const Epidemiological = ({ form }) => {
                   <Radio.Group buttonStyle="solid">
                     <Radio.Button value="vaccine card">Vaccine Card</Radio.Button>
                     <Radio.Button value="verbal">Verbal</Radio.Button>
-                   
+
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
@@ -199,7 +199,7 @@ const Epidemiological = ({ form }) => {
                     handleUpdateInputValues(e.target.name, e.target.value)
                   }
                 />
-              
+
             </ClearableFormItem>
           </Col>
           {formValues?.travelInLast10Days === "YES" && (
@@ -243,7 +243,7 @@ const Epidemiological = ({ form }) => {
                   }
                 />
 
-              
+
             </ClearableFormItem>
           </Col>
           {formValues?.contactWithAnyoneWithSymtomsOrConfirmed === "YES" && (

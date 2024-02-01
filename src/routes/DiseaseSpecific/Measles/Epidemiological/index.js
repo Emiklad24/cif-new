@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Row, Radio } from "antd";
+import { Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
@@ -14,7 +14,7 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -64,7 +64,7 @@ const Epidemiological = ({ form }) => {
                   form={form}
                   setFormValues={setFormValues}
                   label="Number of vaccine dose(s) received"
-                  name="numberVaccineDose"
+                  name="numberofVaccineDoses"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   rules={[
@@ -89,7 +89,7 @@ const Epidemiological = ({ form }) => {
                   label="Date of last vaccination"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  name="dateLastVaccination"
+                  name="dateOfLastVaccination"
                   rules={[
                     {
                       required: true,
@@ -97,7 +97,7 @@ const Epidemiological = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateLastVaccination" />
+                  <CustomDatePicker form={form} name="dateOfLastVaccination" />
                 </ClearableFormItem>
               </Col>
 

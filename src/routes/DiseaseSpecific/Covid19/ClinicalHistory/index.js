@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Col, Input, Collapse, Row, } from "antd";
+import { Col, Collapse, Input, Row, } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
 
 const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
@@ -41,7 +41,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -65,7 +65,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -89,7 +89,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -113,7 +113,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -137,7 +137,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -161,7 +161,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -185,7 +185,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -209,7 +209,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -233,7 +233,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -257,7 +257,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -281,7 +281,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -305,7 +305,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -329,7 +329,7 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-             
+
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>

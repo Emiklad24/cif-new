@@ -1,14 +1,11 @@
 import {
-  Col,
-  Form,
-  Input,
-  Collapse, DatePicker,
-  Row, Tooltip,
-  Select, Radio,
+    Col,
+    Collapse,
+    Form,
+    Select
 } from 'antd';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "styles/pages/form.less";
-import moment from "moment";
 
 const {Option} = Select;
 
@@ -50,7 +47,7 @@ const FinalClassification = () => {
                 label="Final Classification"
                 labelCol={{span: 12}}
                 wrapperCol={{span: 12}}
-                name="final_classification"
+                name="finalClassification"
                 rules={[
                   {
                     required: true,

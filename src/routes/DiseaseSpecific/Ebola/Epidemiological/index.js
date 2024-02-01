@@ -1,50 +1,25 @@
 import {
   Col,
-  Form,
-  Input,
   Collapse,
   DatePicker,
-  Row,
-  Tooltip,
-  Select,
+  Form,
+  Input,
   Radio,
+  Row
 } from "antd";
+import moment from "moment";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 
-const { Option } = Select;
-
-const stateData = ["FCT", "Enugu"];
-const facilityData = ["Federal Medical Center", "Jabi Clinic"];
-const diseaseData = ["COVID-19", "Cholera", "Yellow Fever"];
-
-const lgaData = {
-  FCT: ["AMAC", "Bwari", "Kwali"],
-  Enugu: ["Nsukka", "Enugu south", "Udi"],
-};
-
-const Epidemiological = () => {
-  const [form] = Form.useForm();
-  const [lga, setLga] = useState([]);
+const Epidemiological = ({form}) => {
   const { Panel } = Collapse;
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
 
-  const handleStateChange = (value) => {
-    setLga(lgaData[value]);
-  };
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const onSearch = (value) => {
-    console.log("search:", value);
-  };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     console.log(inputName, value);
@@ -54,8 +29,6 @@ const Epidemiological = () => {
       [inputName]: value,
     }));
   };
-
-  console.log("form values", formValues);
 
   return (
     <>
