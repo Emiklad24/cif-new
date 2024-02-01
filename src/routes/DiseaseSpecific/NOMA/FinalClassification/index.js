@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Select, Radio } from "antd";
+import { Col, Collapse, Radio } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-
-const { Option } = Select;
 
 const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;

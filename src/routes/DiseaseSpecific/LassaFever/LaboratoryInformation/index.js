@@ -1,24 +1,36 @@
-import { Col, Input, Collapse, Row, Divider, Radio } from "antd";
-import React, { useState } from "react";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { USER_ROLE } from "constants/ActionTypes";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
+  const [labComponentDisabled, setLabComponentDisabled] = useState(false);
+  const { userRole } = useSelector(({ common }) => common);
+
+  useEffect(() => {
+    if (!userRole) return;
+    if (userRole === USER_ROLE.LAB) {
+      setLabComponentDisabled(false);
+    } else {
+      setLabComponentDisabled(true);
+    }
+  }, [userRole]);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { data: allLookup } = useFetchAllLookup();
   const allHealthFacilitiesQuery = useGetHealthFacilities();
   const nameOfTestingLaboratory = allHealthFacilitiesQuery?.data?.filter(
@@ -84,7 +96,10 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSpecimenCollected"
+                  />
                 </ClearableFormItem>
               </Col>
               <Col lg={12} md={12} sm={24}>
@@ -106,7 +121,7 @@ const LaboratoryInformation = ({ form }) => {
                   <CheckboxGroup
                     options={[
                       { label: "Blood", value: "blood" },
-                      { label: "Breast milk", value: "breastmilk" },
+                      { label: "Breast milk", value: "breastMilk" },
                     ]}
                     name="specimenType"
                     onChange={(value) => {
@@ -168,7 +183,10 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateSpecimenSent" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSpecimenSent"
+                  />
                 </ClearableFormItem>
               </Col>
             </>
@@ -224,6 +242,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <DynamicRadio
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         options={allLookup?.yes_no_type || []}
                         valueProperty="id"
@@ -256,6 +275,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <CustomDatePicker
+                          disabled={labComponentDisabled}
                           form={form}
                           name="bloodDateSpecimenReceived"
                         />
@@ -278,6 +298,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Radio.Group
+                          disabled={labComponentDisabled}
                           buttonStyle="solid"
                           name="bloodSpecimenCondition"
                           onChange={(e) =>
@@ -313,6 +334,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Input
+                            disabled={labComponentDisabled}
                             name="reasonSpecimenNotAdequateBloodSpecimen"
                             placeholder="Reason why"
                           />
@@ -337,6 +359,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Enter lab ID"
                           id="labid"
                           name="labid"
@@ -361,6 +384,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Radio.Group
+                          disabled={labComponentDisabled}
                           buttonStyle="solid"
                           name="bloodPcrResult"
                           onChange={(e) =>
@@ -400,6 +424,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Input
+                            disabled={labComponentDisabled}
                             placeholder="Enter reason"
                             id="reasonbloodPcrNotDone"
                             name="reasonbloodPcrNotDone"
@@ -432,6 +457,7 @@ const LaboratoryInformation = ({ form }) => {
                             ]}
                           >
                             <CustomDatePicker
+                              disabled={labComponentDisabled}
                               form={form}
                               name="bloodDateResultReleased"
                             />
@@ -442,8 +468,8 @@ const LaboratoryInformation = ({ form }) => {
                 )}
 
               <Divider />
-              {/* breastmilk Form fields */}
-              {formValues?.specimenType?.includes("breastmilk") &&
+              {/* breastMilk Form fields */}
+              {formValues?.specimenType?.includes("breastMilk") &&
                 formValues?.specimenCollected === "YES" && (
                   <Col lg={24} md={24} sm={24}>
                     <ClearableFormItem
@@ -453,7 +479,7 @@ const LaboratoryInformation = ({ form }) => {
                       label="Breast milk specimen received"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
-                      name="breastmilkSpecimenReceived"
+                      name="breastMilkSpecimenReceived"
                       rules={[
                         {
                           required: true,
@@ -462,11 +488,12 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <DynamicRadio
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         options={allLookup?.yes_no_type || []}
                         valueProperty="id"
                         labelProperty="value"
-                        name="breastmilkSpecimenReceived"
+                        name="breastMilkSpecimenReceived"
                         onChange={(e) =>
                           handleUpdateInputValues(e.target.name, e.target.value)
                         }
@@ -474,8 +501,8 @@ const LaboratoryInformation = ({ form }) => {
                     </ClearableFormItem>
                   </Col>
                 )}
-              {formValues?.breastmilkSpecimenReceived === "YES" &&
-                formValues?.specimenType?.includes("breastmilk") && (
+              {formValues?.breastMilkSpecimenReceived === "YES" &&
+                formValues?.specimenType?.includes("breastMilk") && (
                   <>
                     <Col lg={12} md={12} sm={24}>
                       <ClearableFormItem
@@ -485,7 +512,7 @@ const LaboratoryInformation = ({ form }) => {
                         label="Date specimen received"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
-                        name="breastmilkDateSpecimenReceived"
+                        name="breastMilkDateSpecimenReceived"
                         rules={[
                           {
                             required: true,
@@ -494,8 +521,9 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <CustomDatePicker
+                          disabled={labComponentDisabled}
                           form={form}
-                          name="breastmilkDateSpecimenReceived"
+                          name="breastMilkDateSpecimenReceived"
                         />
                       </ClearableFormItem>
                     </Col>
@@ -505,7 +533,7 @@ const LaboratoryInformation = ({ form }) => {
                         setFormValues={setFormValues}
                         form={form}
                         label="Specimen condition"
-                        name="breastmilkSpecimenCondition"
+                        name="breastMilkSpecimenCondition"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -515,7 +543,10 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          disabled={labComponentDisabled}
+                          buttonStyle="solid"
+                        >
                           <Radio.Button value="adequate">Adequate</Radio.Button>
                           <Radio.Button value="not adequate">
                             Not adequate
@@ -524,7 +555,7 @@ const LaboratoryInformation = ({ form }) => {
                       </ClearableFormItem>
                     </Col>
 
-                    {formValues?.breastmilkSpecimenCondition ===
+                    {formValues?.breastMilkSpecimenCondition ===
                       "not adequate" && (
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
@@ -543,6 +574,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Input
+                            disabled={labComponentDisabled}
                             name="reasonSpecimenNotAdequateBloodSpecimen"
                             placeholder="Reason why"
                           />
@@ -556,7 +588,7 @@ const LaboratoryInformation = ({ form }) => {
                         setFormValues={setFormValues}
                         form={form}
                         label="Laboratory ID"
-                        name="breastmilkLaboratoryId"
+                        name="breastMilkLaboratoryId"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -567,9 +599,10 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Enter lab ID"
-                          id="breastmilkLaboratoryId"
-                          name="breastmilkLaboratoryId"
+                          id="breastMilkLaboratoryId"
+                          name="breastMilkLaboratoryId"
                           onChange={(e) => {}}
                         />
                       </ClearableFormItem>
@@ -581,7 +614,7 @@ const LaboratoryInformation = ({ form }) => {
                         setFormValues={setFormValues}
                         form={form}
                         label="PCR/RT-PCR result"
-                        name="breastmilkPcrResult"
+                        name="breastMilkPcrResult"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -592,8 +625,9 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Radio.Group
+                          disabled={labComponentDisabled}
                           buttonStyle="solid"
-                          name="breastmilkPcrResult"
+                          name="breastMilkPcrResult"
                           onChange={(e) =>
                             handleUpdateInputValues(
                               e.target.name,
@@ -611,7 +645,7 @@ const LaboratoryInformation = ({ form }) => {
                         </Radio.Group>
                       </ClearableFormItem>
                     </Col>
-                    {formValues?.breastmilkPcrResult === "notDone" && (
+                    {formValues?.breastMilkPcrResult === "notDone" && (
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           collectFormName={true}
@@ -621,7 +655,7 @@ const LaboratoryInformation = ({ form }) => {
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           // initialValue={collection_date ? moment(collection_date) : null}
-                          name="reasonBreatmilkPcrNotDone"
+                          name="reasonBreastMilkPcrNotDone"
                           rules={[
                             {
                               required: true,
@@ -630,19 +664,20 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Input
+                            disabled={labComponentDisabled}
                             placeholder="Enter reason"
-                            id="reasonBreatmilkPcrNotDone"
-                            name="reasonBreatmilkPcrNotDone"
+                            id="reasonBreastMilkPcrNotDone"
+                            name="reasonBreastMilkPcrNotDone"
                             onChange={(e) => {}}
                           />
                         </ClearableFormItem>
                       </Col>
                     )}
-                    {(formValues?.breastmilkPcrResult === "positive" ||
-                      formValues?.breastmilkPcrResult === "negative" ||
-                      formValues?.breastmilkPcrResult === "indeterminate") &&
-                      formValues?.breastmilkSpecimenReceived === "YES" &&
-                      formValues?.specimenType?.includes("breastmilk") && (
+                    {(formValues?.breastMilkPcrResult === "positive" ||
+                      formValues?.breastMilkPcrResult === "negative" ||
+                      formValues?.breastMilkPcrResult === "indeterminate") &&
+                      formValues?.breastMilkSpecimenReceived === "YES" &&
+                      formValues?.specimenType?.includes("breastMilk") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
                             collectFormName={true}
@@ -652,7 +687,7 @@ const LaboratoryInformation = ({ form }) => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                             // initialValue={birth_date ? moment(birth_date) : null}
-                            name="breastmilkDateResultReleased"
+                            name="breastMilkDateResultReleased"
                             rules={[
                               {
                                 required: true,
@@ -661,8 +696,9 @@ const LaboratoryInformation = ({ form }) => {
                             ]}
                           >
                             <CustomDatePicker
+                              disabled={labComponentDisabled}
                               form={form}
-                              name="breastmilkDateResultReleased"
+                              name="breastMilkDateResultReleased"
                             />
                           </ClearableFormItem>
                         </Col>

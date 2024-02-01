@@ -1,0 +1,3987 @@
+[
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "NGK",
+    "lgaid": 596880
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "GBN",
+    "lgaid": 127985
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "NGD",
+    "lgaid": 101207
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "BMT",
+    "lgaid": 101219
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "NYA",
+    "lgaid": 101230
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KKN",
+    "lgaid": 101242
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KTS",
+    "lgaid": 101252
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KTE",
+    "lgaid": 101263
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "DRK",
+    "lgaid": 101274
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "MAP",
+    "lgaid": 142413
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "YYY",
+    "lgaid": 142433
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "JBL",
+    "lgaid": 142405
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "TTU",
+    "lgaid": 101285
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "ENW",
+    "lgaid": 101296
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "MKP",
+    "lgaid": 101311
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "AED",
+    "lgaid": 101322
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "AFG",
+    "lgaid": 101333
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KTD",
+    "lgaid": 101342
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "NTE",
+    "lgaid": 101353
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KPD",
+    "lgaid": 101364
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "ABT",
+    "lgaid": 101376
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "RNN",
+    "lgaid": 101386
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KTM",
+    "lgaid": 101398
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "BYF",
+    "lgaid": 101408
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KPK",
+    "lgaid": 101417
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "DUU",
+    "lgaid": 101429
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "UFG",
+    "lgaid": 101440
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "DYY",
+    "lgaid": 101452
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "AGU",
+    "lgaid": 102010
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "AAH",
+    "lgaid": 102027
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "NZM",
+    "lgaid": 102037
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "NEN",
+    "lgaid": 102055
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "ACA",
+    "lgaid": 102070
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "AWK",
+    "lgaid": 102090
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "NKK",
+    "lgaid": 102102
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "KPP",
+    "lgaid": 102117
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "ZBL",
+    "lgaid": 102130
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "GDD",
+    "lgaid": 102145
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "JJT",
+    "lgaid": 102158
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "HAL",
+    "lgaid": 102178
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "ABN",
+    "lgaid": 102195
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "NNE",
+    "lgaid": 102206
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "UKP",
+    "lgaid": 102227
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "ATN",
+    "lgaid": 102245
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "NSH",
+    "lgaid": 102258
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "FGG",
+    "lgaid": 102272
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "AJL",
+    "lgaid": 102290
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "UMZ",
+    "lgaid": 102309
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "HTE",
+    "lgaid": 102323
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "ALK",
+    "lgaid": 102998
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "BAU",
+    "lgaid": 103019
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "BGR",
+    "lgaid": 103033
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "DBM",
+    "lgaid": 103050
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "DRZ",
+    "lgaid": 103068
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "DAS",
+    "lgaid": 103082
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "GAM",
+    "lgaid": 103101
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "GJW",
+    "lgaid": 103118
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "GYD",
+    "lgaid": 103132
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "TSG",
+    "lgaid": 103149
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "JMA",
+    "lgaid": 103162
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "KTG",
+    "lgaid": 103180
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "KRF",
+    "lgaid": 103194
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "MSA",
+    "lgaid": 103211
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "NNG",
+    "lgaid": 103229
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "SHR",
+    "lgaid": 103248
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "TFB",
+    "lgaid": 103265
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "TRR",
+    "lgaid": 103283
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "WRJ",
+    "lgaid": 103295
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "ZAK",
+    "lgaid": 103314
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "BRS",
+    "lgaid": 104371
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "KMR",
+    "lgaid": 104383
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "KMK",
+    "lgaid": 104393
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "NEM",
+    "lgaid": 104404
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "GBB",
+    "lgaid": 104412
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "SAG",
+    "lgaid": 104425
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "SPR",
+    "lgaid": 104436
+  },
+  {
+    "stateepidcode": "NIE-BYS",
+    "lgaepidcode": "YEN",
+    "lgaid": 104448
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "GMU",
+    "lgaid": 104590
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "GTU",
+    "lgaid": 104601
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "GKP",
+    "lgaid": 104613
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "BKB",
+    "lgaid": 104627
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "GBK",
+    "lgaid": 104644
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "YGJ",
+    "lgaid": 104651
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "ALD",
+    "lgaid": 104665
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "NAK",
+    "lgaid": 104681
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "KAL",
+    "lgaid": 104694
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "TSE",
+    "lgaid": 104706
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "WDP",
+    "lgaid": 104721
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "GBG",
+    "lgaid": 104732
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "MKD",
+    "lgaid": 104742
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "BRT",
+    "lgaid": 104755
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "BGT",
+    "lgaid": 104769
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "DKP",
+    "lgaid": 104780
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "JUX",
+    "lgaid": 104792
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "PKG",
+    "lgaid": 104805
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "TKP",
+    "lgaid": 104819
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "WNN",
+    "lgaid": 104830
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "UKM",
+    "lgaid": 104844
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "SEL",
+    "lgaid": 104856
+  },
+  {
+    "stateepidcode": "NIE-BNS",
+    "lgaepidcode": "VDY",
+    "lgaid": 104869
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "ASU",
+    "lgaid": 105736
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "BBU",
+    "lgaid": 105756
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "CBK",
+    "lgaid": 105768
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "DAM",
+    "lgaid": 105772
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "DKW",
+    "lgaid": 105774
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "GBL",
+    "lgaid": 105782
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "GZA",
+    "lgaid": 105787
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "HWL",
+    "lgaid": 105798
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "JRE",
+    "lgaid": 105803
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "KGG",
+    "lgaid": 105807
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "KBG",
+    "lgaid": 105809
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "KDG",
+    "lgaid": 105814
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "KWA",
+    "lgaid": 105817
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "KWY",
+    "lgaid": 105826
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MAF",
+    "lgaid": 105830
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MGM",
+    "lgaid": 105837
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "BAY",
+    "lgaid": 105745
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MAG",
+    "lgaid": 105844
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MBR",
+    "lgaid": 105846
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "NGL",
+    "lgaid": 105849
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "NGZ",
+    "lgaid": 105851
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "SHN",
+    "lgaid": 105857
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "TGD",
+    "lgaid": 106039
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "KAM",
+    "lgaid": 106050
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "KTA",
+    "lgaid": 106061
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "BKS",
+    "lgaid": 106072
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "ABE",
+    "lgaid": 106077
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "AKP",
+    "lgaid": 106089
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "BJE",
+    "lgaid": 106101
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "CAL",
+    "lgaid": 106112
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "ANA",
+    "lgaid": 106125
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "EFE",
+    "lgaid": 106136
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "KMM",
+    "lgaid": 106148
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "BNS",
+    "lgaid": 106159
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "BRA",
+    "lgaid": 106171
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "UDU",
+    "lgaid": 106182
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "DUK",
+    "lgaid": 106195
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "GGJ",
+    "lgaid": 106206
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "GEP",
+    "lgaid": 106219
+  },
+  {
+    "stateepidcode": "NIE-CRS",
+    "lgaepidcode": "CKK",
+    "lgaid": 106234
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "SLK",
+    "lgaid": 107106
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "GWK",
+    "lgaid": 107119
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "BMA",
+    "lgaid": 107130
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "BUR",
+    "lgaid": 107140
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "SKL",
+    "lgaid": 107152
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "GRA",
+    "lgaid": 107163
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "AYB",
+    "lgaid": 107177
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "AGB",
+    "lgaid": 107182
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "DSZ",
+    "lgaid": 107196
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "LEH",
+    "lgaid": 107205
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "ABH",
+    "lgaid": 107216
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "KWC",
+    "lgaid": 107226
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "KPE",
+    "lgaid": 107237
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "AKU",
+    "lgaid": 107246
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "ASB",
+    "lgaid": 107256
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "PTN",
+    "lgaid": 107262
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "SAP",
+    "lgaid": 107268
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "ALA",
+    "lgaid": 107276
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "UGH",
+    "lgaid": 107287
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "JRT",
+    "lgaid": 107297
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "BKW",
+    "lgaid": 107308
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "EFR",
+    "lgaid": 107320
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "KLK",
+    "lgaid": 107328
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "WWR",
+    "lgaid": 107338
+  },
+  {
+    "stateepidcode": "NIE-DTS",
+    "lgaepidcode": "WRC",
+    "lgaid": 107345
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "AKL",
+    "lgaid": 107907
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "AFK",
+    "lgaid": 107928
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "EDA",
+    "lgaid": 107943
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "UGB",
+    "lgaid": 107960
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "EBJ",
+    "lgaid": 107975
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "NKE",
+    "lgaid": 107992
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "CHR",
+    "lgaid": 108014
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "ZLL",
+    "lgaid": 108036
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "SKA",
+    "lgaid": 108048
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "BKL",
+    "lgaid": 108078
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "BZR",
+    "lgaid": 108091
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "HKW",
+    "lgaid": 108117
+  },
+  {
+    "stateepidcode": "NIE-EBS",
+    "lgaepidcode": "NCA",
+    "lgaid": 108137
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "GAR",
+    "lgaid": 108678
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "USL",
+    "lgaid": 108688
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "RRU",
+    "lgaid": 108697
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "URM",
+    "lgaid": 108706
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "UBJ",
+    "lgaid": 108716
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "EKP",
+    "lgaid": 108725
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "FUG",
+    "lgaid": 108736
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "AGD",
+    "lgaid": 108747
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "AUC",
+    "lgaid": 108758
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "GUE",
+    "lgaid": 108765
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "DGE",
+    "lgaid": 108777
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "BEN",
+    "lgaid": 108790
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "ABD",
+    "lgaid": 108801
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "AKA",
+    "lgaid": 108815
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "GBZ",
+    "lgaid": 108826
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "AFZ",
+    "lgaid": 108835
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "SGD",
+    "lgaid": 108847
+  },
+  {
+    "stateepidcode": "NIE-EDS",
+    "lgaepidcode": "EHR",
+    "lgaid": 108858
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "ADK",
+    "lgaid": 109319
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "DEA",
+    "lgaid": 109330
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "EFY",
+    "lgaid": 109340
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "MUE",
+    "lgaid": 109353
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "LAW",
+    "lgaid": 109365
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "AMK",
+    "lgaid": 109376
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "EMR",
+    "lgaid": 109387
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "DEK",
+    "lgaid": 109399
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "JER",
+    "lgaid": 109412
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "KER",
+    "lgaid": 109424
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "KLE",
+    "lgaid": 109437
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "YEK",
+    "lgaid": 109448
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "GED",
+    "lgaid": 109462
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "SSE",
+    "lgaid": 109473
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "TUN",
+    "lgaid": 109485
+  },
+  {
+    "stateepidcode": "NIE-EKS",
+    "lgaepidcode": "YEE",
+    "lgaid": 109498
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "DBR",
+    "lgaid": 109905
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "AWG",
+    "lgaid": 109916
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "NKW",
+    "lgaid": 109927
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "ENU",
+    "lgaid": 109942
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "UWN",
+    "lgaid": 109954
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "AGW",
+    "lgaid": 109975
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "GBO",
+    "lgaid": 109996
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "ENZ",
+    "lgaid": 110014
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "BBG",
+    "lgaid": 110031
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "KEM",
+    "lgaid": 110043
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "MGL",
+    "lgaid": 110059
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "AGN",
+    "lgaid": 110074
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "NSK",
+    "lgaid": 110090
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "JRV",
+    "lgaid": 110112
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "BLF",
+    "lgaid": 110123
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "UDD",
+    "lgaid": 110142
+  },
+  {
+    "stateepidcode": "NIE-ENS",
+    "lgaepidcode": "UMU",
+    "lgaid": 110158
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "ABJ",
+    "lgaid": 110844
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "AKK",
+    "lgaid": 111221
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "BLG",
+    "lgaid": 111232
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "BLR",
+    "lgaid": 111243
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "DKU",
+    "lgaid": 111255
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "FKY",
+    "lgaid": 111266
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "GME",
+    "lgaid": 111278
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "KLT",
+    "lgaid": 111289
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "KWM",
+    "lgaid": 111300
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "NFD",
+    "lgaid": 111311
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "SHM",
+    "lgaid": 111322
+  },
+  {
+    "stateepidcode": "NIE-GMS",
+    "lgaepidcode": "YDB",
+    "lgaid": 111334
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "ABB",
+    "lgaid": 111793
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "AFR",
+    "lgaid": 111809
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "EHM",
+    "lgaid": 111825
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "ETU",
+    "lgaid": 111834
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "URU",
+    "lgaid": 111852
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "DFB",
+    "lgaid": 111867
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "IHI",
+    "lgaid": 111881
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "KUJ",
+    "lgaid": 110889
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "KWL",
+    "lgaid": 110900
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "BWR",
+    "lgaid": 110868
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "ABC",
+    "lgaid": 110857
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "KED",
+    "lgaid": 111898
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "UML",
+    "lgaid": 111915
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "UMD",
+    "lgaid": 111930
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "NWA",
+    "lgaid": 111948
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "NGN",
+    "lgaid": 111965
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "NSA",
+    "lgaid": 111981
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "NKR",
+    "lgaid": 111992
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "AMG",
+    "lgaid": 112004
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "TTK",
+    "lgaid": 112019
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "GUA",
+    "lgaid": 112035
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "EBM",
+    "lgaid": 112049
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "KGE",
+    "lgaid": 112066
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "KWE",
+    "lgaid": 112075
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "RLU",
+    "lgaid": 112093
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "AWD",
+    "lgaid": 112109
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "MGD",
+    "lgaid": 112124
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "NGB",
+    "lgaid": 112139
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "WER",
+    "lgaid": 112150
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "RRT",
+    "lgaid": 112167
+  },
+  {
+    "stateepidcode": "NIE-IMS",
+    "lgaepidcode": "UMG",
+    "lgaid": 112182
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "AUY",
+    "lgaid": 112825
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "BBR",
+    "lgaid": 112837
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "BKD",
+    "lgaid": 112849
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "BNW",
+    "lgaid": 112861
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "BUJ",
+    "lgaid": 112872
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "DUT",
+    "lgaid": 112884
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GGW",
+    "lgaid": 112895
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GRK",
+    "lgaid": 112907
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GML",
+    "lgaid": 112916
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GRR",
+    "lgaid": 112927
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GRM",
+    "lgaid": 112939
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "GWW",
+    "lgaid": 112951
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "HJA",
+    "lgaid": 112959
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "JHN",
+    "lgaid": 112971
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "KHS",
+    "lgaid": 112983
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "KGM",
+    "lgaid": 112995
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "KZR",
+    "lgaid": 113007
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "KKM",
+    "lgaid": 113018
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "KYW",
+    "lgaid": 113030
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "MGR",
+    "lgaid": 113042
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "MMR",
+    "lgaid": 113055
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "MGA",
+    "lgaid": 113067
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "RNG",
+    "lgaid": 113078
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "RRN",
+    "lgaid": 113090
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "STK",
+    "lgaid": 113101
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "TAR",
+    "lgaid": 113112
+  },
+  {
+    "stateepidcode": "NIE-JIS",
+    "lgaepidcode": "YKS",
+    "lgaid": 113123
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "BNG",
+    "lgaid": 113792
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KJM",
+    "lgaid": 113806
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "GKW",
+    "lgaid": 113818
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "TRK",
+    "lgaid": 113831
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KAR",
+    "lgaid": 113842
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KWB",
+    "lgaid": 113853
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KAF",
+    "lgaid": 113866
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KCH",
+    "lgaid": 113878
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "DKA",
+    "lgaid": 113890
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "MKA",
+    "lgaid": 113903
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KGK",
+    "lgaid": 113914
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KJR",
+    "lgaid": 113925
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KRA",
+    "lgaid": 113936
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "KRU",
+    "lgaid": 113948
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "ANC",
+    "lgaid": 113960
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "HKY",
+    "lgaid": 113971
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "SNK",
+    "lgaid": 113983
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "MKR",
+    "lgaid": 113994
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "SBG",
+    "lgaid": 114006
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "GWT",
+    "lgaid": 114018
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "MGN",
+    "lgaid": 114030
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "ZKW",
+    "lgaid": 114042
+  },
+  {
+    "stateepidcode": "NIE-KDS",
+    "lgaepidcode": "ZAR",
+    "lgaid": 114056
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "AJG",
+    "lgaid": 115209
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "ABS",
+    "lgaid": 115220
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "BGW",
+    "lgaid": 115231
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "BBJ",
+    "lgaid": 115246
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "BCH",
+    "lgaid": 115258
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "BNK",
+    "lgaid": 115267
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "DAL",
+    "lgaid": 115280
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "DBT",
+    "lgaid": 115291
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "DKD",
+    "lgaid": 115307
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "DTF",
+    "lgaid": 115319
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "DGW",
+    "lgaid": 115330
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "FGE",
+    "lgaid": 115339
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GSW",
+    "lgaid": 115351
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GAK",
+    "lgaid": 115362
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GNM",
+    "lgaid": 115373
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GYA",
+    "lgaid": 115384
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GZW",
+    "lgaid": 115395
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GWL",
+    "lgaid": 115403
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "GRZ",
+    "lgaid": 115414
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KBK",
+    "lgaid": 115425
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KMC",
+    "lgaid": 115435
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KRY",
+    "lgaid": 115444
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KBY",
+    "lgaid": 115455
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KKU",
+    "lgaid": 115471
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KBT",
+    "lgaid": 115482
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KNC",
+    "lgaid": 115493
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "KUR",
+    "lgaid": 115502
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "MDB",
+    "lgaid": 115514
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "MKK",
+    "lgaid": 115526
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "MJB",
+    "lgaid": 115538
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "NSR",
+    "lgaid": 115549
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "RAN",
+    "lgaid": 115560
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "RMG",
+    "lgaid": 115572
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "RGG",
+    "lgaid": 115583
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "SNN",
+    "lgaid": 115594
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "SML",
+    "lgaid": 115606
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "TAK",
+    "lgaid": 115617
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "TRN",
+    "lgaid": 115628
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "TFA",
+    "lgaid": 115644
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "TYW",
+    "lgaid": 115655
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "TWD",
+    "lgaid": 115666
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "UGG",
+    "lgaid": 115678
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "WRA",
+    "lgaid": 115694
+  },
+  {
+    "stateepidcode": "NIE-KNS",
+    "lgaepidcode": "WDL",
+    "lgaid": 115705
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "BKR",
+    "lgaid": 116784
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "BAT",
+    "lgaid": 116795
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "BTR",
+    "lgaid": 116810
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "BRE",
+    "lgaid": 116822
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "BDW",
+    "lgaid": 116837
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "CRC",
+    "lgaid": 116848
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DMS",
+    "lgaid": 116860
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DDM",
+    "lgaid": 116873
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DJA",
+    "lgaid": 116884
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DRA",
+    "lgaid": 116898
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DTS",
+    "lgaid": 116909
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "DTM",
+    "lgaid": 116921
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "FSK",
+    "lgaid": 116932
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "FTA",
+    "lgaid": 116943
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "NGW",
+    "lgaid": 116960
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "JBY",
+    "lgaid": 116972
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KFR",
+    "lgaid": 116983
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KAT",
+    "lgaid": 116994
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KKR",
+    "lgaid": 117006
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KNK",
+    "lgaid": 117019
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KTN",
+    "lgaid": 117033
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MSH",
+    "lgaid": 117103
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KUF",
+    "lgaid": 117044
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "KSD",
+    "lgaid": 117054
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MDW",
+    "lgaid": 117066
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MLF",
+    "lgaid": 117079
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MAN",
+    "lgaid": 117092
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MTZ",
+    "lgaid": 117114
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "MSW",
+    "lgaid": 117126
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "RMY",
+    "lgaid": 117138
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "SBA",
+    "lgaid": 117149
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "SFN",
+    "lgaid": 117160
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "SDM",
+    "lgaid": 117172
+  },
+  {
+    "stateepidcode": "NIE-KTS",
+    "lgaepidcode": "ZNG",
+    "lgaid": 117184
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "ALR",
+    "lgaid": 118813
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "ARG",
+    "lgaid": 118837
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "AUG",
+    "lgaid": 118848
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "BGD",
+    "lgaid": 118860
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "BRK",
+    "lgaid": 118877
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "BNZ",
+    "lgaid": 118888
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "KMB",
+    "lgaid": 118899
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "NGK",
+    "lgaid": 99245
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "BMJ",
+    "lgaid": 135705
+  },
+  {
+    "stateepidcode": "NIE-FCT",
+    "lgaepidcode": "GWA",
+    "lgaid": 110878
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "YLW",
+    "lgaid": 119035
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "ZUR",
+    "lgaid": 119046
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "DAV",
+    "lgaid": 119818
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "AJA",
+    "lgaid": 119831
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KPA",
+    "lgaid": 119845
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "BAS",
+    "lgaid": 119856
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KNA",
+    "lgaid": 119869
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "NDG",
+    "lgaid": 119880
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "DAH",
+    "lgaid": 119891
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "AJK",
+    "lgaid": 119902
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "JMU",
+    "lgaid": 119918
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KAB",
+    "lgaid": 119934
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KKF",
+    "lgaid": 119945
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "LKJ",
+    "lgaid": 119955
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "MPA",
+    "lgaid": 119966
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KFU",
+    "lgaid": 119978
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KPF",
+    "lgaid": 119983
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KKH",
+    "lgaid": 119995
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "KNE",
+    "lgaid": 120007
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "LAM",
+    "lgaid": 120018
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "BJK",
+    "lgaid": 120030
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "SAN",
+    "lgaid": 120041
+  },
+  {
+    "stateepidcode": "NIE-KGS",
+    "lgaepidcode": "ERE",
+    "lgaid": 120055
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "AFN",
+    "lgaid": 120890
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "KSB",
+    "lgaid": 120902
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "LAF",
+    "lgaid": 120910
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "ARP",
+    "lgaid": 120920
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "KEY",
+    "lgaid": 120947
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "FUF",
+    "lgaid": 120958
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "LRN",
+    "lgaid": 120971
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "WSN",
+    "lgaid": 120995
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "KMA",
+    "lgaid": 121006
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "BDU",
+    "lgaid": 121022
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "FFA",
+    "lgaid": 121032
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "LFF",
+    "lgaid": 121042
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "LEM",
+    "lgaid": 121054
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "PTG",
+    "lgaid": 121064
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "GGE",
+    "lgaid": 121515
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "EKY",
+    "lgaid": 121648
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "KGW",
+    "lgaid": 118825
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "AGL",
+    "lgaid": 121532
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "KTU",
+    "lgaid": 121568
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "FST",
+    "lgaid": 121583
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "APP",
+    "lgaid": 121596
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "BDG",
+    "lgaid": 121615
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "EPE",
+    "lgaid": 121626
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "SRP",
+    "lgaid": 596881
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "MUN",
+    "lgaid": 120983
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "AKD",
+    "lgaid": 121660
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "FKJ",
+    "lgaid": 121675
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "KJA",
+    "lgaid": 121693
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "KRD",
+    "lgaid": 121724
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "KSF",
+    "lgaid": 121743
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "AAA",
+    "lgaid": 121763
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "LND",
+    "lgaid": 121780
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "MUS",
+    "lgaid": 121799
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "JJJ",
+    "lgaid": 121815
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "LSD",
+    "lgaid": 121836
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "SMK",
+    "lgaid": 121852
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "AKW",
+    "lgaid": 123630
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "AWE",
+    "lgaid": 123641
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "DMA",
+    "lgaid": 123652
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "KRV",
+    "lgaid": 123665
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "KEN",
+    "lgaid": 123676
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "KEF",
+    "lgaid": 123687
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "GRU",
+    "lgaid": 123699
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "LFA",
+    "lgaid": 123713
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "NSW",
+    "lgaid": 123744
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "NTT",
+    "lgaid": 123768
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "WAM",
+    "lgaid": 123779
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "AGA",
+    "lgaid": 124617
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "AGR",
+    "lgaid": 124623
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "BDA",
+    "lgaid": 124638
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "NBS",
+    "lgaid": 124649
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "MAK",
+    "lgaid": 124660
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "MNA",
+    "lgaid": 124672
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "ENG",
+    "lgaid": 124683
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "LMU",
+    "lgaid": 124694
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "GWU",
+    "lgaid": 124706
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "KHA",
+    "lgaid": 124717
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "KNT",
+    "lgaid": 124731
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "LAP",
+    "lgaid": 124742
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "KUG",
+    "lgaid": 124755
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "NAS",
+    "lgaid": 124767
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "BMG",
+    "lgaid": 124779
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "MSG",
+    "lgaid": 124790
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "MKW",
+    "lgaid": 124802
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "PAK",
+    "lgaid": 124826
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "KAG",
+    "lgaid": 124838
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "RJA",
+    "lgaid": 124850
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "KUT",
+    "lgaid": 124864
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "SUL",
+    "lgaid": 124876
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "WSE",
+    "lgaid": 124887
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "WSH",
+    "lgaid": 124897
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "AKM",
+    "lgaid": 126202
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "AAB",
+    "lgaid": 126217
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "TTD",
+    "lgaid": 126234
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "TRE",
+    "lgaid": 126245
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "FFF",
+    "lgaid": 126257
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "GBE",
+    "lgaid": 126269
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "ANG",
+    "lgaid": 127151
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "SRA",
+    "lgaid": 126280
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "JGB",
+    "lgaid": 126292
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "JBD",
+    "lgaid": 126304
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "KNN",
+    "lgaid": 126315
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "MEK",
+    "lgaid": 126326
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "PKA",
+    "lgaid": 126339
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "NEG",
+    "lgaid": 123728
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "WDE",
+    "lgaid": 126351
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "EDE",
+    "lgaid": 126361
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "DGB",
+    "lgaid": 126376
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "ABG",
+    "lgaid": 126387
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "TTN",
+    "lgaid": 126398
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "SGM",
+    "lgaid": 126414
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "KAK",
+    "lgaid": 127140
+  },
+  {
+    "stateepidcode": "NIE-NAS",
+    "lgaepidcode": "NBB",
+    "lgaid": 123755
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "JTA",
+    "lgaid": 127193
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "AKR",
+    "lgaid": 127205
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "GKB",
+    "lgaid": 127216
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "WEN",
+    "lgaid": 127227
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "FGB",
+    "lgaid": 127238
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "GBA",
+    "lgaid": 127251
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "LEL",
+    "lgaid": 127262
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "REL",
+    "lgaid": 127274
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "REE",
+    "lgaid": 127287
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "KTP",
+    "lgaid": 127301
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "BDR",
+    "lgaid": 127312
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "NND",
+    "lgaid": 127325
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "FFN",
+    "lgaid": 127338
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "WWW",
+    "lgaid": 127350
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "LGB",
+    "lgaid": 127996
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "PRN",
+    "lgaid": 128007
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "SSU",
+    "lgaid": 128019
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "TAN",
+    "lgaid": 128030
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "RGB",
+    "lgaid": 128042
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "EDT",
+    "lgaid": 128053
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "EDE",
+    "lgaid": 128064
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "AAW",
+    "lgaid": 128076
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "EJG",
+    "lgaid": 128088
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "FFE",
+    "lgaid": 128098
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "FEE",
+    "lgaid": 128109
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "PMD",
+    "lgaid": 128120
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "EZA",
+    "lgaid": 99107
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "ABA",
+    "lgaid": 99124
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "ACH",
+    "lgaid": 99143
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "BND",
+    "lgaid": 99163
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "KWU",
+    "lgaid": 99179
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "KPU",
+    "lgaid": 99197
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "MBA",
+    "lgaid": 99214
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "MBL",
+    "lgaid": 99230
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "HAF",
+    "lgaid": 99265
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "SSM",
+    "lgaid": 99284
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "GWB",
+    "lgaid": 99299
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "KEK",
+    "lgaid": 99314
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "KKE",
+    "lgaid": 99329
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "UMA",
+    "lgaid": 99349
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "APR",
+    "lgaid": 99363
+  },
+  {
+    "stateepidcode": "NIE-ABS",
+    "lgaepidcode": "UNC",
+    "lgaid": 99382
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "DSA",
+    "lgaid": 100088
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "FUR",
+    "lgaid": 100100
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "GAN",
+    "lgaid": 100111
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "GRE",
+    "lgaid": 100122
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "BKK",
+    "lgaid": 130889
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "GMB",
+    "lgaid": 100133
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "FTD",
+    "lgaid": 128132
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "FDY",
+    "lgaid": 128141
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "LRG",
+    "lgaid": 128164
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "LES",
+    "lgaid": 128175
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "LEW",
+    "lgaid": 128186
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "KRE",
+    "lgaid": 128208
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "APM",
+    "lgaid": 128219
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "WWD",
+    "lgaid": 128235
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "BKN",
+    "lgaid": 128246
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "DTN",
+    "lgaid": 128262
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "BDS",
+    "lgaid": 128273
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "GNN",
+    "lgaid": 128284
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "JJS",
+    "lgaid": 128296
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "FNN",
+    "lgaid": 128303
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "SGB",
+    "lgaid": 128313
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "BLD",
+    "lgaid": 130848
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "KAA",
+    "lgaid": 127180
+  },
+  {
+    "stateepidcode": "NIE-ODS",
+    "lgaepidcode": "SUA",
+    "lgaid": 127163
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "ANW",
+    "lgaid": 130909
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "JJN",
+    "lgaid": 130930
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "BUU",
+    "lgaid": 130951
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "DNG",
+    "lgaid": 130972
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "KWK",
+    "lgaid": 130990
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "LGT",
+    "lgaid": 131009
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "MBD",
+    "lgaid": 131025
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "MGU",
+    "lgaid": 131046
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "TNK",
+    "lgaid": 131064
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "PKN",
+    "lgaid": 131084
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "QAP",
+    "lgaid": 131106
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "RYM",
+    "lgaid": 131125
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "SHD",
+    "lgaid": 131143
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "WAS",
+    "lgaid": 131163
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "ABU",
+    "lgaid": 132200
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "AHD",
+    "lgaid": 132212
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "KNM",
+    "lgaid": 132224
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "ABM",
+    "lgaid": 132230
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "NDN",
+    "lgaid": 132241
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "BGM",
+    "lgaid": 132248
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "BNY",
+    "lgaid": 132258
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "DEG",
+    "lgaid": 132268
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "NCH",
+    "lgaid": 132280
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "MHA",
+    "lgaid": 132294
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "KHE",
+    "lgaid": 132315
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "KPR",
+    "lgaid": 132327
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "SKP",
+    "lgaid": 132341
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "BRR",
+    "lgaid": 132359
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "RUM",
+    "lgaid": 132377
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "RGM",
+    "lgaid": 132392
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "GGU",
+    "lgaid": 132399
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "KRK",
+    "lgaid": 132409
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "BER",
+    "lgaid": 132418
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "PBT",
+    "lgaid": 132424
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "AFM",
+    "lgaid": 132435
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "PHC",
+    "lgaid": 132453
+  },
+  {
+    "stateepidcode": "NIE-RVS",
+    "lgaepidcode": "SKN",
+    "lgaid": 132464
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "BNJ",
+    "lgaid": 133177
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "BDN",
+    "lgaid": 133189
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "DGS",
+    "lgaid": 133201
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "GAD",
+    "lgaid": 133213
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "GRY",
+    "lgaid": 133222
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "BLE",
+    "lgaid": 133233
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "GWD",
+    "lgaid": 133245
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "LLA",
+    "lgaid": 133257
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SAA",
+    "lgaid": 133268
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "KBE",
+    "lgaid": 133279
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "KWR",
+    "lgaid": 133291
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "RBA",
+    "lgaid": 133303
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SBN",
+    "lgaid": 133315
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SGR",
+    "lgaid": 133326
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SLM",
+    "lgaid": 133337
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SKK",
+    "lgaid": 133348
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "SRZ",
+    "lgaid": 133359
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "TBW",
+    "lgaid": 133371
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "TGZ",
+    "lgaid": 133382
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "LAR",
+    "lgaid": 126437
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "TRT",
+    "lgaid": 133393
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "WMK",
+    "lgaid": 133405
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "WRN",
+    "lgaid": 133417
+  },
+  {
+    "stateepidcode": "NIE-SOS",
+    "lgaepidcode": "YYB",
+    "lgaid": 133428
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "ARD",
+    "lgaid": 134178
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "BAL",
+    "lgaid": 134190
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "DGA",
+    "lgaid": 134201
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "GKA",
+    "lgaid": 134212
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "GAS",
+    "lgaid": 134225
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "BBB",
+    "lgaid": 134235
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "JAL",
+    "lgaid": 134246
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "KLD",
+    "lgaid": 134258
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "KRM",
+    "lgaid": 134269
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "LAU",
+    "lgaid": 134280
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "SDA",
+    "lgaid": 134292
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "TTM",
+    "lgaid": 134303
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "USS",
+    "lgaid": 134317
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "WKR",
+    "lgaid": 134328
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "YRR",
+    "lgaid": 134339
+  },
+  {
+    "stateepidcode": "NIE-TRS",
+    "lgaepidcode": "TZG",
+    "lgaid": 134350
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "GSH",
+    "lgaid": 135079
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "DPH",
+    "lgaid": 135090
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "DTR",
+    "lgaid": 135102
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "FKA",
+    "lgaid": 135113
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "FUN",
+    "lgaid": 135126
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "GDM",
+    "lgaid": 135137
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "GJB",
+    "lgaid": 135147
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "GLN",
+    "lgaid": 135160
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "JAK",
+    "lgaid": 135171
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "KRS",
+    "lgaid": 135181
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "MCN",
+    "lgaid": 135191
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "NNR",
+    "lgaid": 135203
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "NGU",
+    "lgaid": 135213
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "PKM",
+    "lgaid": 135222
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "TMW",
+    "lgaid": 135231
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "YUN",
+    "lgaid": 135242
+  },
+  {
+    "stateepidcode": "NIE-YBS",
+    "lgaepidcode": "YSF",
+    "lgaid": 135250
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "ANK",
+    "lgaid": 135683
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "BKA",
+    "lgaid": 135694
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "BKM",
+    "lgaid": 135716
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "BUG",
+    "lgaid": 135728
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "GMM",
+    "lgaid": 135740
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "GUS",
+    "lgaid": 135752
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "KRN",
+    "lgaid": 135764
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "MRD",
+    "lgaid": 135775
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "MRR",
+    "lgaid": 135786
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "SKF",
+    "lgaid": 135797
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "TMA",
+    "lgaid": 135809
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "TSF",
+    "lgaid": 135821
+  },
+  {
+    "stateepidcode": "NIE-ZAS",
+    "lgaepidcode": "ZRM",
+    "lgaid": 135833
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "TDE",
+    "lgaid": 142408
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "YNF",
+    "lgaid": 142424
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "BAM",
+    "lgaid": 142400
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "GMD",
+    "lgaid": 142435
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "GUY",
+    "lgaid": 100144
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "HNG",
+    "lgaid": 100157
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "JAD",
+    "lgaid": 100169
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "LMR",
+    "lgaid": 100180
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "MDG",
+    "lgaid": 100190
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "MAH",
+    "lgaid": 100201
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "MWA",
+    "lgaid": 100214
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "MCH",
+    "lgaid": 100231
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "MUB",
+    "lgaid": 100243
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "GYL",
+    "lgaid": 100254
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "NUM",
+    "lgaid": 100265
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "SHG",
+    "lgaid": 100276
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "SNG",
+    "lgaid": 100288
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "TNG",
+    "lgaid": 100299
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "YLN",
+    "lgaid": 100310
+  },
+  {
+    "stateepidcode": "NIE-ADS",
+    "lgaepidcode": "YLA",
+    "lgaid": 100322
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "ABK",
+    "lgaid": 101117
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KRT",
+    "lgaid": 101128
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "KET",
+    "lgaid": 101140
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "AUQ",
+    "lgaid": 101151
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "AFH",
+    "lgaid": 101163
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "AEE",
+    "lgaid": 101173
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "ETN",
+    "lgaid": 101185
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "PNG",
+    "lgaid": 101196
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "WEL",
+    "lgaid": 142422
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "KNH",
+    "lgaid": 142425
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "KSH",
+    "lgaid": 142419
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "MNY",
+    "lgaid": 142406
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "EGB",
+    "lgaid": 142409
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "AME",
+    "lgaid": 142426
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "DDA",
+    "lgaid": 142418
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "KEH",
+    "lgaid": 142423
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "SEY",
+    "lgaid": 142420
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "RUW",
+    "lgaid": 142416
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "GBH",
+    "lgaid": 142431
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "JND",
+    "lgaid": 142434
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "ADM",
+    "lgaid": 142399
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "NRK",
+    "lgaid": 142412
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "BDJ",
+    "lgaid": 142410
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "GBY",
+    "lgaid": 142428
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MNG",
+    "lgaid": 142402
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "TUT",
+    "lgaid": 142421
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "YRE",
+    "lgaid": 142429
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "RSD",
+    "lgaid": 142437
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "GBR",
+    "lgaid": 142415
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "FMT",
+    "lgaid": 142407
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "LUY",
+    "lgaid": 142414
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "SHK",
+    "lgaid": 142436
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "AYT",
+    "lgaid": 142417
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "AJW",
+    "lgaid": 142427
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "MAR",
+    "lgaid": 142401
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "AGG",
+    "lgaid": 142411
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "AKN",
+    "lgaid": 142430
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "AYE",
+    "lgaid": 126426
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "AYE",
+    "lgaid": 448066
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "LAR",
+    "lgaid": 448067
+  },
+  {
+    "stateepidcode": "NIE-NIS",
+    "lgaepidcode": "SRP",
+    "lgaid": 124814
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "DKG",
+    "lgaid": 118911
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "KGW",
+    "lgaid": 504346
+  },
+  {
+    "stateepidcode": "NIE-BOS",
+    "lgaepidcode": "GUB",
+    "lgaid": 105780
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": "KKY",
+    "lgaid": 142432
+  },
+  {
+    "stateepidcode": "NIE-PLS",
+    "lgaepidcode": "BSA",
+    "lgaid": 130869
+  },
+  {
+    "stateepidcode": "NIE-KWS",
+    "lgaepidcode": "SHA",
+    "lgaid": 120935
+  },
+  {
+    "stateepidcode": "NIE-LAS",
+    "lgaepidcode": "LSR",
+    "lgaid": 121876
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "DRD",
+    "lgaid": 119002
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "RLG",
+    "lgaid": 128198
+  },
+  {
+    "stateepidcode": "NIE-OSS",
+    "lgaepidcode": "KNR",
+    "lgaid": 128154
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "JEG",
+    "lgaid": 118945
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "KLG",
+    "lgaid": 118956
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "BES",
+    "lgaid": 118968
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "MYM",
+    "lgaid": 118980
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "WRR",
+    "lgaid": 118991
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "SNA",
+    "lgaid": 119013
+  },
+  {
+    "stateepidcode": "NIE-OYS",
+    "lgaepidcode": " ",
+    "lgaid": 605035
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "HHH",
+    "lgaid": 63708215
+  },
+  {
+    "stateepidcode": "NIE-BAS",
+    "lgaepidcode": "KTG",
+    "lgaid": 63079102
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "MHT",
+    "lgaid": 118922
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "BIG",
+    "lgaid": 63708204
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "GWN",
+    "lgaid": 118933
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "DC, ETIM EK",
+    "lgaid": 63708207
+  },
+  {
+    "stateepidcode": "NIE-KBS",
+    "lgaepidcode": "DKG",
+    "lgaid": 119025
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "DCC",
+    "lgaid": 63708205
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "HII",
+    "lgaid": 63708206
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "hh",
+    "lgaid": 63708212
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "nnn",
+    "lgaid": 63708209
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "AAA",
+    "lgaid": 63708211
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "mmm",
+    "lgaid": 63708213
+  },
+  {
+    "stateepidcode": "NIE-ANS",
+    "lgaepidcode": "nnnbb",
+    "lgaid": 63708210
+  },
+  {
+    "stateepidcode": "NIE-AKS",
+    "lgaepidcode": "NNN",
+    "lgaid": 63708208
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "nnn",
+    "lgaid": 63708214
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "CHC",
+    "lgaid": 63708218
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "NNN",
+    "lgaid": 63708217
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "IOC",
+    "lgaid": 63708219
+  },
+  {
+    "stateepidcode": "NIE-OGS",
+    "lgaepidcode": "nnn",
+    "lgaid": 63708216
+  }
+]

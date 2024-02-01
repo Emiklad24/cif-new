@@ -10,6 +10,7 @@ const useFetchAllStates = () => {
     queryFn: getAllStates,
     queryKey: [GET_ALL_STATES],
     initialData: AllStates,
+    refetchOnWindowFocus: false,
   });
 
   return {

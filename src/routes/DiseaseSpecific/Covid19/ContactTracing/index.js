@@ -9,6 +9,8 @@ import {
 import React, {useState} from 'react';
 import "styles/pages/form.less";
 import moment from "moment";
+import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const {Option} = Select;
 
@@ -47,6 +49,26 @@ const ContactTracing = () => {
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="Contact Tracing Information" key="1">
           <Row>
+            <Col lg={12} md={12} sm={24}>
+            <Form.Item
+              name="contactIdentified"
+              label="Contact Identified"
+              labelCol={{span: 24}}
+              wrapperCol={{span: 24}}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an Option ",
+                },
+              ]}
+            >
+              <Radio.Group buttonStyle="solid">
+                  <Radio.Button value="YES">Yes</Radio.Button>
+                  <Radio.Button value="NO">No</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
+
           <Col lg={12} md={12} sm={24}>
               <Form.Item
                 label="Complete Address"
@@ -139,7 +161,7 @@ const ContactTracing = () => {
               </Form.Item>
 
             </Col>
-     
+
           <Col lg={12} md={12} sm={12}>
             <Form.Item
               label="Date of contact with a confirmed case"

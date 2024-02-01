@@ -24,7 +24,7 @@
     "education": "PRIMARY",
     "vaccinationStatus": "vaccinated",
     "returnedFromLocalTravel14Days": "YES",
-    "returnedFromnInternationalTravel14Days": "YES",
+    "returnedFromInternationalTravel14Days": "YES",
     "contactWithSuspectedConfirmedCase": "YES",
     "attendedAnyEvent": "YES",
     "visitedOrAdmittedInpatient": "YES",

@@ -34,7 +34,7 @@
     "contactCategorization": "no_risk",
     "isContactAHealthWorker": "yes",
     "vaccinationStatus": "vaccinated",
-    "returnedFromnInternationalTravel14Days": "YES",
+    "returnedFromInternationalTravel14Days": "YES",
     "contactWithSuspectedConfirmedCase": "YES",
     "attendedAnyEvent": "YES",
     "visitedOrAdmittedInpatient": "YES",
@@ -96,7 +96,7 @@
         "lgaOfTravel": 111881
     },
     "internationalTravel": {
-        "returnedFromnInternationalTravel14Days": "YES",
+        "returnedFromInternationalTravel14Days": "YES",
         "dateOfInternationalTravelStart": "17-10-2023",
         "dateOfInternationalTravelEnd": "22-10-2023",
         "countryOfTravel": "AS",

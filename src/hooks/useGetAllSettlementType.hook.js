@@ -7,6 +7,7 @@ const useGetAllSettlementType = (initialData) => {
     queryFn: getSettlementType,
     queryKey: [GET_SETTLEMENT_TYPE],
     initialData: initialData,
+    refetchOnWindowFocus: false,
   });
 
   return {

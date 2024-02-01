@@ -145,7 +145,7 @@ const getAgeForCalculation = (data) => {
   const regex = /^\d{4}-\d{2}-\d{2}$/;
 
   if (data.match(regex) === null) {
-    return 'Invalid date format, Accepted format \'YYYY-MM-DD\'';
+    return "Invalid date format, Accepted format 'YYYY-MM-DD'";
   }
   const now = new Date();
 
@@ -153,8 +153,7 @@ const getAgeForCalculation = (data) => {
   const parsedDate = moment(data, "YYYY-MM-DD");
   const years = currentDate.diff(parsedDate, "years");
 
-  return years ;
-
+  return years;
 };
 
 export function fixedZero(val) {
@@ -165,14 +164,14 @@ const getTimeDistance = (type) => {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;
 
-  if (type === 'today') {
+  if (type === "today") {
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
     return [moment(now), moment(now.getTime() + (oneDay - 1000))];
   }
 
-  if (type === 'week') {
+  if (type === "week") {
     let day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
@@ -188,42 +187,110 @@ const getTimeDistance = (type) => {
 
     return [moment(beginTime), moment(beginTime + (7 * oneDay - 1000))];
   }
-  if (type === 'weekly') {
+  if (type === "weekly") {
     return [moment().day(-7), moment(now)];
   }
-  if (type === 'monthly') {
+  if (type === "monthly") {
     return [moment().day(-30), moment(now)];
   }
 
-  if (type === 'month') {
+  if (type === "month") {
     const year = now.getFullYear();
     const month = now.getMonth();
-    const nextDate = moment(now).add(1, 'months');
+    const nextDate = moment(now).add(1, "months");
     const nextYear = nextDate.year();
     const nextMonth = nextDate.month();
 
     return [
       moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
-      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
+      moment(
+        moment(
+          `${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`
+        ).valueOf() - 1000
+      ),
     ];
   }
 
-  if (type === 'year') {
+  if (type === "year") {
     const year = now.getFullYear();
 
     return [moment(`${year}-01-01 00:00:00`), moment(`${year}-12-31 23:59:59`)];
   }
+};
+
+function parseNestedDates(data) {
+  if (typeof data === "object" && data !== null) {
+    for (const key in data) {
+      if (
+        typeof data[key] === "string" &&
+        data[key].match(/^\d{2}-\d{2}-\d{4}$/)
+      ) {
+        data[key] = moment(data[key], "DD-MM-YYYY");
+      } else if (typeof data[key] === "object") {
+        parseNestedDates(data[key]);
+      }
+    }
+  }
+}
+
+/**
+ * @function reformatToObject
+ * @description This function is used to reformat the data to a plain object
+ */
+
+function flattenNestedObject(data, prefix = "") {
+  const result = {};
+
+  for (const key in data) {
+    const value = data[key];
+
+    if (Array.isArray(value)) {
+      result[`${prefix}${key}`] = value; // Keep arrays intact
+    } else if (typeof value === "object" && value !== null) {
+      Object.assign(result, flattenNestedObject(value, `${prefix}${key}.`));
+    } else {
+      result[`${prefix}${key}`] = value;
+    }
+  }
+
+  return result;
+}
+
+function flattenNestedObjectAndRemoveEmpty(data) {
+  const flattenedData = {};
+
+  for (const key in data) {
+    const value = data[key];
+
+    if (Array.isArray(value)) {
+      flattenedData[key] = value; // Keep arrays intact
+    } else if (typeof value === "object" && value !== null) {
+      if (value) {
+        Object.assign(flattenedData, flattenNestedObjectAndRemoveEmpty(value));
+      } else {
+        flattenedData[key] = "";
+      }
+    } else {
+      flattenedData[key] = value;
+    }
+  }
+
+  return flattenedData;
 }
 
 // =======================================================
 
 export {
-  getAge,
-  convertUploadSize,
   NGNCurrencyFormatter,
+  convertUploadSize,
+  flattenNestedObject,
+  flattenNestedObjectAndRemoveEmpty,
+  getAge,
+  getAgeForCalculation,
   getAgeYearMonth,
   getDoBFromAge,
   getTimeDistance,
-  toUpperCaseFirst,
-  getAgeForCalculation,
+  parseNestedDates,
+  toUpperCaseFirst
 };
+

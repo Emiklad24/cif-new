@@ -16,7 +16,7 @@ const ClinicalHistory = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { data: allLookup } = useFetchAllLookup();
 
   const handleUpdateInputValues = (inputName, value) => {
@@ -518,7 +518,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-       
+
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -605,7 +605,7 @@ const ClinicalHistory = ({ form }) => {
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
               />
-             
+
             </ClearableFormItem>
           </Col>
 

@@ -10,6 +10,7 @@ const useFetchAllLookup = (initialData) => {
     queryFn: getAllLookups,
     queryKey: [GET_ALL_LOOK_UPS],
     initialData: initialData || GetAllLookups,
+    refetchOnWindowFocus: false,
   });
 
   return {

@@ -1,7 +1,7 @@
-import { Col, Form, Input, Collapse, DatePicker, Row, Radio } from "antd";
+import { Col, Collapse, DatePicker, Form, Input, Radio, Row } from "antd";
+import moment from "moment";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import moment from "moment";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
@@ -11,7 +11,7 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({

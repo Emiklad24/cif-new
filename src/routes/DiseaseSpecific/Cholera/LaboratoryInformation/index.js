@@ -1,18 +1,31 @@
-import { Col, Collapse, Row, Divider, Radio, Input } from "antd";
-import React, { useState } from "react";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import { USER_ROLE } from "constants/ActionTypes";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
+
+  const [labComponentDisabled, setLabComponentDisabled] = useState(false);
+  const { userRole } = useSelector(({ common }) => common);
+
+  useEffect(() => {
+    if (!userRole) return;
+    if (userRole === USER_ROLE.LAB) {
+      setLabComponentDisabled(false);
+    } else {
+      setLabComponentDisabled(true);
+    }
+  }, [userRole]);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -24,7 +37,8 @@ const LaboratoryInformation = ({ form }) => {
     },
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
+
   const { data: allLookup } = useFetchAllLookup();
   const allHealthFacilitiesQuery = useGetHealthFacilities();
   const laboratoryData = allHealthFacilitiesQuery?.data?.filter(
@@ -44,7 +58,7 @@ const LaboratoryInformation = ({ form }) => {
         <Row>
           <Col lg={8} md={24} sm={24}>
             <ClearableFormItem
-             collectFormName={true}
+              collectFormName={true}
               form={form}
               setFormValues={setFormValues}
               label="Specimen collected"
@@ -75,7 +89,7 @@ const LaboratoryInformation = ({ form }) => {
             <>
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
-                 collectFormName={true}
+                  collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Date specimen was collected"
@@ -89,13 +103,16 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSpecimenCollected"
+                  />
                 </ClearableFormItem>
               </Col>
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
-                 collectFormName={true}
+                  collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Type of specimen collected"
@@ -112,7 +129,7 @@ const LaboratoryInformation = ({ form }) => {
                   <CheckboxGroup
                     options={[
                       { label: "Stool", value: "stool" },
-                      { label: "Rectal swab", value: "rectal swab" },
+                      { label: "Rectal swab", value: "rectalSwab" },
                     ]}
                     name="specimenType"
                     onChange={(value) => {
@@ -124,7 +141,7 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
-                 collectFormName={true}
+                  collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Name of testing laboratory"
@@ -161,7 +178,7 @@ const LaboratoryInformation = ({ form }) => {
 
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
-                 collectFormName={true}
+                  collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="Date specimen was sent"
@@ -175,7 +192,10 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateSpecimenSent" />
+                  <CustomDatePicker
+                    form={form}
+                    name="dateSpecimenSent"
+                  />
                 </ClearableFormItem>
               </Col>
 
@@ -184,7 +204,7 @@ const LaboratoryInformation = ({ form }) => {
               </Divider>
               <Col lg={8} md={24} sm={24}>
                 <ClearableFormItem
-                 collectFormName={true}
+                  collectFormName={true}
                   form={form}
                   setFormValues={setFormValues}
                   label="RDT result conducted"
@@ -199,6 +219,7 @@ const LaboratoryInformation = ({ form }) => {
                   ]}
                 >
                   <DynamicRadio
+                    disabled={labComponentDisabled}
                     buttonStyle="solid"
                     options={allLookup?.yes_no_type || []}
                     valueProperty="id"
@@ -214,7 +235,7 @@ const LaboratoryInformation = ({ form }) => {
               {formValues?.rdtTestConducted === "YES" && (
                 <Col lg={8} md={24} sm={24}>
                   <ClearableFormItem
-                   collectFormName={true}
+                    collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="RDT result"
@@ -228,7 +249,10 @@ const LaboratoryInformation = ({ form }) => {
                       },
                     ]}
                   >
-                    <Radio.Group buttonStyle="solid">
+                    <Radio.Group
+                      disabled={labComponentDisabled}
+                      buttonStyle="solid"
+                    >
                       <Radio.Button value="positive">Positive</Radio.Button>
                       <Radio.Button value="negative">Negative</Radio.Button>
                       <Radio.Button value="invalid">Invalid</Radio.Button>
@@ -240,7 +264,7 @@ const LaboratoryInformation = ({ form }) => {
               {formValues?.specimenType?.includes("stool") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
-                   collectFormName={true}
+                    collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="Stool specimen received"
@@ -255,6 +279,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                   >
                     <DynamicRadio
+                      disabled={labComponentDisabled}
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -272,7 +297,7 @@ const LaboratoryInformation = ({ form }) => {
                 <Row>
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date specimen received"
@@ -287,6 +312,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenReceivedStool"
                       />
@@ -295,7 +321,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Specimen condition?"
@@ -310,6 +336,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="specimenConditionStool"
                         onChange={(e) =>
@@ -327,7 +354,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.specimenConditionStool === "notadequate" && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Please specify reason why specimen is not adequate"
@@ -336,6 +363,7 @@ const LaboratoryInformation = ({ form }) => {
                         wrapperCol={{ span: 24 }}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Reason"
                           id="stoolNotAdequateReason"
                           name="stoolNotAdequateReason"
@@ -347,7 +375,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Type of test done"
@@ -362,6 +390,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CheckboxGroup
+                        disabled={labComponentDisabled}
                         options={[
                           { label: "Microscopy", value: "microscopy" },
                           { label: "Culture", value: "culture" },
@@ -377,7 +406,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.typeOfTestDoneStool?.includes("microscopy") && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Microscopy test result"
@@ -391,7 +420,10 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          disabled={labComponentDisabled}
+                          buttonStyle="solid"
+                        >
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
@@ -403,7 +435,7 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.typeOfTestDoneStool?.includes("culture") && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Culture test result"
@@ -417,7 +449,10 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          disabled={labComponentDisabled}
+                          buttonStyle="solid"
+                        >
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
@@ -428,7 +463,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date of specimen tested"
@@ -443,6 +478,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenTestedStool"
                       />
@@ -451,7 +487,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Test result"
@@ -466,6 +502,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="testResultStool"
                         onChange={(e) =>
@@ -485,7 +522,7 @@ const LaboratoryInformation = ({ form }) => {
                     ) && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
-                         collectFormName={true}
+                          collectFormName={true}
                           form={form}
                           setFormValues={setFormValues}
                           label="Date result released"
@@ -500,6 +537,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <CustomDatePicker
+                            disabled={labComponentDisabled}
                             form={form}
                             name="dateResultReleasedStool"
                           />
@@ -511,10 +549,10 @@ const LaboratoryInformation = ({ form }) => {
                 </Row>
               )}
 
-              {formValues?.specimenType?.includes("rectal swab") && (
+              {formValues?.specimenType?.includes("rectalSwab") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
-                   collectFormName={true}
+                    collectFormName={true}
                     form={form}
                     setFormValues={setFormValues}
                     label="Rectal swab specimen received"
@@ -529,6 +567,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                   >
                     <DynamicRadio
+                      disabled={labComponentDisabled}
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -546,7 +585,7 @@ const LaboratoryInformation = ({ form }) => {
                 <Row>
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date specimen received"
@@ -561,6 +600,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenReceivedRectalSwab"
                       />
@@ -569,7 +609,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Specimen condition?"
@@ -584,6 +624,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="specimenConditionRectalSwab"
                         onChange={(e) =>
@@ -602,7 +643,7 @@ const LaboratoryInformation = ({ form }) => {
                     "notadequate" && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Please specify reason why specimen is not adequate"
@@ -611,6 +652,7 @@ const LaboratoryInformation = ({ form }) => {
                         wrapperCol={{ span: 24 }}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Other symptoms"
                           id="rectalSwabNotAdequateReason "
                           name="rectalSwabNotAdequateReason"
@@ -622,7 +664,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Type of test done"
@@ -637,6 +679,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CheckboxGroup
+                        disabled={labComponentDisabled}
                         options={[
                           { label: "Microscopy", value: "microscopy" },
                           { label: "Culture", value: "culture" },
@@ -657,7 +700,7 @@ const LaboratoryInformation = ({ form }) => {
                   ) && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Microscopy test result"
@@ -671,7 +714,10 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          disabled={labComponentDisabled}
+                          buttonStyle="solid"
+                        >
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
@@ -685,7 +731,7 @@ const LaboratoryInformation = ({ form }) => {
                   ) && (
                     <Col lg={12} md={24} sm={24}>
                       <ClearableFormItem
-                       collectFormName={true}
+                        collectFormName={true}
                         form={form}
                         setFormValues={setFormValues}
                         label="Culture test result"
@@ -699,7 +745,10 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          disabled={labComponentDisabled}
+                          buttonStyle="solid"
+                        >
                           <Radio.Button value="positive">Positive</Radio.Button>
                           <Radio.Button value="negative">Negative</Radio.Button>
                           <Radio.Button value="pending">Pending</Radio.Button>
@@ -710,7 +759,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Date of specimen tested"
@@ -725,6 +774,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenTestedRectalSwab"
                       />
@@ -733,7 +783,7 @@ const LaboratoryInformation = ({ form }) => {
 
                   <Col lg={12} md={24} sm={24}>
                     <ClearableFormItem
-                     collectFormName={true}
+                      collectFormName={true}
                       form={form}
                       setFormValues={setFormValues}
                       label="Test result"
@@ -748,6 +798,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="testResultRectalSwab"
                         onChange={(e) =>
@@ -764,10 +815,10 @@ const LaboratoryInformation = ({ form }) => {
                   {formValues?.testResultRectalSwab &&
                     !["pending", "not done"].includes(
                       formValues?.testResultRectalSwab
-                    )  && (
+                    ) && (
                       <Col lg={12} md={24} sm={24}>
                         <ClearableFormItem
-                         collectFormName={true}
+                          collectFormName={true}
                           form={form}
                           setFormValues={setFormValues}
                           label="Date result released"
@@ -782,6 +833,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <CustomDatePicker
+                            disabled={labComponentDisabled}
                             name="dateResultReleasedRectalSwab"
                             form={form}
                           />

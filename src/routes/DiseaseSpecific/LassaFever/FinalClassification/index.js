@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { Col, Collapse, Radio } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
 const FinalClassification = ({ form }) => {
   const [formValues, setFormValues] = useState({});

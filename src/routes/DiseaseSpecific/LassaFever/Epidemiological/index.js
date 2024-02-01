@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { Col, Input, Collapse, Row, Select, Radio } from "antd";
+import { Col, Collapse, Input, Radio, Row, Select } from "antd";
 import React, { useState } from "react";
 // import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import useFetchAllStates from "../../../../hooks/useFetchAllStates.hooks";
 import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 import DynamicSelect from "../../../../components/Custom/DynamicSelect";
+import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
+import useFetchAllStates from "../../../../hooks/useFetchAllStates.hooks";
 import useFetchAllLGA from "../../../../hooks/useFetchLga.hook";
 
 const { Option } = Select;
@@ -26,7 +26,7 @@ const Epidemiological = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const [selectedState, setSelectedState] = useState(null);
   const [selectedLga, setSelectedLga] = useState(null);
 

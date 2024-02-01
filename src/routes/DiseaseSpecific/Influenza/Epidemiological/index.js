@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Row, Radio } from "antd";
+import { Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;

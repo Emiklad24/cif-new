@@ -1,13 +1,12 @@
-import { Col, Input, Collapse, Row, Radio, Divider } from "antd";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -18,7 +17,7 @@ const LaboratoryInformation = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const allHealthFacilitiesQuery = useGetHealthFacilities();
 
@@ -110,14 +109,14 @@ const LaboratoryInformation = ({ form }) => {
                     options={[
                       { label: "Blood", value: "blood" },
                       { label: "Skin biopsy", value: "skinBiopsy" },
-                      { label: "Nasal swab", value: "nasal swab" },
+                      { label: "Nasal swab", value: "nasalSwab" },
                       {
                         label: "Nasopharyngeal swab",
-                        value: "nasopharyngeal swab",
+                        value: "nasopharyngealSswab",
                       },
                       {
                         label: "Oral pharyngeal swab",
-                        value: "oral pharyngeal swab",
+                        value: "oralPharyngealSwab",
                       },
                     ]}
                     name="specimenType"
@@ -432,7 +431,7 @@ const LaboratoryInformation = ({ form }) => {
                           form={form}
                           setFormValues={setFormValues}
                           label="Serology result"
-                          name="resultBloodSerology"
+                          name="serologyResultBlood"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
@@ -444,7 +443,7 @@ const LaboratoryInformation = ({ form }) => {
                         >
                           <Radio.Group
                             buttonStyle="solid"
-                            name="resultBloodSerology"
+                            name="serologyResultBlood"
                             onChange={(e) =>
                               handleUpdateInputValues(
                                 e.target.name,
@@ -469,9 +468,9 @@ const LaboratoryInformation = ({ form }) => {
                         </ClearableFormItem>
                       </Col>
 
-                      {formValues?.resultBloodSerology &&
+                      {formValues?.serologyResultBlood &&
                         !["not done", "pending"].includes(
-                          formValues?.resultBloodSerology
+                          formValues?.serologyResultBlood
                         ) && (
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
@@ -824,7 +823,7 @@ const LaboratoryInformation = ({ form }) => {
               )}
               <Divider plain></Divider>
 
-              {formValues?.specimenType?.includes("nasal swab") && (
+              {formValues?.specimenType?.includes("nasalSwab") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
                     collectFormName={true}
