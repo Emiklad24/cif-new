@@ -1,16 +1,71 @@
 iframe:not(#root *) {
-    z-index: -1 !important;
+  z-index: -1 !important;
 }
 
 .hide_content {
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    text-align: left;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  text-align: left;
 }
 
-.label_center{
-margin-left: 1rem;
-margin-bottom: 1rem;
-text-align: center;
+.label_center {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+div.card_loading_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50dvh;
+
+  .card_loading {
+    height: 15rem;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 8px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    div.spinner {
+      border: 0.35rem solid rgba(0, 0, 0, 0.1);
+      border-left-color: #7983ff;
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      animation: spinner 1s linear infinite;
+    }
+
+    // add spinner animation
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+// increase the text color of the disabled form elements
+
+.ant-input[disabled],
+.ant-select-disabled.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector,
+.ant-picker-input > input[disabled],
+.ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked,
+.ant-checkbox-disabled + span {
+  color: rgba(0, 0, 0, 0.7);
+  // color: blue !important;
+  cursor: auto;
+}
+
+.ant-radio-button-wrapper.ant-radio-button-wrapper-disabled {
+  color: rgba(0, 0, 0, 0.2) !important;
+  cursor: auto;
 }

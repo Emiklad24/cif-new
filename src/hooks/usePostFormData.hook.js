@@ -1,8 +1,8 @@
-import { useMutation } from "react-query";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 import { POST_FORM_DATA } from "../constants/queryKeys";
 import postData from "../services/PostForm";
-import { toast } from "react-toastify";
 
 export const usePostFormData = () => {
   const [message, setMessage] = useState("");

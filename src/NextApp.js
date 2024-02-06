@@ -1,17 +1,17 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
-import { Route, Switch } from "react-router-dom";
 import "assets/vendors/style";
-import "styles/wieldy.less";
-import configureStore, { history } from "./appRedux/store";
-import "./firebase/firebase";
-import App from "./containers/App/index";
+import { ConnectedRouter } from "connected-react-router";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import queryClientSettings from "./constants/queryClientSettings";
+import { Provider } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "styles/wieldy.less";
+import configureStore, { history } from "./appRedux/store";
+import queryClientSettings from "./constants/queryClientSettings";
+import App from "./containers/App/index";
+import "./firebase/firebase";
 
 const store = configureStore();
 const queryClient = new QueryClient(queryClientSettings);

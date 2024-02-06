@@ -1,12 +1,13 @@
-import {SWITCH_LANGUAGE} from "../../constants/ActionTypes";
+import { SWITCH_LANGUAGE } from "../../constants/ActionTypes";
 import {
   LAYOUT_TYPE,
   LAYOUT_TYPE_FULL,
   NAV_STYLE,
-  NAV_STYLE_FIXED,
+  NAV_STYLE_ABOVE_HEADER,
   THEME_COLOR,
   THEME_TYPE,
-  THEME_TYPE_SEMI_DARK, UPDATE_RTL_STATUS, THEME_TYPE_LITE, NAV_STYLE_ABOVE_HEADER
+  THEME_TYPE_LITE,
+  UPDATE_RTL_STATUS
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {

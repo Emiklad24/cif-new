@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Col, Form, Collapse, DatePicker, Row, Radio } from "antd";
+import { Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
@@ -43,7 +43,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          
+
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               form={form}

@@ -1,34 +1,41 @@
 /* eslint-disable no-unused-vars */
-import { Col, Input, Collapse, Row, Radio } from "antd";
-import React, { useState } from "react";
+import { Checkbox, Col, Collapse, Input, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import { USER_ROLE } from "constants/ActionTypes";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
+  const { userRole } = useSelector(({ common }) => common);
+
+  const [labComponentDisabled, setLabComponentDisabled] = useState(true);
+
+  useEffect(() => {
+    if (!userRole) return;
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
+      setLabComponentDisabled(false);
+    } else {
+      setLabComponentDisabled(true);
+    }
+  }, [userRole]);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
 
   const [formValues, setFormValues] = useState({});
+  console.log("formValues", formValues)
 
   const { data: allLookup } = useFetchAllLookup();
-
-  const handleUpdateInputValues = (inputName, value) => {
-    setFormValues((previousState) => ({
-      ...previousState,
-      [inputName]: value,
-    }));
-  };
 
   const allHealthFacilitiesQuery = useGetHealthFacilities();
 
@@ -57,6 +64,7 @@ const LaboratoryInformation = ({ form }) => {
               ]}
             >
               <DynamicRadio
+                disabled={labComponentDisabled}
                 buttonStyle="solid"
                 options={allLookup?.yes_no_type || []}
                 valueProperty="id"
@@ -82,7 +90,11 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <CustomDatePicker form={form} name="dateSpecimenCollected" />
+              <CustomDatePicker
+                disabled={labComponentDisabled}
+                form={form}
+                name="dateSpecimenCollected"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -103,6 +115,7 @@ const LaboratoryInformation = ({ form }) => {
               ]}
             >
               <CheckboxGroup
+                disabled={labComponentDisabled}
                 options={[
                   {
                     label: "Throat/Oropharyngeal",
@@ -135,6 +148,7 @@ const LaboratoryInformation = ({ form }) => {
               ]}
             >
               <DynamicSelect
+                disabled={labComponentDisabled}
                 showSearch
                 allowClear
                 optionLabelProp="label"
@@ -171,7 +185,11 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <CustomDatePicker form={form} name="dateSampleSent" />
+              <CustomDatePicker
+                disabled={labComponentDisabled}
+                form={form}
+                name="dateSampleSent"
+              />
             </ClearableFormItem>
           </Col>
           <Row>
@@ -192,6 +210,7 @@ const LaboratoryInformation = ({ form }) => {
                 ]}
               >
                 <CheckboxGroup
+                  disabled={labComponentDisabled}
                   options={[
                     {
                       label: "Throat/Oropharyngeal",
@@ -224,7 +243,11 @@ const LaboratoryInformation = ({ form }) => {
                   },
                 ]}
               >
-                <CustomDatePicker form={form} name="dateSpecimenReceived" />
+                <CustomDatePicker
+                  disabled={labComponentDisabled}
+                  form={form}
+                  name="dateSpecimenReceived"
+                />
               </ClearableFormItem>
             </Col>
 
@@ -238,7 +261,7 @@ const LaboratoryInformation = ({ form }) => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
               >
-                <Input placeholder="Enter specimen Id" onChange={(e) => {}} />
+                <Input disabled={labComponentDisabled} placeholder="Enter specimen Id" onChange={(e) => {}} />
               </ClearableFormItem>
             </Col>
           </Row>
@@ -259,7 +282,7 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
+              <Radio.Group buttonStyle="solid" disabled={labComponentDisabled}>
                 <Radio.Button value="adequate">Adequate</Radio.Button>
                 <Radio.Button value="not adequate">Not adequate</Radio.Button>
               </Radio.Group>
@@ -283,6 +306,7 @@ const LaboratoryInformation = ({ form }) => {
               ]}
             >
               <CheckboxGroup
+                disabled={labComponentDisabled}
                 options={[{ label: "PCR", value: "PCR" }]}
                 name="typeOfTestConducted"
               />
@@ -305,7 +329,7 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid">
+              <Radio.Group buttonStyle="solid" disabled={labComponentDisabled}>
                 <Radio.Button value="positive">Positive</Radio.Button>
                 <Radio.Button value="negative">Negative</Radio.Button>
                 <Radio.Button value="indeterminate">Indeterminate</Radio.Button>
@@ -331,7 +355,11 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <CustomDatePicker form={form} name="dateResultAvailable" />
+              <CustomDatePicker
+                disabled={labComponentDisabled}
+                form={form}
+                name="dateResultAvailable"
+              />
             </ClearableFormItem>
           </Col>
 
@@ -352,7 +380,11 @@ const LaboratoryInformation = ({ form }) => {
                 },
               ]}
             >
-              <CustomDatePicker form={form} name="dateResultSent" />
+              <CustomDatePicker
+                disabled={labComponentDisabled}
+                form={form}
+                name="dateResultSent"
+              />
             </ClearableFormItem>
           </Col>
         </Row>

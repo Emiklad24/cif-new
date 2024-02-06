@@ -1,6 +1,5 @@
-import React from "react";
 import { Select } from "antd";
-import { isArray } from "lodash";
+import React from "react";
 
 const { Option } = Select;
 
@@ -10,9 +9,10 @@ const DynamicSelect = ({
   valueProperty,
   ...otherProps
 }) => {
+
   return (
     <Select
-      disabled={!options || !isArray(options) || options?.length === 0}
+      // disabled={!options || !isArray(options) || options?.length === 0}
       {...otherProps}
     >
       {options?.map?.((option, index) => (

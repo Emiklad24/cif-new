@@ -1,43 +1,54 @@
-import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE, UPDATE_CASE,
+import {
   CREATE_CASE,
-  FETCH_CASE,FETCH_LOCAL_GOVERNMENT_AREA_LIST,
-  FETCH_CASE_LIST,FETCH_STATE_LIST } from "../../constants/ActionTypes";
+  FETCH_CASE,
+  FETCH_ERROR,
+  FETCH_LOCAL_GOVERNMENT_AREA_LIST,
+  FETCH_SORMAS_DATA,
+  FETCH_START,
+  FETCH_STATE_LIST,
+  FETCH_SUCCESS,
+  HIDE_MESSAGE,
+  SHOW_MESSAGE,
+  UPDATE_CASE,
+  USER_ROLE,
+} from "constants/ActionTypes";
 import { httpClient } from "util/Api";
-
+import {
+  flattenNestedObjectAndRemoveEmpty,
+  parseNestedDates,
+} from "util/Helpers";
 
 export const fetchStart = () => {
   return {
-    type: FETCH_START
-  }
+    type: FETCH_START,
+  };
 };
 
 export const fetchSuccess = () => {
   return {
-    type: FETCH_SUCCESS
-  }
+    type: FETCH_SUCCESS,
+  };
 };
 
 export const fetchError = (error) => {
   return {
     type: FETCH_ERROR,
-    payload: error
-  }
+    payload: error,
+  };
 };
 
 export const showMessage = (message) => {
   return {
     type: SHOW_MESSAGE,
-    payload: message
-  }
+    payload: message,
+  };
 };
 
 export const hideMessage = () => {
   return {
-    type: HIDE_MESSAGE
-  }
+    type: HIDE_MESSAGE,
+  };
 };
-
-
 
 export const createCase = (formData) => {
   return async (dispatch) => {
@@ -113,7 +124,7 @@ export const fetchStateList = (params) => {
 };
 
 export const fetchLocalGovernmentAreaList = (params) => {
-  let _params = params
+  const _params = params
     ? `/local_government_area/?state=${params}`
     : "/local_government_area/";
 
@@ -129,5 +140,87 @@ export const fetchLocalGovernmentAreaList = (params) => {
     } catch (error) {
       dispatch(fetchError(error.message));
     }
+  };
+};
+
+/**
+ * @function getSormasCaseAction
+ * @description This function is used to get the form data from the api
+ */
+export const getSormasCaseAction = (params) => {
+  const url = `cases-integration/${params}`;
+  return async (dispatch) => {
+    try {
+      dispatch(fetchStart());
+      const { data } = await httpClient.get(url);
+      const parsedData = await flattenNestedObjectAndRemoveEmpty(data);
+      await parseNestedDates(parsedData);
+      dispatch({
+        type: FETCH_SORMAS_DATA,
+        payload: parsedData,
+      });
+      dispatch(fetchSuccess());
+    } catch (error) {
+      const errorMessage = error.response.data ?? error.message;
+      dispatch(fetchError(errorMessage));
+      throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
+    }
+  };
+};
+
+/**
+ * @function updateSormasCaseAction
+ * @description This function is used to update the form data from the api
+ */
+export const updateSormasCaseAction = (params, _data) => {
+  const url = `cases-integration/${params}`;
+
+  return async (dispatch) => {
+    try {
+      dispatch(fetchStart());
+      const { data } = await httpClient.put(url, _data);
+      dispatch(fetchSuccess());
+      return data;
+    } catch (error) {
+      const errorMessage = error.response.data ?? error.message;
+      dispatch(fetchError(error.message));
+      throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
+    }
+  };
+};
+
+/**
+ * @function createSormasCaseAction
+ * @description This function is used to create the sorams form data
+ */
+export const createSormasCaseAction = (_data) => {
+  const url = `cases-integration`;
+
+  return async (dispatch) => {
+    try {
+      dispatch(fetchStart());
+      const { data } = await httpClient.post(url, _data);
+      dispatch(fetchSuccess());
+      return data;
+    } catch (error) {
+      const errorMessage = error.response.data ?? error.message;
+      dispatch(fetchError(error.message));
+      throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
+    }
+  };
+};
+
+export const setUserRole = (params) => {
+  return (dispatch) => {
+    dispatch({
+      type: USER_ROLE,
+      payload: params,
+    });
   };
 };

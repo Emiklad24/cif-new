@@ -11,7 +11,6 @@ import {
 } from "../../constants/ThemeSetting";
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 const HorizontalNav = () => {
   const navStyle = useSelector(({settings}) => settings.navStyle);

@@ -1,6 +1,5 @@
-import React from "react";
 import { Radio } from "antd";
-import { isArray } from "lodash";
+import React from "react";
 
 const DynamicRadio = ({
   options,
@@ -11,7 +10,7 @@ const DynamicRadio = ({
   return (
     <Radio.Group
       buttonStyle="solid"
-      disabled={!options || !isArray(options) || options?.length === 0}
+      // disabled={!options || !isArray(options) || options?.length === 0}
       {...otherProps}
     >
       {options?.map?.((option, index) => (

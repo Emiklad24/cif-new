@@ -10,7 +10,7 @@ const localTravel = [
 ];
 
 const internationalTravel = [
-  "returnedFromnInternationalTravel14Days",
+  "returnedFromInternationalTravel14Days",
   "dateOfInternationalTravelStart",
   "dateOfInternationalTravelEnd",
   "countryOfTravel",
@@ -110,7 +110,7 @@ const mutateCovidPayloadForSpecimen = (fieldsValue, labFormName, programId) => {
     dateSpecimenCollected: specimenData?.dateSpecimenCollected,
     specimenCollected: specimenData?.specimenCollected,
 
-    nasalSwab: specimenData?.specimenType.includes("nasalSwab") && {
+    nasalSwab: specimenData?.specimenType?.includes("nasalSwab") && {
       nSwabSpecimenReceived: specimenData?.nSwabSpecimenReceived,
       testConductedNasal: specimenData?.testConductedNasal,
       dateSecimenReceivedNasalThroatNp:
@@ -129,7 +129,7 @@ const mutateCovidPayloadForSpecimen = (fieldsValue, labFormName, programId) => {
       },
     },
 
-    throatSwab: specimenData?.specimenType.includes("throatSwab") && {
+    throatSwab: specimenData?.specimenType?.includes("throatSwab") && {
       dateSecimenReceivedNasalThroatNp:
         specimenData?.dateSecimenReceivedNasalThroatNp,
       laboratoryIdNasalThroatNp: specimenData?.laboratoryIdNasalThroatNp,
@@ -145,7 +145,7 @@ const mutateCovidPayloadForSpecimen = (fieldsValue, labFormName, programId) => {
       },
     },
 
-    nasopharyngeal: specimenData?.specimenType.includes("nasopharyngeal") && {
+    nasopharyngeal: specimenData?.specimenType?.includes("nasopharyngeal") && {
       dateSecimenReceivedNasalThroatNp:
         specimenData?.dateSecimenReceivedNasalThroatNp,
       laboratoryIdNasalThroatNp: specimenData?.laboratoryIdNasalThroatNp,
@@ -168,6 +168,7 @@ const mutateCovidPayloadForSpecimen = (fieldsValue, labFormName, programId) => {
       },
     },
   };
+
   return {
     applicationUuid: uuidv4(),
     diseaseName: programId,

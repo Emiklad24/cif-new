@@ -1,16 +1,29 @@
-import { Col, Collapse, Row, Radio } from "antd";
-import React, { useState } from "react";
+import { Checkbox, Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import { USER_ROLE } from "constants/ActionTypes";
+import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import useGetHealthFacilities from "../../../../hooks/useGetHealthFacilities.hook";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
+
+  const [labComponentDisabled, setLabComponentDisabled] = useState(false);
+  const { userRole } = useSelector(({ common }) => common);
+
+  useEffect(() => {
+    if (!userRole) return;
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
+      setLabComponentDisabled(false);
+    } else {
+      setLabComponentDisabled(true);
+    }
+  }, [userRole]);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -23,7 +36,7 @@ const LaboratoryInformation = ({ form }) => {
 
   const conditionOfSampleOptions = ["Adequate", "Not adequate"];
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -86,6 +99,7 @@ const LaboratoryInformation = ({ form }) => {
                 ]}
               >
                 <CheckboxGroup
+                  disabled={labComponentDisabled}
                   options={[
                     { label: "Oral Swab", value: "face" },
                     { label: "Nasal Swab", value: "leg" },
@@ -112,7 +126,11 @@ const LaboratoryInformation = ({ form }) => {
                   },
                 ]}
               >
-                <CustomDatePicker form={form} name="dateSpecimenCollected" />
+                <CustomDatePicker
+                  disabled={labComponentDisabled}
+                  form={form}
+                  name="dateSpecimenCollected"
+                />
               </ClearableFormItem>
             </Col>
 
@@ -132,7 +150,11 @@ const LaboratoryInformation = ({ form }) => {
                   },
                 ]}
               >
-                <CustomDatePicker form={form} name="dateSpecimenSent" />
+                <CustomDatePicker
+                  disabled={labComponentDisabled}
+                  form={form}
+                  name="dateSpecimenSent"
+                />
               </ClearableFormItem>
             </Col>
 
@@ -147,6 +169,7 @@ const LaboratoryInformation = ({ form }) => {
                 wrapperCol={{ span: 24 }}
               >
                 <DynamicSelect
+                  disabled={labComponentDisabled}
                   showSearch
                   allowClear
                   optionLabelProp="label"
@@ -185,6 +208,7 @@ const LaboratoryInformation = ({ form }) => {
                 ]}
               >
                 <Radio.Group
+                  disabled={labComponentDisabled}
                   buttonStyle="solid"
                   name="specimenReceived"
                   onChange={(e) =>
@@ -218,6 +242,7 @@ const LaboratoryInformation = ({ form }) => {
                 ]}
               >
                 <CheckboxGroup
+                  disabled={labComponentDisabled}
                   options={[
                     { label: "Oral Swab", value: "face" },
                     { label: "Nasal Swab", value: "leg" },
@@ -244,7 +269,11 @@ const LaboratoryInformation = ({ form }) => {
                   },
                 ]}
               >
-                <CustomDatePicker form={form} name="dateSpecimenRecieved" />
+                <CustomDatePicker
+                  disabled={labComponentDisabled}
+                  form={form}
+                  name="dateSpecimenRecieved"
+                />
               </ClearableFormItem>
             </Col>
 
@@ -265,6 +294,7 @@ const LaboratoryInformation = ({ form }) => {
                 ]}
               >
                 <Radio.Group
+                  disabled={labComponentDisabled}
                   buttonStyle="solid"
                   name="specimenCondition"
                   onChange={(e) =>

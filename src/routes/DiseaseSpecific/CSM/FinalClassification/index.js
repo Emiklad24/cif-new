@@ -2,7 +2,7 @@
 import { Col, Collapse, Radio } from "antd";
 import "styles/pages/form.less";
 
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 import { useState } from "react";
 
 const FinalClassification = ({ form }) => {

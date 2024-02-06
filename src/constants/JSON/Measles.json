@@ -41,7 +41,7 @@
     "finalClassification": "laboratoryConfirmed",
     "pregnancyStatus": "pregnant",
     "numberVaccineDose": "3+",
-    "dateLastVaccination": "30-10-2023",
+    "dateOfLastVaccination": "30-10-2023",
     "sourceVaccinationInformation": "card",
     "inpatientNameOfHospital": "That hospoital",
     "dateOfHospitalization": "30-10-2023",
