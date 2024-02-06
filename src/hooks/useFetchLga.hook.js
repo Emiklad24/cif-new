@@ -9,6 +9,7 @@ const useFetchAllLGA = (selectedState) => {
     queryKey: [GET_ALL_LGA, selectedState],
     initialData: AllLgas[selectedState],
     enabled: selectedState ? true : false,
+    refetchOnWindowFocus: false,
   });
 
   return getAllStateQueries;
