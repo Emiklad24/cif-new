@@ -376,6 +376,29 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
           },
         }
       : null,
+
+    skinBiopsy: newFieldsValue?.specimenType?.includes("skinBiopsy")
+      ? {
+          skinBiopsySampleReceived: newFieldsValue?.skinBiopsySampleReceived,
+          dateSpecimenReceivedSkinBiopsy:
+            newFieldsValue?.dateSpecimenReceivedSkinBiopsy,
+          laboratoryIdSkinBiopsy: newFieldsValue?.laboratoryIdSkinBiopsy,
+          specimenConditionSkinBiopsy:
+            newFieldsValue?.specimenConditionSkinBiopsy,
+          reasonSampleConditionSkinBiopsy:
+            newFieldsValue?.reasonSampleConditionSkinBiopsy,
+          testConductedSkinBiopsy: newFieldsValue?.testConductedSkinBiopsy,
+
+          skinBiopsyPCRResult: {
+            resultSkinBiopsyPcr: newFieldsValue?.resultSkinBiopsyPcr,
+            dateResultReleasedSkinBiopsyPcr:
+              newFieldsValue?.dateResultReleasedSkinBiopsyPcr,
+            resultSkinBiopsySerology: newFieldsValue?.resultSkinBiopsySerology,
+            dateResultReleasedSkinBiopsySerology:
+              newFieldsValue?.dateResultReleasedSkinBiopsySerology,
+          },
+        }
+      : null,
   };
 
   // remove null or undefined values from the object newSpecimenData

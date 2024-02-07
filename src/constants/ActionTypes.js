@@ -59,4 +59,5 @@ export const USER_ROLE = {
   EDIT: "edit",
   LAB: "lab",
   VIEW: "view",
+  SUPER: "super",
 };

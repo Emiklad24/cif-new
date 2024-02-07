@@ -19,7 +19,6 @@ import {
   setUserRole,
   updateSormasCaseAction,
 } from "appRedux/actions";
-import { fetchStateList } from "appRedux/actions/Common";
 import ContactTracing from "components/ContactTracing/ContactTracing";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
@@ -31,7 +30,6 @@ import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useFetchAllStates from "hooks/useFetchAllStates.hooks";
 import useFetchAllLGA from "hooks/useFetchLga.hook";
 import useFetchWard from "hooks/useFetchWard.hook";
-import useGetAllSettlementType from "hooks/useGetAllSettlementType.hook";
 import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import { usePostFormData } from "hooks/usePostFormData.hook";
 import moment from "moment";
@@ -80,7 +78,7 @@ const App = () => {
   );
   const [form] = Form.useForm();
   const { loading, sormasCase } = useSelector(({ common }) => common);
-  const { error, isSuccess, isLoading, mutate } = usePostFormData();
+  const { isLoading } = usePostFormData();
 
   const [componentDisabled, setComponentDisabled] = useState(false);
   const [selectedState, setSelectedState] = useState(null);
@@ -92,7 +90,6 @@ const App = () => {
   const [epidNumberIsDisabled, setEpidNumberIsDisabled] = useState(false);
   const [residenceLga, setResidenceLga] = useState("");
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
-  // const [formValues, setFormValues] = useState({});
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
@@ -106,10 +103,9 @@ const App = () => {
   const lgaOfResidenceQuery = useFetchAllLGA(selectedState?.stateOfResidence);
   const wardQuery = useFetchWard(selectedLga?.lgaOfReporting);
   const wardOfResidenceQuery = useFetchWard(selectedLga?.lgaOfResidence);
+
   const AllHealthFacilitiesQuery = useGetHealthFacilities();
-  const AllSettlementTypeQuery = useGetAllSettlementType(
-    allLookup?.settlement_type
-  );
+  const AllSettlementTypeQuery = allLookup?.settlement_type ?? [];
 
   /**
    * -----------------------------------------
@@ -174,10 +170,6 @@ const App = () => {
           : moment(dateString).format("DD-MM-YYYY");
       // Assuming arg is in the format DD-MM-YYYY
       const parts = formattedDate.split("-");
-      // if (parts.length !== 3) {
-      //   throw new Error("Invalid date format. Please use DD-MM-YYYY.");
-      // }
-
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
       const year = parseInt(parts[2], 10);
@@ -245,6 +237,11 @@ const App = () => {
     );
 
     try {
+      console.log(
+        fieldsValue,
+        "🚀 ~ file: index.js ~ line 268 ~ onFinish ~ reconstructedPayload",
+        reconstructedPayload
+      );
       // Update or create sormas case
       const updateAction = isUpdate
         ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
@@ -336,7 +333,7 @@ const App = () => {
     "Dengue Fever": <Dengue form={form} />,
     CSM: <CSM form={form} />,
     "Buruli Ulcer": <BuruliUlcer form={form} />,
-    PRDS: <PRDS form={form} />,
+    "Pan Respiratory Disease Surveillance (PRDS)": <PRDS form={form} />,
     "Perinatal Death": <PerinatalDeath form={form} />,
     "Maternal Death": <MaternalDeath form={form} />,
     "COVID-19": <Covid19 form={form} />,
@@ -412,15 +409,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchStateList());
     getDoBFromAge(formValues?.dateOfBirthPersonalInformation);
   }, [dispatch, formValues]);
 
   useEffect(() => {
+    if (allLookupLoading) return;
     populateForm();
-  }, [sormasCase]);
+  }, [sormasCase, allLookupLoading]);
 
-  useEffect(() => {
+  const getCaseByUuid = async () => {
     if (!sormasCaseUuid) {
       window.history.replaceState(
         {},
@@ -429,13 +426,27 @@ const App = () => {
       );
       return;
     }
-    dispatch(getSormasCaseAction(sormasCaseUuid));
+    try {
+      await dispatch(getSormasCaseAction(sormasCaseUuid));
+    } catch (error) {
+      notification.error({
+        message: "Error",
+        description: error ?? "Error fetching case",
+      });
+    }
+  };
+
+  useEffect(() => {
+    getCaseByUuid();
   }, [sormasCaseUuid]);
 
   useEffect(() => {
     if (!userRoleFromUrl) return;
     dispatch(setUserRole(userRoleFromUrl));
-    if (userRoleFromUrl === USER_ROLE.EDIT) {
+    if (
+      userRoleFromUrl === USER_ROLE.EDIT ||
+      userRoleFromUrl === USER_ROLE.SUPER
+    ) {
       setComponentDisabled(false);
     } else {
       setComponentDisabled(true);
@@ -450,6 +461,8 @@ const App = () => {
   const onChange = () => {};
   const onSearch = () => {};
 
+
+
   return (
     <>
       <Row>
@@ -457,7 +470,7 @@ const App = () => {
           <DynamicSelect
             showSearch
             value={program?.value}
-            placeholder="Select a disease"
+            placeholder={allLookupLoading ? "Loading..." : "Select Disease"}
             optionFilterProp="children"
             onChange={(e) => onChangeDisease(e, true)}
             onSearch={onSearch}
@@ -476,11 +489,12 @@ const App = () => {
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
             className="gx-w-100 gx-mb-3"
+            loading={allLookupLoading}
           />
         </Col>
       </Row>
 
-      {sormasCaseUuid && !sormasCase?.applicationUuid ? (
+      {loading && sormasCaseUuid && !sormasCase?.applicationUuid ? (
         <div className="card_loading_container">
           <div className="card_loading gx-shadow">
             <div className="spinner" /> Populating Form ....
@@ -709,9 +723,9 @@ const App = () => {
                     </ClearableFormItem>
                   </Col>
                 )}
-                {(place_of_detection === "Home" ||
-                  place_of_detection === "IDP Camp" ||
-                  place_of_detection === "NYSC Camp") && (
+                {["Home", "IDP Camp", "NYSC Camp"].includes(
+                  place_of_detection
+                ) && (
                   <Col lg={8} md={12} sm={24} xs={24}>
                     <ClearableFormItem
                       form={form}
@@ -1188,7 +1202,7 @@ const App = () => {
                   >
                     <DynamicRadio
                       buttonStyle="solid"
-                      options={AllSettlementTypeQuery?.data || []}
+                      options={AllSettlementTypeQuery}
                       valueProperty="id"
                       labelProperty="value"
                     />

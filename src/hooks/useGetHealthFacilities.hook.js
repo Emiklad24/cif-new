@@ -8,8 +8,6 @@ const useGetHealthFacilities = () => {
     queryFn: getHealthFacilities,
     queryKey: [GET_HEALTH_FACILITIES],
     initialData: AllHealthFacilities,
-    // ?? additional options
-    refetchOnWindowFocus: false,
     staleTime: Infinity, // Cache data indefinitely
   });
 

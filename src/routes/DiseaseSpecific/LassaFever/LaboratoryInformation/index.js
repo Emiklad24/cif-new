@@ -3,11 +3,11 @@ import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
+import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { USER_ROLE } from "constants/ActionTypes";
 import "styles/pages/form.less";
 
 const CheckboxGroup = Checkbox.Group;
@@ -19,7 +19,7 @@ const LaboratoryInformation = ({ form }) => {
 
   useEffect(() => {
     if (!userRole) return;
-    if (userRole === USER_ROLE.LAB) {
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
       setLabComponentDisabled(false);
     } else {
       setLabComponentDisabled(true);

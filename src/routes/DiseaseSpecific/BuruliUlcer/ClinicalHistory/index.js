@@ -18,6 +18,7 @@ const ClinicalHistory = () => {;
   };
 
   const [formValues, setFormValues] = useState({});
+  console.log(formValues)
 
   const handleUpdateInputValues = (inputName, value) => {
 

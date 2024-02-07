@@ -6,8 +6,7 @@ const useGetAllSettlementType = (initialData) => {
   const { data, isLoading, isError } = useQuery({
     queryFn: getSettlementType,
     queryKey: [GET_SETTLEMENT_TYPE],
-    initialData: initialData,
-    refetchOnWindowFocus: false,
+    initialData,
   });
 
   return {

@@ -18,8 +18,6 @@ import {
   parseNestedDates,
 } from "util/Helpers";
 
-// import Initial from "../../routes/DiseaseSpecific/testing.json";
-
 export const fetchStart = () => {
   return {
     type: FETCH_START,
@@ -126,7 +124,7 @@ export const fetchStateList = (params) => {
 };
 
 export const fetchLocalGovernmentAreaList = (params) => {
-  let _params = params
+  const _params = params
     ? `/local_government_area/?state=${params}`
     : "/local_government_area/";
 
@@ -163,8 +161,11 @@ export const getSormasCaseAction = (params) => {
       });
       dispatch(fetchSuccess());
     } catch (error) {
-      dispatch(fetchError(error.message));
-      throw error;
+      const errorMessage = error.response.data ?? error.message;
+      dispatch(fetchError(errorMessage));
+      throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
     }
   };
 };
@@ -186,6 +187,8 @@ export const updateSormasCaseAction = (params, _data) => {
       const errorMessage = error.response.data ?? error.message;
       dispatch(fetchError(error.message));
       throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
     }
   };
 };
@@ -207,6 +210,8 @@ export const createSormasCaseAction = (_data) => {
       const errorMessage = error.response.data ?? error.message;
       dispatch(fetchError(error.message));
       throw errorMessage;
+    } finally {
+      dispatch(fetchSuccess());
     }
   };
 };

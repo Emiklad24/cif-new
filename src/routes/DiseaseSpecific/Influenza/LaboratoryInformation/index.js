@@ -21,27 +21,21 @@ const LaboratoryInformation = ({ form }) => {
 
   useEffect(() => {
     if (!userRole) return;
-    if (userRole === USER_ROLE.LAB) {
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
       setLabComponentDisabled(false);
     } else {
       setLabComponentDisabled(true);
     }
   }, [userRole]);
-  console.log("dddddd",userRole)
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
 
   const [formValues, setFormValues] = useState({});
+  console.log("formValues", formValues)
 
   const { data: allLookup } = useFetchAllLookup();
-
-  const handleUpdateInputValues = (inputName, value) => {
-    setFormValues((previousState) => ({
-      ...previousState,
-      [inputName]: value,
-    }));
-  };
 
   const allHealthFacilitiesQuery = useGetHealthFacilities();
 

@@ -1,6 +1,5 @@
-import React from "react";
 import { Radio } from "antd";
-import { isArray } from "lodash";
+import React from "react";
 
 const DynamicRadio = ({
   options,

@@ -1,29 +1,27 @@
+import { Menu } from "antd";
 import React from "react";
-import {Menu} from "antd";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
-import SidebarLogo from "./SidebarLogo";
-import UserProfile from "./UserProfile";
-import AppsNavigation from "./AppsNavigation";
 import {
-  NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
-  NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
+  // NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
+  // NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
   THEME_TYPE_LITE
 } from "../../constants/ThemeSetting";
 import IntlMessages from "../../util/IntlMessages";
-import {useSelector} from "react-redux";
+import SidebarLogo from "./SidebarLogo";
 
 const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
-  const {navStyle, themeType} = useSelector(({settings}) => settings);
+  const {themeType} = useSelector(({settings}) => settings);
   const pathname = useSelector(({common}) => common.pathname);
 
-  const getNoHeaderClass = (navStyle) => {
-    if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) {
-      return "gx-no-header-notifications";
-    }
-    return "";
-  };
+  // const getNoHeaderClass = (navStyle) => {
+  //   if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) {
+  //     return "gx-no-header-notifications";
+  //   }
+  //   return "";
+  // };
 
   const selectedKeys = pathname.substr(1);
   const defaultOpenKeys = selectedKeys.split('/')[1];

@@ -18,7 +18,6 @@ const CheckboxGroup = Checkbox.Group;
 
 const { Option } = Select;
 
-const cultureresultData = ["Positive", "Negative", "Pending", "indeterminate"];
 const testingLaboratoryData = [
   "National Reference Laboratory",
   "Central Public health laboratory ",
@@ -28,10 +27,10 @@ const testingLaboratoryData = [
 const LaboratoryInformation = ({ form }) => {
   const [testinglaboratory_type, settestingLaboratory] = useState("");
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    console.log(`selected ${value}`, testinglaboratory_type);
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));

@@ -24,15 +24,7 @@ const relationshipWithCase = [
   "Others",
 ];
 
-const stateData = ["FCT", "Enugu"];
-
-const lgaData = {
-  FCT: ["AMAC", "Bwari", "Kwali"],
-  Enugu: ["Nsukka", "Enugu south", "Udi"],
-};
-
 const ContactTracing = ({ form }) => {
-  const [lga, setLga] = useState([]);
   const { Panel } = Collapse;
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);

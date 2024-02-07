@@ -1,17 +1,31 @@
 import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
-import React, { useState } from "react";
-import "styles/pages/form.less";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
+import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import "styles/pages/form.less";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
+
+  const [labComponentDisabled, setLabComponentDisabled] = useState(false);
+  const { userRole } = useSelector(({ common }) => common);
+
+  useEffect(() => {
+    if (!userRole) return;
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
+      setLabComponentDisabled(false);
+    } else {
+      setLabComponentDisabled(true);
+    }
+  }, [userRole]);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -55,6 +69,7 @@ const LaboratoryInformation = ({ form }) => {
               ]}
             >
               <DynamicRadio
+                disabled={labComponentDisabled}
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
@@ -85,7 +100,11 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
+                  <CustomDatePicker
+                    disabled={labComponentDisabled}
+                    form={form}
+                    name="dateSpecimenCollected"
+                  />
                 </ClearableFormItem>
               </Col>
 
@@ -106,6 +125,7 @@ const LaboratoryInformation = ({ form }) => {
                   ]}
                 >
                   <CheckboxGroup
+                    disabled={labComponentDisabled}
                     options={[
                       { label: "Blood", value: "blood" },
                       { label: "Skin biopsy", value: "skinBiopsy" },
@@ -144,7 +164,11 @@ const LaboratoryInformation = ({ form }) => {
                       },
                     ]}
                   >
-                    <CustomDatePicker form={form} name="dateSpecimenSent" />
+                    <CustomDatePicker
+                      disabled={labComponentDisabled}
+                      form={form}
+                      name="dateSpecimenSent"
+                    />
                   </ClearableFormItem>
                 </Col>
               )}
@@ -166,6 +190,7 @@ const LaboratoryInformation = ({ form }) => {
                   ]}
                 >
                   <DynamicSelect
+                    disabled={labComponentDisabled}
                     showSearch
                     allowClear
                     optionLabelProp="label"
@@ -204,6 +229,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                   >
                     <DynamicRadio
+                      disabled={labComponentDisabled}
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -235,6 +261,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenReceivedBlood"
                       />
@@ -252,6 +279,7 @@ const LaboratoryInformation = ({ form }) => {
                       wrapperCol={{ span: 24 }}
                     >
                       <Input
+                        disabled={labComponentDisabled}
                         placeholder="Enter Lab ID"
                         id="labid"
                         name="labid"
@@ -277,6 +305,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="specimenConditionBlood"
                         onChange={(e) =>
@@ -309,6 +338,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Reason"
                           id="reasonSampleConditionBlood"
                           name="reasonSampleConditionBlood"
@@ -335,6 +365,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <CheckboxGroup
+                          disabled={labComponentDisabled}
                           options={[
                             { label: "PCR", value: "pcr" },
                             { label: "Serology", value: "serology" },
@@ -367,6 +398,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultBloodPcr"
                             onChange={(e) =>
@@ -414,6 +446,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedBloodPcr"
                               />
@@ -442,6 +475,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="serologyResultBlood"
                             onChange={(e) =>
@@ -489,6 +523,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedBloodSerology"
                               />
@@ -500,7 +535,7 @@ const LaboratoryInformation = ({ form }) => {
                 </>
               )}
 
-              <Divider plain></Divider>
+              <Divider plain />
               {formValues?.specimenType?.includes("skinBiopsy") && (
                 <Col lg={24} md={24} sm={24}>
                   <ClearableFormItem
@@ -519,6 +554,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                   >
                     <DynamicRadio
+                      disabled={labComponentDisabled}
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -551,6 +587,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenReceivedSkinBiopsy"
                       />
@@ -568,6 +605,7 @@ const LaboratoryInformation = ({ form }) => {
                       wrapperCol={{ span: 24 }}
                     >
                       <Input
+                        disabled={labComponentDisabled}
                         placeholder="Enter Lab ID"
                         id="labid"
                         name="labid"
@@ -593,6 +631,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="specimenConditionSkinBiopsy"
                         onChange={(e) =>
@@ -626,6 +665,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Reason"
                           id="reasonSampleConditionSkinBiopsy"
                           name="reasonSampleConditionSkinBiopsy"
@@ -652,6 +692,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <CheckboxGroup
+                          disabled={labComponentDisabled}
                           options={[
                             { label: "PCR", value: "pcr" },
                             { label: "Serology", value: "serology" },
@@ -687,6 +728,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultSkinBiopsyPcr"
                             onChange={(e) =>
@@ -734,6 +776,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedSkinBiopsyPcr"
                               />
@@ -764,6 +807,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultSkinBiopsySerology"
                             onChange={(e) =>
@@ -811,6 +855,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedSkinBiopsySerology"
                               />
@@ -821,7 +866,7 @@ const LaboratoryInformation = ({ form }) => {
                   )}
                 </>
               )}
-              <Divider plain></Divider>
+              <Divider plain />
 
               {formValues?.specimenType?.includes("nasalSwab") && (
                 <Col lg={24} md={24} sm={24}>
@@ -841,6 +886,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                   >
                     <DynamicRadio
+                      disabled={labComponentDisabled}
                       buttonStyle="solid"
                       options={allLookup?.yes_no_type || []}
                       valueProperty="id"
@@ -872,6 +918,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <CustomDatePicker
+                        disabled={labComponentDisabled}
                         form={form}
                         name="dateSpecimenReceivedNasalSwab"
                       />
@@ -895,6 +942,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Input
+                        disabled={labComponentDisabled}
                         placeholder="Enter Lab ID"
                         id="laboratoryIdNasalSwab"
                         name="laboratoryIdNasalSwab"
@@ -920,6 +968,7 @@ const LaboratoryInformation = ({ form }) => {
                       ]}
                     >
                       <Radio.Group
+                        disabled={labComponentDisabled}
                         buttonStyle="solid"
                         name="specimenConditionNasalSwab"
                         onChange={(e) =>
@@ -953,6 +1002,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <Input
+                          disabled={labComponentDisabled}
                           placeholder="Reason"
                           id="reasonSampleConditionNasalSwab"
                           name="reasonSampleConditionNasalSwab"
@@ -979,6 +1029,7 @@ const LaboratoryInformation = ({ form }) => {
                         ]}
                       >
                         <CheckboxGroup
+                          disabled={labComponentDisabled}
                           options={[
                             { label: "PCR", value: "pcr" },
                             { label: "Serology", value: "serology" },
@@ -1013,6 +1064,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultSwabPcr"
                             onChange={(e) =>
@@ -1060,6 +1112,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedSwabPcr"
                               />
@@ -1088,6 +1141,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultNasalSwabSerology"
                             onChange={(e) =>
@@ -1135,6 +1189,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedSwabSerology"
                               />
@@ -1162,6 +1217,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultNasalSwabCulture"
                             onChange={(e) =>
@@ -1197,6 +1253,7 @@ const LaboratoryInformation = ({ form }) => {
                             ]}
                           >
                             <Input
+                              disabled={labComponentDisabled}
                               name="specifyBacteriaNasalSwabCulture"
                               placeholder="specify"
                             />
@@ -1221,6 +1278,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <CustomDatePicker
+                            disabled={labComponentDisabled}
                             form={form}
                             name="dateResultReleasedNasalSwabSerology"
                           />
@@ -1248,6 +1306,7 @@ const LaboratoryInformation = ({ form }) => {
                           ]}
                         >
                           <Radio.Group
+                            disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="resultNasalSwabElek"
                             onChange={(e) =>
@@ -1295,6 +1354,7 @@ const LaboratoryInformation = ({ form }) => {
                               ]}
                             >
                               <CustomDatePicker
+                                disabled={labComponentDisabled}
                                 form={form}
                                 name="dateResultReleasedSwabSerology"
                               />

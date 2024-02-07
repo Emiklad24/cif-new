@@ -14,7 +14,7 @@ import "styles/pages/form.less";
 const Epidemiological = ({ form }) => {
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isDatePickerDisabled] = useState(false);
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({

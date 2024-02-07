@@ -1,12 +1,4 @@
-import {
-  Col,
-  Collapse,
-  DatePicker,
-  Form,
-  Input,
-  Radio,
-  Row
-} from "antd";
+import { Col, Collapse, DatePicker, Form, Input, Radio, Row } from "antd";
 import moment from "moment";
 import React, { useState } from "react";
 import "styles/pages/form.less";
@@ -16,14 +8,13 @@ const firstGuinea = ["Yes", "No", "Unknown"];
 const caseDetected = ["Yes", "No", "Unknown"];
 const education = ["Yes", "No", "Unknown"];
 const waters = ["Yes", "No", "Unknown"];
-const placeManage = ['CCC', 'Home','Health Center','Hospitals'];
+const placeManage = ["CCC", "Home", "Health Center", "Hospitals"];
 
-
-const ClinicalHistory = ({form}) => {
+const ClinicalHistory = ({ form }) => {
   // const [form] = Form.useForm();
 
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);
@@ -32,19 +23,16 @@ const ClinicalHistory = ({form}) => {
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-
     setFormValues((previousState) => ({
-        ...previousState,
-        [inputName]: value
-
+      ...previousState,
+      [inputName]: value,
     }));
 
-    if(formValues?.firstSignSymptom !== "Others" ){
+    if (formValues?.firstSignSymptom !== "Others") {
       form?.setFieldsValue({
-        specify:"",
+        specify: "",
       });
     }
-
   };
 
   return (
@@ -57,34 +45,37 @@ const ClinicalHistory = ({form}) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
-              <Radio.Group buttonStyle="solid" onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} name="firstSignSymptom" >
-                    <Radio.Button value="Blister">Blister</Radio.Button>
-                    <Radio.Button value="Itching">Itching</Radio.Button>
-                    <Radio.Button value="Swelling">Swelling</Radio.Button>
-                    <Radio.Button value="Others">Others</Radio.Button>
-                  </Radio.Group>
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="firstSignSymptom"
+              >
+                <Radio.Button value="Blister">Blister</Radio.Button>
+                <Radio.Button value="Itching">Itching</Radio.Button>
+                <Radio.Button value="Swelling">Swelling</Radio.Button>
+                <Radio.Button value="Others">Others</Radio.Button>
+              </Radio.Group>
             </Form.Item>
           </Col>
-          {
-            formValues?.firstSignSymptom === 'Others' &&
-            (
-              <>
-                  <Col lg={8} md={8} sm={24}>
-                    <Form.Item
-                      label="Specify"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                    >
-                      <Input
-                        placeholder="Specify"
-                        name="specify"
-                        onChange={(e) => {}}
-                      />
-                    </Form.Item>
-                  </Col>
-              </>
-            )
-          }
+          {formValues?.firstSignSymptom === "Others" && (
+            <>
+              <Col lg={8} md={8} sm={24}>
+                <Form.Item
+                  label="Specify"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                >
+                  <Input
+                    placeholder="Specify"
+                    name="specify"
+                    onChange={(e) => {}}
+                  />
+                </Form.Item>
+              </Col>
+            </>
+          )}
 
           <Col lg={6} md={6} sm={24}>
             <Form.Item
@@ -94,7 +85,7 @@ const ClinicalHistory = ({form}) => {
               wrapperCol={{ span: 24 }}
             >
               <Radio.Group buttonStyle="solid">
-              {emergence.map((item) => (
+                {emergence.map((item) => (
                   <Radio.Button value={item}>{item}</Radio.Button>
                 ))}
               </Radio.Group>

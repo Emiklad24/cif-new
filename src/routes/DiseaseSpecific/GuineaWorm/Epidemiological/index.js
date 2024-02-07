@@ -6,7 +6,7 @@ import {
   Radio,
   Row
 } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import "styles/pages/form.less";
 
 const close = ["Yes", "No", "Unknown"];
@@ -18,8 +18,6 @@ const Epidemiological = () => {
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
-
-  const [formValues, setFormValues] = useState({});
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>

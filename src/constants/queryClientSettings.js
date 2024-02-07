@@ -5,11 +5,12 @@ const queryClientSettings = {
       refetchOnMount: false, // "always",
       refetchOnWindowFocus: false, // "always",
       refetchOnReconnect: false, // "always",
-      cacheTime: 2.628e9,
-      refetchInterval: 30000,
+      cacheTime: 86_400_000,
+      refetchInterval: 30_000,
       refetchIntervalInBackground: false,
       suspense: false,
-      staleTime: 2.628e9,
+      // staletime of 1 day
+      staleTime: 86_400_000 //2.628e9,
     },
     mutations: {
       retry: 2,

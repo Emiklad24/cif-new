@@ -45,7 +45,7 @@ const refLabs = [
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
-  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
     console.log(`selected ${value}`);

@@ -16,6 +16,7 @@ const Epidemiological = ({ form }) => {
   const { data: allLookup } = useFetchAllLookup();
 
   const [formValues, setFormValues] = useState({});
+  console.log("formValues", formValues);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>

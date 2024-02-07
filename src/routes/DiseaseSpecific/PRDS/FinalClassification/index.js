@@ -1,7 +1,7 @@
-import { Col, Collapse, Row, Radio } from "antd";
+import { Col, Collapse, Radio, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
 import React from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 
 const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;

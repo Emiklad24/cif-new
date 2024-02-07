@@ -20,7 +20,7 @@ const LaboratoryInformation = ({ form }) => {
 
   useEffect(() => {
     if (!userRole) return;
-    if (userRole === USER_ROLE.LAB) {
+    if (userRole === USER_ROLE.LAB || userRole === USER_ROLE.SUPER) {
       setLabComponentDisabled(false);
     } else {
       setLabComponentDisabled(true);
