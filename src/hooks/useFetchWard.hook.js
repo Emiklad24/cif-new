@@ -8,7 +8,6 @@ const useFetchWard = (lgaId) => {
     queryKey: [GET_WARD, lgaId],
     enabled: lgaId ? true : false,
     retry: 6,
-    refetchOnWindowFocus: false,
   });
 
   return getWardQuery;
