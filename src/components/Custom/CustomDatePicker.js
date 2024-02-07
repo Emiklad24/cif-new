@@ -4,7 +4,13 @@ import moment from "moment";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const CustomDatePicker = ({ form, setFormValues, name, ...otherProps }) => {
+const CustomDatePicker = ({
+  isToday = false,
+  form,
+  setFormValues,
+  name,
+  ...otherProps
+}) => {
   const [isDatePickerDisabled] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -21,6 +27,12 @@ const CustomDatePicker = ({ form, setFormValues, name, ...otherProps }) => {
 
   if (otherProps.value) {
     otherProps.value = moment(otherProps.value, DATE_FORMAT);
+  }
+
+  // set it to todays date if isToday is true, and disable the date picker, if it isnt an existing case
+  if (isToday && !sormasCaseUuid && !sormasCase?.applicationUuid) {
+    otherProps.value = moment();
+    otherProps.disabled = true;
   }
 
   return (
@@ -45,6 +57,7 @@ const CustomDatePicker = ({ form, setFormValues, name, ...otherProps }) => {
           }));
         }
       }}
+      disabled={isToday}
     />
   );
 };

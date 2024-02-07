@@ -37,13 +37,17 @@ const LaboratoryInformation = ({ form }) => {
     (fac) => fac?.type?.toLowerCase() === "laboratory"
   );
 
-
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
   };
+
+  const canSeeResult =
+    USER_ROLE.LAB === userRole ||
+    USER_ROLE.SUPER === userRole ||
+    USER_ROLE.VIEW === userRole;
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -189,7 +193,8 @@ const LaboratoryInformation = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-              {/* {!(userRole === USER_ROLE.LAB || userRole === USER_ROLE.VIEW) && ( */}
+              
+              {canSeeResult && (
                 <>
                   <Divider plain>Laboratory result</Divider>
 
@@ -896,7 +901,7 @@ const LaboratoryInformation = ({ form }) => {
                     </>
                   )}
                 </>
-              {/* )} */}
+              )}
             </>
           )}
         </Row>

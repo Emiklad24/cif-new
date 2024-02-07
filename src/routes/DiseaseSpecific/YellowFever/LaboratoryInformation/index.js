@@ -45,6 +45,12 @@ const LaboratoryInformation = ({ form }) => {
   const testingLaboratoryData = allHealthFacilitiesQuery?.data?.filter(
     (fac) => fac?.type?.toLowerCase() === "laboratory"
   );
+
+  const canSeeResult =
+    USER_ROLE.LAB === userRole ||
+    USER_ROLE.SUPER === userRole ||
+    USER_ROLE.VIEW === userRole;
+
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Laboratory information" key="1">
@@ -96,10 +102,7 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker
-                    form={form}
-                    name="dateSpecimenCollected"
-                  />
+                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
                 </ClearableFormItem>
               </Col>
 
@@ -146,10 +149,7 @@ const LaboratoryInformation = ({ form }) => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                   >
-                    <CustomDatePicker
-                      form={form}
-                      name="dateSpecimenSent"
-                    />
+                    <CustomDatePicker form={form} name="dateSpecimenSent" />
                   </ClearableFormItem>
                 </Col>
               )}
@@ -190,104 +190,24 @@ const LaboratoryInformation = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Divider plain>Laboratory result</Divider>
-              {formValues?.specimenType?.includes("blood") && (
-                <Col lg={24} md={24} sm={24}>
-                  <ClearableFormItem
-                    collectFormName={true}
-                    label="Blood specimen received"
-                    name="bloodSpecimenReceived"
-                    setFormValues={setFormValues}
-                    form={form}
-                    onChange={(e) => {
-                      handleUpdateInputValues(e.target.name, e.target.value);
-                    }}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicRadio
-                      disabled={labComponentDisabled}
-                      buttonStyle="solid"
-                      options={allLookup?.yes_no_type || []}
-                      valueProperty="id"
-                      labelProperty="value"
-                      name="bloodSpecimenReceived"
-                      onChange={(e) =>
-                        handleUpdateInputValues(e.target.name, e.target.value)
-                      }
-                    />
-                  </ClearableFormItem>
-                </Col>
-              )}
 
-              {formValues?.bloodSpecimenReceived === "YES" && (
+              {canSeeResult && (
                 <>
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      collectFormName={true}
-                      setFormValues={setFormValues}
-                      form={form}
-                      label="Date blood specimen received "
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="datebloodSpecimenReceived"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <CustomDatePicker
-                        disabled={labComponentDisabled}
-                        form={form}
-                        name="datebloodSpecimenReceived"
-                      />
-                    </ClearableFormItem>
-                  </Col>
-
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      collectFormName={true}
-                      setFormValues={setFormValues}
-                      form={form}
-                      label="Specimen condition"
-                      name="specimenConditionBlood"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <Radio.Group
-                        buttonStyle="solid"
-                        disabled={labComponentDisabled}
-                      >
-                        <Radio.Button value="adequate">Adequate</Radio.Button>
-                        <Radio.Button value="not adequate">
-                          Not adequate
-                        </Radio.Button>
-                      </Radio.Group>
-                    </ClearableFormItem>
-                  </Col>
-
-                  {formValues?.specimenType?.length >= 1 && (
+                  <Divider plain>Laboratory result</Divider>
+                  {formValues?.specimenType?.includes("blood") && (
                     <Col lg={24} md={24} sm={24}>
                       <ClearableFormItem
                         collectFormName={true}
+                        label="Blood specimen received"
+                        name="bloodSpecimenReceived"
                         setFormValues={setFormValues}
                         form={form}
-                        label="Test conducted"
-                        name="testConductedBlood"
+                        onChange={(e) => {
+                          handleUpdateInputValues(
+                            e.target.name,
+                            e.target.value
+                          );
+                        }}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -297,40 +217,57 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <CheckboxGroup
+                        <DynamicRadio
                           disabled={labComponentDisabled}
-                          options={[
-                            { label: "Igm", value: "igm" },
-                            { label: "IgG(acute)", value: "iggAcute" },
-                            {
-                              label: "IgG(convalescent)",
-                              value: "iggConvalescent",
-                            },
-                            { label: "Microscopy", value: "microscopy" },
-                            { label: "PRNT", value: "prnt" },
-                            { label: "PCR/RT-PCR", value: "pcr" },
-                          ]}
-                          name="testConductedBlood"
-                          onChange={(value) => {
+                          buttonStyle="solid"
+                          options={allLookup?.yes_no_type || []}
+                          valueProperty="id"
+                          labelProperty="value"
+                          name="bloodSpecimenReceived"
+                          onChange={(e) =>
                             handleUpdateInputValues(
-                              "testConductedBlood",
-                              value
-                            );
-                          }}
+                              e.target.name,
+                              e.target.value
+                            )
+                          }
                         />
                       </ClearableFormItem>
                     </Col>
                   )}
 
-                  {formValues?.testConductedBlood?.includes("igm") && (
-                    <Row>
+                  {formValues?.bloodSpecimenReceived === "YES" && (
+                    <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           collectFormName={true}
                           setFormValues={setFormValues}
                           form={form}
-                          label="Igm result for blood specimen"
-                          name="igmResultBlood"
+                          label="Date blood specimen received "
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="datebloodSpecimenReceived"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <CustomDatePicker
+                            disabled={labComponentDisabled}
+                            form={form}
+                            name="datebloodSpecimenReceived"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Specimen condition"
+                          name="specimenConditionBlood"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
@@ -344,472 +281,474 @@ const LaboratoryInformation = ({ form }) => {
                             buttonStyle="solid"
                             disabled={labComponentDisabled}
                           >
-                            <Radio.Button value="positive">
-                              Positive
+                            <Radio.Button value="adequate">
+                              Adequate
                             </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
+                            <Radio.Button value="not adequate">
+                              Not adequate
                             </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodIgm"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
+                      {formValues?.specimenType?.length >= 1 && (
+                        <Col lg={24} md={24} sm={24}>
+                          <ClearableFormItem
+                            collectFormName={true}
+                            setFormValues={setFormValues}
                             form={form}
-                            name="dateResultReleasedBloodIgm"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-
-                  {formValues?.testConductedBlood?.includes("iggAcute") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="IgG(Acute) result for blood specimen"
-                          name="iggAcuteResultBlood"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
+                            label="Test conducted"
+                            name="testConductedBlood"
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            rules={[
+                              {
+                                required: true,
+                                message: "This field is required",
+                              },
+                            ]}
                           >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                            <CheckboxGroup
+                              disabled={labComponentDisabled}
+                              options={[
+                                { label: "Igm", value: "igm" },
+                                { label: "IgG(acute)", value: "iggAcute" },
+                                {
+                                  label: "IgG(convalescent)",
+                                  value: "iggConvalescent",
+                                },
+                                { label: "Microscopy", value: "microscopy" },
+                                { label: "PRNT", value: "prnt" },
+                                { label: "PCR/RT-PCR", value: "pcr" },
+                              ]}
+                              name="testConductedBlood"
+                              onChange={(value) => {
+                                handleUpdateInputValues(
+                                  "testConductedBlood",
+                                  value
+                                );
+                              }}
+                            />
+                          </ClearableFormItem>
+                        </Col>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodIggA"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedBloodIggA"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
+                      {formValues?.testConductedBlood?.includes("igm") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Igm result for blood specimen"
+                              name="igmResultBlood"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodIgm"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodIgm"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedBlood?.includes("iggAcute") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="IgG(Acute) result for blood specimen"
+                              name="iggAcuteResultBlood"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodIggA"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodIggA"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedBlood?.includes(
+                        "iggConvalescent"
+                      ) && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="IgG(Convalescent) result for blood specimen"
+                              name="iggConvalescentResultBlood"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodIggc"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodIggc"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedBlood?.includes(
+                        "microscopy"
+                      ) && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Microscopy result for blood"
+                              name="microscopyResultBlood"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodMicroscopy"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodMicroscopy"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedBlood?.includes("pcr") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="PCR/RT-PCR result for blood"
+                              name="resultBloodPcr"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodPcr"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodPcr"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedBlood?.includes("prnt") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="PRNT result for blood specimen"
+                              name="prntResultBlood"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedBloodPrnt"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedBloodPrnt"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+                    </>
                   )}
 
-                  {formValues?.testConductedBlood?.includes(
-                    "iggConvalescent"
-                  ) && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="IgG(Convalescent) result for blood specimen"
-                          name="iggConvalescentResultBlood"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodIggc"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedBloodIggc"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-
-                  {formValues?.testConductedBlood?.includes("microscopy") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Microscopy result for blood"
-                          name="microscopyResultBlood"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodMicroscopy"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedBloodMicroscopy"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-
-                  {formValues?.testConductedBlood?.includes("pcr") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="PCR/RT-PCR result for blood"
-                          name="resultBloodPcr"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodPcr"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedBloodPcr"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-
-                  {formValues?.testConductedBlood?.includes("prnt") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="PRNT result for blood specimen"
-                          name="prntResultBlood"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
-
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedBloodPrnt"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedBloodPrnt"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-                </>
-              )}
-
-              {formValues?.specimenType?.includes("serum") && (
-                <Col lg={24} md={24} sm={24}>
-                  <ClearableFormItem
-                    collectFormName={true}
-                    setFormValues={setFormValues}
-                    form={form}
-                    label="Serum specimen received"
-                    name="serumSpecimenReceived"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicRadio
-                      disabled={labComponentDisabled}
-                      buttonStyle="solid"
-                      options={allLookup?.yes_no_type || []}
-                      valueProperty="id"
-                      labelProperty="value"
-                      name="serumSpecimenReceived"
-                      onChange={(e) => {
-                        handleUpdateInputValues(e.target.name, e.target.value);
-                      }}
-                    />
-                  </ClearableFormItem>
-                </Col>
-              )}
-
-              {formValues?.serumSpecimenReceived === "YES" && (
-                <>
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      collectFormName={true}
-                      setFormValues={setFormValues}
-                      form={form}
-                      label="Date specimen received "
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="dateSerumSpecimenReceived"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <CustomDatePicker
-                        disabled={labComponentDisabled}
-                        form={form}
-                        name="dateSerumSpecimenReceived"
-                      />
-                    </ClearableFormItem>
-                  </Col>
-
-                  <Col lg={12} md={12} sm={24}>
-                    <ClearableFormItem
-                      collectFormName={true}
-                      setFormValues={setFormValues}
-                      form={form}
-                      label="Specimen condition"
-                      name="specimenConditionSerum"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <Radio.Group
-                        buttonStyle="solid"
-                        disabled={labComponentDisabled}
-                      >
-                        <Radio.Button value="adequate">Adequate</Radio.Button>
-                        <Radio.Button value="not adequate">
-                          Not Adequate
-                        </Radio.Button>
-                      </Radio.Group>
-                    </ClearableFormItem>
-                  </Col>
-
-                  {formValues?.specimenType?.length >= 1 && (
+                  {formValues?.specimenType?.includes("serum") && (
                     <Col lg={24} md={24} sm={24}>
                       <ClearableFormItem
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Test conducted"
-                        name="testConductedSerum"
+                        label="Serum specimen received"
+                        name="serumSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                         rules={[
@@ -819,24 +758,17 @@ const LaboratoryInformation = ({ form }) => {
                           },
                         ]}
                       >
-                        <CheckboxGroup
+                        <DynamicRadio
                           disabled={labComponentDisabled}
-                          options={[
-                            { label: "Igm", value: "igm" },
-                            { label: "IgG(acute)", value: "iggAcute" },
-                            {
-                              label: "IgG(convalescent)",
-                              value: "iggConvalescent",
-                            },
-                            { label: "Microscopy", value: "microscopy" },
-                            { label: "PRNT", value: "prnt" },
-                            { label: "PCR/RT-PCR", value: "pcr" },
-                          ]}
-                          name="testConductedSerum"
-                          onChange={(value) => {
+                          buttonStyle="solid"
+                          options={allLookup?.yes_no_type || []}
+                          valueProperty="id"
+                          labelProperty="value"
+                          name="serumSpecimenReceived"
+                          onChange={(e) => {
                             handleUpdateInputValues(
-                              "testConductedSerum",
-                              value
+                              e.target.name,
+                              e.target.value
                             );
                           }}
                         />
@@ -844,15 +776,39 @@ const LaboratoryInformation = ({ form }) => {
                     </Col>
                   )}
 
-                  {formValues?.testConductedSerum?.includes("igm") && (
-                    <Row>
+                  {formValues?.serumSpecimenReceived === "YES" && (
+                    <>
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           collectFormName={true}
                           setFormValues={setFormValues}
                           form={form}
-                          label="Igm result for serum specimen"
-                          name="igmResultSerum"
+                          label="Date specimen received "
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="dateSerumSpecimenReceived"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <CustomDatePicker
+                            disabled={labComponentDisabled}
+                            form={form}
+                            name="dateSerumSpecimenReceived"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+
+                      <Col lg={12} md={12} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          setFormValues={setFormValues}
+                          form={form}
+                          label="Specimen condition"
+                          name="specimenConditionSerum"
                           labelCol={{ span: 24 }}
                           wrapperCol={{ span: 24 }}
                           rules={[
@@ -866,374 +822,464 @@ const LaboratoryInformation = ({ form }) => {
                             buttonStyle="solid"
                             disabled={labComponentDisabled}
                           >
-                            <Radio.Button value="positive">
-                              Positive
+                            <Radio.Button value="adequate">
+                              Adequate
                             </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
+                            <Radio.Button value="not adequate">
+                              Not Adequate
                             </Radio.Button>
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumIgm"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
+                      {formValues?.specimenType?.length >= 1 && (
+                        <Col lg={24} md={24} sm={24}>
+                          <ClearableFormItem
+                            collectFormName={true}
+                            setFormValues={setFormValues}
                             form={form}
-                            name="dateResultReleasedSerumIgm"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
-
-                  {formValues?.testConductedSerum?.includes("iggAcute") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="IgG(Acute) result for serum specimen"
-                          name="iggAcuteResultSerum"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
+                            label="Test conducted"
+                            name="testConductedSerum"
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            rules={[
+                              {
+                                required: true,
+                                message: "This field is required",
+                              },
+                            ]}
                           >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                            <CheckboxGroup
+                              disabled={labComponentDisabled}
+                              options={[
+                                { label: "Igm", value: "igm" },
+                                { label: "IgG(acute)", value: "iggAcute" },
+                                {
+                                  label: "IgG(convalescent)",
+                                  value: "iggConvalescent",
+                                },
+                                { label: "Microscopy", value: "microscopy" },
+                                { label: "PRNT", value: "prnt" },
+                                { label: "PCR/RT-PCR", value: "pcr" },
+                              ]}
+                              name="testConductedSerum"
+                              onChange={(value) => {
+                                handleUpdateInputValues(
+                                  "testConductedSerum",
+                                  value
+                                );
+                              }}
+                            />
+                          </ClearableFormItem>
+                        </Col>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumIgga"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedSerumIgga"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
+                      {formValues?.testConductedSerum?.includes("igm") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Igm result for serum specimen"
+                              name="igmResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
 
-                  {formValues?.testConductedSerum?.includes(
-                    "iggConvalescent"
-                  ) && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="IgG(convalescent) result for serum specimen"
-                          name="iggConvalescentResultSerum"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumIgm"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumIgm"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumIggc"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedSerumIggc"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
+                      {formValues?.testConductedSerum?.includes("iggAcute") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="IgG(Acute) result for serum specimen"
+                              name="iggAcuteResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
 
-                  {formValues?.testConductedSerum?.includes("microscopy") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Microscopy result for serum"
-                          name="microscopyResultSerum"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumIgga"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumIgga"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumMicroscopy"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedSerumMicroscopy"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
+                      {formValues?.testConductedSerum?.includes(
+                        "iggConvalescent"
+                      ) && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="IgG(convalescent) result for serum specimen"
+                              name="iggConvalescentResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
 
-                  {formValues?.testConductedSerum?.includes("pcr") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="PCR/RT-PCR result for serum"
-                          name="pcrResultSerum"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumIggc"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumIggc"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumPcr"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedSerumPcr"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
-                  )}
+                      {formValues?.testConductedSerum?.includes(
+                        "microscopy"
+                      ) && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Microscopy result for serum"
+                              name="microscopyResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
 
-                  {formValues?.testConductedSerum?.includes("prnt") && (
-                    <Row>
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="PRNT result for serum specimen"
-                          name="prntResultSerum"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            disabled={labComponentDisabled}
-                          >
-                            <Radio.Button value="positive">
-                              Positive
-                            </Radio.Button>
-                            <Radio.Button value="negative">
-                              Negative
-                            </Radio.Button>
-                            <Radio.Button value="inconclusive">
-                              Inconclusive
-                            </Radio.Button>
-                            <Radio.Button value="pending">Pending</Radio.Button>
-                            <Radio.Button value="notDone">
-                              Not done
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumMicroscopy"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumMicroscopy"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
 
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateResultReleasedSerumPrnt"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateResultReleasedSerumPrnt"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                    </Row>
+                      {formValues?.testConductedSerum?.includes("pcr") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="PCR/RT-PCR result for serum"
+                              name="pcrResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumPcr"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumPcr"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+
+                      {formValues?.testConductedSerum?.includes("prnt") && (
+                        <Row>
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="PRNT result for serum specimen"
+                              name="prntResultSerum"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Date result released "
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedSerumPrnt"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedSerumPrnt"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        </Row>
+                      )}
+                    </>
                   )}
                 </>
               )}

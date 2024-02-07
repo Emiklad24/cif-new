@@ -24,6 +24,7 @@ import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
+import Initializing from "components/Loader/Initializing";
 import { SORMAS_ROLE, SORMAS_UUID, USER_ROLE } from "constants/ActionTypes";
 import GenerateEpid from "constants/JSON/GenerateEpid.json";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
@@ -65,7 +66,13 @@ import YellowFever from "./YellowFever";
 const { Option } = Select;
 const { Panel } = Collapse;
 
-const placeDetectedData = ["Health Facility", "Home", "IDP Camp", "NYSC Camp"];
+const placeDetectedData = [
+  "Health Facility",
+  "Home",
+  "IDP Camp",
+  "NYSC Camp",
+  "Others",
+];
 const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
 
 const App = () => {
@@ -221,6 +228,11 @@ const App = () => {
    * @description On finish submit form
    */
   const isUpdate = sormasCaseUuid && sormasCase?.applicationUuid;
+  const _notAuthorized =
+    userRoleFromUrl !== USER_ROLE.EDIT &&
+    userRoleFromUrl !== USER_ROLE.SUPER &&
+    !sormasCaseUuid;
+
   const onFinish = async (fieldsValue) => {
     setFormIsLoading(true);
 
@@ -418,14 +430,7 @@ const App = () => {
   }, [sormasCase, allLookupLoading]);
 
   const getCaseByUuid = async () => {
-    if (!sormasCaseUuid) {
-      window.history.replaceState(
-        {},
-        "",
-        `${window.location.pathname}?role=edit`
-      );
-      return;
-    }
+    if (!sormasCaseUuid) return;
     try {
       await dispatch(getSormasCaseAction(sormasCaseUuid));
     } catch (error) {
@@ -437,6 +442,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (!userRoleFromUrl) return;
     getCaseByUuid();
   }, [sormasCaseUuid]);
 
@@ -461,847 +467,881 @@ const App = () => {
   const onChange = () => {};
   const onSearch = () => {};
 
-
+  const _isLoading = allLookupLoading || isLoading;
 
   return (
     <>
-      <Row>
-        <Col lg={12} md={12} sm={12} xs={24}>
-          <DynamicSelect
-            showSearch
-            value={program?.value}
-            placeholder={allLookupLoading ? "Loading..." : "Select Disease"}
-            optionFilterProp="children"
-            onChange={(e) => onChangeDisease(e, true)}
-            onSearch={onSearch}
-            allowClear
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-            }
-            filterSort={(optionA, optionB) =>
-              (optionA?.label ?? "")
-                .toLowerCase()
-                .localeCompare((optionB?.label ?? "").toLowerCase())
-            }
-            options={allLookup?.disease_id}
-            valueProperty="id"
-            labelProperty="value"
-            labelCol={{ span: 24 }}
-            wrapperCol={{ span: 24 }}
-            className="gx-w-100 gx-mb-3"
-            loading={allLookupLoading}
-          />
-        </Col>
-      </Row>
-
-      {loading && sormasCaseUuid && !sormasCase?.applicationUuid ? (
-        <div className="card_loading_container">
-          <div className="card_loading gx-shadow">
-            <div className="spinner" /> Populating Form ....
-          </div>
+      {_notAuthorized ? (
+        <div className="gx-text-center">
+          <h3>Sorry, you are not authorized to view this page</h3>
         </div>
       ) : (
-        <Form
-          form={form}
-          name="register"
-          disabled={componentDisabled}
-          onFinish={onFinish}
-          scrollToFirstError
-          initialValues={sormasCase?.applicationUuid ? sormasCase : {}}
-        >
-          <Collapse defaultActiveKey={["1"]} onChange={onChange}>
-            <Panel header="Reporting Areas" key="1">
-              <Row>
-                <Col lg={8} md={12} sm={24}>
-                  <Form.Item
-                    form={form}
-                    label="Date of report"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="dateOfReportReportingAreas"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <CustomDatePicker
-                      form={form}
-                      name="dateOfReportReportingAreas"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="State of reporting"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="stateOfReporting"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select State</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      onChange={(value) =>
-                        handleStateChange(value, "stateOfReporting")
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      options={allStates}
-                      valueProperty="id"
-                      labelProperty="name"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="LGA of reporting"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="lgaOfReporting"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select LGA</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      options={lgaOfReportingQuery?.data || []}
-                      valueProperty="id"
-                      labelProperty="name"
-                      onChange={(value) => {
-                        handleLgaChange(value, "lgaOfReporting");
-                      }}
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label={`Ward of reporting ${
-                      wardQuery?.isLoading ? "Loading..." : ""
-                    }`}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="wardOfReporting"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select Ward</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      options={
-                        wardQuery?.isLoading
-                          ? []
-                          : wardQuery?.data?.[selectedLga?.lgaOfReporting]
-                      }
-                      valueProperty="id"
-                      labelProperty="name"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Place of detection"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="placeOfDetection"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <Select
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      onChange={setPlaceOfDetection}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                    >
-                      {placeDetectedData.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
-                  </ClearableFormItem>
-                </Col>
-                {place_of_detection === "Health Facility" && (
-                  <Col lg={8} md={12} sm={12} xs={24}>
-                    <ClearableFormItem
-                      form={form}
-                      label="Health facility"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="placeOfDetectionFacility"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <DynamicSelect
-                        showSearch
-                        allowClear
-                        optionLabelProp="label"
-                        filterOption={(input, option) =>
-                          (option?.label ?? "")
-                            .toLowerCase()
-                            .includes(input.toLowerCase())
-                        }
-                        filterSort={(optionA, optionB) =>
-                          (optionA?.label ?? "")
-                            .toLowerCase()
-                            .localeCompare((optionB?.label ?? "").toLowerCase())
-                        }
-                        options={AllHealthFacilitiesQuery?.data}
-                        valueProperty="id"
-                        labelProperty="name"
-                      />
-                    </ClearableFormItem>
-                  </Col>
-                )}
-                {["Home", "IDP Camp", "NYSC Camp"].includes(
-                  place_of_detection
-                ) && (
-                  <Col lg={8} md={12} sm={24} xs={24}>
-                    <ClearableFormItem
-                      form={form}
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      label="Place description"
-                      name="placeDescription"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <Input size="large" />
-                    </ClearableFormItem>
-                  </Col>
-                )}
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Notified by"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="notifiedBy"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <Select showSearch allowClear optionLabelProp="label">
-                      {notifiesBy.map((item) => (
-                        <Option label={item} value={item} key={item}>
-                          {item}
-                        </Option>
-                      ))}
-                    </Select>
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Date of notification"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    // initialValue={birth_date ? moment(birth_date) : null}
-                    name="dateOfNotificationReportingAreas"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <CustomDatePicker
-                      form={form}
-                      name="dateOfNotificationReportingAreas"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Date of investigation"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="dateOfInvestigationReportingAreas"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <CustomDatePicker
-                      form={form}
-                      name="dateOfInvestigationReportingAreas"
-                    />
-                  </ClearableFormItem>
-                </Col>
-              </Row>
-            </Panel>
-          </Collapse>
-          <Collapse defaultActiveKey={["1"]} onChange={onChange}>
-            <Panel header="Patient Information" key="1">
-              <Row>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    label="First name"
-                    name="firstName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <Input size="large" />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    label="Middle name"
-                    name="middleName"
-                  >
-                    <Input size="large" />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    label="Last name"
-                    name="lastName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <Input size="large" />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    label="Patient/Caregiver phone number"
-                    // initialValue={phone}
-                    name="phoneNumber"
-                    rules={[
-                      { required: true, message: "Number is required" },
-                      { validator: validateNumber },
-                    ]}
-                  >
-                    <Input
-                      type="phone"
-                      size="large"
-                      // onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    setFormValues={setFormValues}
-                    label="Date of birth"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="dateOfBirthPersonalInformation"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <CustomDatePicker
-                      form={form}
-                      name="dateOfBirthPersonalInformation"
-                      setFormValues={setFormValues}
-                    />
-                  </ClearableFormItem>
-                </Col>
-
-                <Col lg={8} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    tooltip="Estimated age in years and months"
-                    label="Age"
-                    name="age"
-                  >
-                    <Input.Group size="large">
-                      <Row gutter={8}>
-                        <Col span={12}>
-                          <Tooltip
-                            placement="topLeft"
-                            title="Estimated years"
-                            arrowPointAtCenter
-                          >
-                            <Input
-                              placeholder="Estimated years"
-                              disabled
-                              value={ageYear}
-                            />
-                          </Tooltip>
-                        </Col>
-                        <Col span={12}>
-                          <Tooltip
-                            placement="topLeft"
-                            title="Estimated Months"
-                            arrowPointAtCenter
-                          >
-                            <Input
-                              placeholder="Estimated months"
-                              value={ageMonth}
-                              disabled
-                            />
-                          </Tooltip>
-                        </Col>
-                      </Row>
-                    </Input.Group>
-                  </ClearableFormItem>
-                </Col>
-
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Sex"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="sex"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <Radio.Group
-                      buttonStyle="solid"
-                      name="sex"
-                      onChange={(e) =>
-                        setFormValues((previousState) => ({
-                          ...previousState,
-                          sex: e.target.value,
-                        }))
-                      }
-                    >
-                      <Radio.Button value="MALE">Male</Radio.Button>
-                      <Radio.Button value="FEMALE">Female</Radio.Button>
-                    </Radio.Group>
-                  </ClearableFormItem>
-                </Col>
-
-                {formValues?.sex === "FEMALE" && ageYear >= 10 && (
-                  <Col lg={8} md={12} sm={12} xs={24}>
-                    <ClearableFormItem
-                      form={form}
-                      label="Pregnancy status"
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      name="pregnancyStatus"
-                      rules={[
-                        {
-                          required: true,
-                          message: "This field is required",
-                        },
-                      ]}
-                    >
-                      <Radio.Group
-                        buttonStyle="solid"
-                        onChange={(e) =>
-                          setFormValues((previousState) => ({
-                            ...previousState,
-                            pregnancyStatus: e.target.value,
-                          }))
-                        }
-                      >
-                        <Radio.Button value="pregnant">Pregnant</Radio.Button>
-                        <Radio.Button value="not pregnant">
-                          Not Pregnant
-                        </Radio.Button>
-                      </Radio.Group>
-                    </ClearableFormItem>
-                  </Col>
-                )}
-
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="State of residence"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="stateOfResidence"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select State</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      options={allStates}
-                      valueProperty="id"
-                      labelProperty="name"
-                      onChange={(value) =>
-                        handleStateChange(value, "stateOfResidence")
-                      }
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="LGA of residence"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="lgaOfResidence"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select LGA</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      onChange={(value) => {
-                        handleLgaChange(value, "lgaOfResidence");
-                        setResidenceLga(value);
-                      }}
-                      options={lgaOfResidenceQuery?.data}
-                      valueProperty="id"
-                      labelProperty="name"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label={`Ward of residence ${
-                      wardOfResidenceQuery?.isLoading ? "Loading..." : ""
-                    }`}
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="wardOfResidence"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      showSearch
-                      allowClear
-                      optionLabelProp="label"
-                      placeholder={<>&nbsp; Select Ward</>}
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        (optionA?.label ?? "")
-                          .toLowerCase()
-                          .localeCompare((optionB?.label ?? "").toLowerCase())
-                      }
-                      options={
-                        wardOfResidenceQuery?.isLoading
-                          ? []
-                          : wardOfResidenceQuery?.data?.[
-                              selectedLga?.lgaOfResidence
-                            ]
-                      }
-                      valueProperty="id"
-                      labelProperty="name"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={24} xs={24}>
-                  <div className="gx-d-flex gx-align-items-center">
-                    <Checkbox
-                      color="primary"
-                      className="gx-pr-2"
-                      checked={epidNumberIsDisabled}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEpidNumberIsDisabled(e.target.checked);
-                      }}
-                      value="epidNumberIsDisabled"
-                      disabled={userRoleFromUrl !== USER_ROLE.EDIT}
-                    />
-                    <ClearableFormItem
-                      form={form}
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      label="Epid number"
-                      name="epidNumber"
-                      help={
-                        <small>Check the box to edit the Epid Number</small>
-                      }
-                      rules={[
-                        {
-                          required: false,
-                          message: "Required Field",
-                        },
-                        {
-                          pattern: /^[0-9]*$/,
-                          message: "Only Numbers",
-                        },
-                      ]}
-                    >
-                      <Input
-                        addonBefore={epidNumberAddon || " "}
-                        size="large"
-                        disabled={
-                          !epidNumberIsDisabled || epidNumberAddon === ""
-                        }
-                      />
-                    </ClearableFormItem>
-                  </div>
-                </Col>
-                <Col lg={8} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Patient’s residential address "
-                    name="patientResidentialAddress"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                  >
-                    <Input
-                      placeholder="Enter Address"
-                      id="address"
-                      name="address"
-                      onChange={(e) => {}}
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Settlement type"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="settlementType"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicRadio
-                      buttonStyle="solid"
-                      options={AllSettlementTypeQuery}
-                      valueProperty="id"
-                      labelProperty="value"
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Occupation"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="occupation"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      placeholder="Select an option"
-                      allowClear
-                      options={allLookup?.occupation_type || []}
-                      valueProperty="id"
-                      labelProperty="value"
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        optionA.children
-                          ?.toLowerCase()
-                          .localeCompare(optionB.children?.toLowerCase())
-                      }
-                    />
-                  </ClearableFormItem>
-                </Col>
-                <Col lg={8} md={12} sm={12} xs={24}>
-                  <ClearableFormItem
-                    form={form}
-                    label="Education"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                    name="education"
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
-                  >
-                    <DynamicSelect
-                      placeholder="Select an option"
-                      allowClear
-                      options={allLookup?.educational_levels || []}
-                      valueProperty="id"
-                      labelProperty="value"
-                      filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
-                      }
-                      filterSort={(optionA, optionB) =>
-                        optionA.children
-                          ?.toLowerCase()
-                          .localeCompare(optionB.children?.toLowerCase())
-                      }
-                    />
-                  </ClearableFormItem>
-                </Col>
-              </Row>
-            </Panel>
-          </Collapse>
-          {getProgram()}
-          {!["Yellow Fever", "NOMA", "Measles"].includes(program?.value) && (
-            <ContactTracing form={form} />
-          )}
+        <>
           <Row>
-            <Col span={24} style={{ textAlign: "right" }}>
-              <ClearableFormItem form={form} className="gx-m-2">
-                <Button
-                  loading={formIsLoading}
-                  type="primary"
-                  htmlType="submit"
-                  disabled={isLoading}
-                >
-                  {formIsLoading
-                    ? isUpdate
-                      ? "Updating Case ..."
-                      : "Creating Case ..."
-                    : isUpdate
-                    ? "Update Case"
-                    : "Create Case"}
-                </Button>
-              </ClearableFormItem>
+            <Col lg={12} md={12} sm={12} xs={24}>
+              <DynamicSelect
+                showSearch
+                value={program?.value}
+                placeholder={allLookupLoading ? "Loading..." : "Select Disease"}
+                optionFilterProp="children"
+                onChange={(e) => onChangeDisease(e, true)}
+                onSearch={onSearch}
+                allowClear
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                filterSort={(optionA, optionB) =>
+                  (optionA?.label ?? "")
+                    .toLowerCase()
+                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                }
+                options={allLookup?.disease_id}
+                valueProperty="id"
+                labelProperty="value"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                className="gx-w-100 gx-mb-3"
+                loading={allLookupLoading}
+                disabled={isUpdate}
+              />
             </Col>
           </Row>
-        </Form>
+
+          {/* {_isLoading && sormasCaseUuid && !sormasCase?.applicationUuid ? ( */}
+          {_isLoading ? (
+            <div className="card_loading_container">
+              <div className="card_loading gx-shadow">
+                <Initializing />
+                <h3 className="gx-mb-0">
+                  {sormasCaseUuid ? "Populating Form ...." : "Preparing form"}
+                </h3>
+              </div>
+            </div>
+          ) : (
+            <Form
+              form={form}
+              name="register"
+              disabled={componentDisabled}
+              onFinish={onFinish}
+              scrollToFirstError
+              initialValues={sormasCase?.applicationUuid ? sormasCase : {}}
+            >
+              <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+                <Panel header="Reporting Areas" key="1">
+                  <Row>
+                    <Col lg={8} md={12} sm={24}>
+                      <Form.Item
+                        form={form}
+                        label="Date of report"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="dateOfReportReportingAreas"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <CustomDatePicker
+                          form={form}
+                          name="dateOfReportReportingAreas"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="State of reporting"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="stateOfReporting"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select State</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          onChange={(value) =>
+                            handleStateChange(value, "stateOfReporting")
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          options={allStates}
+                          valueProperty="id"
+                          labelProperty="name"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="LGA of reporting"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="lgaOfReporting"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select LGA</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          options={lgaOfReportingQuery?.data || []}
+                          valueProperty="id"
+                          labelProperty="name"
+                          onChange={(value) => {
+                            handleLgaChange(value, "lgaOfReporting");
+                          }}
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label={`Ward of reporting ${
+                          wardQuery?.isLoading ? "Loading..." : ""
+                        }`}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="wardOfReporting"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select Ward</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          options={
+                            wardQuery?.isLoading
+                              ? []
+                              : wardQuery?.data?.[selectedLga?.lgaOfReporting]
+                          }
+                          valueProperty="id"
+                          labelProperty="name"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Place of detection"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="placeOfDetection"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Select
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          onChange={setPlaceOfDetection}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                        >
+                          {placeDetectedData.map((item) => (
+                            <Option label={item} value={item} key={item}>
+                              {item}
+                            </Option>
+                          ))}
+                        </Select>
+                      </ClearableFormItem>
+                    </Col>
+                    {place_of_detection === "Health Facility" && (
+                      <Col lg={8} md={12} sm={12} xs={24}>
+                        <ClearableFormItem
+                          form={form}
+                          label="Health facility"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="placeOfDetectionFacility"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <DynamicSelect
+                            showSearch
+                            allowClear
+                            optionLabelProp="label"
+                            filterOption={(input, option) =>
+                              (option?.label ?? "")
+                                .toLowerCase()
+                                .includes(input.toLowerCase())
+                            }
+                            filterSort={(optionA, optionB) =>
+                              (optionA?.label ?? "")
+                                .toLowerCase()
+                                .localeCompare(
+                                  (optionB?.label ?? "").toLowerCase()
+                                )
+                            }
+                            options={AllHealthFacilitiesQuery?.data}
+                            valueProperty="id"
+                            labelProperty="name"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+                    {["Home", "IDP Camp", "NYSC Camp", "Others"].includes(
+                      place_of_detection
+                    ) && (
+                      <Col lg={8} md={12} sm={24} xs={24}>
+                        <ClearableFormItem
+                          form={form}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          label="Place description"
+                          name="placeDescription"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input size="large" />
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Notified by"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="notifiedBy"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Select showSearch allowClear optionLabelProp="label">
+                          {notifiesBy.map((item) => (
+                            <Option label={item} value={item} key={item}>
+                              {item}
+                            </Option>
+                          ))}
+                        </Select>
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Date of notification"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        // initialValue={birth_date ? moment(birth_date) : null}
+                        name="dateOfNotificationReportingAreas"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <CustomDatePicker
+                          form={form}
+                          name="dateOfNotificationReportingAreas"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Date of investigation"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="dateOfInvestigationReportingAreas"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <CustomDatePicker
+                          isToday={true}
+                          form={form}
+                          name="dateOfInvestigationReportingAreas"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  </Row>
+                </Panel>
+              </Collapse>
+              <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+                <Panel header="Patient Information" key="1">
+                  <Row>
+                    <Col md={12} sm={24} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        label="First name"
+                        name="firstName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input size="large" />
+                      </ClearableFormItem>
+                    </Col>
+                    {/* <Col lg={8} md={12} sm={24} xs={24}>
+                <ClearableFormItem
+                  form={form}
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  label="Middle name"
+                  name="middleName"
+                >
+                  <Input size="large" />
+                </ClearableFormItem>
+              </Col> */}
+                    <Col md={12} sm={24} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        label="Last name"
+                        name="lastName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Input size="large" />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={24} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        label="Patient/Caregiver phone number"
+                        // initialValue={phone}
+                        name="phoneNumber"
+                        // rules={[
+                        //   { required: true, message: "Number is required" },
+                        //   { validator: validateNumber },
+                        // ]}
+                      >
+                        <Input
+                          type="phone"
+                          size="large"
+                          // onChange={(e) => setPhone(e.target.value)}
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={24}>
+                      <ClearableFormItem
+                        form={form}
+                        setFormValues={setFormValues}
+                        label="Date of birth"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="dateOfBirthPersonalInformation"
+                        rules={[
+                          {
+                            required: false,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <CustomDatePicker
+                          form={form}
+                          name="dateOfBirthPersonalInformation"
+                          setFormValues={setFormValues}
+                        />
+                      </ClearableFormItem>
+                    </Col>
+
+                    <Col lg={8} md={12} sm={24}>
+                      <ClearableFormItem
+                        form={form}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        tooltip="Estimated age in years and months"
+                        label="Age"
+                        name="age"
+                      >
+                        <Input.Group size="large">
+                          <Row gutter={8}>
+                            <Col span={12}>
+                              <Tooltip
+                                placement="topLeft"
+                                title="Estimated years"
+                                arrowPointAtCenter
+                              >
+                                <Input
+                                  placeholder="Estimated years"
+                                  disabled
+                                  value={ageYear}
+                                />
+                              </Tooltip>
+                            </Col>
+                            <Col span={12}>
+                              <Tooltip
+                                placement="topLeft"
+                                title="Estimated Months"
+                                arrowPointAtCenter
+                              >
+                                <Input
+                                  placeholder="Estimated months"
+                                  value={ageMonth}
+                                  disabled
+                                />
+                              </Tooltip>
+                            </Col>
+                          </Row>
+                        </Input.Group>
+                      </ClearableFormItem>
+                    </Col>
+
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Sex"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="sex"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Radio.Group
+                          buttonStyle="solid"
+                          name="sex"
+                          onChange={(e) =>
+                            setFormValues((previousState) => ({
+                              ...previousState,
+                              sex: e.target.value,
+                            }))
+                          }
+                        >
+                          <Radio.Button value="MALE">Male</Radio.Button>
+                          <Radio.Button value="FEMALE">Female</Radio.Button>
+                        </Radio.Group>
+                      </ClearableFormItem>
+                    </Col>
+
+                    {formValues?.sex === "FEMALE" && ageYear >= 10 && (
+                      <Col lg={8} md={12} sm={12} xs={24}>
+                        <ClearableFormItem
+                          form={form}
+                          label="Pregnancy status"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="pregnancyStatus"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Radio.Group
+                            buttonStyle="solid"
+                            onChange={(e) =>
+                              setFormValues((previousState) => ({
+                                ...previousState,
+                                pregnancyStatus: e.target.value,
+                              }))
+                            }
+                          >
+                            <Radio.Button value="pregnant">
+                              Pregnant
+                            </Radio.Button>
+                            <Radio.Button value="not pregnant">
+                              Not Pregnant
+                            </Radio.Button>
+                          </Radio.Group>
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="State of residence"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="stateOfResidence"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select State</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          options={allStates}
+                          valueProperty="id"
+                          labelProperty="name"
+                          onChange={(value) =>
+                            handleStateChange(value, "stateOfResidence")
+                          }
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="LGA of residence"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="lgaOfResidence"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select LGA</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          onChange={(value) => {
+                            handleLgaChange(value, "lgaOfResidence");
+                            setResidenceLga(value);
+                          }}
+                          options={lgaOfResidenceQuery?.data}
+                          valueProperty="id"
+                          labelProperty="name"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label={`Ward of residence ${
+                          wardOfResidenceQuery?.isLoading ? "Loading..." : ""
+                        }`}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="wardOfResidence"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          showSearch
+                          allowClear
+                          optionLabelProp="label"
+                          placeholder={<>&nbsp; Select Ward</>}
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? "")
+                              .toLowerCase()
+                              .localeCompare(
+                                (optionB?.label ?? "").toLowerCase()
+                              )
+                          }
+                          options={
+                            wardOfResidenceQuery?.isLoading
+                              ? []
+                              : wardOfResidenceQuery?.data?.[
+                                  selectedLga?.lgaOfResidence
+                                ]
+                          }
+                          valueProperty="id"
+                          labelProperty="name"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={24} xs={24}>
+                      <div className="gx-d-flex gx-align-items-center">
+                        <Checkbox
+                          color="primary"
+                          className="gx-pr-2"
+                          checked={epidNumberIsDisabled}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEpidNumberIsDisabled(e.target.checked);
+                          }}
+                          value="epidNumberIsDisabled"
+                          disabled={userRoleFromUrl !== USER_ROLE.EDIT}
+                        />
+                        <ClearableFormItem
+                          form={form}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          label="Epid number"
+                          name="epidNumber"
+                          help={
+                            <small>Check the box to edit the Epid Number</small>
+                          }
+                          rules={[
+                            {
+                              required: false,
+                              message: "Required Field",
+                            },
+                            {
+                              pattern: /^[0-9]*$/,
+                              message: "Only Numbers",
+                            },
+                          ]}
+                        >
+                          <Input
+                            addonBefore={epidNumberAddon || " "}
+                            size="large"
+                            disabled={
+                              !epidNumberIsDisabled || epidNumberAddon === ""
+                            }
+                          />
+                        </ClearableFormItem>
+                      </div>
+                    </Col>
+                    <Col lg={8} md={12} sm={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Patient’s residential address "
+                        name="patientResidentialAddress"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                      >
+                        <Input
+                          placeholder="Enter Address"
+                          id="address"
+                          name="address"
+                          onChange={(e) => {}}
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Settlement type"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="settlementType"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicRadio
+                          buttonStyle="solid"
+                          options={AllSettlementTypeQuery}
+                          valueProperty="id"
+                          labelProperty="value"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Occupation"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="occupation"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          placeholder="Select an option"
+                          allowClear
+                          options={allLookup?.occupation_type || []}
+                          valueProperty="id"
+                          labelProperty="value"
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            optionA.children
+                              ?.toLowerCase()
+                              .localeCompare(optionB.children?.toLowerCase())
+                          }
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Education"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="education"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicSelect
+                          placeholder="Select an option"
+                          allowClear
+                          options={allLookup?.educational_levels || []}
+                          valueProperty="id"
+                          labelProperty="value"
+                          filterOption={(input, option) =>
+                            (option?.label ?? "")
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                          filterSort={(optionA, optionB) =>
+                            optionA.children
+                              ?.toLowerCase()
+                              .localeCompare(optionB.children?.toLowerCase())
+                          }
+                        />
+                      </ClearableFormItem>
+                    </Col>
+                  </Row>
+                </Panel>
+              </Collapse>
+              {getProgram()}
+              {!["Yellow Fever", "NOMA", "Measles"].includes(
+                program?.value
+              ) && <ContactTracing form={form} />}
+              <Row>
+                <Col span={24} style={{ textAlign: "right" }}>
+                  <ClearableFormItem form={form} className="gx-m-2">
+                    <Button
+                      loading={formIsLoading}
+                      type="primary"
+                      htmlType="submit"
+                      disabled={isLoading}
+                    >
+                      {formIsLoading
+                        ? isUpdate
+                          ? "Updating Case ..."
+                          : "Creating Case ..."
+                        : isUpdate
+                        ? "Update Case"
+                        : "Create Case"}
+                    </Button>
+                  </ClearableFormItem>
+                </Col>
+              </Row>
+            </Form>
+          )}
+        </>
       )}
     </>
   );
