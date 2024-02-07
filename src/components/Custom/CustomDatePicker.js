@@ -33,6 +33,9 @@ const CustomDatePicker = ({
   if (isToday && !sormasCaseUuid && !sormasCase?.applicationUuid) {
     otherProps.value = moment();
     otherProps.disabled = true;
+    form.setFieldsValue({
+      [name]: moment().format(DATE_FORMAT)
+    });
   }
 
   return (
