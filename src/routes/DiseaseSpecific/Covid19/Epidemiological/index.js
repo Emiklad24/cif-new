@@ -509,7 +509,7 @@ const Epidemiological = ({ form }) => {
             </Row>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={24} md={24} sm={24}>
             <ClearableFormItem
               label="In the past 14 days, have you had contact with suspected or confirmed Covid-19"
               name="contactWithSuspectedConfirmedCase"

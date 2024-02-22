@@ -31,6 +31,24 @@ const ClinicalHistory = ({ form }) => {
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateOfOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "Select a date!",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfOnset" />
+            </ClearableFormItem>
+          </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
               label="Fever"
               name="fever"
               labelCol={{ span: 24 }}
@@ -246,7 +264,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -259,26 +277,6 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
-              label="Date of symptom onset"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfOnset"
-              rules={[
-                {
-                  required: true,
-                  message: "Select a date!",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfOnset" />
-            </ClearableFormItem>
-          </Col>
-        </Row>
-        <Row>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               form={form}

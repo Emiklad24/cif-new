@@ -1,11 +1,10 @@
 {
-  "name": "cif_frontend",
+  "name": "sormas-frontend",
   "version": "2.5.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "antd": "^4.20.0",
-    "antd-table-saveas-excel": "^2.2.1",
     "axios": "^0.21.1",
     "connected-react-router": "^6.8.0",
     "firebase": "^8.2.3",
@@ -36,7 +35,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "yarn install --force && react-app-rewired build",
+    "build": "react-app-rewired build",
     "test": "react-app-rewired --env=jsdom",
     "less": "lessc --js src/styles/wieldy.less public/css/style.css && lessc --js src/styles/wieldy.less public/css/style.min.css --compress -x",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",

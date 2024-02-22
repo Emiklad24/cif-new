@@ -16,7 +16,7 @@ const ClinicalHistory = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const { data: allLookup } = useFetchAllLookup();
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -28,6 +28,47 @@ const ClinicalHistory = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateOfOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfOnset" />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date seen at the health facility"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateOfVisitToHealthFacility"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <CustomDatePicker
+                form={form}
+                name="dateOfVisitToHealthFacility"
+              />
+            </ClearableFormItem>
+          </Col>
+
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
@@ -70,28 +111,6 @@ const ClinicalHistory = ({ form }) => {
               <CustomDatePicker form={form} name="dateOfFeverOnset" />
             </ClearableFormItem>
           </Col> */}
-
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date seen at the health facility"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfVisitToHealthFacility"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker
-                form={form}
-                name="dateOfVisitToHealthFacility"
-              />
-            </ClearableFormItem>
-          </Col>
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -160,35 +179,40 @@ const ClinicalHistory = ({ form }) => {
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               />
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Location of adherent pseudo-membrane?"
-              name="locationOfAdherentPseudoMembrane"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CheckboxGroup
-                options={[
-                  { label: "Throat", value: "throat" },
-                  { label: "Pharynx", value: "pharynx" },
-                  { label: "Larynx", value: "larynx" },
+          {formValues?.presenceOfAdherentPseudoMembrane === "YES" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Location of adherent pseudo-membrane?"
+                name="locationOfAdherentPseudoMembrane"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
                 ]}
-                name="locationAdherentPseudoMembrane"
-              />
-            </ClearableFormItem>
-          </Col>
+              >
+                <CheckboxGroup
+                  options={[
+                    { label: "Throat", value: "throat" },
+                    { label: "Pharynx", value: "pharynx" },
+                    { label: "Larynx", value: "larynx" },
+                  ]}
+                  name="locationAdherentPseudoMembrane"
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
@@ -270,7 +294,7 @@ const ClinicalHistory = ({ form }) => {
               wrapperCol={{ span: 24 }}
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "This field is required",
                 },
               ]}
@@ -283,26 +307,7 @@ const ClinicalHistory = ({ form }) => {
               />
             </ClearableFormItem>
           </Col>
-
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date of symptom onset"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfOnset"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfOnset" />
-            </ClearableFormItem>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
+          {/* <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -322,7 +327,7 @@ const ClinicalHistory = ({ form }) => {
                 name="dateHealthFacilityNotifiedLga"
               />
             </ClearableFormItem>
-          </Col>
+          </Col> */}
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem

@@ -1,7 +1,6 @@
-import { Col, Input, Collapse, Row, Radio } from "antd";
+import { Checkbox, Col, Collapse, Input, Radio, Row } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import { Checkbox } from "antd";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
 import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
 import DynamicRadio from "../../../../components/Custom/DynamicRadio";
@@ -30,6 +29,24 @@ const ClinicalHistory = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Date of symptom onset"
+              name="dateOfSymptomOnset"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select a date!",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               label="Fever (≥38 °C)"
@@ -518,8 +535,6 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-
-
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               label="Skin ulcer"
@@ -567,7 +582,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               label="Other symptoms(s): (specify)"
               name="otherSymptom"
@@ -595,7 +610,7 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-               <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.present_condition_type || []}
                 valueProperty="id"
@@ -605,7 +620,6 @@ const ClinicalHistory = ({ form }) => {
                   handleUpdateInputValues(e.target.name, e.target.value)
                 }
               />
-
             </ClearableFormItem>
           </Col>
 
@@ -650,25 +664,6 @@ const ClinicalHistory = ({ form }) => {
               </Col>
             </>
           )}
-
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              label="Date of symptom onset"
-              name="dateOfSymptomOnset"
-              setFormValues={setFormValues}
-              form={form}
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "Select a date!",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
-            </ClearableFormItem>
-          </Col>
         </Row>
       </Panel>
     </Collapse>

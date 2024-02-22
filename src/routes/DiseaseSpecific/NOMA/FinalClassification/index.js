@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { Col, Collapse, Radio } from "antd";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
-import React, { useState } from "react";
 import "styles/pages/form.less";
 
 const FinalClassification = ({ form }) => {
@@ -11,18 +9,14 @@ const FinalClassification = ({ form }) => {
     console.log(`selected ${value}`);
   };
 
-  const [formValues, setFormValues] = useState({});
-
-  const finalClassificationOptions = ["Epidemiologically Link", "Discarded"];
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Final Classification" key="1">
         <Col lg={12} md={12} sm={24}>
           <ClearableFormItem
             form={form}
-            setFormValues={setFormValues}
-            label="Final classification"
-            name="finalClassification"
+            label="Epidemiological Linked"
+            name="epidemiologicalLinked"
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
             rules={[
@@ -32,12 +26,9 @@ const FinalClassification = ({ form }) => {
               },
             ]}
           >
-            <Radio.Group buttonStyle="solid" name="specimenCollected">
-              {finalClassificationOptions.map((item) => (
-                <Radio.Button value={item} key={item}>
-                  {item}
-                </Radio.Button>
-              ))}
+            <Radio.Group buttonStyle="solid" name="epidemiologicalLinked">
+              <Radio.Button value="yes">Yes</Radio.Button>
+              <Radio.Button value="no">No</Radio.Button>
             </Radio.Group>
           </ClearableFormItem>
         </Col>

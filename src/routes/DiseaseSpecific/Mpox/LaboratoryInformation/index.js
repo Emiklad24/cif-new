@@ -383,8 +383,8 @@ const LaboratoryInformation = ({ form }) => {
                       )}
 
                       {formValues?.bloodTestConducted?.includes("pcr") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
+                        <>
+                          <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
                               label="PCR result"
@@ -454,12 +454,12 @@ const LaboratoryInformation = ({ form }) => {
                               </ClearableFormItem>
                             </Col>
                           )}
-                        </Row>
+                        </>
                       )}
 
                       {formValues?.bloodTestConducted?.includes("serology") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
+                        <>
+                          <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
                               label="Serology result"
@@ -529,45 +529,49 @@ const LaboratoryInformation = ({ form }) => {
                               </ClearableFormItem>
                             </Col>
                           )}
-                        </Row>
+                        </>
                       )}
                     </>
                   )}
-                  <Divider plain />
+
                   {formValues?.specimenType?.includes("crust") && (
-                    <Col lg={24} md={24} sm={24}>
-                      <ClearableFormItem
-                        collectFormName={true}
-                        label="Crust specimen received"
-                        name="crustSampleReceived"
-                        form={form}
-                        setFormValues={setFormValues}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <DynamicRadio
-                          disabled={labComponentDisabled}
-                          buttonStyle="solid"
-                          options={allLookup?.yes_no_type || []}
-                          valueProperty="id"
-                          labelProperty="value"
+                    <>
+                      <Divider plain />
+                      <Col lg={24} md={24} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          label="Crust specimen received"
                           name="crustSampleReceived"
-                          onChange={(e) =>
-                            handleUpdateInputValues(
-                              e.target.name,
-                              e.target.value
-                            )
-                          }
-                        />
-                      </ClearableFormItem>
-                    </Col>
+                          form={form}
+                          setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <DynamicRadio
+                            disabled={labComponentDisabled}
+                            buttonStyle="solid"
+                            options={allLookup?.yes_no_type || []}
+                            valueProperty="id"
+                            labelProperty="value"
+                            name="crustSampleReceived"
+                            onChange={(e) =>
+                              handleUpdateInputValues(
+                                e.target.name,
+                                e.target.value
+                              )
+                            }
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    </>
                   )}
+
                   {formValues?.crustSampleReceived === "YES" && (
                     <>
                       <Col lg={12} md={12} sm={24}>
@@ -697,10 +701,7 @@ const LaboratoryInformation = ({ form }) => {
                           >
                             <CheckboxGroup
                               disabled={labComponentDisabled}
-                              options={[
-                                { label: "PCR", value: "pcr" },
-                                { label: "Serology", value: "serology" },
-                              ]}
+                              options={[{ label: "PCR", value: "pcr" }]}
                               name="testConductedCrust"
                               onChange={(value) =>
                                 handleUpdateInputValues(
@@ -714,8 +715,8 @@ const LaboratoryInformation = ({ form }) => {
                       )}
 
                       {formValues?.testConductedCrust?.includes("pcr") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
+                        <>
+                          <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
                               label="PCR result"
@@ -785,119 +786,47 @@ const LaboratoryInformation = ({ form }) => {
                               </ClearableFormItem>
                             </Col>
                           )}
-                        </Row>
-                      )}
-
-                      {formValues?.testConductedCrust?.includes("serology") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
-                            <ClearableFormItem
-                              collectFormName={true}
-                              label="Serology result"
-                              name="resultCrustSerology"
-                              form={form}
-                              setFormValues={setFormValues}
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "This field is required",
-                                },
-                              ]}
-                            >
-                              <Radio.Group
-                                disabled={labComponentDisabled}
-                                buttonStyle="solid"
-                                name="resultCrustSerology"
-                                onChange={(e) =>
-                                  handleUpdateInputValues(
-                                    e.target.name,
-                                    e.target.value
-                                  )
-                                }
-                              >
-                                <Radio.Button value="positive">
-                                  Positive
-                                </Radio.Button>
-                                <Radio.Button value="negative">
-                                  Negative
-                                </Radio.Button>
-                                <Radio.Button value="indeterminate">
-                                  Indeterminate
-                                </Radio.Button>
-                                <Radio.Button value="pending">
-                                  Pending
-                                </Radio.Button>
-                              </Radio.Group>
-                            </ClearableFormItem>
-                          </Col>
-
-                          {["positive", "negative", "indeterminate"].includes(
-                            formValues?.resultCrustSerology
-                          ) && (
-                            <Col lg={12} md={12} sm={24}>
-                              <ClearableFormItem
-                                collectFormName={true}
-                                label="Date result released"
-                                name="dateResultReleasedCrustSerology"
-                                form={form}
-                                setFormValues={setFormValues}
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "This field is required",
-                                  },
-                                ]}
-                              >
-                                <CustomDatePicker
-                                  disabled={labComponentDisabled}
-                                  form={form}
-                                  name="dateResultReleasedCrustSerology"
-                                />
-                              </ClearableFormItem>
-                            </Col>
-                          )}
-                        </Row>
+                        </>
                       )}
                     </>
                   )}
-                  <Divider plain />
+
                   {formValues?.specimenType?.includes("swab") && (
-                    <Col lg={24} md={24} sm={24}>
-                      <ClearableFormItem
-                        collectFormName={true}
-                        label="Swab specimen received"
-                        name="swabSampleReceived"
-                        form={form}
-                        setFormValues={setFormValues}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <DynamicRadio
-                          disabled={labComponentDisabled}
-                          buttonStyle="solid"
-                          options={allLookup?.yes_no_type || []}
-                          valueProperty="id"
-                          labelProperty="value"
+                    <>
+                      <Divider plain />
+                      <Col lg={24} md={24} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          label="Swab specimen received"
                           name="swabSampleReceived"
-                          onChange={(e) =>
-                            handleUpdateInputValues(
-                              e.target.name,
-                              e.target.value
-                            )
-                          }
-                        />
-                      </ClearableFormItem>
-                    </Col>
+                          form={form}
+                          setFormValues={setFormValues}
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <DynamicRadio
+                            disabled={labComponentDisabled}
+                            buttonStyle="solid"
+                            options={allLookup?.yes_no_type || []}
+                            valueProperty="id"
+                            labelProperty="value"
+                            name="swabSampleReceived"
+                            onChange={(e) =>
+                              handleUpdateInputValues(
+                                e.target.name,
+                                e.target.value
+                              )
+                            }
+                          />
+                        </ClearableFormItem>
+                      </Col>
+                    </>
                   )}
                   {formValues?.swabSampleReceived === "YES" && (
                     <>
@@ -1027,10 +956,7 @@ const LaboratoryInformation = ({ form }) => {
                           >
                             <CheckboxGroup
                               disabled={labComponentDisabled}
-                              options={[
-                                { label: "PCR", value: "pcr" },
-                                { label: "Serology", value: "serology" },
-                              ]}
+                              options={[{ label: "PCR", value: "pcr" }]}
                               name="testConductedSwab"
                               onChange={(value) =>
                                 handleUpdateInputValues(
@@ -1044,8 +970,8 @@ const LaboratoryInformation = ({ form }) => {
                       )}
 
                       {formValues?.testConductedSwab?.includes("pcr") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
+                        <>
+                          <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
                               label="PCR result"
@@ -1115,82 +1041,7 @@ const LaboratoryInformation = ({ form }) => {
                               </ClearableFormItem>
                             </Col>
                           )}
-                        </Row>
-                      )}
-
-                      {formValues?.testConductedSwab?.includes("serology") && (
-                        <Row>
-                          <Col lg={24} md={24} sm={24}>
-                            <ClearableFormItem
-                              collectFormName={true}
-                              label="Serology result"
-                              name="resultSwabSerology"
-                              form={form}
-                              setFormValues={setFormValues}
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "This field is required",
-                                },
-                              ]}
-                            >
-                              <Radio.Group
-                                disabled={labComponentDisabled}
-                                buttonStyle="solid"
-                                name="resultSwabSerology"
-                                onChange={(e) =>
-                                  handleUpdateInputValues(
-                                    e.target.name,
-                                    e.target.value
-                                  )
-                                }
-                              >
-                                <Radio.Button value="positive">
-                                  Positive
-                                </Radio.Button>
-                                <Radio.Button value="negative">
-                                  Negative
-                                </Radio.Button>
-                                <Radio.Button value="indeterminate">
-                                  Indeterminate
-                                </Radio.Button>
-                                <Radio.Button value="pending">
-                                  Pending
-                                </Radio.Button>
-                              </Radio.Group>
-                            </ClearableFormItem>
-                          </Col>
-
-                          {["positive", "negative", "indeterminate"].includes(
-                            formValues?.resultSwabSerology
-                          ) && (
-                            <Col lg={12} md={12} sm={24}>
-                              <ClearableFormItem
-                                collectFormName={true}
-                                label="Date result released"
-                                name="dateResultReleasedSwabSerology"
-                                form={form}
-                                setFormValues={setFormValues}
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "This field is required",
-                                  },
-                                ]}
-                              >
-                                <CustomDatePicker
-                                  disabled={labComponentDisabled}
-                                  form={form}
-                                  name="dateResultReleasedSwabSerology"
-                                />
-                              </ClearableFormItem>
-                            </Col>
-                          )}
-                        </Row>
+                        </>
                       )}
                     </>
                   )}

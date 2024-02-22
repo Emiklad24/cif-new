@@ -32,6 +32,9 @@ const ContactTracing = ({ form }) => {
   const [selectedState, setSelectedState] = useState(null);
   const [selectedLga, setSelectedLga] = useState(null);
 
+  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isYearDisabled, setIsYearDisabled] = useState(false);
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
@@ -45,10 +48,10 @@ const ContactTracing = ({ form }) => {
 
   /**
    * -----------------------------------------
-   * @function getDoBFromAge
+   * @function getAgeFromDob
    * @description Get date of birth from age
    */
-  const getDoBFromAge = (dateString) => {
+  const getAgeFromDob = (dateString) => {
     if (dateString) {
       const formattedDate =
         typeof dateString === "string"
@@ -85,6 +88,26 @@ const ContactTracing = ({ form }) => {
     return 0;
   };
 
+  /**
+   * @function generateDobFromAge
+   * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
+   */
+  const generateDobFromAge = async (e) => {
+    const year = e.target.value;
+    setAgeYear(year);
+    if (year) {
+      const calculatedDate = moment()
+        .subtract(year, "years")
+        .set({ month: 0, date: 1 });
+      setIsDatePickerDisabled(true);
+      setAgeMonth(0);
+      form.setFieldsValue({ dateOfBirthOfContact: calculatedDate });
+      return;
+    }
+    form.setFieldsValue({ dateOfBirthOfContact: null });
+    setIsDatePickerDisabled(false);
+  };
+
   const handleStateChange = (value, name) => {
     setSelectedState((previousState) => ({
       ...previousState,
@@ -114,8 +137,22 @@ const ContactTracing = ({ form }) => {
   };
 
   useEffect(() => {
-    getDoBFromAge(formValues?.dateOfBirthOfContact);
-  }, [formValues]);
+    getAgeFromDob(formValues?.dateOfBirthOfContact);
+
+    if (formValues?.dateOfBirthOfContact) {
+      setIsYearDisabled(true);
+    } else {
+      setIsYearDisabled(false);
+      setAgeYear();
+    }
+  }, [formValues?.dateOfBirthOfContact]);
+
+  useEffect(() => {
+    if (formValues?.contactEstimatedAge) {
+      setAgeYear(formValues?.contactEstimatedAge);
+      setIsYearDisabled(true);
+    }
+  }, []);
 
   const { data: allStates } = useFetchAllStates();
   const lgaOfResidenceQuery = useFetchAllLGA(
@@ -223,6 +260,8 @@ const ContactTracing = ({ form }) => {
                     form={form}
                     name="dateOfBirthOfContact"
                     setFormValues={setFormValues}
+                    disabled={isDatePickerDisabled}
+                    keepValue={true}
                   />
                 </ClearableFormItem>
               </Col>
@@ -247,9 +286,9 @@ const ContactTracing = ({ form }) => {
                         >
                           <Input
                             value={ageYear}
-                            // onChange={onChangeYear}
                             placeholder="Estimated Years"
-                            disabled
+                            onChange={generateDobFromAge}
+                            disabled={isYearDisabled}
                           />
                         </Tooltip>
                       </Col>

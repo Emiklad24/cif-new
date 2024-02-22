@@ -25,7 +25,12 @@ import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import Initializing from "components/Loader/Initializing";
-import { SORMAS_ROLE, SORMAS_UUID, USER_ROLE } from "constants/ActionTypes";
+import {
+  DATE_FORMAT,
+  SORMAS_ROLE,
+  SORMAS_UUID,
+  USER_ROLE,
+} from "constants/ActionTypes";
 import GenerateEpid from "constants/JSON/GenerateEpid.json";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useFetchAllStates from "hooks/useFetchAllStates.hooks";
@@ -92,13 +97,15 @@ const App = () => {
   const [selectedLga, setSelectedLga] = useState(null);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const [ageYear, setAgeYear] = useState(0);
-  const [ageMonth, setAgeMonth] = useState(0);
+  const [ageYear, setAgeYear] = useState();
+  const [ageMonth, setAgeMonth] = useState();
   const [epidNumberIsDisabled, setEpidNumberIsDisabled] = useState(false);
   const [residenceLga, setResidenceLga] = useState("");
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
+  const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
+  const [isYearDisabled, setIsYearDisabled] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
   const sormasCaseUuid = urlParams.get(SORMAS_UUID);
@@ -166,40 +173,63 @@ const App = () => {
 
   /**
    * -----------------------------------------
-   * @function getDoBFromAge
+   * @function getAgeFromDob
    * @description Get date of birth from age
    */
-  const getDoBFromAge = (dateString) => {
-    if (dateString) {
-      const formattedDate =
-        typeof dateString === "string"
-          ? dateString
-          : moment(dateString).format("DD-MM-YYYY");
-      // Assuming arg is in the format DD-MM-YYYY
-      const parts = formattedDate.split("-");
-      const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
-      const year = parseInt(parts[2], 10);
+  const getAgeFromDob = (dateString, notInitialLoad = true) => {
+    if (!dateString) return;
 
-      const dob = new Date(year, month, day);
-      const today = new Date();
-      let ageYear = today.getFullYear() - dob.getFullYear();
-      let ageMonth = today.getMonth() - dob.getMonth();
+    const formattedDate =
+      typeof dateString === "string"
+        ? dateString
+        : // : moment(dateString).format("DD-MM-YYYY");
+          moment(dateString).format(DATE_FORMAT);
+    // Assuming arg is in the format DD-MM-YYYY
+    const parts = formattedDate.split("-");
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed in JavaScript
+    const year = parseInt(parts[2], 10);
 
-      if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
-        ageYear--;
-        ageMonth += 12;
-      }
-      setAgeMonth(ageMonth);
+    const dob = new Date(year, month, day);
+    const today = new Date();
+    let ageYear = today.getFullYear() - dob.getFullYear();
+    let ageMonth = today.getMonth() - dob.getMonth();
+
+    if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
+      ageYear--;
+      ageMonth += 12;
+    }
+    setAgeMonth(ageMonth);
+    // update this field if it is not the initial load
+    if (notInitialLoad) {
       setAgeYear(ageYear);
 
       form.setFieldsValue({
         age: ageYear,
       });
-
-      return { ageYear, ageMonth };
     }
-    return 0;
+
+    return { ageYear, ageMonth };
+  };
+
+  /**
+   * @function generateDobFromAge
+   * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
+   */
+  const generateDobFromAge = async (e) => {
+    const year = e.target.value;
+    setAgeYear(year);
+    if (year) {
+      const calculatedDate = moment()
+        .subtract(year, "years")
+        .set({ month: 0, date: 1 });
+      setIsDatePickerDisabled(true);
+      setAgeMonth(0);
+      form.setFieldsValue({ dateOfBirthPersonalInformation: calculatedDate });
+      return;
+    }
+    form.setFieldsValue({ dateOfBirthPersonalInformation: null });
+    setIsDatePickerDisabled(false);
   };
 
   /**
@@ -395,10 +425,14 @@ const App = () => {
     handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
     onChangeDisease(sormasCase?.diseaseName, false);
 
-    getDoBFromAge(sormasCase?.dateOfBirthPersonalInformation);
+    getAgeFromDob(sormasCase?.dateOfBirthPersonalInformation, false);
+    setAgeYear(sormasCase?.age);
+    setIsYearDisabled(true);
+
     form.setFieldsValue({
       ...sormasCase,
       specimenCollected: sormasCase?.specimenCollected || "NO",
+      age: sormasCase?.age,
     });
 
     if (sormasCase?.epidNumber) {
@@ -420,15 +454,53 @@ const App = () => {
     setPlaceOfDetection(sormasCase?.placeOfDetection);
   };
 
-  useEffect(() => {
-    getDoBFromAge(formValues?.dateOfBirthPersonalInformation);
-  }, [dispatch, formValues]);
+  /**
+   * @function getGeoLocation
+   * @description Get geo location
+   * TODO: to be used later
+   */
+  const getGeoLocation = async () => {
+    // Check if geolocation is supported by the browser
+    if ("geolocation" in navigator) {
+      // Get current position
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Success callback
+          const { latitude, longitude } = position.coords;
+          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        },
+        (error) => {
+          // Error callback
+          // console.error(`Error getting geolocation: ${error.message}`);
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              console.error("User denied the request for geolocation.");
+              break;
+            case error.POSITION_UNAVAILABLE:
+              console.error("Location information is unavailable.");
+              break;
+            case error.TIMEOUT:
+              console.error("The request to get user location timed out.");
+              break;
+            case error.UNKNOWN_ERROR:
+              console.error("An unknown error occurred.");
+              break;
+            default:
+              console.error("An unknown error occurred.");
+              break;
+          }
+        }
+      );
+    } else {
+      // Geolocation is not supported
+      console.error("Geolocation is not supported by your browser");
+    }
+  };
 
-  useEffect(() => {
-    if (allLookupLoading) return;
-    populateForm();
-  }, [sormasCase, allLookupLoading]);
-
+  /**
+   * @function getCaseByUuid
+   * @description Get case by uuid
+   */
   const getCaseByUuid = async () => {
     if (!sormasCaseUuid) return;
     try {
@@ -441,11 +513,45 @@ const App = () => {
     }
   };
 
+  /**
+   * -----------------------------------------
+   * watch for changes in the date of birth field, and calculate the age
+   */
+  useEffect(() => {
+    getAgeFromDob(formValues?.dateOfBirthPersonalInformation);
+
+    // disable the age field if the year is set
+    if (formValues?.dateOfBirthPersonalInformation) {
+      setIsYearDisabled(true);
+    } else {
+      setIsYearDisabled(false);
+      setAgeYear();
+    }
+  }, [formValues?.dateOfBirthPersonalInformation]);
+
+  /**
+   * -----------------------------------------
+   * watch for changes in the sormasCase object from the store and allLookupLoading, and populate the form
+   */
+  useEffect(() => {
+    if (allLookupLoading) return;
+    populateForm();
+  }, [sormasCase, allLookupLoading]);
+
+  /**
+   * -----------------------------------------
+   * watch for changes in the sormasCaseUuid and userRoleFromUrl, and get the case by uuid
+   */
   useEffect(() => {
     if (!userRoleFromUrl) return;
+    getGeoLocation();
     getCaseByUuid();
   }, [sormasCaseUuid]);
 
+  /**
+   * -----------------------------------------
+   * watch for changes in the userRoleFromUrl, and set the user role, and disable the component if the user role is not edit or super
+   */
   useEffect(() => {
     if (!userRoleFromUrl) return;
     dispatch(setUserRole(userRoleFromUrl));
@@ -459,6 +565,10 @@ const App = () => {
     }
   }, [userRoleFromUrl]);
 
+  /**
+   * -----------------------------------------
+   * watch for changes in the residenceLga and program, and generate the epid number
+   */
   useEffect(() => {
     if (residenceLga === "") return;
     generateEpidNumberVal();
@@ -472,7 +582,7 @@ const App = () => {
   return (
     <>
       {_notAuthorized ? (
-        <div className="gx-text-center">
+        <div className="gx-text-center gx-d-flex gx-h-75 gx-align-items-center gx-justify-content-center">
           <h3>Sorry, you are not authorized to view this page</h3>
         </div>
       ) : (
@@ -928,6 +1038,8 @@ const App = () => {
                           form={form}
                           name="dateOfBirthPersonalInformation"
                           setFormValues={setFormValues}
+                          disabled={isDatePickerDisabled}
+                          keepValue={true}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -940,6 +1052,13 @@ const App = () => {
                         tooltip="Estimated age in years and months"
                         label="Age"
                         name="age"
+                        // ageYear is compulsory
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
                       >
                         <Input.Group size="large">
                           <Row gutter={8}>
@@ -951,8 +1070,9 @@ const App = () => {
                               >
                                 <Input
                                   placeholder="Estimated years"
-                                  disabled
                                   value={ageYear}
+                                  onChange={generateDobFromAge}
+                                  disabled={isYearDisabled}
                                 />
                               </Tooltip>
                             </Col>
@@ -1215,6 +1335,12 @@ const App = () => {
                         name="patientResidentialAddress"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Required Field",
+                          },
+                        ]}
                       >
                         <Input
                           placeholder="Enter Address"
@@ -1331,10 +1457,10 @@ const App = () => {
                       {formIsLoading
                         ? isUpdate
                           ? "Updating Case ..."
-                          : "Creating Case ..."
+                          : "Submitting Case ..."
                         : isUpdate
                         ? "Update Case"
-                        : "Create Case"}
+                        : "Submit Case"}
                     </Button>
                   </ClearableFormItem>
                 </Col>
