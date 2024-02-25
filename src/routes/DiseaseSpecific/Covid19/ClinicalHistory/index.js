@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Input, Row, } from "antd";
+import { Col, Collapse, Input, Row } from "antd";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
@@ -22,6 +22,24 @@ const ClinicalHistory = ({ form }) => {
         <Row>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
+              label="Date of symptom onset"
+              form={form}
+              setFormValues={setFormValues}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+              name="dateOfSymptomOnset"
+            >
+              <CustomDatePicker name="dateOfSymptomOnset" form={form} />
+            </ClearableFormItem>
+          </Col>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
               label="Fever (≥38 °C) or history of fever"
               name="fever"
               form={form}
@@ -41,7 +59,6 @@ const ClinicalHistory = ({ form }) => {
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -59,13 +76,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -83,13 +99,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -107,13 +122,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -131,13 +145,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -155,13 +168,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -179,13 +191,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -203,13 +214,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -227,13 +237,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -251,13 +260,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -275,13 +283,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -299,13 +306,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -323,13 +329,12 @@ const ClinicalHistory = ({ form }) => {
                 },
               ]}
             >
-             <DynamicRadio
+              <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
                 valueProperty="id"
                 labelProperty="value"
               />
-
             </ClearableFormItem>
           </Col>
           <Col lg={8} md={8} sm={24}>
@@ -347,24 +352,6 @@ const ClinicalHistory = ({ form }) => {
                 name="otherSymptoms"
                 type="text"
               />
-            </ClearableFormItem>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              label="Date of symptom onset"
-              form={form}
-              setFormValues={setFormValues}
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-              name="dateOfSymptomOnset"
-            >
-              <CustomDatePicker name="dateOfSymptomOnset" form={form} />
             </ClearableFormItem>
           </Col>
         </Row>

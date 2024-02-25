@@ -131,16 +131,46 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             newFieldsValue?.specimenConditionNasalThroatNp,
           reasonSampleConditionThroatNp:
             newFieldsValue?.reasonSampleConditionThroatNp,
+
+          nasopharyngealSampleReceived:
+            newFieldsValue?.nasopharyngealSampleReceived,
+          dateSpecimenReceivednasopharyngeal:
+            newFieldsValue?.dateSpecimenReceivednasopharyngeal,
+          laboratoryIdnasopharyngeal:
+            newFieldsValue?.laboratoryIdnasopharyngeal,
+          specimenConditionnasopharyngeal:
+            newFieldsValue?.specimenConditionnasopharyngeal,
+          reasonSampleConditionnasopharyngeal:
+            newFieldsValue?.reasonSampleConditionnasopharyngeal,
+          testConductedSwab: newFieldsValue?.testConductedSwab,
+
           pcrResult: {
             pcrResultNasalThroatNp: newFieldsValue?.pcrResultNasalThroatNp,
             genoSequencingPcr: newFieldsValue?.genoSequencingPcr,
             dateResultReleasedPcr: newFieldsValue?.dateResultReleasedPcr,
           },
+
           rdtResult: {
             rdtResultNasalThroatNp: newFieldsValue?.rdtResultNasalThroatNp,
             genoSequencingThroatNp: newFieldsValue?.genoSequencingThroatNp,
             genoSequencingRdt: newFieldsValue?.genoSequencingRdt,
             dateResultReleasedRdt: newFieldsValue?.dateResultReleasedRdt,
+          },
+
+          skinBiopsyPCRResult: {
+            resultSwabPcr: newFieldsValue?.resultSwabPcr,
+            dateResultReleasedSwabPcr:
+              newFieldsValue?.dateResultReleasedSwabPcr,
+          },
+
+          skinBiopsyCultureResult: {
+            resultnasopharyngealCulture:
+              newFieldsValue?.resultnasopharyngealCulture,
+            specifyBacterianasopharyngealCulture:
+              newFieldsValue?.specifyBacterianasopharyngealCulture,
+            resultnasopharyngealElek: newFieldsValue?.resultnasopharyngealElek,
+            dateResultReleasedNasopharyngealCultureElek:
+              newFieldsValue?.dateResultReleasedNasopharyngealCultureElek,
           },
         }
       : null,
@@ -211,9 +241,7 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
           stoolNotAdequateReason: newFieldsValue?.stoolNotAdequateReason,
           typeOfTestDoneStool: newFieldsValue?.typeOfTestDoneStool,
           testResultStoolMicroscopy: newFieldsValue?.testResultStoolMicroscopy,
-          testResultStoolCulture: newFieldsValue?.testResultStoolCulture,
           dateSpecimenTestedStool: newFieldsValue?.dateSpecimenTestedStool,
-          testResultStool: newFieldsValue?.testResultStool,
           dateResultReleasedStool: newFieldsValue?.dateResultReleasedStool,
         }
       : null,
@@ -302,6 +330,7 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             newFieldsValue?.reasonSampleConditionNotAdequateCsf,
           testConductedCsf: newFieldsValue?.testConductedCsf,
           resultCsfPcr: newFieldsValue?.resultCsfPcr,
+          final_interpretation: newFieldsValue?.final_interpretation,
           dateResultReleasedCsfPcr: newFieldsValue?.dateResultReleasedCsfPcr,
           rdtResultCsfRdt: newFieldsValue?.rdtResultCsfRdt,
           dateResultReleasedCsfRdt: newFieldsValue?.dateResultReleasedCsfRdt,
@@ -363,16 +392,39 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             newFieldsValue?.bloodSerumSpecimenCondition,
           bloodSerumReasonSampleCondition:
             newFieldsValue?.bloodSerumReasonSampleCondition,
+            bloodSerumTestConducted: newFieldsValue?.bloodSerumTestConducted,
 
           bloodSerumResult: {
             bloodSerumMeaslesSerologyResult:
               newFieldsValue?.bloodSerumMeaslesSerologyResult,
             dateResultReleasedMeasles:
               newFieldsValue?.dateResultReleasedMeasles,
+
             bloodSerumRubellaSerologyResult:
               newFieldsValue?.bloodSerumRubellaSerologyResult,
             dateResultReleasedRubella:
               newFieldsValue?.dateResultReleasedRubella,
+
+            prntResultBloodSerum: newFieldsValue?.prntResultBloodSerum,
+            dateResultReleasedBloodSerumPrnt:
+              newFieldsValue?.dateResultReleasedBloodSerumPrnt,
+
+            resultBloodSerumPcr: newFieldsValue?.resultBloodSerumPcr,
+            dateResultReleasedBloodSerumPcr:
+              newFieldsValue?.dateResultReleasedBloodSerumPcr,
+
+            iggConvalescentResultBloodSerum:
+              newFieldsValue?.iggConvalescentResultBloodSerum,
+            dateResultReleasedBloodSerumIggc:
+              newFieldsValue?.dateResultReleasedBloodSerumIggc,
+
+            resultBloodSerumIggAcute: newFieldsValue?.resultBloodSerumIggAcute,
+            dateResultReleasedBloodIggA:
+              newFieldsValue?.dateResultReleasedBloodIggA,
+
+            resultBloodSerumIgm: newFieldsValue?.resultBloodSerumIgm,
+            dateResultReleasedBloodSerumIgm:
+              newFieldsValue?.dateResultReleasedBloodSerumIgm,
           },
         }
       : null,
@@ -393,12 +445,53 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             resultSkinBiopsyPcr: newFieldsValue?.resultSkinBiopsyPcr,
             dateResultReleasedSkinBiopsyPcr:
               newFieldsValue?.dateResultReleasedSkinBiopsyPcr,
-            resultSkinBiopsySerology: newFieldsValue?.resultSkinBiopsySerology,
-            dateResultReleasedSkinBiopsySerology:
-              newFieldsValue?.dateResultReleasedSkinBiopsySerology,
+          },
+
+          skinBiopsyCultureResult: {
+            resultSkinBiopsyCulture: newFieldsValue?.resultSkinBiopsyCulture,
+            specifyBacteriaSkinBiopsyCulture:
+              newFieldsValue?.specifyBacteriaSkinBiopsyCulture,
+            resultSkinBiopsyElek: newFieldsValue?.resultSkinBiopsyElek,
+            dateResultReleasedSkinBiopsyCultureElek:
+              newFieldsValue?.dateResultReleasedSkinBiopsyCultureElek,
           },
         }
       : null,
+
+    // nasopharyngealSswab: newFieldsValue?.specimenType?.includes(
+    //   "nasopharyngealSswab"
+    // )
+    //   ? {
+    //       nasopharyngealSswabSampleReceived:
+    //         newFieldsValue?.nasopharyngealSswabSampleReceived,
+    //       dateSpecimenReceivednasopharyngealSswab:
+    //         newFieldsValue?.dateSpecimenReceivednasopharyngealSswab,
+    //       laboratoryIdnasopharyngealSswab:
+    //         newFieldsValue?.laboratoryIdnasopharyngealSswab,
+    //       specimenConditionnasopharyngealSswab:
+    //         newFieldsValue?.specimenConditionnasopharyngealSswab,
+    //       reasonSampleConditionnasopharyngealSswab:
+    //         newFieldsValue?.reasonSampleConditionnasopharyngealSswab,
+    //       testConductedSwab: newFieldsValue?.testConductedSwab,
+
+    //       skinBiopsyPCRResult: {
+    //         resultSwabPcr: newFieldsValue?.resultSwabPcr,
+    //         dateResultReleasedSwabPcr:
+    //           newFieldsValue?.dateResultReleasedSwabPcr,
+    //       },
+
+    //       skinBiopsyCultureResult: {
+    //         resultnasopharyngealSswabCulture:
+    //           newFieldsValue?.resultnasopharyngealSswabCulture,
+    //         specifyBacterianasopharyngealSswabCulture:
+    //           newFieldsValue?.specifyBacterianasopharyngealSswabCulture,
+    //         resultnasopharyngealSswabElek:
+    //           newFieldsValue?.resultnasopharyngealSswabElek,
+    //         dateResultReleasedNasopharyngealCultureElek:
+    //           newFieldsValue?.dateResultReleasedNasopharyngealCultureElek,
+    //       },
+    //     }
+    //   : null,
   };
 
   // remove null or undefined values from the object newSpecimenData

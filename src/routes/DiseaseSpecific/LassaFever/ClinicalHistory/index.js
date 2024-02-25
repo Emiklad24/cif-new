@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Col, Input, Collapse, Row, Radio } from "antd";
-import React, { useState } from "react";
-import "styles/pages/form.less";
+import { Col, Collapse, Input, Row } from "antd";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
-import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import React, { useState } from "react";
+import "styles/pages/form.less";
 
 const ClinicalHistory = ({ form }) => {
   const [formValues, setFormValues] = useState({});
@@ -21,6 +21,25 @@ const ClinicalHistory = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              // initialValue={symptom_date ? moment(symptom_date) : null}
+              name="dateOfSymptomOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
@@ -312,25 +331,6 @@ const ClinicalHistory = ({ form }) => {
                 name="otherSymptoms"
                 type="Text"
               />
-            </ClearableFormItem>
-          </Col>
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date of symptom onset"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              // initialValue={symptom_date ? moment(symptom_date) : null}
-              name="dateOfSymptomOnset"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
             </ClearableFormItem>
           </Col>
         </Row>

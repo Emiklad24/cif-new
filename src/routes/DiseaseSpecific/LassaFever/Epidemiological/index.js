@@ -1,25 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { Col, Collapse, Input, Radio, Row, Select } from "antd";
+import { Col, Collapse, Input, Radio, Row } from "antd";
 import React, { useState } from "react";
 // import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import DynamicSelect from "../../../../components/Custom/DynamicSelect";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import useFetchAllStates from "../../../../hooks/useFetchAllStates.hooks";
-import useFetchAllLGA from "../../../../hooks/useFetchLga.hook";
-
-const { Option } = Select;
-
-const stateData = ["FCT", "Enugu"];
-const lgaData = {
-  FCT: ["AMAC", "Bwari", "Kwali"],
-  Enugu: ["Nsukka", "Enugu south", "Udi"],
-};
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import DynamicSelect from "components/Custom/DynamicSelect";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
+import useFetchAllStates from "hooks/useFetchAllStates.hooks";
+import useFetchAllLGA from "hooks/useFetchLga.hook";
 
 const Epidemiological = ({ form }) => {
-  const [lga, setLga] = useState([]);
   const { Panel } = Collapse;
 
   const onChange = (value) => {
@@ -384,25 +375,23 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.contactWithSuspectedConfirmedCase === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Details of the case"
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Details of the case"
+                name="nameOrAddressOfCase"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Input
+                  placeholder="Enter name or address of case"
+                  id="nameOrAddressOfCase"
                   name="nameOrAddressOfCase"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                >
-                  <Input
-                    placeholder="Enter name or address of case"
-                    id="nameOrAddressOfCase"
-                    name="nameOrAddressOfCase"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) => {}}
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
           <Col lg={12} md={12} sm={24}>
@@ -411,7 +400,7 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="Have you visited or been admitted to any inpatient health facility?"
               name="visitedOrAdmittedInpatient"
-              labelCol={{ span: 27 }}
+              labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               rules={[
                 {
@@ -552,7 +541,7 @@ const Epidemiological = ({ form }) => {
               form={form}
               label="In the last 3 weeks did you participate in any form of burial rite?"
               name="participateInBurialrite"
-              labelCol={{ span: 27 }}
+              labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               colon={false}
               rules={[

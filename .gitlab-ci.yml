@@ -1,0 +1,49 @@
+# This is a basic GitLab CI configuration file for deploying a React app to GitLab Pages.
+
+image: node:16.20
+
+stages:
+  - build
+  - deploy
+  - pages
+
+# variables:
+#   CI_PAGES_REPOSITORY: "https://gitlab.com/enlis-staging/sormas-frontend.git"
+
+build:
+  stage: build
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - yarn install
+    - yarn build
+    - ls build
+  artifacts:
+    paths:
+      - build/
+
+deploy:
+  stage: deploy
+  script:
+    - rm -rf public
+    - mkdir -p public
+    - cp -r build/* public/
+    - ls
+    - ls build
+    - ls public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+
+pages:
+  stage: pages
+  script:
+    - echo "Deploying to GitLab Pages"
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

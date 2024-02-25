@@ -755,60 +755,30 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.animalContact === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Kind of animal"
-                  name="kindAnimal"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Enter Animal Name"
-                    id="kindAnimalName"
-                    name="epidNumber"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                form={form}
+                setFormValues={setFormValues}
+                label="Kind of animal"
+                name="kindAnimal"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Animal Name"
+                  id="kindAnimalName"
+                  name="epidNumber"
+                  onChange={(e) => {}}
+                />
+              </ClearableFormItem>
+            </Col>
           )}
-
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
-              label="Was the patient admitted in the isolation ward?"
-              name="wasThePatientAdmittedInTheIsolationWard"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 12 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <DynamicRadio
-                buttonStyle="solid"
-                options={allLookup?.yes_no_unknown || []}
-                valueProperty="id"
-                labelProperty="value"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-                name="wasThePatientAdmittedInTheIsolationWard"
-              />
-            </ClearableFormItem>
-          </Col>
 
           {formValues?.wasThePatientAdmittedInTheIsolationWard === "YES" && (
             <>

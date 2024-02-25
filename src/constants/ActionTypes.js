@@ -61,3 +61,5 @@ export const USER_ROLE = {
   VIEW: "view",
   SUPER: "super",
 };
+
+export const MONTH_LIST = ["Year", "Month", "Day"];

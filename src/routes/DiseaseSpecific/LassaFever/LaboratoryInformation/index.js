@@ -44,6 +44,11 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
+  const canSeeResult =
+    USER_ROLE.LAB === userRole ||
+    USER_ROLE.SUPER === userRole ||
+    USER_ROLE.VIEW === userRole;
+
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Laboratory information" key="1">
@@ -96,10 +101,7 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker
-                    form={form}
-                    name="dateSpecimenCollected"
-                  />
+                  <CustomDatePicker form={form} name="dateSpecimenCollected" />
                 </ClearableFormItem>
               </Col>
               <Col lg={12} md={12} sm={24}>
@@ -183,10 +185,7 @@ const LaboratoryInformation = ({ form }) => {
                     },
                   ]}
                 >
-                  <CustomDatePicker
-                    form={form}
-                    name="dateSpecimenSent"
-                  />
+                  <CustomDatePicker form={form} name="dateSpecimenSent" />
                 </ClearableFormItem>
               </Col>
             </>
@@ -220,7 +219,7 @@ const LaboratoryInformation = ({ form }) => {
             </Col>
           )}
 
-          {formValues?.specimenCollected === "YES" && (
+          {formValues?.specimenCollected === "YES" && canSeeResult && (
             <>
               <Divider plain>Laboratory result</Divider>
               {formValues?.specimenType?.includes("blood") &&

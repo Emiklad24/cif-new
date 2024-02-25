@@ -33,6 +33,18 @@ const ClinicalHistory = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
+          <Col lg={12} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Date of symptom onset"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              name="dateOfSymptomOnset"
+            >
+              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
+            </ClearableFormItem>
+          </Col>
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
@@ -262,19 +274,6 @@ const ClinicalHistory = ({ form }) => {
                 name="othersymptoms"
                 type="text"
               />
-            </ClearableFormItem>
-          </Col>
-
-          <Col lg={12} md={8} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Date of symptom onset"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              name="dateOfSymptomOnset"
-            >
-              <CustomDatePicker form={form} name="dateOfSymptomOnset" />
             </ClearableFormItem>
           </Col>
         </Row>
