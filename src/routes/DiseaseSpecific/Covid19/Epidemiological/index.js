@@ -202,7 +202,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               label="Have you returned from a local travel within the last 14 days?"
               form={form}
@@ -538,28 +538,26 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.contactWithSuspectedConfirmedCase === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  label="Details of the case"
-                  form={form}
-                  setFormValues={setFormValues}
+            <Col lg={12} sm={24}>
+              <ClearableFormItem
+                label="Details of the case"
+                form={form}
+                setFormValues={setFormValues}
+                name="epidOrNameOfCase"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Input
+                  placeholder="Enter Epid Number or Name of case"
+                  id="epidOrNameOfCase"
                   name="epidOrNameOfCase"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                >
-                  <Input
-                    placeholder="Enter Epid Number or Name of case"
-                    id="epidOrNameOfCase"
-                    name="epidOrNameOfCase"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) => {}}
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               label="In the past 14 days, have you attended an event"
               name="attendedAnyEvent"
@@ -757,7 +755,7 @@ const Epidemiological = ({ form }) => {
             </Row>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               label="Have you visited or been admitted to any inpatient health facility"
               name="visitedOrAdmittedInpatient"
@@ -787,7 +785,7 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.visitedOrAdmittedInpatient === "YES" && (
             <>
-              <Col lg={12} md={12} sm={24}>
+              <Col lg={12} sm={24}>
                 <ClearableFormItem
                   label="Date of visit or admission?"
                   form={form}

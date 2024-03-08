@@ -259,7 +259,7 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={8} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}

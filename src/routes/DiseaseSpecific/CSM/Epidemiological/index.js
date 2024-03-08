@@ -27,12 +27,11 @@ const Epidemiological = ({ form }) => {
 
   const { data: allLookup } = useFetchAllLookup();
 
-
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
-          <Col lg={12} md={12} sm={24}>
+        <Col lg={12} sm={24}>
             <ClearableFormItem
               label="Patient ever received any meningococcal vaccine?"
               name="patientEverReceivedAnyMeningococalVaccine"
@@ -131,9 +130,10 @@ const Epidemiological = ({ form }) => {
                   ]}
                 >
                   <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="vaccine card">Vaccine Card</Radio.Button>
+                    <Radio.Button value="vaccine card">
+                      Vaccine Card
+                    </Radio.Button>
                     <Radio.Button value="verbal">Verbal</Radio.Button>
-
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
@@ -158,7 +158,6 @@ const Epidemiological = ({ form }) => {
               >
                 <Radio.Group buttonStyle="solid">
                   <Radio.Button value="religious_exemption">
-                    {" "}
                     Religious_Exemption
                   </Radio.Button>
                   <Radio.Button value="medical_contraindication">
@@ -190,16 +189,15 @@ const Epidemiological = ({ form }) => {
               ]}
             >
               <DynamicRadio
-                  buttonStyle="solid"
-                  options={allLookup?.yes_no_unknown || []}
-                  valueProperty="id"
-                  labelProperty="value"
-                  name="travelInLast10Days"
-                  onChange={(e) =>
-                    handleUpdateInputValues(e.target.name, e.target.value)
-                  }
-                />
-
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+                name="travelInLast10Days"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
             </ClearableFormItem>
           </Col>
           {formValues?.travelInLast10Days === "YES" && (
@@ -217,7 +215,7 @@ const Epidemiological = ({ form }) => {
             </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               label="Have you had contact with anyone with similar symptoms/confirmed case in the last 10 days"
               name="contactWithAnyoneWithSymtomsOrConfirmed"
@@ -232,18 +230,16 @@ const Epidemiological = ({ form }) => {
                 },
               ]}
             >
-               <DynamicRadio
-                  buttonStyle="solid"
-                  options={allLookup?.yes_no_unknown || []}
-                  valueProperty="id"
-                  labelProperty="value"
-                  name="contactWithAnyoneWithSymtomsOrConfirmed"
-                  onChange={(e) =>
-                    handleUpdateInputValues(e.target.name, e.target.value)
-                  }
-                />
-
-
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+                name="contactWithAnyoneWithSymtomsOrConfirmed"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
             </ClearableFormItem>
           </Col>
           {formValues?.contactWithAnyoneWithSymtomsOrConfirmed === "YES" && (

@@ -180,7 +180,7 @@ const Epidemiological = ({ form }) => {
             </Col>
           )}
 
-          <Col lg={24} md={12} sm={24}>
+          <Col lg={24} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}

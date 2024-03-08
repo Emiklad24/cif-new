@@ -26,7 +26,7 @@ const Epidemiological = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -64,7 +64,7 @@ const Epidemiological = ({ form }) => {
                   form={form}
                   setFormValues={setFormValues}
                   label="Number of diphtheria containing vaccine dose received"
-                  name="numberOfDiphtheriaContainingVaccine"
+                  name="numberofVaccineDoses"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
                   rules={[
@@ -151,10 +151,7 @@ const Epidemiological = ({ form }) => {
                     name="notVaccinated"
                   >
                     <Radio.Button value="religious exemption">
-                      {" "}
-                      Religious ExemptionDid the patient have contact with a
-                      known suspect / confirmed case anytime in the three weeks
-                      before becoming ill?
+                      Religious Exemption
                     </Radio.Button>
                     <Radio.Button value="medical contraindication">
                       Medical Contraindication
@@ -172,30 +169,28 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.vaccinationStatus === "notVaccinated" &&
             formValues?.notVaccinated === "others" && (
-              <>
-                <Col lg={12} md={12} sm={24}>
-                  <ClearableFormItem
-                    form={form}
-                    setFormValues={setFormValues}
-                    label="Other reasons not vaccinated?"
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Other reasons not vaccinated?"
+                  name="otherReasonNoVaccine"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                >
+                  <Input
+                    placeholder="Enter reason"
+                    id="otherReasonNoVaccine"
                     name="otherReasonNoVaccine"
-                    labelCol={{ span: 24 }}
-                    wrapperCol={{ span: 24 }}
-                  >
-                    <Input
-                      placeholder="Enter reason"
-                      id="otherReasonNoVaccine"
-                      name="otherReasonNoVaccine"
-                      onChange={(e) =>
-                        handleUpdateInputValues(e.target.name, e.target.value)
-                      }
-                    />
-                  </ClearableFormItem>
-                </Col>
-              </>
+                    onChange={(e) =>
+                      handleUpdateInputValues(e.target.name, e.target.value)
+                    }
+                  />
+                </ClearableFormItem>
+              </Col>
             )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -224,59 +219,29 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.didThePatientTravelDuringOrAfterIllness === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Travel address of patient during or after illness"
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                form={form}
+                setFormValues={setFormValues}
+                label="Travel address of patient during or after illness"
+                name="clientAddress"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes, enter address visited"
+                  id="clientAddress"
                   name="clientAddress"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes, enter address visited"
-                    id="clientAddress"
-                    name="clientAddress"
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                />
+              </ClearableFormItem>
+            </Col>
           )}
-
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              form={form}
-              setFormValues={setFormValues}
-              label="Patient hospitalized or visit anyone in the hospital before illness?"
-              name="patientHospitalizedOrVisitAnyoneInTheHospitalBeforeIllness"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <DynamicRadio
-                buttonStyle="solid"
-                options={allLookup?.yes_no_unknown || []}
-                valueProperty="id"
-                labelProperty="value"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-                name="patientHospitalizedOrVisitAnyoneInTheHospitalBeforeIllness"
-              />
-            </ClearableFormItem>
-          </Col>
 
           {formValues?.patientHospitalizedOrVisitAnyoneInTheHospitalBeforeIllness ===
             "YES" && (
@@ -375,7 +340,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -405,7 +370,30 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.wasThePatientAdmittedInTheIsolationWard === "YES" && (
             <>
-              <Col lg={8} md={8} sm={24}>
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  form={form}
+                  setFormValues={setFormValues}
+                  label="Name of hospital"
+                  name="nameOfHospitalPatientAdmittedInIsolation"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Enter Hospital Name"
+                    id="nameOfHospitalPatientAdmittedInIsolation"
+                    name="nameOfHospitalPatientAdmittedInIsolation"
+                    onChange={(e) => {}}
+                  />
+                </ClearableFormItem>
+              </Col>
+              <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
@@ -426,8 +414,7 @@ const Epidemiological = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-
-              <Col lg={8} md={8} sm={24}>
+              <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
@@ -448,10 +435,11 @@ const Epidemiological = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
+
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -489,12 +477,7 @@ const Epidemiological = ({ form }) => {
                   name="nameTraditionalHealer"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
+
                 >
                   <Input
                     placeholder="Enter name of healer"
@@ -513,12 +496,7 @@ const Epidemiological = ({ form }) => {
                   name="addressTraditionalHealer"
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
+
                 >
                   <Input
                     placeholder="Enter address of healer"
@@ -531,7 +509,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -560,34 +538,27 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.traditionalMedicine === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Traditional medicine type"
+            <Col lg={12} sm={24}>
+              <ClearableFormItem
+                form={form}
+                setFormValues={setFormValues}
+                label="Traditional medicine type"
+                name="traditionalMedicineType"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+
+              >
+                <Input
+                  placeholder="Enter Medicine Type"
+                  id="traditionalMedicineType"
                   name="traditionalMedicineType"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Enter Medicine Type"
-                    id="traditionalMedicineType"
-                    name="traditionalMedicineType"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) => {}}
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={24} md={12} sm={24}>
+          <Col lg={24} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -639,94 +610,8 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          {formValues?.contactSuspectConfirmed === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Date seen at Health fcility"
-                  name="dateSeenAtHelthFacility"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <CustomDatePicker
-                    form={form}
-                    name="dateSeenAtHelthFacility"
-                  />
-                </ClearableFormItem>
-              </Col>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Date of discharge"
-                  name="dateOfDischargeOfPatient"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                >
-                  <CustomDatePicker
-                    form={form}
-                    name="dateOfDischargeOfPatient"
-                  />
-                </ClearableFormItem>
-              </Col>
 
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Patient status"
-                  name="patientCurrentStatus"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Radio.Group buttonStyle="solid">
-                    <Radio.Button value="in-patient">In-Patient</Radio.Button>
-                    <Radio.Button value="out-patient">Out-Patient</Radio.Button>
-                  </Radio.Group>
-                </ClearableFormItem>
-              </Col>
-
-              <Col lg={12} md={12} sm={12}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Epid number of the case"
-                  name="epidCase"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 12 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Enter Epid Number of case"
-                    id="epidNumber"
-                    name="epidNumber"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
-          )}
-
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={24} sm={24}>
             <ClearableFormItem
               form={form}
               setFormValues={setFormValues}
@@ -779,72 +664,35 @@ const Epidemiological = ({ form }) => {
               </ClearableFormItem>
             </Col>
           )}
+          <Col lg={24} sm={24}>
+            <ClearableFormItem
+              form={form}
+              setFormValues={setFormValues}
+              label="Is this case epidemiologically linked to another confirmed case/outbreak?"
+              name="epidemiologicallyLinkedExposed"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="epidemiologicallyLinkedExposed"
+              />
+            </ClearableFormItem>
+          </Col>
 
-          {formValues?.wasThePatientAdmittedInTheIsolationWard === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Name of hospital"
-                  name="nameOfHospitalPatientAdmittedInIsolation"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Enter Hospital Name"
-                    id="nameOfHospitalPatientAdmittedInIsolation"
-                    name="nameOfHospitalPatientAdmittedInIsolation"
-                    onChange={(e) => {}}
-                  />
-                </ClearableFormItem>
-              </Col>
-
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Date of admission?"
-                  name="dateOfAdmission"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <CustomDatePicker form={form} name="dateOfAdmission" />
-                </ClearableFormItem>
-              </Col>
-
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  form={form}
-                  setFormValues={setFormValues}
-                  label="Date of discharge"
-                  name="dateOfDischarge"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <CustomDatePicker form={form} name="dateOfDischarge" />
-                </ClearableFormItem>
-              </Col>
-
-              <Col lg={12} md={12} sm={24}>
+          <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   form={form}
                   setFormValues={setFormValues}
@@ -871,8 +719,7 @@ const Epidemiological = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-
-              {formValues?.outcome === "DEAD" && (
+          {formValues?.outcome === "DEAD" && (
                 <Col lg={12} md={12} sm={24}>
                   <ClearableFormItem
                     form={form}
@@ -892,8 +739,6 @@ const Epidemiological = ({ form }) => {
                   </ClearableFormItem>
                 </Col>
               )}
-            </>
-          )}
         </Row>
       </Panel>
     </Collapse>
