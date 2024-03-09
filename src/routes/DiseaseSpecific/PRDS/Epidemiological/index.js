@@ -94,7 +94,7 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.vaccinationStatusInfluenza === "vaccinated" && (
             <Row>
-              <Divider/>
+              <Divider />
               <Col lg={8} md={8} sm={24}>
                 <ClearableFormItem
                   setFormValues={setFormValues}
@@ -162,7 +162,7 @@ const Epidemiological = ({ form }) => {
 
           {formValues?.vaccinationStatusCovid === "vaccinated" && (
             <Row>
-              <Divider/>
+              <Divider />
               <Col lg={12} md={12} sm={12} xs={24}>
                 <ClearableFormItem
                   labelCol={{ span: 24 }}
@@ -214,14 +214,15 @@ const Epidemiological = ({ form }) => {
                     },
                   ]}
                 >
-                  <Radio.Group buttonStyle="solid" name="numberofCovidVaccineDoses">
+                  <Radio.Group
+                    buttonStyle="solid"
+                    name="numberofCovidVaccineDoses"
+                  >
                     <Radio.Button value="1">1</Radio.Button>
                     <Radio.Button value="2+">2+</Radio.Button>
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>
-
-
 
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
@@ -241,7 +242,6 @@ const Epidemiological = ({ form }) => {
                   <CustomDatePicker
                     name="dateOfFirstVaccinationCovid"
                     form={form}
-
                   />
                 </ClearableFormItem>
               </Col>
@@ -261,13 +261,11 @@ const Epidemiological = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Divider/>
+              <Divider />
             </Row>
           )}
 
-
-
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -296,35 +294,33 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.returnedFromLocalTravel14Days === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  label="Location of local travel"
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                label="Location of local travel"
+                name="additionalTravelhistory"
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes specify"
                   name="additionalTravelhistory"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes specify"
-                    name="additionalTravelhistory"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -352,35 +348,33 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
           {formValues?.returnedFromInternationalTravel14Days === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  label="Location of international travel"
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                label="Location of international travel"
+                name="specifyReturnedFromInternationalTravel14Days"
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes, specify location"
                   name="specifyReturnedFromInternationalTravel14Days"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes, specify location"
-                    name="specifyReturnedFromInternationalTravel14Days"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -408,35 +402,33 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
           {formValues?.contactWithSuspectedConfirmed === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Name of contact"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Name of contact"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                name="specifycontactWithSuspectedConfirmed"
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes specify"
                   name="specifycontactWithSuspectedConfirmed"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes specify"
-                    name="specifycontactWithSuspectedConfirmed"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -464,35 +456,33 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
           {formValues?.attendedAnyEvent === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Location of event"
-                  labelCol={{ span: 24 }}
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Location of event"
+                labelCol={{ span: 24 }}
+                name="specifyContactWithSuspectedConfirmed"
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes specify"
                   name="specifyContactWithSuspectedConfirmed"
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes specify"
-                    name="specifyContactWithSuspectedConfirmed"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -520,35 +510,33 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
           {formValues?.admittedInpatient === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Name of inpatient health facility"
-                  labelCol={{ span: 24 }}
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Name of inpatient health facility"
+                labelCol={{ span: 24 }}
+                name="specifyAdmittedInpatient"
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes specify"
                   name="specifyAdmittedInpatient"
-                  wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes specify"
-                    name="specifyAdmittedInpatient"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -576,32 +564,30 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
           {formValues?.visitOutpatient === "YES" && (
-            <>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Name of outpatient facility"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Name of outpatient facility"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                name="specifyVisitOutpatient"
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="If yes specify"
                   name="specifyVisitOutpatient"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="If yes specify"
-                    name="specifyVisitOutpatient"
-                    onChange={(e) =>
-                      handleUpdateInputValues(e.target.name, e.target.value)
-                    }
-                  />
-                </ClearableFormItem>
-              </Col>
-            </>
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
           )}
 
           <Col lg={12} md={12} sm={24}>

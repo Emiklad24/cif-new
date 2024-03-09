@@ -392,7 +392,7 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             newFieldsValue?.bloodSerumSpecimenCondition,
           bloodSerumReasonSampleCondition:
             newFieldsValue?.bloodSerumReasonSampleCondition,
-            bloodSerumTestConducted: newFieldsValue?.bloodSerumTestConducted,
+          bloodSerumTestConducted: newFieldsValue?.bloodSerumTestConducted,
 
           bloodSerumResult: {
             bloodSerumMeaslesSerologyResult:

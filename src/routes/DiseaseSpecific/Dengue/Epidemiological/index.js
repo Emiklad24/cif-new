@@ -164,7 +164,7 @@ const Epidemiological = ({ form }) => {
             </Form.Item>
           </Col>
 
-          <Col lg={24} md={12} sm={24}>
+          <Col lg={24} sm={24}>
             <Form.Item
               label="Have cases of fever and jaundice been seen or reported in places visited by the patient in the last 2 weeks
                     before onset of symptoms?"
