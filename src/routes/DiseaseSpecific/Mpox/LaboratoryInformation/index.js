@@ -367,7 +367,7 @@ const LaboratoryInformation = ({ form }) => {
                             <CheckboxGroup
                               disabled={labComponentDisabled}
                               options={[
-                                { label: "PCR", value: "pcr" },
+                                // { label: "PCR", value: "pcr" },
                                 { label: "Serology", value: "serology" },
                               ]}
                               name="bloodTestConducted"
@@ -382,7 +382,7 @@ const LaboratoryInformation = ({ form }) => {
                         </Col>
                       )}
 
-                      {formValues?.bloodTestConducted?.includes("pcr") && (
+                      {/* {formValues?.bloodTestConducted?.includes("pcr") && (
                         <>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
@@ -455,14 +455,14 @@ const LaboratoryInformation = ({ form }) => {
                             </Col>
                           )}
                         </>
-                      )}
+                      )} */}
 
                       {formValues?.bloodTestConducted?.includes("serology") && (
                         <>
-                          <Col lg={12} md={12} sm={24}>
+                          <Col lg={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
-                              label="Serology result"
+                              label="Serology (HIV result)"
                               name="serologyResultBlood"
                               form={form}
                               setFormValues={setFormValues}
@@ -505,10 +505,10 @@ const LaboratoryInformation = ({ form }) => {
                           {["positive", "negative", "indeterminate"].includes(
                             formValues?.serologyResultBlood
                           ) && (
-                            <Col lg={12} md={12} sm={24}>
+                            <Col lg={12} sm={24}>
                               <ClearableFormItem
                                 collectFormName={true}
-                                label="Date result released"
+                                label="Date Serology (HIV result) released"
                                 name="dateResultReleasedBloodSerology"
                                 form={form}
                                 setFormValues={setFormValues}

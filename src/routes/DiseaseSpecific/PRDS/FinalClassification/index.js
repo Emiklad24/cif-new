@@ -14,7 +14,7 @@ const FinalClassification = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Final Classification" key="1">
         <Row>
-          <Col lg={24} md={12} sm={24}>
+          <Col lg={24} sm={24}>
             <ClearableFormItem
               label="Final classification"
               name="finalClassification"

@@ -56,7 +56,7 @@ const Epidemiological = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -346,7 +346,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -394,7 +394,7 @@ const Epidemiological = ({ form }) => {
             </Col>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -446,7 +446,7 @@ const Epidemiological = ({ form }) => {
                 </ClearableFormItem>
               </Col>
 
-              <Col lg={12} md={12} sm={24}>
+              <Col lg={12} sm={24}>
                 <ClearableFormItem
                   setFormValues={setFormValues}
                   form={form}
@@ -466,7 +466,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -535,7 +535,7 @@ const Epidemiological = ({ form }) => {
             </>
           )}
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -560,7 +560,7 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}

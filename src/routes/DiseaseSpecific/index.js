@@ -99,6 +99,7 @@ const App = () => {
   const [place_of_detection, setPlaceOfDetection] = useState("");
   const [ageYear, setAgeYear] = useState();
   const [ageMonth, setAgeMonth] = useState();
+  const [ageDay, setAgeDay] = useState();
   const [epidNumberIsDisabled, setEpidNumberIsDisabled] = useState(false);
   const [residenceLga, setResidenceLga] = useState("");
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
@@ -194,12 +195,20 @@ const App = () => {
     const today = new Date();
     let ageYear = today.getFullYear() - dob.getFullYear();
     let ageMonth = today.getMonth() - dob.getMonth();
+    let ageDay = today.getDate() - dob.getDate();
 
     if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
       ageYear--;
       ageMonth += 12;
     }
+
+    if (ageDay < 0) {
+      ageMonth--;
+      ageDay += 30;
+    }
+
     setAgeMonth(ageMonth);
+    setAgeDay(ageDay);
     // update this field if it is not the initial load
     if (notInitialLoad) {
       setAgeYear(ageYear);
@@ -209,7 +218,7 @@ const App = () => {
       });
     }
 
-    return { ageYear, ageMonth };
+    return { ageYear, ageMonth, ageDay };
   };
 
   /**
@@ -225,6 +234,7 @@ const App = () => {
         .set({ month: 0, date: 1 });
       setIsDatePickerDisabled(true);
       setAgeMonth(0);
+      setAgeDay(0);
       form.setFieldsValue({ dateOfBirthPersonalInformation: calculatedDate });
       return;
     }
@@ -265,10 +275,14 @@ const App = () => {
 
   const onFinish = async (fieldsValue) => {
     setFormIsLoading(true);
-
-    // Attach epidAddOn to epidNumber if epidNumber is not empty
-    if (fieldsValue.epidNumber) {
+    // if (fieldsValue.epidNumber) {
+    //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
+    // }
+    // if epid number is "" or null, or undefined, construct the epid number
+    if (!fieldsValue.epidNumber) {
       fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
+    } else {
+      fieldsValue.epidNumber = "";
     }
 
     // construct payload
@@ -278,18 +292,30 @@ const App = () => {
       labFormName
     );
 
+    // VALIDATE DATE OF NOTIFICATION AND DATE OF REPORT
+    if (
+      fieldsValue?.dateOfNotificationReportingAreas &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      moment(fieldsValue?.dateOfNotificationReportingAreas).isBefore(
+        moment(fieldsValue?.dateOfReportReportingAreas)
+      )
+    ) {
+      notification.warning({
+        message: "Date of notification cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
     try {
-      console.log(
-        fieldsValue,
-        "🚀 ~ file: index.js ~ line 268 ~ onFinish ~ reconstructedPayload",
-        reconstructedPayload
-      );
       // Update or create sormas case
       const updateAction = isUpdate
         ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
         : createSormasCaseAction({ ...reconstructedPayload });
 
+      // Api call
       const response = await dispatch(updateAction);
+      console.log(response, "hello");
 
       notification.success({
         message: response?.message ?? "Success",
@@ -343,6 +369,7 @@ const App = () => {
     setFormValues({});
     setAgeYear(0);
     setAgeMonth(0);
+    setAgeDay(0);
     setEpidNumberAddon("");
     setFormValues({});
     setResidenceLga("");
@@ -419,11 +446,11 @@ const App = () => {
   const populateForm = async () => {
     if (!sormasCase?.applicationUuid || loading) return;
 
-    handleStateChange(sormasCase.stateOfResidence, "stateOfResidence");
-    handleLgaChange(sormasCase.lgaOfResidence, "lgaOfResidence");
-    handleStateChange(sormasCase.stateOfReporting, "stateOfReporting");
-    handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
-    onChangeDisease(sormasCase?.diseaseName, false);
+    await handleStateChange(sormasCase.stateOfResidence, "stateOfResidence");
+    await handleLgaChange(sormasCase.lgaOfResidence, "lgaOfResidence");
+    await handleStateChange(sormasCase.stateOfReporting, "stateOfReporting");
+    await handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
+    await onChangeDisease(sormasCase?.diseaseName, false);
 
     getAgeFromDob(sormasCase?.dateOfBirthPersonalInformation, false);
     setAgeYear(sormasCase?.age);
@@ -435,10 +462,15 @@ const App = () => {
       age: sormasCase?.age,
     });
 
+    const spiltByHypen = sormasCase?.epidNumber.split("-");
+    // use the first 4 items in the array to get the prefix
+    const _prefix = spiltByHypen.slice(0, 4).join("-");
+    const _epidValue = spiltByHypen[5] ?? "";
+
     if (sormasCase?.epidNumber) {
-      setEpidNumberAddon(sormasCase?.epidNumber?.slice(0, -3));
+      setEpidNumberAddon(`${_prefix}-`);
       form.setFieldsValue({
-        epidNumber: sormasCase?.epidNumber?.split("-")[4],
+        epidNumber: _epidValue,
       });
     }
 
@@ -632,10 +664,10 @@ const App = () => {
           ) : (
             <Form
               form={form}
-              name="register"
+              name="sormasCaseForm"
               disabled={componentDisabled}
               onFinish={onFinish}
-              scrollToFirstError
+              scrollToFirstError={true}
               initialValues={sormasCase?.applicationUuid ? sormasCase : {}}
             >
               <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -999,27 +1031,8 @@ const App = () => {
                         <Input size="large" />
                       </ClearableFormItem>
                     </Col>
-                    <Col lg={8} md={12} sm={24} xs={24}>
-                      <ClearableFormItem
-                        form={form}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        label="Patient/Caregiver phone number"
-                        // initialValue={phone}
-                        name="phoneNumber"
-                        // rules={[
-                        //   { required: true, message: "Number is required" },
-                        //   { validator: validateNumber },
-                        // ]}
-                      >
-                        <Input
-                          type="phone"
-                          size="large"
-                          // onChange={(e) => setPhone(e.target.value)}
-                        />
-                      </ClearableFormItem>
-                    </Col>
-                    <Col lg={8} md={12} sm={24}>
+
+                    <Col lg={8} sm={24}>
                       <ClearableFormItem
                         form={form}
                         setFormValues={setFormValues}
@@ -1044,48 +1057,63 @@ const App = () => {
                       </ClearableFormItem>
                     </Col>
 
-                    <Col lg={8} md={12} sm={24}>
+                    <Col lg={16} sm={24}>
                       <ClearableFormItem
                         form={form}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
-                        tooltip="Estimated age in years and months"
+                        tooltip="Estimated age in years, months and days"
                         label="Age"
                         name="age"
-                        // ageYear is compulsory
                         rules={[
                           {
-                            required: true,
+                            required: false,
                             message: "This field is required",
                           },
                         ]}
                       >
                         <Input.Group size="large">
                           <Row gutter={8}>
-                            <Col span={12}>
+                            <Col span={8}>
                               <Tooltip
                                 placement="topLeft"
                                 title="Estimated years"
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  placeholder="Estimated years"
+                                  placeholder="0"
                                   value={ageYear}
                                   onChange={generateDobFromAge}
                                   disabled={isYearDisabled}
+                                  addonAfter={"Est. Years"}
                                 />
                               </Tooltip>
                             </Col>
-                            <Col span={12}>
+                            <Col span={8}>
                               <Tooltip
                                 placement="topLeft"
-                                title="Estimated Months"
+                                title="Est. Months"
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  placeholder="Estimated months"
+                                  placeholder="0"
                                   value={ageMonth}
                                   disabled
+                                  addonAfter={"Est. Month"}
+                                />
+                              </Tooltip>
+                            </Col>
+                            <Col span={8}>
+                              <Tooltip
+                                placement="topLeft"
+                                title="Est. days"
+                                arrowPointAtCenter
+                              >
+                                <Input
+                                  placeholder="0"
+                                  value={ageDay}
+                                  disabled
+                                  addonAfter={"Est. Days"}
                                 />
                               </Tooltip>
                             </Col>
@@ -1093,71 +1121,6 @@ const App = () => {
                         </Input.Group>
                       </ClearableFormItem>
                     </Col>
-
-                    <Col lg={8} md={12} sm={12} xs={24}>
-                      <ClearableFormItem
-                        form={form}
-                        label="Sex"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        name="sex"
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <Radio.Group
-                          buttonStyle="solid"
-                          name="sex"
-                          onChange={(e) =>
-                            setFormValues((previousState) => ({
-                              ...previousState,
-                              sex: e.target.value,
-                            }))
-                          }
-                        >
-                          <Radio.Button value="MALE">Male</Radio.Button>
-                          <Radio.Button value="FEMALE">Female</Radio.Button>
-                        </Radio.Group>
-                      </ClearableFormItem>
-                    </Col>
-
-                    {formValues?.sex === "FEMALE" && ageYear >= 10 && (
-                      <Col lg={8} md={12} sm={12} xs={24}>
-                        <ClearableFormItem
-                          form={form}
-                          label="Pregnancy status"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="pregnancyStatus"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Radio.Group
-                            buttonStyle="solid"
-                            onChange={(e) =>
-                              setFormValues((previousState) => ({
-                                ...previousState,
-                                pregnancyStatus: e.target.value,
-                              }))
-                            }
-                          >
-                            <Radio.Button value="pregnant">
-                              Pregnant
-                            </Radio.Button>
-                            <Radio.Button value="not pregnant">
-                              Not Pregnant
-                            </Radio.Button>
-                          </Radio.Group>
-                        </ClearableFormItem>
-                      </Col>
-                    )}
 
                     <Col lg={8} md={12} sm={12} xs={24}>
                       <ClearableFormItem
@@ -1328,6 +1291,7 @@ const App = () => {
                         </ClearableFormItem>
                       </div>
                     </Col>
+
                     <Col lg={8} md={12} sm={24}>
                       <ClearableFormItem
                         form={form}
@@ -1350,28 +1314,7 @@ const App = () => {
                         />
                       </ClearableFormItem>
                     </Col>
-                    <Col lg={8} md={12} sm={12} xs={24}>
-                      <ClearableFormItem
-                        form={form}
-                        label="Settlement type"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        name="settlementType"
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <DynamicRadio
-                          buttonStyle="solid"
-                          options={AllSettlementTypeQuery}
-                          valueProperty="id"
-                          labelProperty="value"
-                        />
-                      </ClearableFormItem>
-                    </Col>
+
                     <Col lg={8} md={12} sm={12} xs={24}>
                       <ClearableFormItem
                         form={form}
@@ -1405,6 +1348,7 @@ const App = () => {
                         />
                       </ClearableFormItem>
                     </Col>
+
                     <Col lg={8} md={12} sm={12} xs={24}>
                       <ClearableFormItem
                         form={form}
@@ -1435,6 +1379,117 @@ const App = () => {
                               ?.toLowerCase()
                               .localeCompare(optionB.children?.toLowerCase())
                           }
+                        />
+                      </ClearableFormItem>
+                    </Col>
+
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Settlement type"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="settlementType"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <DynamicRadio
+                          buttonStyle="solid"
+                          options={AllSettlementTypeQuery}
+                          valueProperty="id"
+                          labelProperty="value"
+                        />
+                      </ClearableFormItem>
+                    </Col>
+
+                    <Col lg={8} md={12} sm={12} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        label="Sex"
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        name="sex"
+                        rules={[
+                          {
+                            required: true,
+                            message: "This field is required",
+                          },
+                        ]}
+                      >
+                        <Radio.Group
+                          buttonStyle="solid"
+                          name="sex"
+                          onChange={(e) =>
+                            setFormValues((previousState) => ({
+                              ...previousState,
+                              sex: e.target.value,
+                            }))
+                          }
+                        >
+                          <Radio.Button value="MALE">Male</Radio.Button>
+                          <Radio.Button value="FEMALE">Female</Radio.Button>
+                        </Radio.Group>
+                      </ClearableFormItem>
+                    </Col>
+
+                    {formValues?.sex === "FEMALE" && ageYear >= 10 && (
+                      <Col lg={8} md={12} sm={12} xs={24}>
+                        <ClearableFormItem
+                          form={form}
+                          label="Pregnancy status"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          name="pregnancyStatus"
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Radio.Group
+                            buttonStyle="solid"
+                            onChange={(e) =>
+                              setFormValues((previousState) => ({
+                                ...previousState,
+                                pregnancyStatus: e.target.value,
+                              }))
+                            }
+                          >
+                            <Radio.Button value="pregnant">
+                              Pregnant
+                            </Radio.Button>
+                            <Radio.Button value="not pregnant">
+                              Not Pregnant
+                            </Radio.Button>
+                          </Radio.Group>
+                        </ClearableFormItem>
+                      </Col>
+                    )}
+
+                    <Col lg={8} md={12} sm={24} xs={24}>
+                      <ClearableFormItem
+                        form={form}
+                        labelCol={{ span: 24 }}
+                        wrapperCol={{ span: 24 }}
+                        label="Patient/Caregiver phone number"
+                        // initialValue={phone}
+                        name="phoneNumber"
+                        rules={[
+                          {
+                            pattern: /^[0-9]*$/,
+                            message: "Please input a valid phone number",
+                          },
+                        ]}
+                      >
+                        <Input
+                          type="phone"
+                          size="large"
+                          // onChange={(e) => setPhone(e.target.value)}
                         />
                       </ClearableFormItem>
                     </Col>

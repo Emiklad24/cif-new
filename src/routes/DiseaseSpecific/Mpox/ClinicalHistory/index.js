@@ -369,7 +369,7 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="Lymphadenopathy"
+              label="Swollen Lymph Nodes"
               name="lymphadenopathy"
               setFormValues={setFormValues}
               form={form}

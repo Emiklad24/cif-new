@@ -9,7 +9,7 @@ const useFetchAllLookup = (initialData) => {
     queryKey: [GET_ALL_LOOK_UPS],
     // initialData: initialData || GetAllLookups,
   });
-  
+
   return {
     data,
     isLoading,

@@ -53,6 +53,16 @@
             "value": "Unknown"
         }
     ],
+  "in_out_patient": [
+        {
+            "id": "In-patient",
+            "value": "in-patient"
+        },
+        {
+            "id": "Out-patient",
+            "value": "out-patient"
+        }
+    ],
     "person_condition": [
         {
             "id": "0",
