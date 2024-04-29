@@ -1,4 +1,4 @@
-import { Checkbox, Col, Collapse, Input, Radio, Row } from "antd";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
@@ -561,29 +561,6 @@ const ClinicalHistory = ({ form }) => {
 
           <Col lg={8} md={8} sm={24}>
             <ClearableFormItem
-              label="HIV/AIDS status"
-              name="hivAidsStatus"
-              setFormValues={setFormValues}
-              form={form}
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "Select an option!",
-                },
-              ]}
-            >
-              <Radio.Group buttonStyle="solid">
-                <Radio.Button value="positive">Positive</Radio.Button>
-                <Radio.Button value="negative">Negative</Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
-            </ClearableFormItem>
-          </Col>
-
-          <Col lg={8} md={8} sm={24}>
-            <ClearableFormItem
               label="Other symptoms(s): (specify)"
               name="otherSymptom"
               setFormValues={setFormValues}
@@ -633,12 +610,6 @@ const ClinicalHistory = ({ form }) => {
                   form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
                 >
                   <CustomDatePicker form={form} name="dateOfDeath" />
                 </ClearableFormItem>
@@ -652,17 +623,184 @@ const ClinicalHistory = ({ form }) => {
                   form={form}
                   labelCol={{ span: 24 }}
                   wrapperCol={{ span: 24 }}
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
                 >
                   <Input id="placeOfDeath" placeholder="Place of death" />
                 </ClearableFormItem>
               </Col>
             </>
+          )}
+          <Divider plain>Co-morbidity</Divider>
+
+          <Col lg={24} md={24} sm={24}>
+            <ClearableFormItem
+              label="Have you been tested for HIV before/within this year"
+              name="haveTestedForHiv"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={[
+                  {
+                    id: "NOT_PREVIOUSLY_TESTED",
+                    value: "Not previously tested",
+                  },
+                  {
+                    id: "PREVIOUSLY_TESTED",
+                    value: "Previously tested",
+                  },
+                  {
+                    id: "NEGATIVE_PREVIOUSLY_TESTED",
+                    value: "Negative previously tested",
+                  },
+                  {
+                    id: "POSITIVE_IN_HIV_CARE",
+                    value: "Positive in HIV care",
+                  },
+                  {
+                    id: "PREVIOUSLY_TESTED_POSITIVE_NOT_IN_HIV_CARE",
+                    value: "Previoulsy tested positive not in HIV care",
+                  },
+                  {
+                    id: "UNKNOWN",
+                    value: "Unknown",
+                  },
+                ]}
+                valueProperty="id"
+                labelProperty="value"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              label="Do you consent to be tested"
+              name="doYouConsentToBeTested"
+              setFormValues={setFormValues}
+              form={form}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Select an option!",
+                },
+              ]}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_type || []}
+                valueProperty="id"
+                labelProperty="value"
+                name="doYouConsentToBeTested"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              />
+            </ClearableFormItem>
+          </Col>
+
+          {formValues?.doYouConsentToBeTested === "YES" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                label="HIV RTK test result"
+                name="hivRtkTestResult"
+                setFormValues={setFormValues}
+                form={form}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
+              >
+                <DynamicRadio
+                  buttonStyle="solid"
+                  options={[
+                    {
+                      id: "POSITIVE",
+                      value: "Positive",
+                    },
+                    {
+                      id: "NEGATIVE",
+                      value: "Negative",
+                    },
+                    {
+                      id: "INCONCLUSIVE",
+                      value: "Inconclusive",
+                    },
+                    {
+                      id: "NOT_DONE",
+                      value: "Not done",
+                    },
+                  ]}
+                  valueProperty="id"
+                  labelProperty="value"
+                  name="hivRtkTestResult"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
+
+          {formValues?.hivRtkTestResult === "POSITIVE" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                label="Referred for Antiretroviral therapy (ART)"
+                name="referredForArt"
+                setFormValues={setFormValues}
+                form={form}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select an option!",
+                  },
+                ]}
+              >
+                <DynamicRadio
+                  buttonStyle="solid"
+                  options={allLookup?.yes_no_type || []}
+                  valueProperty="id"
+                  labelProperty="value"
+                  name="referredForArt"
+                  onChange={(e) =>
+                    handleUpdateInputValues(e.target.name, e.target.value)
+                  }
+                />
+              </ClearableFormItem>
+            </Col>
+          )}
+
+          {formValues?.referredForArt === "YES" && (
+            <Col lg={8} md={8} sm={24}>
+              <ClearableFormItem
+                label="Name of Hospital/Health facility"
+                name="nameOfHospitalReferredForArt"
+                setFormValues={setFormValues}
+                form={form}
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+              >
+                <Input
+                  id="nameOfHospitalReferredForArt"
+                  placeholder="Name of Hospital/Health facility"
+                />
+              </ClearableFormItem>
+            </Col>
           )}
         </Row>
       </Panel>

@@ -133,6 +133,28 @@ const LaboratoryInformation = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <ClearableFormItem
+                  collectFormName={true}
+                  setFormValues={setFormValues}
+                  form={form}
+                  label="Date specimen sent"
+                  labelCol={{ span: 24 }}
+                  wrapperCol={{ span: 24 }}
+                  name="dateSpecimenSent"
+                  rules={[
+                    {
+                      required: true,
+                      message: "This field is required",
+                    },
+                  ]}
+                >
+                  <CustomDatePicker form={form} name="dateSpecimenSent" />
+                </ClearableFormItem>
+              </Col>
+
+              
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   collectFormName={true}
@@ -169,25 +191,7 @@ const LaboratoryInformation = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-              <Col lg={12} md={12} sm={24}>
-                <ClearableFormItem
-                  collectFormName={true}
-                  setFormValues={setFormValues}
-                  form={form}
-                  label="Date specimen sent"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  name="dateSpecimenSent"
-                  rules={[
-                    {
-                      required: true,
-                      message: "This field is required",
-                    },
-                  ]}
-                >
-                  <CustomDatePicker form={form} name="dateSpecimenSent" />
-                </ClearableFormItem>
-              </Col>
+             
             </>
           )}
 

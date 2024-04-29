@@ -933,12 +933,7 @@ const Epidemiological = ({ form }) => {
                 setFormValues={setFormValues}
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
+              
               >
                 <CustomDatePicker name="dateOfDeathOutcome" form={form} />
               </ClearableFormItem>
