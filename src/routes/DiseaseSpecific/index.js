@@ -798,7 +798,7 @@ const App = () => {
 
   return (
     <>
-      {false ? (
+      {_notAuthorized ? (
         <div className="gx-text-center gx-d-flex gx-h-75 gx-align-items-center gx-justify-content-center">
           <h3>Sorry, you are not authorized to view this page</h3>
         </div>
