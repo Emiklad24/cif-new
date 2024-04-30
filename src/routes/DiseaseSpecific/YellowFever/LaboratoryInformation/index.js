@@ -1,4 +1,4 @@
-import { Checkbox, Col, Collapse, Divider, Radio, Row } from "antd";
+import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
 import ClearableFormItem from "components/Custom/ClearableFormItem";
 import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
@@ -260,6 +260,29 @@ const LaboratoryInformation = ({ form }) => {
                           collectFormName={true}
                           setFormValues={setFormValues}
                           form={form}
+                          label="Laboratory ID"
+                          name="bloodSerumLaboratoryId"
+                          labelCol={{ span: 24 }}
+                          wrapperCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                              message: "This field is required",
+                            },
+                          ]}
+                        >
+                          <Input
+                            placeholder="Laboratory ID"
+                            name="bloodSerumLaboratoryId"
+                          />
+                        </ClearableFormItem>
+                      </Col>
+
+                      <Col lg={8} md={12} sm={24}>
+                        <ClearableFormItem
+                          collectFormName={true}
+                          setFormValues={setFormValues}
+                          form={form}
                           label="Specimen condition"
                           name="bloodSerumSpecimenCondition"
                           labelCol={{ span: 24 }}
@@ -274,6 +297,12 @@ const LaboratoryInformation = ({ form }) => {
                           <Radio.Group
                             buttonStyle="solid"
                             disabled={labComponentDisabled}
+                            onChange={(e) => {
+                              handleUpdateInputValues(
+                                "bloodSerumSpecimenCondition",
+                                e.target.value
+                              );
+                            }}
                           >
                             <Radio.Button value="adequate">
                               Adequate
@@ -284,6 +313,32 @@ const LaboratoryInformation = ({ form }) => {
                           </Radio.Group>
                         </ClearableFormItem>
                       </Col>
+
+                      {formValues?.bloodSerumSpecimenCondition ===
+                        "not adequate" && (
+                        <Col lg={12} md={12} sm={24}>
+                          <ClearableFormItem
+                            collectFormName={true}
+                            setFormValues={setFormValues}
+                            form={form}
+                            label="Reason why specimen is not adequate"
+                            name="reasonSpecimenNotAdequate"
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            rules={[
+                              {
+                                required: true,
+                                message: "This field is required",
+                              },
+                            ]}
+                          >
+                            <Input
+                              placeholder="Reason why specimen is not adequate"
+                              name="reasonSpecimenNotAdequate"
+                            />
+                          </ClearableFormItem>
+                        </Col>
+                      )}
 
                       {formValues?.specimenType?.length >= 1 && (
                         <Col lg={24} md={24} sm={24}>
@@ -305,14 +360,17 @@ const LaboratoryInformation = ({ form }) => {
                             <CheckboxGroup
                               disabled={labComponentDisabled}
                               options={[
-                                { label: "Igm", value: "igm" },
-                                { label: "IgG(acute)", value: "iggAcute" },
+                                { label: "IgM", value: "igm" },
+                                // { label: "IgG(acute)", value: "iggAcute" },
+                                // {
+                                //   label: "IgG(convalescent)",
+                                //   value: "iggConvalescent",
+                                // },
                                 {
-                                  label: "IgG(convalescent)",
-                                  value: "iggConvalescent",
+                                  label: "PCR/RT-PCR (In Country)",
+                                  value: "pcr",
                                 },
-                                { label: "PRNT", value: "prnt" },
-                                { label: "PCR/RT-PCR", value: "pcr" },
+                                { label: "IP Darker result", value: "regionalLabResult" },
                               ]}
                               name="bloodSerumTestConducted"
                               onChange={(value) => {
@@ -328,6 +386,7 @@ const LaboratoryInformation = ({ form }) => {
 
                       {formValues?.bloodSerumTestConducted?.includes("igm") && (
                         <Row>
+                          <Divider plain>Igg Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -392,8 +451,9 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         </Row>
                       )}
-
-                      {formValues?.bloodSerumTestConducted?.includes("iggAcute") && (
+                      {formValues?.bloodSerumTestConducted?.includes(
+                        "iggAcute"
+                      ) && (
                         <Row>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
@@ -531,6 +591,7 @@ const LaboratoryInformation = ({ form }) => {
 
                       {formValues?.bloodSerumTestConducted?.includes("pcr") && (
                         <Row>
+                          <Divider plain>Pcr Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -596,15 +657,43 @@ const LaboratoryInformation = ({ form }) => {
                         </Row>
                       )}
 
-                      {formValues?.bloodSerumTestConducted?.includes("prnt") && (
+                      {formValues?.bloodSerumTestConducted?.includes(
+                        "regionalLabResult"
+                      ) && (
                         <Row>
+
+                      <Divider plain>IP Darker result Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
                               setFormValues={setFormValues}
                               form={form}
-                              label="PRNT result for blood/serum specimen"
-                              name="prntResultBloodSerum"
+                              label="Date result released"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              name="dateResultReleasedRegionalLab"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CustomDatePicker
+                                disabled={labComponentDisabled}
+                                form={form}
+                                name="dateResultReleasedRegionalLab"
+                              />
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="IgM"
+                              name="regionalLabResultIgm"
                               labelCol={{ span: 24 }}
                               wrapperCol={{ span: 24 }}
                               rules={[
@@ -642,10 +731,10 @@ const LaboratoryInformation = ({ form }) => {
                               collectFormName={true}
                               setFormValues={setFormValues}
                               form={form}
-                              label="Date result released"
+                              label="PCR"
+                              name="regionalLabResultPcr"
                               labelCol={{ span: 24 }}
                               wrapperCol={{ span: 24 }}
-                              name="dateResultReleasedBloodSerumPrnt"
                               rules={[
                                 {
                                   required: true,
@@ -653,11 +742,182 @@ const LaboratoryInformation = ({ form }) => {
                                 },
                               ]}
                             >
-                              <CustomDatePicker
+                              <Radio.Group
+                                buttonStyle="solid"
                                 disabled={labComponentDisabled}
-                                form={form}
-                                name="dateResultReleasedBloodSerumPrnt"
-                              />
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="PRNT"
+                              name="regionalLabResultPrnt"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Dengue Fever"
+                              name="regionalLabResultDengueFever"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="West Nile"
+                              name="regionalLabResultWestNile"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
+                            </ClearableFormItem>
+                          </Col>
+
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              setFormValues={setFormValues}
+                              form={form}
+                              label="Chikungunya"
+                              name="regionalLabResultChikungunya"
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <Radio.Group
+                                buttonStyle="solid"
+                                disabled={labComponentDisabled}
+                              >
+                                <Radio.Button value="positive">
+                                  Positive
+                                </Radio.Button>
+                                <Radio.Button value="negative">
+                                  Negative
+                                </Radio.Button>
+                                <Radio.Button value="inconclusive">
+                                  Inconclusive
+                                </Radio.Button>
+                                <Radio.Button value="pending">
+                                  Pending
+                                </Radio.Button>
+                                <Radio.Button value="notDone">
+                                  Not done
+                                </Radio.Button>
+                              </Radio.Group>
                             </ClearableFormItem>
                           </Col>
                         </Row>
