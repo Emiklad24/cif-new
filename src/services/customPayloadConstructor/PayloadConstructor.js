@@ -43,6 +43,7 @@ const constructTravelObject = async (
   internationalTravel,
   contact = contactTracingKeys
 ) => {
+
   const extractedPropertiesLocalTravel = {};
   const extractedPropertiesInternationalTravel = {};
   const extractedPropertiesContact = {};
@@ -80,15 +81,17 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
   );
 
   const newSpecimenData = {
-    // comment this out
-    // legacySpecimenData: specimenData,
-
     nameOfTestingLaboratory: newFieldsValue?.nameOfTestingLaboratory,
     dateSpecimenCollected: newFieldsValue?.dateSpecimenCollected,
     specimenCollected: newFieldsValue?.specimenCollected,
     specimenType: newFieldsValue?.specimenType,
     dateSpecimenSent: newFieldsValue?.dateSpecimenSent,
     laboratoryIdNasalThroatNp: newFieldsValue?.laboratoryIdNasalThroatNp,
+
+    nameOfTestingLaboratoryStool: newFieldsValue?.nameOfTestingLaboratoryStool,
+    dateSpecimenSentStool: newFieldsValue?.dateSpecimenSentStool,
+    nameOfTestingLaboratoryRectalSwab: newFieldsValue?.nameOfTestingLaboratoryRectalSwab,
+    dateSpecimenSentRectalSwab: newFieldsValue?.dateSpecimenSentRectalSwab,
 
     nasalSwab: newFieldsValue?.specimenType?.includes("nasalSwab")
       ? {

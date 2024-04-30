@@ -204,7 +204,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Nasal swab"
+                        label="Nasal swab (Received)"
                         name="nSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
@@ -239,7 +239,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Throat swab"
+                        label="Throat swab (Received)"
                         name="tSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
@@ -274,7 +274,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Nasopharyngeal swab"
+                        label="Nasopharyngeal Swab (Received)"
                         name="npSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}

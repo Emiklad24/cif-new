@@ -25,12 +25,7 @@ import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import Initializing from "components/Loader/Initializing";
-import {
-  DATE_FORMAT,
-  SORMAS_ROLE,
-  SORMAS_UUID,
-  USER_ROLE,
-} from "constants/ActionTypes";
+import { DATE_FORMAT, QUERY_PARAM, USER_ROLE } from "constants/ActionTypes";
 import GenerateEpid from "constants/JSON/GenerateEpid.json";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useFetchAllStates from "hooks/useFetchAllStates.hooks";
@@ -108,14 +103,21 @@ const App = () => {
   console.log(formValues);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
   const [isYearDisabled, setIsYearDisabled] = useState(false);
-  const [
-    dateOfNotificationReportingAreasData,
-    setDateOfNotificationReportingAreas,
-  ] = useState("");
 
+  // QUERY PARAMS
   const urlParams = new URLSearchParams(window.location.search);
-  const sormasCaseUuid = urlParams.get(SORMAS_UUID);
-  const userRoleFromUrl = urlParams.get(SORMAS_ROLE);
+  const sormasCaseUuid = urlParams.get(QUERY_PARAM.SORMAS_UUID);
+  const userRoleFromUrl = urlParams.get(QUERY_PARAM.SORMAS_ROLE);
+  const userId = urlParams.get(QUERY_PARAM.USER_ID);
+  const userStateId = urlParams.get(QUERY_PARAM.STATE_ID);
+
+  const userLgaId = urlParams.get(QUERY_PARAM.LGA_ID);
+  const userWardId = urlParams.get(QUERY_PARAM.WARD_ID);
+  const userFacilityId = urlParams.get(QUERY_PARAM.FACILITY_ID);
+
+  // ==========================================================
+
+  // console.log('HelloWorld', userId, userStateId, userLgaId, userWardId, userFacilityId);
 
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
@@ -132,7 +134,7 @@ const App = () => {
    * @function handleStateChange
    * @description Handle state change
    */
-  const handleStateChange = (value, name) => {
+  const handleStateChange = async (value, name) => {
     setSelectedState((previousState) => ({
       ...previousState,
       [name]: value,
@@ -159,7 +161,7 @@ const App = () => {
    * @function handleLgaChange
    * @description Handle LGA change
    */
-  const handleLgaChange = (value, name) => {
+  const handleLgaChange = async (value, name) => {
     setSelectedLga((previousState) => ({
       ...previousState,
       [name]: value,
@@ -240,7 +242,12 @@ const App = () => {
       setIsDatePickerDisabled(true);
       setAgeMonth(0);
       setAgeDay(0);
-      form.setFieldsValue({ dateOfBirthPersonalInformation: calculatedDate });
+      // convert the date to the format DD-MM-YYYY
+      const formattedDate = moment(calculatedDate).format(DATE_FORMAT);
+      form.setFieldsValue({
+        dateOfBirthPersonalInformation: formattedDate,
+        age: year,
+      });
       return;
     }
     form.setFieldsValue({ dateOfBirthPersonalInformation: null });
@@ -655,10 +662,9 @@ const App = () => {
       // Update or create sormas case
       const updateAction = isUpdate
         ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
-        : createSormasCaseAction({ ...reconstructedPayload });
+        : createSormasCaseAction({ userId, ...reconstructedPayload });
 
       // Api call
-      // console.log(reconstructedPayload, "reconstructedPayload");
       const response = await dispatch(updateAction);
 
       notification.success({
@@ -668,8 +674,8 @@ const App = () => {
           : "Case created successfully",
       });
 
-      setFormIsLoading(false);
       if (!isUpdate) resetForm();
+      setFormIsLoading(false);
     } catch (error) {
       const { message, validationMessages } = error;
 
@@ -951,6 +957,59 @@ const App = () => {
     generateEpidNumberVal();
   }, [residenceLga, program]);
 
+  /**
+   * @function getStateDataByQueryId
+   * @description Get state data by query id
+   */
+  const getStateDataByQueryId = async () => {
+    await handleStateChange(userStateId, "stateOfReporting");
+    await handleLgaChange(userLgaId, "lgaOfReporting");
+
+    form.setFieldsValue({
+      stateOfReporting: Number(userStateId),
+    });
+
+    if (userLgaId) {
+      form.setFieldsValue({
+        lgaOfReporting: Number(userLgaId),
+      });
+    }
+    return;
+  };
+
+  // set the state and lga of reporting if the state and lga id is present
+  useEffect(() => {
+    if (sormasCase?.applicationUuid) return;
+    getStateDataByQueryId();
+  }, [userStateId]);
+
+  // set the ward of reporting if the lga id is present
+  useEffect(() => {
+    if (!userWardId) return;
+    if (wardQuery?.isFetched) {
+      form.setFieldsValue({
+        wardOfReporting: Number(userWardId),
+      });
+    }
+  }, [wardQuery?.isFetched, userWardId]);
+
+  // set the place of detection if the health facility id is present
+  useEffect(() => {
+    if (!userFacilityId) return;
+    if (
+      AllHealthFacilitiesQuery?.data?.length > 0 &&
+      place_of_detection === "Health Facility"
+    ) {
+      form.setFieldsValue({
+        placeOfDetectionFacility: Number(userFacilityId),
+      });
+    }
+  }, [
+    AllHealthFacilitiesQuery?.data?.length,
+    userFacilityId,
+    place_of_detection,
+  ]);
+
   const onChange = () => {};
   const onSearch = () => {};
 
@@ -996,7 +1055,6 @@ const App = () => {
             </Col>
           </Row>
 
-          {/* {_isLoading && sormasCaseUuid && !sormasCase?.applicationUuid ? ( */}
           {_isLoading ? (
             <div className="card_loading_container">
               <div className="card_loading gx-shadow">

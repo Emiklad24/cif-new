@@ -7,7 +7,7 @@ const useFetchWard = (lgaId) => {
     queryFn: () => getWard(lgaId),
     queryKey: [GET_WARD, lgaId],
     enabled: lgaId ? true : false,
-    retry: 6,
+    retry: 2,
   });
 
   return getWardQuery;

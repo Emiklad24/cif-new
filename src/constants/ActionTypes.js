@@ -51,8 +51,6 @@ export const FETCH_LOCAL_GOVERNMENT_AREA_LIST =
 export const FETCH_STATE_LIST = "FETCH_STATE_LIST";
 
 export const FETCH_SORMAS_DATA = "FETCH_SORMAS_DATA";
-export const SORMAS_UUID = "sormasCaseUuid";
-export const SORMAS_ROLE = "role";
 export const DATE_FORMAT = "DD-MM-YYYY";
 
 export const USER_ROLE = {
@@ -60,6 +58,16 @@ export const USER_ROLE = {
   LAB: "lab",
   VIEW: "view",
   SUPER: "super",
+};
+
+export const QUERY_PARAM = {
+  USER_ID: "userId",
+  STATE_ID: "stateId",
+  LGA_ID: "lgaId",
+  WARD_ID: "wardId",
+  FACILITY_ID: "facilityId",
+  SORMAS_UUID: "sormasCaseUuid",
+  SORMAS_ROLE: "role",
 };
 
 export const MONTH_LIST = ["Year", "Month", "Day"];
