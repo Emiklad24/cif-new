@@ -373,62 +373,63 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
-                      {formValues?.specimenType?.length >= 1 && (
-                        <Col lg={12} md={12} sm={24}>
-                          <ClearableFormItem
-                            collectFormName={true}
-                            label="Test conducted"
-                            name="testConductedCsf"
-                            form={form}
-                            setFormValues={setFormValues}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                                message: "This field is required",
-                              },
-                            ]}
-                          >
-                            <CheckboxGroup
-                              disabled={labComponentDisabled}
-                              options={testConductedOption}
+                      {formValues?.specimenType?.length >= 1 &&
+                        formValues?.specimenConditionCsf !== "" && (
+                          <Col lg={12} md={12} sm={24}>
+                            <ClearableFormItem
+                              collectFormName={true}
+                              label="Test conducted"
                               name="testConductedCsf"
-                              onChange={(value) => {
-                                handleUpdateInputValues(
-                                  "testConductedCsf",
-                                  value
-                                );
-                                if (value.includes("not_done")) {
-                                  setDisableOptions(true);
-                                  setFormValues((prevState) => ({
-                                    ...prevState,
-                                    testConductedCsf: ["not_done"],
-                                  }));
-                                  form.setFieldsValue({
-                                    resultCsfPcr: undefined,
-                                    final_interpretation: undefined,
-                                    final_interpretation_others: undefined,
-                                    dateResultReleasedCsfPcr: undefined,
-                                    rdtResultCsfRdt: undefined,
-                                    dateResultReleasedCsfRdt: undefined,
-                                    resultCsfCulture: undefined,
-                                    dateResultReleasedCsfCulture: undefined,
-                                    testConductedCsf: ["not_done"],
-                                  });
-                                  // resetResultFields(false);
-                                  return;
-                                }
-                                setDisableOptions(false);
-                                handleUpdateInputValues(
-                                  "testConductedCsf",
-                                  value
-                                );
-                              }}
-                            />
-                          </ClearableFormItem>
-                        </Col>
-                      )}
+                              form={form}
+                              setFormValues={setFormValues}
+                              labelCol={{ span: 24 }}
+                              wrapperCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "This field is required",
+                                },
+                              ]}
+                            >
+                              <CheckboxGroup
+                                disabled={labComponentDisabled}
+                                options={testConductedOption}
+                                name="testConductedCsf"
+                                onChange={(value) => {
+                                  handleUpdateInputValues(
+                                    "testConductedCsf",
+                                    value
+                                  );
+                                  if (value.includes("not_done")) {
+                                    setDisableOptions(true);
+                                    setFormValues((prevState) => ({
+                                      ...prevState,
+                                      testConductedCsf: ["not_done"],
+                                    }));
+                                    form.setFieldsValue({
+                                      resultCsfPcr: undefined,
+                                      final_interpretation: undefined,
+                                      final_interpretation_others: undefined,
+                                      dateResultReleasedCsfPcr: undefined,
+                                      rdtResultCsfRdt: undefined,
+                                      dateResultReleasedCsfRdt: undefined,
+                                      resultCsfCulture: undefined,
+                                      dateResultReleasedCsfCulture: undefined,
+                                      testConductedCsf: ["not_done"],
+                                    });
+                                    // resetResultFields(false);
+                                    return;
+                                  }
+                                  setDisableOptions(false);
+                                  handleUpdateInputValues(
+                                    "testConductedCsf",
+                                    value
+                                  );
+                                }}
+                              />
+                            </ClearableFormItem>
+                          </Col>
+                        )}
 
                       {formValues?.testConductedCsf?.includes("pcr") && (
                         <>

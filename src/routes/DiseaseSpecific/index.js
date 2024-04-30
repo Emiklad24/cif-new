@@ -658,18 +658,18 @@ const App = () => {
         : createSormasCaseAction({ ...reconstructedPayload });
 
       // Api call
-      console.log(reconstructedPayload, "reconstructedPayload");
-      // const response = await dispatch(updateAction);
+      // console.log(reconstructedPayload, "reconstructedPayload");
+      const response = await dispatch(updateAction);
 
-      // notification.success({
-      //   message: response?.message ?? "Success",
-      //   description: isUpdate
-      //     ? "Case updated successfully"
-      //     : "Case created successfully",
-      // });
+      notification.success({
+        message: response?.message ?? "Success",
+        description: isUpdate
+          ? "Case updated successfully"
+          : "Case created successfully",
+      });
 
-      // setFormIsLoading(false);
-      // if (!isUpdate) resetForm();
+      setFormIsLoading(false);
+      if (!isUpdate) resetForm();
     } catch (error) {
       const { message, validationMessages } = error;
 
