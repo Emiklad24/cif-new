@@ -26,6 +26,7 @@ const LaboratoryInformation = ({ form }) => {
       setLabComponentDisabled(true);
     }
   }, [userRole]);
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
@@ -323,7 +324,6 @@ const LaboratoryInformation = ({ form }) => {
                                 e.target.name,
                                 e.target.value
                               );
-
                               setDisableOptions(false);
                               setFormValues((prevState) => ({
                                 ...prevState,
