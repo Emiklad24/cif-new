@@ -1,10 +1,10 @@
-import { Checkbox, Col, Collapse, Divider, Input, Radio, Row } from "antd";
+import { Checkbox, Col, Collapse, Divider, Input, Row } from "antd";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useState } from "react";
 import "styles/pages/form.less";
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
 
 const CheckboxGroup = Checkbox.Group;
 

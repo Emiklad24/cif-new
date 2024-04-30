@@ -26,6 +26,7 @@ const LaboratoryInformation = ({ form }) => {
       setLabComponentDisabled(true);
     }
   }, [userRole]);
+
   const onChange = (value) => {
     console.log(`selected ${value}`);
   };
@@ -323,11 +324,6 @@ const LaboratoryInformation = ({ form }) => {
                                 e.target.name,
                                 e.target.value
                               );
-                              // resetResultFields();
-                              // // remove not_done from testConductedCsf if it is  checked
-                              // if (e.target.value !== "adequate") {
-                              //   return;
-                              // }
                               setDisableOptions(false);
                               setFormValues((prevState) => ({
                                 ...prevState,
