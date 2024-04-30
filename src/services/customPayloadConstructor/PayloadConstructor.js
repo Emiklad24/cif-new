@@ -425,6 +425,19 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             resultBloodSerumIgm: newFieldsValue?.resultBloodSerumIgm,
             dateResultReleasedBloodSerumIgm:
               newFieldsValue?.dateResultReleasedBloodSerumIgm,
+
+              // Regional Lab Result
+            dateResultReleasedRegionalLab:
+              newFieldsValue?.dateResultReleasedRegionalLab,
+            regionalLabResultIgm: newFieldsValue?.regionalLabResultIgm,
+            regionalLabResultPcr: newFieldsValue?.regionalLabResultPcr,
+            regionalLabResultPrnt: newFieldsValue?.regionalLabResultPrnt,
+            regionalLabResultDengueFever:
+              newFieldsValue?.regionalLabResultDengueFever,
+            regionalLabResultWestNile:
+              newFieldsValue?.regionalLabResultWestNile,
+            regionalLabResultChikungunya:
+              newFieldsValue?.regionalLabResultChikungunya,
           },
         }
       : null,
@@ -457,41 +470,6 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
           },
         }
       : null,
-
-    // nasopharyngealSswab: newFieldsValue?.specimenType?.includes(
-    //   "nasopharyngealSswab"
-    // )
-    //   ? {
-    //       nasopharyngealSswabSampleReceived:
-    //         newFieldsValue?.nasopharyngealSswabSampleReceived,
-    //       dateSpecimenReceivednasopharyngealSswab:
-    //         newFieldsValue?.dateSpecimenReceivednasopharyngealSswab,
-    //       laboratoryIdnasopharyngealSswab:
-    //         newFieldsValue?.laboratoryIdnasopharyngealSswab,
-    //       specimenConditionnasopharyngealSswab:
-    //         newFieldsValue?.specimenConditionnasopharyngealSswab,
-    //       reasonSampleConditionnasopharyngealSswab:
-    //         newFieldsValue?.reasonSampleConditionnasopharyngealSswab,
-    //       testConductedSwab: newFieldsValue?.testConductedSwab,
-
-    //       skinBiopsyPCRResult: {
-    //         resultSwabPcr: newFieldsValue?.resultSwabPcr,
-    //         dateResultReleasedSwabPcr:
-    //           newFieldsValue?.dateResultReleasedSwabPcr,
-    //       },
-
-    //       skinBiopsyCultureResult: {
-    //         resultnasopharyngealSswabCulture:
-    //           newFieldsValue?.resultnasopharyngealSswabCulture,
-    //         specifyBacterianasopharyngealSswabCulture:
-    //           newFieldsValue?.specifyBacterianasopharyngealSswabCulture,
-    //         resultnasopharyngealSswabElek:
-    //           newFieldsValue?.resultnasopharyngealSswabElek,
-    //         dateResultReleasedNasopharyngealCultureElek:
-    //           newFieldsValue?.dateResultReleasedNasopharyngealCultureElek,
-    //       },
-    //     }
-    //   : null,
   };
 
   // remove null or undefined values from the object newSpecimenData

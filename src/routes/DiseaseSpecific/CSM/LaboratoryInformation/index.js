@@ -16,6 +16,7 @@ const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
   const [labComponentDisabled, setLabComponentDisabled] = useState(false);
   const { userRole } = useSelector(({ common }) => common);
+  const [disableOptions, setDisableOptions] = useState(false);
 
   useEffect(() => {
     if (!userRole) return;
@@ -51,6 +52,23 @@ const LaboratoryInformation = ({ form }) => {
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
     USER_ROLE.VIEW === userRole;
+
+  const testConductedOption = [
+    {
+      label: "PCR",
+      value: "pcr",
+      disabled: disableOptions,
+    },
+    {
+      label: "Culture",
+      value: "culture",
+      disabled: disableOptions,
+    },
+    {
+      label: "Not Done",
+      value: "not_done",
+    },
+  ];
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -300,12 +318,26 @@ const LaboratoryInformation = ({ form }) => {
                             disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="specimenConditionCsf"
-                            onChange={(e) =>
+                            onChange={(e) => {
                               handleUpdateInputValues(
                                 e.target.name,
                                 e.target.value
-                              )
-                            }
+                              );
+                              // resetResultFields();
+                              // // remove not_done from testConductedCsf if it is  checked
+                              // if (e.target.value !== "adequate") {
+                              //   return;
+                              // }
+                              setDisableOptions(false);
+                              setFormValues((prevState) => ({
+                                ...prevState,
+                                testConductedCsf: [],
+                              }));
+                              form.setFieldsValue({
+                                testConductedCsf: [],
+                              });
+                              return;
+                            }}
                           >
                             <Radio.Button value="adequate">
                               Adequate
@@ -364,20 +396,45 @@ const LaboratoryInformation = ({ form }) => {
                           >
                             <CheckboxGroup
                               disabled={labComponentDisabled}
-                              options={[
-                                { label: "PCR", value: "pcr" },
-                                { label: "Culture", value: "culture" },
-                              ]}
-                              name="testConducted"
-                              onChange={(value) =>
-                                handleUpdateInputValues("testConducted", value)
-                              }
+                              options={testConductedOption}
+                              name="testConductedCsf"
+                              onChange={(value) => {
+                                handleUpdateInputValues(
+                                  "testConductedCsf",
+                                  value
+                                );
+                                if (value.includes("not_done")) {
+                                  setDisableOptions(true);
+                                  setFormValues((prevState) => ({
+                                    ...prevState,
+                                    testConductedCsf: ["not_done"],
+                                  }));
+                                  form.setFieldsValue({
+                                    resultCsfPcr: undefined,
+                                    final_interpretation: undefined,
+                                    final_interpretation_others: undefined,
+                                    dateResultReleasedCsfPcr: undefined,
+                                    rdtResultCsfRdt: undefined,
+                                    dateResultReleasedCsfRdt: undefined,
+                                    resultCsfCulture: undefined,
+                                    dateResultReleasedCsfCulture: undefined,
+                                    testConductedCsf: ["not_done"],
+                                  });
+                                  // resetResultFields(false);
+                                  return;
+                                }
+                                setDisableOptions(false);
+                                handleUpdateInputValues(
+                                  "testConductedCsf",
+                                  value
+                                );
+                              }}
                             />
                           </ClearableFormItem>
                         </Col>
                       )}
 
-                      {formValues?.testConducted?.includes("pcr") && (
+                      {formValues?.testConductedCsf?.includes("pcr") && (
                         <>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
@@ -453,17 +510,54 @@ const LaboratoryInformation = ({ form }) => {
                                     )
                                   }
                                 >
+                                  <Radio.Button value="neissereria_meningitidis_nma">
+                                    Neissereria meningitis (NmA)
+                                  </Radio.Button>
+                                  <Radio.Button value="neissereria_meningitidis_nmb">
+                                    Neissereria meningitis (NmB)
+                                  </Radio.Button>
                                   <Radio.Button value="neissereria_meningitidis_nmc">
-                                    Neissereria meningitis is (NMC)
+                                    Neissereria meningitis (NmC)
+                                  </Radio.Button>
+                                  <Radio.Button value="neissereria_meningitidis_nmw">
+                                    Neissereria meningitidis (NmW)
                                   </Radio.Button>
                                   <Radio.Button value="neissereria_meningitidis_nmx">
                                     Neissereria meningitidis (NmX)
                                   </Radio.Button>
+                                  <Radio.Button value="hib">Hib</Radio.Button>
                                   <Radio.Button value="streptococcus_pneumonia">
-                                    Streptococcus Pneumonia
+                                    Streptococcus Pneumonia (NT)
                                   </Radio.Button>
-                                  <Radio.Button value="nt">NT</Radio.Button>
+                                  <Radio.Button value="others">
+                                    Others
+                                  </Radio.Button>
                                 </Radio.Group>
+                              </ClearableFormItem>
+                            </Col>
+                          )}
+
+                          {formValues.final_interpretation === "others" && (
+                            <Col lg={12} md={24} sm={24}>
+                              <ClearableFormItem
+                                collectFormName={true}
+                                label="Final interpretation of PCR result Others"
+                                name="final_interpretation_others"
+                                form={form}
+                                setFormValues={setFormValues}
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "This field is required",
+                                  },
+                                ]}
+                              >
+                                <Input
+                                  name="final_interpretation_others"
+                                  placeholder="Enter final interpretation"
+                                />
                               </ClearableFormItem>
                             </Col>
                           )}
@@ -498,7 +592,7 @@ const LaboratoryInformation = ({ form }) => {
                         </>
                       )}
 
-                      {formValues?.testConducted?.includes("rdt") && (
+                      {formValues?.testConductedCsf?.includes("rdt") && (
                         <Row>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
@@ -565,7 +659,7 @@ const LaboratoryInformation = ({ form }) => {
                         </Row>
                       )}
 
-                      {formValues?.testConducted?.includes("culture") && (
+                      {formValues?.testConductedCsf?.includes("culture") && (
                         <Col lg={12} md={12} sm={24}>
                           <ClearableFormItem
                             collectFormName={true}
