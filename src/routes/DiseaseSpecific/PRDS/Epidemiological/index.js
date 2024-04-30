@@ -61,37 +61,6 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={12} md={12} sm={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="COVID-19 vaccination status"
-              name="vaccinationStatusCovid"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required",
-                },
-              ]}
-            >
-              <Radio.Group
-                buttonStyle="solid"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-                name="vaccinationStatusCovid"
-              >
-                <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
-                <Radio.Button value="notVaccinated">
-                  Not Vaccinated
-                </Radio.Button>
-                <Radio.Button value="unknown">Unknown</Radio.Button>
-              </Radio.Group>
-            </ClearableFormItem>
-          </Col>
-
           {formValues?.vaccinationStatusInfluenza === "vaccinated" && (
             <Row>
               <Divider />
@@ -159,6 +128,37 @@ const Epidemiological = ({ form }) => {
               </Col>
             </Row>
           )}
+
+          <Col lg={12} md={12} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="COVID-19 vaccination status"
+              name="vaccinationStatusCovid"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="vaccinationStatusCovid"
+              >
+                <Radio.Button value="vaccinated">Vaccinated</Radio.Button>
+                <Radio.Button value="notVaccinated">
+                  Not Vaccinated
+                </Radio.Button>
+                <Radio.Button value="unknown">Unknown</Radio.Button>
+              </Radio.Group>
+            </ClearableFormItem>
+          </Col>
 
           {formValues?.vaccinationStatusCovid === "vaccinated" && (
             <Row>
@@ -623,15 +623,9 @@ const Epidemiological = ({ form }) => {
               <ClearableFormItem
                 setFormValues={setFormValues}
                 form={form}
-                label="Date of date"
+                label="Date of death"
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
                 name="dateOfDeathOutcom"
               >
                 <CustomDatePicker form={form} name="dateOfDeathOutcom" />
@@ -639,7 +633,7 @@ const Epidemiological = ({ form }) => {
             </Col>
           )}
 
-          <Col lg={24} md={24} sm={24}>
+          {/* <Col lg={24} md={24} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -662,7 +656,120 @@ const Epidemiological = ({ form }) => {
                 <Radio.Button value="heart disease">Heart disease</Radio.Button>
               </Radio.Group>
             </ClearableFormItem>
+          </Col> */}
+
+          <Divider>Pre-existing medical conditions</Divider>
+          <Col lg={8} md={8} xs={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Asthma ?"
+              name="PreExistingAsthma"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="PreExistingAsthma"
+              />
+            </ClearableFormItem>
           </Col>
+
+          <Col lg={8} md={8} xs={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Recurrent Chest Pain ?"
+              name="PreExistingRecurrentPain"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="PreExistingRecurrentPain"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} xs={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Recurrent Chest Pain ?"
+              name="PreExistingRecurrentPain"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="PreExistingRecurrentPain"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} xs={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Immuno-compromised conditions ?"
+              name="PreExistingImmunoComprisedCondition"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="PreExistingImmunoComprisedCondition"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} xs={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Heart disease ?"
+              name="PreExistingDisease"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <DynamicRadio
+                buttonStyle="solid"
+                options={allLookup?.yes_no_unknown || []}
+                labelProperty="value"
+                valueProperty="id"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+                name="PreExistingDisease"
+              />
+            </ClearableFormItem>
+          </Col>
+          <Divider />
+
           <Col lg={8} md={8} xs={24}>
             <ClearableFormItem
               setFormValues={setFormValues}

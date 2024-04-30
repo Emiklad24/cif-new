@@ -105,8 +105,13 @@ const App = () => {
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
+  console.log(formValues);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
   const [isYearDisabled, setIsYearDisabled] = useState(false);
+  const [
+    dateOfNotificationReportingAreasData,
+    setDateOfNotificationReportingAreas,
+  ] = useState("");
 
   const urlParams = new URLSearchParams(window.location.search);
   const sormasCaseUuid = urlParams.get(SORMAS_UUID);
@@ -262,6 +267,19 @@ const App = () => {
     }
   };
 
+  function isDateBefore(date1, date2) {
+    // Split the dates into day, month, and year
+    const [day1, month1, year1] = date1.split("-").map(Number);
+    const [day2, month2, year2] = date2.split("-").map(Number);
+
+    // Create Date objects for comparison
+    const dateObj1 = new Date(year1, month1 - 1, day1); // Month is 0-based
+    const dateObj2 = new Date(year2, month2 - 1, day2); // Month is 0-based
+
+    // Compare the dates
+    return dateObj1 < dateObj2;
+  }
+
   /**
    * -----------------------------------------
    * @function onFinish
@@ -296,12 +314,180 @@ const App = () => {
     if (
       fieldsValue?.dateOfNotificationReportingAreas &&
       fieldsValue?.dateOfReportReportingAreas &&
-      moment(fieldsValue?.dateOfNotificationReportingAreas).isBefore(
-        moment(fieldsValue?.dateOfReportReportingAreas)
+      isDateBefore(
+        fieldsValue?.dateOfReportReportingAreas,
+        fieldsValue?.dateOfNotificationReportingAreas
       )
     ) {
       notification.warning({
         message: "Date of notification cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenSent &&
+      fieldsValue?.dateSpecimenCollected &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenSent,
+        fieldsValue?.dateSpecimenCollected
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen sent cannot be before the date of specimen collected",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfLastVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfLastVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of last vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+    if (
+      fieldsValue?.dateOfFirstVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfSecondVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfSecondVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateFirstVaccinationInfluenza &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateFirstVaccinationInfluenza,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfFirstVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfFirstVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSecondVaccinationInfluenza &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateSecondVaccinationInfluenza,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfSecondVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfSecondVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfLastVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfLastVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of last vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of vaccination cannot be before the date of birth",
       });
       setFormIsLoading(false);
       return;
@@ -315,7 +501,6 @@ const App = () => {
 
       // Api call
       const response = await dispatch(updateAction);
-      console.log(response, "hello");
 
       notification.success({
         message: response?.message ?? "Success",
@@ -613,7 +798,7 @@ const App = () => {
 
   return (
     <>
-      {_notAuthorized ? (
+      {false ? (
         <div className="gx-text-center gx-d-flex gx-h-75 gx-align-items-center gx-justify-content-center">
           <h3>Sorry, you are not authorized to view this page</h3>
         </div>
@@ -956,6 +1141,7 @@ const App = () => {
                         <CustomDatePicker
                           form={form}
                           name="dateOfNotificationReportingAreas"
+                          onChange
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1003,17 +1189,7 @@ const App = () => {
                         <Input size="large" />
                       </ClearableFormItem>
                     </Col>
-                    {/* <Col lg={8} md={12} sm={24} xs={24}>
-                <ClearableFormItem
-                  form={form}
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  label="Middle name"
-                  name="middleName"
-                >
-                  <Input size="large" />
-                </ClearableFormItem>
-              </Col> */}
+
                     <Col md={12} sm={24} xs={24}>
                       <ClearableFormItem
                         form={form}

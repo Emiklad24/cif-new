@@ -498,6 +498,9 @@ const LaboratoryInformation = ({ form }) => {
                                 <Radio.Button value="pending">
                                   Pending
                                 </Radio.Button>
+                                <Radio.Button value="not done">
+                                  Not Done
+                                </Radio.Button>
                               </Radio.Group>
                             </ClearableFormItem>
                           </Col>
@@ -755,6 +758,9 @@ const LaboratoryInformation = ({ form }) => {
                                 <Radio.Button value="pending">
                                   Pending
                                 </Radio.Button>
+                                <Radio.Button value="not done">
+                                  Not Done
+                                </Radio.Button>
                               </Radio.Group>
                             </ClearableFormItem>
                           </Col>
@@ -1009,6 +1015,9 @@ const LaboratoryInformation = ({ form }) => {
                                 </Radio.Button>
                                 <Radio.Button value="pending">
                                   Pending
+                                </Radio.Button>
+                                <Radio.Button value="not done">
+                                  Not Done
                                 </Radio.Button>
                               </Radio.Group>
                             </ClearableFormItem>

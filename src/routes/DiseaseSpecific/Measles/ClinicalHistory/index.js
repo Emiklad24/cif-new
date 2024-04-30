@@ -333,12 +333,7 @@ const ClinicalHistory = ({ form }) => {
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
                 name="dateDeath"
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
+                
               >
                 <CustomDatePicker form={form} name="dateDeath" />
               </ClearableFormItem>
