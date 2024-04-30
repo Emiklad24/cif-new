@@ -327,6 +327,37 @@ const App = () => {
     }
 
     if (
+      fieldsValue?.dateSpecimenCollected &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenCollected,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen collected cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenSent &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenSent,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message: "Date of specimen sent cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
       fieldsValue?.dateSpecimenSent &&
       fieldsValue?.dateSpecimenCollected &&
       isDateBefore(
@@ -337,6 +368,38 @@ const App = () => {
       notification.warning({
         message:
           "Date of specimen sent cannot be before the date of specimen collected",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenReceivedCsf &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenReceivedCsf,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen received cannot be before the date of specimen sent",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateResultReleasedCsfPcr &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateResultReleasedCsfPcr,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of result released cannot be before the date of specimen sent",
       });
       setFormIsLoading(false);
       return;
@@ -380,7 +443,8 @@ const App = () => {
       )
     ) {
       notification.warning({
-        message: "Date of second vaccination cannot be before the date of birth",
+        message:
+          "Date of second vaccination cannot be before the date of birth",
       });
       setFormIsLoading(false);
       return;
