@@ -379,12 +379,6 @@ const LaboratoryInformation = ({ form }) => {
                                 { label: "Not done", value: "not_done" },
                               ]}
                               name="testConductedSwab"
-                              onChange={(value) =>
-                                handleUpdateInputValues(
-                                  "testConductedSwab",
-                                  value
-                                )
-                              }
                             />
                           </ClearableFormItem>
                         </Col>
