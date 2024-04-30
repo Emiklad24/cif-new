@@ -478,6 +478,21 @@ const App = () => {
       return;
     }
 
+    if (
+      fieldsValue?.dateOfVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
     try {
       // Update or create sormas case
       const updateAction = isUpdate
