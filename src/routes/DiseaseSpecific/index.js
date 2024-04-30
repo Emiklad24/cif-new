@@ -346,12 +346,43 @@ const App = () => {
       fieldsValue?.dateOfNotificationReportingAreas &&
       fieldsValue?.dateOfReportReportingAreas &&
       isDateBefore(
+        fieldsValue?.dateOfNotificationReportingAreas,
         fieldsValue?.dateOfReportReportingAreas,
-        fieldsValue?.dateOfNotificationReportingAreas
       )
     ) {
       notification.warning({
-        message: "Date of notification cannot be before the date of report",
+        message: "Date of report cannot be before the date of notification",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenCollected &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenCollected,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen collected cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenSent &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenSent,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message: "Date of specimen sent cannot be before the date of report",
       });
       setFormIsLoading(false);
       return;
@@ -368,6 +399,38 @@ const App = () => {
       notification.warning({
         message:
           "Date of specimen sent cannot be before the date of specimen collected",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenReceivedCsf &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenReceivedCsf,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen received cannot be before the date of specimen sent",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateResultReleasedCsfPcr &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateResultReleasedCsfPcr,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of result released cannot be before the date of specimen sent",
       });
       setFormIsLoading(false);
       return;
@@ -525,138 +588,7 @@ const App = () => {
       return;
     }
 
-    // date of notification cannot be before the date of report
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfNotificationReportingAreas",
-    //     "dateOfReportReportingAreas",
-    //     "notification cannot be before the date of report"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of specimen sent cannot be before the date of specimen collected
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateSpecimenSent",
-    //     "dateSpecimenCollected",
-    //     "specimen sent cannot be before the date of specimen collected"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of last vaccination cannot be before the date of birth
-
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfLastVaccination",
-    //     "dateOfBirthPersonalInformation",
-    //     "last vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of first vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfFirstVaccination",
-    //     "dateOfBirthPersonalInformation",
-    //     "first vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of second vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfSecondVaccination",
-    //     "dateOfBirthPersonalInformation",
-    //     "second vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of first vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateFirstVaccinationInfluenza",
-    //     "dateOfBirthPersonalInformation",
-    //     "first vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of first vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfFirstVaccinationCovid",
-    //     "dateOfBirthPersonalInformation",
-    //     "first vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of second vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateSecondVaccinationInfluenza",
-    //     "dateOfBirthPersonalInformation",
-    //     "second vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of second vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfSecondVaccinationCovid",
-    //     "dateOfBirthPersonalInformation",
-    //     "second vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of last vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfLastVaccination",
-    //     "dateOfBirthPersonalInformation",
-    //     "last vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
-
-    // // date of vaccination cannot be before the date of birth
-    // if (
-    //   checkDatesAndWarn(
-    //     fieldsValue,
-    //     "dateOfVaccination",
-    //     "dateOfBirthPersonalInformation",
-    //     "vaccination cannot be before the date of birth"
-    //   )
-    // ) {
-    //   return;
-    // }
+    
 
     try {
       // Update or create sormas case

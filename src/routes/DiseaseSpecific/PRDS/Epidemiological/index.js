@@ -703,27 +703,7 @@ const Epidemiological = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
-          <Col lg={8} md={8} xs={24}>
-            <ClearableFormItem
-              setFormValues={setFormValues}
-              form={form}
-              label="Recurrent Chest Pain ?"
-              name="PreExistingRecurrentPain"
-              labelCol={{ span: 24 }}
-              wrapperCol={{ span: 24 }}
-            >
-              <DynamicRadio
-                buttonStyle="solid"
-                options={allLookup?.yes_no_unknown || []}
-                labelProperty="value"
-                valueProperty="id"
-                onChange={(e) =>
-                  handleUpdateInputValues(e.target.name, e.target.value)
-                }
-                name="PreExistingRecurrentPain"
-              />
-            </ClearableFormItem>
-          </Col>
+         
 
           <Col lg={8} md={8} xs={24}>
             <ClearableFormItem

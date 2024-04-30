@@ -258,7 +258,7 @@ const LaboratoryInformation = ({ form }) => {
                       <Col lg={12} md={12} sm={24}>
                         <ClearableFormItem
                           collectFormName={true}
-                          label="Date specimen received "
+                          label="Date specimen received"
                           name="dateSpecimenReceivedCsf"
                           form={form}
                           setFormValues={setFormValues}
@@ -373,8 +373,9 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
+                      {console.log(formValues?.specimenConditionCsf)}
                       {formValues?.specimenType?.length >= 1 &&
-                        formValues?.specimenConditionCsf !== "" && (
+                        (formValues?.specimenConditionCsf === "adequate" || formValues?.specimenConditionCsf === "not adequate" )&& (
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -565,8 +566,8 @@ const LaboratoryInformation = ({ form }) => {
                             <Col lg={12} md={12} sm={24}>
                               <ClearableFormItem
                                 collectFormName={true}
-                                label="Date result released "
-                                name="dateResultReleasedCsfPcr"
+                                label="Date result released"
+                                name="dateResultReleasedCsfPcr" 
                                 form={form}
                                 setFormValues={setFormValues}
                                 labelCol={{ span: 24 }}
