@@ -9,12 +9,14 @@ import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
 
 const CheckboxGroup = Checkbox.Group;
 
 const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
-
   const [labComponentDisabled, setLabComponentDisabled] = useState(false);
   const { userRole } = useSelector(({ common }) => common);
   const [disableOptions, setDisableOptions] = useState(false);
@@ -41,6 +43,8 @@ const LaboratoryInformation = ({ form }) => {
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
+  const _formValues = form?.getFieldsValue(true);
+
   const { data: allLookup } = useFetchAllLookup();
   const allHealthFacilitiesQuery = useGetHealthFacilities();
   const laboratoryData = allHealthFacilitiesQuery?.data?.filter(
@@ -53,6 +57,12 @@ const LaboratoryInformation = ({ form }) => {
       [inputName]: value,
     }));
   };
+
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
+  );
 
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
@@ -170,65 +180,71 @@ const LaboratoryInformation = ({ form }) => {
               </Col>
 
               {formValues?.specimenType?.includes("stool") && (
-                  <>
-                    <Col lg={12} md={24} sm={24}>
-                      <ClearableFormItem
-                        collectFormName={true}
-                        form={form}
-                        setFormValues={setFormValues}
-                        label="Name of testing laboratory (Stool)"
-                        name="nameOfTestingLaboratoryStool"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <DynamicSelect
-                          showSearch
-                          allowClear
-                          optionLabelProp="label"
-                          options={laboratoryData}
-                          valueProperty="id"
-                          labelProperty="name"
-                          filterOption={(input, option) =>
-                            (option?.label ?? "")
-                              .toLowerCase()
-                              .includes(input.toLowerCase())
-                          }
-                          filterSort={(optionA, optionB) =>
-                            optionA.children
-                              ?.toLowerCase()
-                              .localeCompare(optionB.children?.toLowerCase())
-                          }
-                        />
-                      </ClearableFormItem>
-                    </Col>
+                <>
+                  <Col lg={12} md={24} sm={24}>
+                    <ClearableFormItem
+                      collectFormName={true}
+                      form={form}
+                      setFormValues={setFormValues}
+                      label="Name of testing laboratory (Stool)"
+                      name="nameOfTestingLaboratoryStool"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
+                    >
+                      <DynamicSelect
+                        showSearch
+                        allowClear
+                        optionLabelProp="label"
+                        options={filterLabByStateAndDisease(
+                          _formValues?.stateOfReporting,
+                          selectedDiseaseArea?.value
+                        )}
+                        valueProperty="id"
+                        labelProperty="name"
+                        filterOption={(input, option) =>
+                          (option?.label ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
+                        filterSort={(optionA, optionB) =>
+                          optionA.children
+                            ?.toLowerCase()
+                            .localeCompare(optionB.children?.toLowerCase())
+                        }
+                      />
+                    </ClearableFormItem>
+                  </Col>
 
-                    <Col lg={12} md={24} sm={24}>
-                      <ClearableFormItem
-                        collectFormName={true}
+                  <Col lg={12} md={24} sm={24}>
+                    <ClearableFormItem
+                      collectFormName={true}
+                      form={form}
+                      setFormValues={setFormValues}
+                      label="Date specimen was sent (Stool)"
+                      labelCol={{ span: 24 }}
+                      wrapperCol={{ span: 24 }}
+                      name="dateSpecimenSentStool"
+                      rules={[
+                        {
+                          required: true,
+                          message: "This field is required",
+                        },
+                      ]}
+                    >
+                      <CustomDatePicker
                         form={form}
-                        setFormValues={setFormValues}
-                        label="Date specimen was sent (Stool)"
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
                         name="dateSpecimenSentStool"
-                        rules={[
-                          {
-                            required: true,
-                            message: "This field is required",
-                          },
-                        ]}
-                      >
-                        <CustomDatePicker form={form} name="dateSpecimenSentStool" />
-                      </ClearableFormItem>
-                    </Col>
-                  </>
-                )}
+                      />
+                    </ClearableFormItem>
+                  </Col>
+                </>
+              )}
 
               {formValues?.specimenType?.includes("rectalSwab") && (
                 <>
@@ -285,7 +301,10 @@ const LaboratoryInformation = ({ form }) => {
                         },
                       ]}
                     >
-                      <CustomDatePicker form={form} name="dateSpecimenSentRectalSwab" />
+                      <CustomDatePicker
+                        form={form}
+                        name="dateSpecimenSentRectalSwab"
+                      />
                     </ClearableFormItem>
                   </Col>
                 </>

@@ -78,9 +78,10 @@ const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
 const App = () => {
   const dispatch = useDispatch();
 
-  const { labFormName } = useFormStore(
+  const { labFormName, setDiseaseProgramName } = useFormStore(
     useShallow((state) => ({
       labFormName: state.labFormName,
+      setDiseaseProgramName: state.setDiseaseProgramName,
     }))
   );
   const [form] = Form.useForm();
@@ -100,7 +101,6 @@ const App = () => {
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
-  console.log(formValues);
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
   const [isYearDisabled, setIsYearDisabled] = useState(false);
 
@@ -587,8 +587,6 @@ const App = () => {
       return;
     }
 
-
-
     try {
       // Update or create sormas case
       const updateAction = isUpdate
@@ -637,6 +635,10 @@ const App = () => {
    */
   const onChangeDisease = async (value, reset = true) => {
     setProgram({
+      value: allLookup?.disease_id?.find((item) => item?.id === value)?.value,
+      id: value,
+    });
+    setDiseaseProgramName({
       value: allLookup?.disease_id?.find((item) => item?.id === value)?.value,
       id: value,
     });
@@ -907,7 +909,7 @@ const App = () => {
     }
     return;
   };
-console.log('userStateId', userStateId)
+  console.log("userStateId", userStateId);
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
     if (sormasCase?.applicationUuid || !userStateId) return;
