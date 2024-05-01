@@ -5,10 +5,12 @@ import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -32,11 +34,15 @@ const LaboratoryInformation = ({ form }) => {
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
-  const { data: allLookup } = useFetchAllLookup();
-  const allHealthFacilitiesQuery = useGetHealthFacilities();
-  const testingLaboratoryData = allHealthFacilitiesQuery?.data?.filter(
-    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  const _formValues = form?.getFieldsValue(true);
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
   );
+
+  const { data: allLookup } = useFetchAllLookup();
+  
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -177,7 +183,10 @@ const LaboratoryInformation = ({ form }) => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
-                    options={testingLaboratoryData}
+                    options={filterLabByStateAndDisease(
+                      _formValues?.stateOfReporting,
+                      selectedDiseaseArea?.value
+                    )}
                     valueProperty="id"
                     labelProperty="name"
                     filterOption={(input, option) =>
