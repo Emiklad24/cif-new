@@ -31,7 +31,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const customDividerStyle = {

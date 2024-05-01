@@ -29,7 +29,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -44,7 +44,7 @@ const LaboratoryInformation = ({ form }) => {
   
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,

@@ -8,7 +8,7 @@ const ClinicalHistory = () => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   return (

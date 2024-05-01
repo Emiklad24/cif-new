@@ -27,8 +27,8 @@ const LaboratoryInformation = ({ form }) => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(testinglaboratory_type);
-    console.log(`selected ${value}`);
+  
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));

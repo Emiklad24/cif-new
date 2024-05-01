@@ -7,7 +7,7 @@ const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   return (

@@ -116,7 +116,7 @@ const App = () => {
 
   // ==========================================================
 
-  // console.log('HelloWorld', userId, userStateId, userLgaId, userWardId, userFacilityId);
+ 
 
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
@@ -325,7 +325,7 @@ const App = () => {
     // if (fieldsValue.epidNumber) {
     //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     // }
-    console.log(!isUpdate);
+  
     // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
        fieldsValue.epidNumber = "";
@@ -782,7 +782,7 @@ const App = () => {
         (position) => {
           // Success callback
           const { latitude, longitude } = position.coords;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
         },
         (error) => {
           // Error callback
@@ -908,7 +908,7 @@ const App = () => {
     }
     return;
   };
-  console.log("userStateId", userStateId);
+ 
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
     if (sormasCase?.applicationUuid || !userStateId) return;

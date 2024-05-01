@@ -4772,7 +4772,7 @@ export const filterLabByStateAndDisease = (stateId, disease) => {
         el?.state?.toLocaleLowerCase() === state.toLocaleLowerCase()
     );
 
-  console.log(stateId, disease, state, labs);
+ 
 
 
     return labs;

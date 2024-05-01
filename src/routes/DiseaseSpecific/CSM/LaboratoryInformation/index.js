@@ -30,13 +30,13 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -381,7 +381,7 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
-                      {console.log(formValues?.specimenConditionCsf)}
+                    
                       {formValues?.specimenType?.length >= 1 &&
                         (formValues?.specimenConditionCsf === "adequate" || formValues?.specimenConditionCsf === "not adequate" )&& (
                           <Col lg={12} md={12} sm={24}>
