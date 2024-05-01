@@ -1,485 +1,493 @@
 const data = [
   {
-   "Disease": "Mpox",
-   "State": "Abia",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Abia",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Adamawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Adamawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Akwa Ibom",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Akwa Ibom",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Anambra",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Anambra",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Bauchi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Bauchi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Bayelsa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Bayelsa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Benue",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Benue",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Borno",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Borno",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Cross River",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Cross River",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Delta",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Delta",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ebonyi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Ebonyi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Edo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Edo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ekiti",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Ekiti",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Enugu",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Enugu",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "FCT",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "FCT",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Gombe",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Gombe",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Imo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Imo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Jigawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Jigawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Kaduna",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Kaduna",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Kano",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Kano",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Katsina",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Katsina",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Kebbi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Kebbi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Kogi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Kogi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Kwara",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Kwara",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Lagos",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Lagos",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Lagos",
-   "Labs": "Central Public Health Laboratory (CPHL), Laboratory",
-   "TESTING_LAB_ID": 136524
+    disease: "Mpox",
+    state: "Lagos",
+    name: "Central Public Health Laboratory (CPHL), Laboratory",
+    id: 136524,
   },
   {
-   "Disease": "Mpox",
-   "State": "Nasarawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Nasarawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Niger",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Niger",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ogun",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Ogun",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ogun",
-   "Labs": "Central Public Health Laboratory (CPHL), Laboratory",
-   "TESTING_LAB_ID": 136524
+    disease: "Mpox",
+    state: "Ogun",
+    name: "Central Public Health Laboratory (CPHL), Laboratory",
+    id: 136524,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ondo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Ondo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Ondo",
-   "Labs": "Central Public Health Laboratory (CPHL), Laboratory",
-   "TESTING_LAB_ID": 136524
+    disease: "Mpox",
+    state: "Ondo",
+    name: "Central Public Health Laboratory (CPHL), Laboratory",
+    id: 136524,
   },
   {
-   "Disease": "Mpox",
-   "State": "Osun",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Osun",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Osun",
-   "Labs": "Central Public Health Laboratory (CPHL), Laboratory",
-   "TESTING_LAB_ID": 136524
+    disease: "Mpox",
+    state: "Osun",
+    name: "Central Public Health Laboratory (CPHL), Laboratory",
+    id: 136524,
   },
   {
-   "Disease": "Mpox",
-   "State": "Oyo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Oyo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Oyo",
-   "Labs": "Central Public Health Laboratory (CPHL), Laboratory",
-   "TESTING_LAB_ID": 136524
+    disease: "Mpox",
+    state: "Oyo",
+    name: "Central Public Health Laboratory (CPHL), Laboratory",
+    id: 136524,
   },
   {
-   "Disease": "Mpox",
-   "State": "Plateau",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Plateau",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Rivers",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Rivers",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Sokoto",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Sokoto",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Taraba",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Taraba",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Yobe",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Yobe",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Mpox",
-   "State": "Zamfara",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Mpox",
+    state: "Zamfara",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Abia",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Abia",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Adamawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Adamawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Akwa Ibom",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Akwa Ibom",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Anambra",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Anambra",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Bauchi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Bauchi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Bayelsa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Bayelsa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Benue",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Benue",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Borno",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Borno",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Cross River",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Cross River",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Delta",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Delta",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Ebonyi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Ebonyi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Edo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Edo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Ekiti",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Ekiti",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Enugu",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Enugu",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "FCT",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "FCT",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Gombe",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Gombe",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Imo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Imo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Jigawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Jigawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Kaduna",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Kaduna",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Kano",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Kano",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Katsina",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Katsina",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Kebbi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Kebbi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Kogi",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Kogi",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Kwara",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Kwara",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Lagos",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Lagos",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Nasarawa",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Nasarawa",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Niger",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Niger",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Ogun",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Ogun",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Ondo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Ondo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Osun",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Osun",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Oyo",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Oyo",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Plateau",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Plateau",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Rivers",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Rivers",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Sokoto",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Sokoto",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Taraba",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Taraba",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Yobe",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
+    disease: "Influenza",
+    state: "Yobe",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
   },
   {
-   "Disease": "Influenza",
-   "State": "Zamfara",
-   "Labs": "National Reference Laboratory (NRL), Abuja",
-   "TESTING_LAB_ID": 136529
-  }
- ]
+    disease: "Influenza",
+    state: "Zamfara",
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
+  },
+];
 
-
-const option1 = "Abia"
-const option2 = "MPox"
+const option1 = "Abia";
+const option2 = "Influenza";
 
 // filter data by option1 and option 2
 
+const filteredDiseaseData = data?.filter(
+  (el) => el?.disease.toLocaleLowerCase() === option2.toLocaleLowerCase()
+);
 
-const filteredData = data?.map((el) => 
+const filteredStateData = filteredDiseaseData?.filter(
+  (el) => el?.state.toLocaleLowerCase() === option1.toLocaleLowerCase()
+);
+
+
+
+console.log(filteredDiseaseData, "filterdData", filteredStateData);
