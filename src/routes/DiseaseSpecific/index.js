@@ -325,11 +325,10 @@ const App = () => {
     // if (fieldsValue.epidNumber) {
     //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     // }
+    console.log(!isUpdate);
     // if epid number is "" or null, or undefined, construct the epid number
-    if (!fieldsValue.epidNumber) {
-      fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
-    } else {
-      fieldsValue.epidNumber = "";
+    if (!isUpdate) {
+       fieldsValue.epidNumber = "";
     }
 
     // construct payload
