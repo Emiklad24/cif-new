@@ -347,7 +347,7 @@ const App = () => {
       fieldsValue?.dateOfReportReportingAreas &&
       isDateBefore(
         fieldsValue?.dateOfNotificationReportingAreas,
-        fieldsValue?.dateOfReportReportingAreas,
+        fieldsValue?.dateOfReportReportingAreas
       )
     ) {
       notification.warning({
@@ -587,8 +587,6 @@ const App = () => {
       setFormIsLoading(false);
       return;
     }
-
-    
 
     try {
       // Update or create sormas case
@@ -1809,6 +1807,11 @@ const App = () => {
                           {
                             pattern: /^[0-9]*$/,
                             message: "Please input a valid phone number",
+                          },
+
+                          {
+                            required: true,
+                            message: "This field is required",
                           },
                         ]}
                       >
