@@ -480,14 +480,12 @@ const option2 = "Influenza";
 
 // filter data by option1 and option 2
 
-const filteredDiseaseData = data?.filter(
-  (el) => el?.disease.toLocaleLowerCase() === option2.toLocaleLowerCase()
+const filteredData = data?.filter(
+  (el) =>
+    el?.disease?.toLocaleLowerCase() === option2.toLocaleLowerCase() &&
+    el?.state?.toLocaleLowerCase() === option1.toLocaleLowerCase()
 );
 
-const filteredStateData = filteredDiseaseData?.filter(
-  (el) => el?.state.toLocaleLowerCase() === option1.toLocaleLowerCase()
-);
 
 
-
-console.log(filteredDiseaseData, "filterdData", filteredStateData);
+console.log(filteredData, "filterdData");

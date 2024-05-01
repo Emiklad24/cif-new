@@ -190,7 +190,7 @@ const LaboratoryInformation = ({ form }) => {
                 </Col>
               )}
 
-              <Col lg={24} md={12} sm={12} xs={24}>
+              <Col lg={12} md={12} sm={24} xs={24}>
                 <ClearableFormItem
                   collectFormName={true}
                   form={form}
