@@ -239,6 +239,78 @@ const ClinicalHistory = ({ form }) => {
             </ClearableFormItem>
           </Col>
 
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="History of Hospitalization"
+              name="historyOfHospitalizationCsm"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <DynamicRadio
+                name="historyOfHospitalizationCsm"
+                buttonStyle="solid"
+                options={[
+                  {
+                    id: "in_patient",
+                    value: "In Patient",
+                  },
+                  {
+                    id: "out_patient",
+                    value: "Out Patient",
+                  },
+                ]}
+                valueProperty="id"
+                labelProperty="value"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Outcome"
+              name="outcome"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <DynamicRadio
+                name="outcome"
+                buttonStyle="solid"
+                options={[
+                  {
+                    id: "alive",
+                    value: "Alive",
+                  },
+                  {
+                    id: "dead",
+                    value: "Dead",
+                  },
+                  {
+                    id: "unknown",
+                    value: "Unknown",
+                  },
+                ]}
+                valueProperty="id"
+                labelProperty="value"
+              />
+            </ClearableFormItem>
+          </Col>
+
           <Col lg={24} md={24} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
