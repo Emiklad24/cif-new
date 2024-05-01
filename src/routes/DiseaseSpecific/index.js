@@ -110,7 +110,6 @@ const App = () => {
   const userRoleFromUrl = urlParams.get(QUERY_PARAM.SORMAS_ROLE);
   const userId = urlParams.get(QUERY_PARAM.USER_ID);
   const userStateId = urlParams.get(QUERY_PARAM.STATE_ID);
-
   const userLgaId = urlParams.get(QUERY_PARAM.LGA_ID);
   const userWardId = urlParams.get(QUERY_PARAM.WARD_ID);
   const userFacilityId = urlParams.get(QUERY_PARAM.FACILITY_ID);
@@ -588,6 +587,8 @@ const App = () => {
       return;
     }
 
+
+
     try {
       // Update or create sormas case
       const updateAction = isUpdate
@@ -906,10 +907,10 @@ const App = () => {
     }
     return;
   };
-
+console.log('userStateId', userStateId)
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid) return;
+    if (sormasCase?.applicationUuid || !userStateId) return;
     getStateDataByQueryId();
   }, [userStateId]);
 
@@ -1063,6 +1064,7 @@ const App = () => {
                           options={allStates}
                           valueProperty="id"
                           labelProperty="name"
+                          disabled={userStateId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1103,6 +1105,7 @@ const App = () => {
                           onChange={(value) => {
                             handleLgaChange(value, "lgaOfReporting");
                           }}
+                          disabled={userLgaId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1146,6 +1149,7 @@ const App = () => {
                           }
                           valueProperty="id"
                           labelProperty="name"
+                          disabled={userWardId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1223,6 +1227,7 @@ const App = () => {
                             options={AllHealthFacilitiesQuery?.data}
                             valueProperty="id"
                             labelProperty="name"
+                            disabled={userFacilityId}
                           />
                         </ClearableFormItem>
                       </Col>

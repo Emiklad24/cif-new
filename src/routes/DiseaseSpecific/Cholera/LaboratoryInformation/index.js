@@ -468,7 +468,6 @@ const LaboratoryInformation = ({ form }) => {
                                   dateResultReleasedRDT: undefined,
                                   typeOfTestDoneStool: ["not_done"],
                                 });
-                                // resetResultFields(false);
                                 return;
                               }
                               setDisableOptions(false);
