@@ -346,7 +346,7 @@ const App = () => {
       fieldsValue?.dateOfReportReportingAreas &&
       isDateBefore(
         fieldsValue?.dateOfNotificationReportingAreas,
-        fieldsValue?.dateOfReportReportingAreas,
+        fieldsValue?.dateOfReportReportingAreas
       )
     ) {
       notification.warning({
@@ -1812,6 +1812,11 @@ console.log('userStateId', userStateId)
                           {
                             pattern: /^[0-9]*$/,
                             message: "Please input a valid phone number",
+                          },
+
+                          {
+                            required: true,
+                            message: "This field is required",
                           },
                         ]}
                       >
