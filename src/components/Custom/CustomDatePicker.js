@@ -1,5 +1,5 @@
 import { DatePicker } from "antd";
-import { DATE_FORMAT, SORMAS_UUID } from "constants/ActionTypes";
+import { DATE_FORMAT, QUERY_PARAM } from "constants/ActionTypes";
 import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const CustomDatePicker = ({
   ...otherProps
 }) => {
   const urlParams = new URLSearchParams(window.location.search);
-  const sormasCaseUuid = urlParams.get(SORMAS_UUID);
+  const sormasCaseUuid = urlParams.get(QUERY_PARAM.SORMAS_UUID);
 
   const { sormasCase } = useSelector(({ common }) => common);
 
@@ -21,9 +21,6 @@ const CustomDatePicker = ({
     if (!keepValue) {
       delete otherProps.value;
     }
-    // delete otherProps.onChange;
-    // delete otherProps.id;
-    // delete otherProps["aria-required"];
     ['onChange', 'id', 'aria-required'].forEach(prop => delete otherProps[prop]);
   }
 

@@ -370,7 +370,7 @@ const LaboratoryInformation = ({ form }) => {
                                   label: "PCR/RT-PCR (In Country)",
                                   value: "pcr",
                                 },
-                                { label: "IP Darker result", value: "regionalLabResult" },
+                                { label: "IP Dakar result", value: "regionalLabResult" },
                               ]}
                               name="bloodSerumTestConducted"
                               onChange={(value) => {
@@ -386,7 +386,7 @@ const LaboratoryInformation = ({ form }) => {
 
                       {formValues?.bloodSerumTestConducted?.includes("igm") && (
                         <Row>
-                          <Divider plain>Igg Result</Divider>
+                          <Divider plain>IgM Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -591,7 +591,7 @@ const LaboratoryInformation = ({ form }) => {
 
                       {formValues?.bloodSerumTestConducted?.includes("pcr") && (
                         <Row>
-                          <Divider plain>Pcr Result</Divider>
+                          <Divider plain>PCR Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -662,7 +662,7 @@ const LaboratoryInformation = ({ form }) => {
                       ) && (
                         <Row>
 
-                      <Divider plain>IP Darker result Result</Divider>
+                      <Divider plain>IP Dakar result Result</Divider>
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}

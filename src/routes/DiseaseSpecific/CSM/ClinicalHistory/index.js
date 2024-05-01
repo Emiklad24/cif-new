@@ -41,6 +41,12 @@ const ClinicalHistory = ({ form }) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               name="dateOfSymptomOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <CustomDatePicker form={form} name="dateOfSymptomOnset" />
             </ClearableFormItem>
@@ -53,6 +59,12 @@ const ClinicalHistory = ({ form }) => {
               name="fever"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <DynamicRadio
                 buttonStyle="solid"
