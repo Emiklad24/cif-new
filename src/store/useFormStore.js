@@ -4,6 +4,7 @@ import { globalStorePersist, storeVersion } from "./config";
 
 let store = (set, get) => ({
   labFormName: [],
+  selectedDiseaseArea: null,
 
   populateLabFormName: (payload) => {
     const currentLabFormName1 = get().labFormName;
@@ -20,8 +21,12 @@ let store = (set, get) => ({
     set((state) => ({ labFormName: uniqueArray }));
   },
 
+  setDiseaseProgramName: (diseaseName) => {
+    set((state) => ({selectedDiseaseArea: diseaseName }));
+  },
+
   reset: () => {
-    set((state) => ({ labFormName: [] }));
+    set((state) => ({ labFormName: [], selectedDiseaseArea: null }));
   },
 });
 

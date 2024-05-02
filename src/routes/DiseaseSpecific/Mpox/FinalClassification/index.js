@@ -10,7 +10,7 @@ const FinalClassification = ({ form }) => {
   const [_, setFormValues] = useState({});
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   return (
