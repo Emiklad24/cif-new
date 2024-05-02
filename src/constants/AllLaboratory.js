@@ -4771,11 +4771,14 @@ export const filterLabByStateAndDisease = (stateId, disease) => {
         el?.disease?.toLocaleLowerCase() === disease.toLocaleLowerCase() &&
         el?.state?.toLocaleLowerCase() === state.toLocaleLowerCase()
     );
-
- 
-
-
     return labs;
   }
   return [];
+};
+
+export const filterLabNRL = () => {
+  return [ {
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
+  }];
 };
