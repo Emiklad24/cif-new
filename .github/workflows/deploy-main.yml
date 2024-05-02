@@ -24,3 +24,15 @@ jobs:
 
       - name: Build project
         run: CI=false yarn build
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_CICD_USER }}
+          key: ${{ secrets.STAGING_YESK }}
+          port: ${{ secrets.STAGING_PORT }}
+          passphrase: ${{ secrets.STAGING_PHARSE }}
+          script: |
+            cd /var/www/specific-cif
+            rsync -avz $GITHUB_WORKSPACE/build/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/specific-cif
