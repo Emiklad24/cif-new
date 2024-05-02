@@ -35,7 +35,7 @@ jobs:
           passphrase: ${{ secrets.STAGING_PHARSE }}
           strip_components: 1
           overwrite: true
-          source: $GITHUB_WORKSPACE/build/*
+          source: $GITHUB_WORKSPACE/build/
           target: frontendDump
 
       - name: Deploy
