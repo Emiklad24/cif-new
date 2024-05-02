@@ -25,6 +25,19 @@ jobs:
       - name: Build project
         run: CI=false yarn build
 
+      - name: Copy artifact to staging
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_CICD_USER }}
+          key: ${{ secrets.STAGING_YESK }}
+          port: ${{ secrets.STAGING_PORT }}
+          passphrase: ${{ secrets.STAGING_PHARSE }}
+          strip_components: 1
+          overwrite: true
+          source: $GITHUB_WORKSPACE/build/*
+          target: frontendDump
+
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -34,5 +47,4 @@ jobs:
           port: ${{ secrets.STAGING_PORT }}
           passphrase: ${{ secrets.STAGING_PHARSE }}
           script: |
-            cd /var/www/specific-cif
-            rsync -avz $GITHUB_WORKSPACE/build/ ${{ secrets.STAGING_CICD_USER }}@${{ secrets.STAGING_HOST }}:/var/www/specific-cif
+            cp ~/frontendDump/* /var/www/specific-cif
