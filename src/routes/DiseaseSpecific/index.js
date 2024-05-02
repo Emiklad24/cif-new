@@ -318,6 +318,7 @@ const App = () => {
     !sormasCaseUuid;
 
   const onFinish = async (fieldsValue) => {
+    console.log(fieldsValue)
     setFormIsLoading(true);
     // if (fieldsValue.epidNumber) {
     //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;

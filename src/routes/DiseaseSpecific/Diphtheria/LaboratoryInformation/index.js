@@ -8,7 +8,10 @@ import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
-import {filterLabByStateAndDisease, filterLabNRL} from "../../../../constants/AllLaboratory";
+import {
+  filterLabByStateAndDisease,
+  filterLabNRL,
+} from "../../../../constants/AllLaboratory";
 import { useShallow } from "zustand/react/shallow";
 import useFormStore from "../../../../store/useFormStore";
 
@@ -30,9 +33,7 @@ const LaboratoryInformation = ({ form }) => {
     }
   }, [userRole]);
 
-  const onChange = (value) => {
-
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const _formValues = form?.getFieldsValue(true);
@@ -73,6 +74,14 @@ const LaboratoryInformation = ({ form }) => {
       value: "not_done",
     },
   ];
+
+  useEffect(() => {
+    if (_formValues?.specimenType?.includes("nasopharyngealNRL")) {
+      form.setFieldsValue({
+        nameOfTestingLaboratoryNRL: 136529,
+      });
+    }
+  }, [_formValues, form]);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -253,7 +262,8 @@ const LaboratoryInformation = ({ form }) => {
                           allowClear
                           optionLabelProp="label"
                           options={filterLabNRL()}
-                          defaultValue={136529}
+                          // defaultValue={136529}
+                          // value={136529}
                           valueProperty="id"
                           labelProperty="name"
                           filterOption={(input, option) =>
