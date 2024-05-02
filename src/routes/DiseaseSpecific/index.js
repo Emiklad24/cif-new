@@ -116,7 +116,7 @@ const App = () => {
 
   // ==========================================================
 
- 
+
 
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
@@ -322,13 +322,13 @@ const App = () => {
 
   const onFinish = async (fieldsValue) => {
     setFormIsLoading(true);
-    // if (fieldsValue.epidNumber) {
-    //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
-    // }
-  
+
     // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
        fieldsValue.epidNumber = "";
+    }
+    if(isUpdate){
+      fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     }
 
     // construct payload
@@ -593,6 +593,7 @@ const App = () => {
         : createSormasCaseAction({ userId, ...reconstructedPayload });
 
       // Api call
+      console.log(reconstructedPayload)
       const response = await dispatch(updateAction);
 
       notification.success({
@@ -602,7 +603,7 @@ const App = () => {
           : "Case created successfully",
       });
 
-      if (!isUpdate) resetForm();
+      // if (!isUpdate) resetForm();
       setFormIsLoading(false);
     } catch (error) {
       const { message, validationMessages } = error;
@@ -744,11 +745,11 @@ const App = () => {
       specimenCollected: sormasCase?.specimenCollected || "NO",
       age: sormasCase?.age,
     });
-
+    console.log(sormasCase?.epidNumber)
     const spiltByHypen = sormasCase?.epidNumber.split("-");
     // use the first 4 items in the array to get the prefix
     const _prefix = spiltByHypen.slice(0, 4).join("-");
-    const _epidValue = spiltByHypen[5] ?? "";
+    const _epidValue = spiltByHypen[4] ?? "";
 
     if (sormasCase?.epidNumber) {
       setEpidNumberAddon(`${_prefix}-`);
@@ -908,7 +909,7 @@ const App = () => {
     }
     return;
   };
- 
+
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
     if (sormasCase?.applicationUuid || !userStateId) return;
