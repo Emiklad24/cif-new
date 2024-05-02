@@ -4,13 +4,13 @@ import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
+import { filterLabByStateAndDisease } from "constants/AllLaboratory";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import useFormStore from "store/useFormStore";
 import "styles/pages/form.less";
-import useFormStore from "../../../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
-import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -19,6 +19,7 @@ const LaboratoryInformation = ({ form }) => {
 
   const [labComponentDisabled, setLabComponentDisabled] = useState(false);
   const { userRole } = useSelector(({ common }) => common);
+  const [disableOptions, setDisableOptions] = useState(false);
 
   useEffect(() => {
     if (!userRole) return;
@@ -29,9 +30,7 @@ const LaboratoryInformation = ({ form }) => {
     }
   }, [userRole]);
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
   const _formValues = form?.getFieldsValue(true);
@@ -41,7 +40,7 @@ const LaboratoryInformation = ({ form }) => {
     }))
   );
   const { data: allLookup } = useFetchAllLookup();
-  
+
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
@@ -53,6 +52,43 @@ const LaboratoryInformation = ({ form }) => {
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
     USER_ROLE.VIEW === userRole;
+
+  // const commonOptions = [
+  //   {
+  //     label: "PCR",
+  //     value: "pcr",
+  //     disabled: disableOptions,
+  //   },
+  //   {
+  //     label: "not_done",
+  //     value: "Not Done",
+  //   },
+  // ];
+
+  // const uniqueOption =
+  //   formValues?.specimenType?.length === 1 &&
+  //   formValues?.specimenType[0] === "nSwab"
+  //     ? { label: "serology", value: "serology", disabled: disableOptions }
+  //     : { label: "RDT", value: "rdt", disabled: disableOptions };
+
+  // const options = [...commonOptions, uniqueOption];
+
+  const Options = [
+    {
+      label: "PCR",
+      value: "pcr",
+      disabled: disableOptions,
+    },
+    {
+      label: "RDT",
+      value: "rdt",
+      disabled: disableOptions,
+    },
+    {
+      label: "Not Done",
+      value: "not_done",
+    },
+  ];
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -420,12 +456,21 @@ const LaboratoryInformation = ({ form }) => {
                             disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="specimenConditionNasalThroatNp"
-                            onChange={(e) =>
+                            onChange={(e) => {
                               handleUpdateInputValues(
                                 e.target.name,
                                 e.target.value
-                              )
-                            }
+                              );
+                              setDisableOptions(false);
+                              setFormValues((prevState) => ({
+                                ...prevState,
+                                testConductedNasal: [],
+                              }));
+                              form.setFieldsValue({
+                                testConductedNasal: [],
+                              });
+                              return;
+                            }}
                           >
                             <Radio.Button value="adequate">
                               Adequate
@@ -485,32 +530,78 @@ const LaboratoryInformation = ({ form }) => {
                           >
                             <CheckboxGroup
                               disabled={labComponentDisabled}
-                              options={
-                                formValues?.specimenType?.length === 1 &&
-                                formValues?.specimenType[0] === "nSwab"
-                                  ? [
-                                      { label: "PCR", value: "pcr" },
-                                      { label: "serology", value: "serology" },
-                                    ]
-                                  : [
-                                      { label: "PCR", value: "pcr" },
-                                      { label: "RDT", value: "rdt" },
-                                    ]
-                              }
+                              options={Options}
                               name="testConductedNasal"
-                              onChange={(value) =>
+                              // options={
+                              //   formValues?.specimenType?.length === 1 &&
+                              //   formValues?.specimenType[0] === "nSwab"
+                              //     ? [
+                              //         {
+                              //           label: "PCR",
+                              //           value: "pcr",
+                              //           disabled: disableOptions,
+                              //         },
+                              //         {
+                              //           label: "serology",
+                              //           value: "serology",
+                              //           disabled: disableOptions,
+                              //         },
+                              //         {
+                              //           label: "not_done",
+                              //           value: "Not Done",
+                              //         },
+                              //       ]
+                              //     : [
+                              //         {
+                              //           label: "PCR",
+                              //           value: "pcr",
+                              //           disabled: disableOptions,
+                              //         },
+                              //         {
+                              //           label: "RDT",
+                              //           value: "rdt",
+                              //           disabled: disableOptions,
+                              //         },
+                              //         {
+                              //           label: "not_done",
+                              //           value: "Not Done",
+                              //         },
+                              //       ]
+                              // }
+
+                              onChange={(value) => {
                                 handleUpdateInputValues(
                                   "testConductedNasal",
                                   value
-                                )
-                              }
+                                );
+                                if (value.includes("not_done")) {
+                                  setDisableOptions(true);
+                                  setFormValues((prevState) => ({
+                                    ...prevState,
+                                    testConductedNasal: ["not_done"],
+                                  }));
+                                  form.setFieldsValue({
+                                    pcrResultNasalThroatNp: undefined,
+                                    dateResultSentPCR: undefined,
+                                    rdtResultNasalThroatNp: undefined,
+                                    dateResultSentOutNasal: undefined,
+                                    testConductedNasal: ["not_done"],
+                                  });
+                                  return;
+                                }
+                                setDisableOptions(false);
+                                handleUpdateInputValues(
+                                  "testConductedNasal",
+                                  value
+                                );
+                              }}
                             />
                           </ClearableFormItem>
                         </Col>
                       )}
 
                       {formValues?.testConductedNasal?.includes("pcr") && (
-                        <Row>
+                        <>
                           <Divider />
                           <Col lg={20} md={20} sm={24}>
                             <ClearableFormItem
@@ -558,11 +649,7 @@ const LaboratoryInformation = ({ form }) => {
                             </ClearableFormItem>
                           </Col>
 
-                          {(formValues?.pcrResultNasalThroatNp === "positive" ||
-                            formValues?.pcrResultNasalThroatNp ===
-                              "indeterminate" ||
-                            formValues?.pcrResultNasalThroatNp ===
-                              "negative") && (
+                          {(["positive", "indeterminate", "negative"].includes(formValues?.pcrResultNasalThroatNp)) && (
                             <Col lg={8} md={8} sm={24}>
                               <ClearableFormItem
                                 collectFormName={true}
@@ -582,11 +669,11 @@ const LaboratoryInformation = ({ form }) => {
                             </Col>
                           )}
                           <Divider />
-                        </Row>
+                        </>
                       )}
 
                       {formValues?.testConductedNasal?.includes("rdt") && (
-                        <Row>
+                        <>
                           <Col lg={20} md={20} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}
@@ -654,7 +741,7 @@ const LaboratoryInformation = ({ form }) => {
                               </ClearableFormItem>
                             </Col>
                           )}
-                        </Row>
+                        </>
                       )}
                     </>
                   )}

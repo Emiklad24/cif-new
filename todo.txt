@@ -2,4 +2,5 @@
 
 http://localhost:3000/specific-cif/disease-specific?role=super&stateId=99383&lgaId=99107&wardId=99106&facilityId=13673786&userId=64736873933033
 
-prds
+
+http://localhost:3000/specific-cif/disease-specific?role=super&stateId=99383&lgaId=99107&wardId=99106&facilityId=13673786&userId=64736873933033&sormasCaseUuid=X6XPXU-FSYKQV-JVXKGZ-KAFQSBRA

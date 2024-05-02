@@ -29,14 +29,12 @@ const LaboratoryInformation = ({ form }) => {
     }
   }, [userRole]);
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-    
+
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -381,7 +379,7 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
-                    
+
                       {formValues?.specimenType?.length >= 1 &&
                         (formValues?.specimenConditionCsf === "adequate" || formValues?.specimenConditionCsf === "not adequate" )&& (
                           <Col lg={12} md={12} sm={24}>
@@ -575,7 +573,7 @@ const LaboratoryInformation = ({ form }) => {
                               <ClearableFormItem
                                 collectFormName={true}
                                 label="Date result released"
-                                name="dateResultReleasedCsfPcr" 
+                                name="dateResultReleasedCsfPcr"
                                 form={form}
                                 setFormValues={setFormValues}
                                 labelCol={{ span: 24 }}

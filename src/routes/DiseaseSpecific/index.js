@@ -116,8 +116,6 @@ const App = () => {
 
   // ==========================================================
 
-
-
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
   const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
@@ -189,8 +187,7 @@ const App = () => {
     const formattedDate =
       typeof dateString === "string"
         ? dateString
-        : // : moment(dateString).format("DD-MM-YYYY");
-          moment(dateString).format(DATE_FORMAT);
+        : moment(dateString).format(DATE_FORMAT);
     // Assuming arg is in the format DD-MM-YYYY
     const parts = formattedDate.split("-");
     const day = parseInt(parts[0], 10);
@@ -726,6 +723,7 @@ const App = () => {
    * @function populateForm
    * @description Populate form with data from sormas gotten from the sormas case uuid
    */
+
   const populateForm = async () => {
     if (!sormasCase?.applicationUuid || loading) return;
 
@@ -745,10 +743,10 @@ const App = () => {
       age: sormasCase?.age,
     });
 
-    const spiltByHypen = sormasCase?.epidNumber.split("-");
+    const spiltByHyphen = sormasCase?.epidNumber.split("-");
     // use the first 4 items in the array to get the prefix
-    const _prefix = spiltByHypen.slice(0, 4).join("-");
-    const _epidValue = spiltByHypen[5] ?? "";
+    const _prefix = spiltByHyphen.slice(0, 4).join("-");
+    const _epidValue = spiltByHyphen[5] ?? "";
 
     if (sormasCase?.epidNumber) {
       setEpidNumberAddon(`${_prefix}-`);
@@ -782,7 +780,6 @@ const App = () => {
         (position) => {
           // Success callback
           const { latitude, longitude } = position.coords;
-
         },
         (error) => {
           // Error callback
@@ -911,12 +908,14 @@ const App = () => {
 
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
+    if (sormasCase?.applicationUuid) return;
     if (sormasCase?.applicationUuid || !userStateId) return;
     getStateDataByQueryId();
   }, [userStateId]);
 
   // set the ward of reporting if the lga id is present
   useEffect(() => {
+    if (sormasCase?.applicationUuid) return;
     if (!userWardId) return;
     if (wardQuery?.isFetched) {
       form.setFieldsValue({
@@ -927,20 +926,17 @@ const App = () => {
 
   // set the place of detection if the health facility id is present
   useEffect(() => {
+    if (sormasCase?.applicationUuid) return;
     if (!userFacilityId) return;
-    if (
-      AllHealthFacilitiesQuery?.data?.length > 0 &&
-      place_of_detection === "Health Facility"
-    ) {
+    if (AllHealthFacilitiesQuery?.data?.length > 0) {
       form.setFieldsValue({
         placeOfDetectionFacility: Number(userFacilityId),
+        placeOfDetection: "Health Facility",
       });
+      setPlaceOfDetection("Health Facility");
     }
-  }, [
-    AllHealthFacilitiesQuery?.data?.length,
-    userFacilityId,
-    place_of_detection,
-  ]);
+  }, [AllHealthFacilitiesQuery?.data?.length, userFacilityId]);
+  // place_of_detection,
 
   const onChange = () => {};
   const onSearch = () => {};
@@ -1184,6 +1180,12 @@ const App = () => {
                               .localeCompare(
                                 (optionB?.label ?? "").toLowerCase()
                               )
+                          }
+                          disabled={
+                            userStateId &&
+                            userLgaId &&
+                            userWardId &&
+                            userFacilityId
                           }
                         >
                           {placeDetectedData.map((item) => (
