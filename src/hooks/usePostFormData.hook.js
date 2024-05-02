@@ -8,7 +8,7 @@ export const usePostFormData = () => {
   const [message, setMessage] = useState("");
 
   const { data, isLoading, error, mutate, isSuccess, status } = useMutation({
-    mutationKey: POST_FORM_DATA,
+    mutationKey: [POST_FORM_DATA],
     mutationFn: postData,
     onSuccess: () => {
       setMessage("Successful");

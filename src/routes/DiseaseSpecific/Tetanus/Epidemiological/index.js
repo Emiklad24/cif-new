@@ -8,7 +8,7 @@ const Epidemiological = ({ form }) => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));

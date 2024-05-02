@@ -11,7 +11,7 @@ import "styles/pages/form.less";
 const ClinicalHistory = () => {
   const {Panel} = Collapse;
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
   return (
     <Collapse defaultActiveKey={['1']} onChange={onChange}>

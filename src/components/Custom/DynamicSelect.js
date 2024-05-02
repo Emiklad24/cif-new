@@ -12,7 +12,6 @@ const DynamicSelect = ({
 
   return (
     <Select
-      // disabled={!options || !isArray(options) || options?.length === 0}
       {...otherProps}
     >
       {options?.map?.((option, index) => (
