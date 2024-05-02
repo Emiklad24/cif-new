@@ -20,9 +20,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: |
-          yarn config set ignore-engines true
-          CI=false yarn install
+        run: yarn install
 
       - name: Build project
-        run: yarn build
+        run: CI=false yarn build
