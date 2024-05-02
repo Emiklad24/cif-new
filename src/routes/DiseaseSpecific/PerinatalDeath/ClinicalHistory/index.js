@@ -39,12 +39,12 @@ const ClinicalHistory = () => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formData, setData] = useState({});
   const handleFormData = (name, value) => {
-    console.log(name, value);
+   
     setData({ ...formData, [name]: value });
   };
 

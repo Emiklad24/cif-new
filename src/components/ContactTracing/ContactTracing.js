@@ -36,7 +36,7 @@ const ContactTracing = ({ form }) => {
   const [isYearDisabled, setIsYearDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+  
   };
 
   const handleUpdateInputValues = (inputName, value) => {

@@ -10,14 +10,13 @@ const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const { data: allLookup } = useFetchAllLookup();
 
   const [formValues, setFormValues] = useState({});
-  console.log("formValues", formValues);
-
+ 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">

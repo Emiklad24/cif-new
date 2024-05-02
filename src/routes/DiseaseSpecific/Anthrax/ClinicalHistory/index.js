@@ -48,7 +48,7 @@ const ClinicalHistory = ({ form }) => {
   const [hasBaselineSecrum] = useState(null);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`, hasBaselineSecrum);
+  
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));

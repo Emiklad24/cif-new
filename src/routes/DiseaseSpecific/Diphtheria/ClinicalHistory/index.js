@@ -13,7 +13,7 @@ const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -24,7 +24,7 @@ const ClinicalHistory = ({ form }) => {
       [inputName]: value,
     }));
   };
-  console.log(formValues?.locationOfAdherentPseudoMembrane)
+ 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">

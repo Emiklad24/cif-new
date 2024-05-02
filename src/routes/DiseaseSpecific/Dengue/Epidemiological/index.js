@@ -35,7 +35,7 @@ const Epidemiological = ({ form }) => {
   };
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   <Radio.Group

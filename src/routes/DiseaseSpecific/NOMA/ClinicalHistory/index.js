@@ -11,7 +11,7 @@ const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
   const [formValues, setFormValues] = useState({});
   const { data: allLookup } = useFetchAllLookup();

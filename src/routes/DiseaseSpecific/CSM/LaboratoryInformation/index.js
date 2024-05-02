@@ -5,10 +5,12 @@ import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -28,13 +30,13 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -42,9 +44,12 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
-  const allHealthFacilitiesQuery = useGetHealthFacilities();
-  const testingLaboratoryData = allHealthFacilitiesQuery?.data?.filter(
-    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  const _formValues = form?.getFieldsValue(true);
+
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
   );
 
   const { data: allLookup } = useFetchAllLookup();
@@ -199,7 +204,10 @@ const LaboratoryInformation = ({ form }) => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
-                    options={testingLaboratoryData}
+                    options={filterLabByStateAndDisease(
+                      _formValues?.stateOfReporting,
+                      selectedDiseaseArea?.value
+                    )}
                     valueProperty="id"
                     labelProperty="name"
                     filterOption={(input, option) =>
@@ -373,7 +381,7 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
-                      {console.log(formValues?.specimenConditionCsf)}
+                    
                       {formValues?.specimenType?.length >= 1 &&
                         (formValues?.specimenConditionCsf === "adequate" || formValues?.specimenConditionCsf === "not adequate" )&& (
                           <Col lg={12} md={12} sm={24}>

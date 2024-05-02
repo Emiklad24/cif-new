@@ -13,7 +13,7 @@ const ClinicalHistory = ({ form }) => {
   const { data: allLookup } = useFetchAllLookup();
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   return (
