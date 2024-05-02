@@ -115,7 +115,6 @@ const App = () => {
   const userFacilityId = urlParams.get(QUERY_PARAM.FACILITY_ID);
 
   // ==========================================================
-
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
   const lgaOfReportingQuery = useFetchAllLGA(selectedState?.stateOfReporting);
@@ -320,13 +319,13 @@ const App = () => {
   const onFinish = async (fieldsValue) => {
     console.log(fieldsValue)
     setFormIsLoading(true);
-    // if (fieldsValue.epidNumber) {
-    //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
-    // }
 
     // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
       fieldsValue.epidNumber = "";
+    }
+    if(isUpdate){
+      fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     }
 
     // construct payload
@@ -591,6 +590,7 @@ const App = () => {
         : createSormasCaseAction({ userId, ...reconstructedPayload });
 
       // Api call
+      console.log(reconstructedPayload)
       const response = await dispatch(updateAction);
 
       notification.success({
@@ -600,7 +600,7 @@ const App = () => {
           : "Case created successfully",
       });
 
-      if (!isUpdate) resetForm();
+      // if (!isUpdate) resetForm();
       setFormIsLoading(false);
     } catch (error) {
       const { message, validationMessages } = error;
@@ -743,11 +743,11 @@ const App = () => {
       specimenCollected: sormasCase?.specimenCollected || "NO",
       age: sormasCase?.age,
     });
-
+    
     const spiltByHyphen = sormasCase?.epidNumber.split("-");
     // use the first 4 items in the array to get the prefix
     const _prefix = spiltByHyphen.slice(0, 4).join("-");
-    const _epidValue = spiltByHyphen[5] ?? "";
+    const _epidValue = spiltByHyphen[4] ?? "";
 
     if (sormasCase?.epidNumber) {
       setEpidNumberAddon(`${_prefix}-`);
