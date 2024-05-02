@@ -35,4 +35,4 @@ jobs:
           passphrase: ${{ secrets.STAGING_PHARSE }}
           script: |
             cd /var/www/specific-cif
-            rsync -avz $GITHUB_WORKSPACE/build/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/specific-cif
+            rsync -avz $GITHUB_WORKSPACE/build/ ${{ secrets.STAGING_CICD_USER }}@${{ secrets.STAGING_HOST }}:/var/www/specific-cif
