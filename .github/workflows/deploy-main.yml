@@ -29,6 +29,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avzr --delete -vvv --archive --recursive --compress
+          path: build/
           remote_path: /var/www/specific-cif
           remote_host: ${{ secrets.STAGING_HOST }}
           remote_user: ${{ secrets.STAGING_CICD_USER }}
