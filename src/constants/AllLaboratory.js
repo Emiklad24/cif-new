@@ -2121,13 +2121,13 @@ const data = [
   },
   {
     disease: "Diphtheria",
-    state: "Katshina",
+    state: "Katsina",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
   {
     disease: "Diphtheria",
-    state: "Katshina",
+    state: "Katsina",
     name: "GARSH Laboratory, Katsina (BATAGARAWA)",
     id: 116712198,
   },
