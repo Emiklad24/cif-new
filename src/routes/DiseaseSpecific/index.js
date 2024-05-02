@@ -328,7 +328,7 @@ const App = () => {
     console.log(!isUpdate);
     // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
-       fieldsValue.epidNumber = "";
+      fieldsValue.epidNumber = "";
     }
 
     // construct payload
@@ -585,8 +585,6 @@ const App = () => {
       setFormIsLoading(false);
       return;
     }
-
-
 
     try {
       // Update or create sormas case
@@ -906,7 +904,7 @@ const App = () => {
     }
     return;
   };
-console.log('userStateId', userStateId)
+  console.log("userStateId", userStateId);
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
     if (sormasCase?.applicationUuid || !userStateId) return;
@@ -1104,7 +1102,7 @@ console.log('userStateId', userStateId)
                           onChange={(value) => {
                             handleLgaChange(value, "lgaOfReporting");
                           }}
-                          disabled={userLgaId}
+                          disabled={userStateId && userLgaId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1148,7 +1146,7 @@ console.log('userStateId', userStateId)
                           }
                           valueProperty="id"
                           labelProperty="name"
-                          disabled={userWardId}
+                          disabled={userStateId && userLgaId && userWardId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1226,7 +1224,12 @@ console.log('userStateId', userStateId)
                             options={AllHealthFacilitiesQuery?.data}
                             valueProperty="id"
                             labelProperty="name"
-                            disabled={userFacilityId}
+                            disabled={
+                              userStateId &&
+                              userLgaId &&
+                              userWardId &&
+                              userFacilityId
+                            }
                           />
                         </ClearableFormItem>
                       </Col>
