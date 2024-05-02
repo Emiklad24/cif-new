@@ -31,7 +31,6 @@ jobs:
           switches: -avzr --delete -vvv --archive --recursive --compress
           remote_path: /var/www/specific-cif
           remote_host: ${{ secrets.STAGING_HOST }}
-          remote_port: ${{ secrets.STAGING_PORT }}
           remote_user: ${{ secrets.STAGING_CICD_USER }}
           remote_key: ${{ secrets.STAGING_YESK }}
           remote_key_pass: ${{ secrets.STAGING_PHARSE }}
