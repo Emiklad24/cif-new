@@ -15,7 +15,7 @@ const data = [
   },
   {
     disease: "Mpox",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -267,7 +267,7 @@ const data = [
   },
   {
     disease: "Influenza",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -489,7 +489,7 @@ const data = [
   },
   {
     disease: "Yellow Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "University of Benin Teaching Hospital (UBTH), Laboratory",
     id: 1820884,
   },
@@ -711,7 +711,7 @@ const data = [
   },
   {
     disease: "Measles",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "University of Benin Teaching Hospital (UBTH), Laboratory",
     id: 1820884,
   },
@@ -939,7 +939,7 @@ const data = [
   },
   {
     disease: "Cholera",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -1341,7 +1341,7 @@ const data = [
   },
   {
     disease: "CSM",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -1737,7 +1737,7 @@ const data = [
   },
   {
     disease: "Pan Respiratory Disease Surveillance (PRDS)",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -1959,7 +1959,7 @@ const data = [
   },
   {
     disease: "Diphtheria",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
@@ -2121,13 +2121,13 @@ const data = [
   },
   {
     disease: "Diphtheria",
-    state: "Katshina",
+    state: "Katsina",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
   {
     disease: "Diphtheria",
-    state: "Katshina",
+    state: "Katsina",
     name: "GARSH Laboratory, Katsina (BATAGARAWA)",
     id: 116712198,
   },
@@ -2295,8 +2295,8 @@ const data = [
   },
   {
     disease: "COVID-19",
-    state: "Akwa Ibom",
-    name: "Molecular Diagnostics Laboratory, Methodist General Hospital, Akwa Ibom",
+    state: "Akwa-Ibom",
+    name: "Molecular Diagnostics Laboratory, Methodist General Hospital, Akwa-Ibom",
     id: 8103721,
   },
   {
@@ -2871,55 +2871,55 @@ const data = [
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
     id: 287852,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Centre for Infectious Disease and Research (CIDR) BUK",
     id: 1848276,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
     id: 273472,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Federal Medical Centre (FMC) Owo Laboratory",
     id: 178553,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "FMC, Jalingo Molecular Lab",
     id: 60863456,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Irrua Specialist Teaching Hospital (ISTH)",
     id: 136527,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "National Reference Laboratory (NRL), Abuja",
     id: 136529,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
     id: 116712133,
   },
   {
     disease: "Lassa Fever",
-    state: "Akwa Ibom",
+    state: "Akwa-Ibom",
     name: "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
     id: 136531,
   },
@@ -4771,11 +4771,14 @@ export const filterLabByStateAndDisease = (stateId, disease) => {
         el?.disease?.toLocaleLowerCase() === disease.toLocaleLowerCase() &&
         el?.state?.toLocaleLowerCase() === state.toLocaleLowerCase()
     );
-
- 
-
-
     return labs;
   }
   return [];
+};
+
+export const filterLabNRL = () => {
+  return [ {
+    name: "National Reference Laboratory (NRL), Abuja",
+    id: 136529,
+  }];
 };
