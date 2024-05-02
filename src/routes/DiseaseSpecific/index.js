@@ -317,14 +317,13 @@ const App = () => {
     !sormasCaseUuid;
 
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue)
     setFormIsLoading(true);
 
     // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
       fieldsValue.epidNumber = "";
     }
-    if(isUpdate){
+    if (isUpdate) {
       fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     }
 
@@ -590,7 +589,7 @@ const App = () => {
         : createSormasCaseAction({ userId, ...reconstructedPayload });
 
       // Api call
-      console.log(reconstructedPayload)
+      console.log(reconstructedPayload);
       const response = await dispatch(updateAction);
 
       notification.success({
@@ -641,7 +640,39 @@ const App = () => {
     });
 
     if (!reset) return;
-    resetForm();
+    // resetForm();
+
+    // clear the form but except this fields
+
+    const preservedValues = [
+      "dateOfReportReportingAreas",
+      "stateOfReporting",
+      "stateOfReporting",
+      "lgaOfReporting",
+      "wardOfReporting",
+      "placeOfDetection",
+      "placeOfDetectionFacility",
+      "placeDescription",
+      "notifiedBy",
+      "dateOfNotificationReportingAreas",
+      "dateOfInvestigationReportingAreas",
+    ];
+    const _formValues = form.getFieldsValue(true);
+
+    // remove the preserved values from the form values
+    // const filteredFormValues = Object.keys(_formValues)
+    //   .filter((key) => !preservedValues.includes(key))
+    //   .reduce((obj, key) => {
+    //     obj[key] = _formValues[key];
+    //     return obj;
+    //   }
+    //   , {});
+    Object.keys(_formValues).forEach((key) => {
+      if (!preservedValues.includes(key)) {
+        form.setFieldsValue({ [key]: undefined });
+      }
+    });
+
   };
 
   const resetForm = () => {
@@ -743,8 +774,10 @@ const App = () => {
       specimenCollected: sormasCase?.specimenCollected || "NO",
       age: sormasCase?.age,
     });
-    
-    const spiltByHyphen = sormasCase?.epidNumber.split("-");
+
+    const spiltByHyphen = sormasCase?.epidNumber
+      ? sormasCase?.epidNumber.split("-")
+      : [];
     // use the first 4 items in the array to get the prefix
     const _prefix = spiltByHyphen.slice(0, 4).join("-");
     const _epidValue = spiltByHyphen[4] ?? "";
@@ -909,15 +942,13 @@ const App = () => {
 
   // set the state and lga of reporting if the state and lga id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid) return;
     if (sormasCase?.applicationUuid || !userStateId) return;
     getStateDataByQueryId();
   }, [userStateId]);
 
   // set the ward of reporting if the lga id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid) return;
-    if (!userWardId) return;
+    if (sormasCase?.applicationUuid || !userWardId) return;
     if (wardQuery?.isFetched) {
       form.setFieldsValue({
         wardOfReporting: Number(userWardId),
@@ -927,8 +958,7 @@ const App = () => {
 
   // set the place of detection if the health facility id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid) return;
-    if (!userFacilityId) return;
+    if (sormasCase?.applicationUuid || !userFacilityId) return;
     if (AllHealthFacilitiesQuery?.data?.length > 0) {
       form.setFieldsValue({
         placeOfDetectionFacility: Number(userFacilityId),
@@ -937,7 +967,6 @@ const App = () => {
       setPlaceOfDetection("Health Facility");
     }
   }, [AllHealthFacilitiesQuery?.data?.length, userFacilityId]);
-  // place_of_detection,
 
   const onChange = () => {};
   const onSearch = () => {};
