@@ -25,26 +25,14 @@ jobs:
       - name: Build project
         run: CI=false yarn build
 
-      - name: Copy artifact to staging
-        uses: appleboy/scp-action@v0.1.4
+      - name: Coppy files to server
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          host: ${{ secrets.STAGING_HOST }}
-          username: ${{ secrets.STAGING_CICD_USER }}
-          key: ${{ secrets.STAGING_YESK }}
-          port: ${{ secrets.STAGING_PORT }}
-          passphrase: ${{ secrets.STAGING_PHARSE }}
-          strip_components: 1
-          overwrite: true
-          source: $GITHUB_WORKSPACE/build/
-          target: frontendDump
-
-      - name: Deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.STAGING_HOST }}
-          username: ${{ secrets.STAGING_CICD_USER }}
-          key: ${{ secrets.STAGING_YESK }}
-          port: ${{ secrets.STAGING_PORT }}
-          passphrase: ${{ secrets.STAGING_PHARSE }}
-          script: |
-            cp ~/frontendDump/* /var/www/specific-cif
+          switches: -avzr --delete
+          path: build/
+          remote_path: /var/www/specific-cif
+          remote_host: ${{ secrets.STAGING_HOST }}
+          remote_port: ${{ secrets.STAGING_PORT }}
+          remote_user: ${{ secrets.STAGING_CICD_USER }}
+          remote_key: ${{ secrets.STAGING_YESK }}
+          remote_key_pass: ${{ secrets.STAGING_PHARSE }}
