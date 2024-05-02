@@ -1,23 +1,23 @@
-import { Col, Input, Collapse, Row, Radio } from "antd";
+import { Col, Collapse, Input, Radio, Row } from "antd";
 import React, { useState } from "react";
 import "styles/pages/form.less";
 
-import ClearableFormItem from "../../../../components/Custom/ClearableFormItem";
-import CustomDatePicker from "../../../../components/Custom/CustomDatePicker";
-import useFetchAllLookup from "../../../../hooks/useFetchAllLookups.hooks";
-import DynamicRadio from "../../../../components/Custom/DynamicRadio";
+import ClearableFormItem from "components/Custom/ClearableFormItem";
+import CustomDatePicker from "components/Custom/CustomDatePicker";
+import DynamicRadio from "components/Custom/DynamicRadio";
+import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 
 const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -31,7 +31,7 @@ const Epidemiological = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
-        <Col lg={12} sm={24}>
+          <Col lg={12} sm={24}>
             <ClearableFormItem
               label="Patient ever received any meningococcal vaccine?"
               name="patientEverReceivedAnyMeningococalVaccine"
@@ -109,7 +109,7 @@ const Epidemiological = ({ form }) => {
                     <Radio.Button value="1">1</Radio.Button>
                     <Radio.Button value="2">2</Radio.Button>
                     <Radio.Button value="3">3</Radio.Button>
-                    <Radio.Button value="4">4</Radio.Button>
+                    <Radio.Button value="4+">4+</Radio.Button>
                   </Radio.Group>
                 </ClearableFormItem>
               </Col>

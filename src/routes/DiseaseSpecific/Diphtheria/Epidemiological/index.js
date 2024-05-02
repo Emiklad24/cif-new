@@ -9,7 +9,7 @@ const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -728,12 +728,7 @@ const Epidemiological = ({ form }) => {
                     name="dateOfPatientDeath"
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
-                    rules={[
-                      {
-                        required: true,
-                        message: "This field is required",
-                      },
-                    ]}
+                   
                   >
                     <CustomDatePicker form={form} name="dateOfPatientDeath" />
                   </ClearableFormItem>

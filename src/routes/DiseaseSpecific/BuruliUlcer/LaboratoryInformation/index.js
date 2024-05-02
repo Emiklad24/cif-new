@@ -30,7 +30,7 @@ const LaboratoryInformation = ({ form }) => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`, testinglaboratory_type);
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -44,7 +44,7 @@ const LaboratoryInformation = ({ form }) => {
 
 
     if (formValues?.sampleCollected === "no" || formValues?.sampleCollected === "unknown") {
-      console.log('hhhh')
+   
       form.setFieldsValue({
         dateSpecimenCollected: null, specimenCollected: null, dateSpecimenSent: null, nameOfTestingLaboratory: null
       });

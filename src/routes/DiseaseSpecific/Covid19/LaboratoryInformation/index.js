@@ -5,10 +5,12 @@ import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -16,6 +18,7 @@ const LaboratoryInformation = ({ form }) => {
   const { Panel } = Collapse;
   const [labComponentDisabled, setLabComponentDisabled] = useState(false);
   const { userRole } = useSelector(({ common }) => common);
+  const [disableOptions, setDisableOptions] = useState(false);
 
   useEffect(() => {
     if (!userRole) return;
@@ -27,16 +30,20 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
-  const { data: allLookup } = useFetchAllLookup();
-  const allHealthFacilitiesQuery = useGetHealthFacilities();
-  const testingLaboratoryData = allHealthFacilitiesQuery?.data?.filter(
-    (fac) => fac?.type?.toLowerCase() === "laboratory"
+  const _formValues = form?.getFieldsValue(true);
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
   );
-  console.log(formValues?.genoSequencingPcrResult)
+
+  const { data: allLookup } = useFetchAllLookup();
+  
+
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
@@ -176,7 +183,10 @@ const LaboratoryInformation = ({ form }) => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
-                    options={testingLaboratoryData}
+                    options={filterLabByStateAndDisease(
+                      _formValues?.stateOfReporting,
+                      selectedDiseaseArea?.value
+                    )}
                     valueProperty="id"
                     labelProperty="name"
                     filterOption={(input, option) =>
@@ -203,7 +213,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Nasal swab"
+                        label="Nasal swab (Received)"
                         name="nSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
@@ -238,7 +248,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Throat swab"
+                        label="Throat swab (Received)"
                         name="tSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
@@ -273,7 +283,7 @@ const LaboratoryInformation = ({ form }) => {
                         collectFormName={true}
                         setFormValues={setFormValues}
                         form={form}
-                        label="Nasopharyngeal swab"
+                        label="Nasopharyngeal Swab (Received)"
                         name="npSwabSpecimenReceived"
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
@@ -373,12 +383,21 @@ const LaboratoryInformation = ({ form }) => {
                             disabled={labComponentDisabled}
                             buttonStyle="solid"
                             name="specimenConditionNasalThroatNp"
-                            onChange={(e) =>
+                            onChange={(e) => {
                               handleUpdateInputValues(
                                 e.target.name,
                                 e.target.value
-                              )
-                            }
+                              );
+                              setDisableOptions(false);
+                              setFormValues((prevState) => ({
+                                ...prevState,
+                                testConductedCsf: [],
+                              }));
+                              form.setFieldsValue({
+                                testConductedCsf: [],
+                              });
+                              return;
+                            }}
                           >
                             <Radio.Button value="adequate">
                               Adequate
@@ -439,40 +458,307 @@ const LaboratoryInformation = ({ form }) => {
                             <CheckboxGroup
                               disabled={labComponentDisabled}
                               options={
-                                formValues?.specimenType?.length === 1 &&
-                                formValues?.specimenType[0] === "nSwab"
-                                  ? [
-                                      { label: "PCR", value: "pcr" },
-                                      { label: "serology", value: "serology" },
-                                    ]
-                                  : [
-                                      { label: "PCR", value: "pcr" },
-                                      { label: "RDT", value: "rdt" },
-                                    ]
+                                // formValues?.specimenType?.length === 1 &&
+                                // formValues?.specimenType[0] === "nSwab"
+                                //   ? [
+                                //       { label: "PCR", value: "pcr" },
+                                //       { label: "serology", value: "serology" },
+                                //     ]
+                                //   : formValues?.testConductedNasal?.includes(
+                                //       "not_done"
+                                //     )
+                                //   ? [{ label: "Not Done", value: "not_done" }]
+                                //   : [
+                                //       { label: "PCR", value: "pcr" },
+                                //       { label: "RDT", value: "rdt" },
+                                //       { label: "Not Done", value: "not_done" },
+                                //     ]
+                                [
+                                  {
+                                    label: "PCR",
+                                    value: "pcr",
+                                    disabled: disableOptions,
+                                  },
+                                  {
+                                    label: "RDT",
+                                    value: "rdt",
+                                    disabled: disableOptions,
+                                  },
+                                  {
+                                    label: "Not Done",
+                                    value: "not_done",
+                                  },
+                                ]
                               }
                               name="testConductedNasal"
-                              onChange={(value) =>
+                              onChange={(value) => {
                                 handleUpdateInputValues(
                                   "testConductedNasal",
                                   value
-                                )
-                              }
+                                );
+                                if (value.includes("not_done")) {
+                                  setDisableOptions(true);
+                                  setFormValues((prevState) => ({
+                                    ...prevState,
+                                    testConductedNasal: ["not_done"],
+                                  }));
+                                  form.setFieldsValue({
+                                    pcrResultNasalThroatNp: undefined,
+                                    dateResultReleasedPcr: undefined,
+                                    genomicSequencingConducted: undefined,
+                                    genoSequencingPcrResult: undefined,
+                                    othersGenomicSequencing: undefined,
+                                    dateGenomicSequencingResultReleased:
+                                      undefined,
+                                    rdtResultNasalThroatNp: undefined,
+                                    dateResultReleasedRdt: undefined,
+                                    testConductedNasal: ["not_done"],
+                                  });
+                                  return;
+                                }
+                                setDisableOptions(false);
+                                handleUpdateInputValues(
+                                  "testConductedNasal",
+                                  value
+                                );
+                              }}
                             />
                           </ClearableFormItem>
                         </Col>
                       )}
 
-                      {formValues?.testConductedNasal?.includes("pcr") && (
-                        <>
-                          <Divider />
+                      <>
+                        {formValues?.testConductedNasal?.includes("pcr") && (
                           <>
-                            <Col lg={12} md={12} sm={24}>
+                            <Divider />
+                            <>
+                              <Col lg={12} md={12} sm={24}>
+                                <ClearableFormItem
+                                  collectFormName={true}
+                                  setFormValues={setFormValues}
+                                  form={form}
+                                  label="PCR result"
+                                  name="pcrResultNasalThroatNp"
+                                  labelCol={{ span: 24 }}
+                                  wrapperCol={{ span: 24 }}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "This field is required",
+                                    },
+                                  ]}
+                                >
+                                  <Radio.Group
+                                    disabled={labComponentDisabled}
+                                    buttonStyle="solid"
+                                    name="pcrResultNasalThroatNp"
+                                    onChange={(e) => {
+                                      handleUpdateInputValues(
+                                        e.target.name,
+                                        e.target.value
+                                      );
+                                    }}
+                                  >
+                                    <Radio.Button value="positive">
+                                      Positive
+                                    </Radio.Button>
+                                    <Radio.Button value="negative">
+                                      Negative
+                                    </Radio.Button>
+                                    <Radio.Button value="indeterminate">
+                                      Indeterminate
+                                    </Radio.Button>
+                                    <Radio.Button value="pending">
+                                      Pending
+                                    </Radio.Button>
+                                    <Radio.Button value="not_done">
+                                      Not Done
+                                    </Radio.Button>
+                                  </Radio.Group>
+                                </ClearableFormItem>
+                              </Col>
+                              {!["pending", "not_done"].includes(
+                                formValues?.pcrResultNasalThroatNp
+                              ) && (
+                                <>
+                                  <Col lg={12} md={12} sm={24}>
+                                    <ClearableFormItem
+                                      collectFormName={true}
+                                      setFormValues={setFormValues}
+                                      form={form}
+                                      label="Date PCR result released"
+                                      labelCol={{ span: 24 }}
+                                      wrapperCol={{ span: 24 }}
+                                      name="dateResultReleasedPcr"
+                                      rules={[
+                                        {
+                                          required: true,
+                                          message: "This field is required",
+                                        },
+                                      ]}
+                                    >
+                                      <CustomDatePicker
+                                        disabled={labComponentDisabled}
+                                        form={form}
+                                        name="dateResultReleasedPcr"
+                                      />
+                                    </ClearableFormItem>
+                                  </Col>
+                                  <Col lg={12} sm={12}>
+                                    <ClearableFormItem
+                                      form={form}
+                                      setFormValues={setFormValues}
+                                      label="Genomic sequencing conducted?"
+                                      name="genomicSequencingConducted"
+                                      labelCol={{ span: 24 }}
+                                      wrapperCol={{ span: 24 }}
+                                      rules={[
+                                        {
+                                          required: true,
+                                          message: "This field is required",
+                                        },
+                                      ]}
+                                    >
+                                      <DynamicRadio
+                                        buttonStyle="solid"
+                                        options={allLookup?.yes_no_type || []}
+                                        valueProperty="id"
+                                        labelProperty="value"
+                                        onChange={(e) =>
+                                          handleUpdateInputValues(
+                                            e.target.name,
+                                            e.target.value
+                                          )
+                                        }
+                                        name="genomicSequencingConducted"
+                                      />
+                                    </ClearableFormItem>
+                                  </Col>
+                                </>
+                              )}
+                              {formValues?.genomicSequencingConducted ===
+                                "YES" && (
+                                <Col lg={12} md={12} sm={24}>
+                                  <ClearableFormItem
+                                    collectFormName={true}
+                                    setFormValues={setFormValues}
+                                    form={form}
+                                    label="Genomic sequencing result"
+                                    name="genoSequencingPcrResult"
+                                    labelCol={{ span: 24 }}
+                                    wrapperCol={{ span: 24 }}
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "This field is required",
+                                      },
+                                    ]}
+                                  >
+                                    <DynamicRadio
+                                      disabled={labComponentDisabled}
+                                      buttonStyle="solid"
+                                      options={[
+                                        {
+                                          id: "B.1.1.7",
+                                          value: "B.1.1.7",
+                                        },
+                                        {
+                                          id: "B.1.351",
+                                          value: "B.1.351",
+                                        },
+                                        {
+                                          id: "P.1",
+                                          value: "P.1",
+                                        },
+                                        {
+                                          id: "B.1.617.2",
+                                          value: "B.1.617.2",
+                                        },
+                                        {
+                                          id: "others",
+                                          value: "Others",
+                                        },
+                                      ]}
+                                      valueProperty="id"
+                                      labelProperty="value"
+                                      onChange={(e) =>
+                                        handleUpdateInputValues(
+                                          e.target.name,
+                                          e.target.value
+                                        )
+                                      }
+                                      name="genoSequencingPcrResult"
+                                    />
+                                  </ClearableFormItem>
+                                </Col>
+                              )}
+
+                              {formValues?.genoSequencingPcrResult ===
+                                "others" && (
+                                <Col lg={12} md={12} sm={24}>
+                                  <ClearableFormItem
+                                    setFormValues={setFormValues}
+                                    form={form}
+                                    label="Others (Specify)"
+                                    name="othersGenomicSequencing"
+                                    labelCol={{ span: 24 }}
+                                    wrapperCol={{ span: 24 }}
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "This field is required",
+                                      },
+                                    ]}
+                                  >
+                                    <Input
+                                      placeholder="Enter other symptoms"
+                                      id="specifyOthers"
+                                      name="specifyOthers"
+                                      onChange={(e) => {}}
+                                    />
+                                  </ClearableFormItem>
+                                </Col>
+                              )}
+                              {formValues?.genomicSequencingConducted ===
+                                "YES" && (
+                                <Col lg={12} md={12} sm={24}>
+                                  <ClearableFormItem
+                                    collectFormName={true}
+                                    setFormValues={setFormValues}
+                                    form={form}
+                                    label="Date genomic sequencing result released "
+                                    labelCol={{ span: 24 }}
+                                    wrapperCol={{ span: 24 }}
+                                    name="dateGenomicSequencingResultReleased"
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "This field is required",
+                                      },
+                                    ]}
+                                  >
+                                    <CustomDatePicker
+                                      disabled={labComponentDisabled}
+                                      form={form}
+                                      name="dateGenomicSequencingResultReleased"
+                                    />
+                                  </ClearableFormItem>
+                                </Col>
+                              )}
+                            </>
+                            <Divider />
+                          </>
+                        )}
+
+                        {formValues?.testConductedNasal?.includes("rdt") && (
+                          <Row>
+                            <Col lg={14} md={14} sm={24}>
                               <ClearableFormItem
                                 collectFormName={true}
                                 setFormValues={setFormValues}
                                 form={form}
-                                label="PCR result"
-                                name="pcrResultNasalThroatNp"
+                                label="RDT result"
+                                name="rdtResultNasalThroatNp"
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
                                 rules={[
@@ -485,7 +771,7 @@ const LaboratoryInformation = ({ form }) => {
                                 <Radio.Group
                                   disabled={labComponentDisabled}
                                   buttonStyle="solid"
-                                  name="pcrResultNasalThroatNp"
+                                  name="rdtResultNasalThroatNp"
                                   onChange={(e) => {
                                     handleUpdateInputValues(
                                       e.target.name,
@@ -511,19 +797,19 @@ const LaboratoryInformation = ({ form }) => {
                                 </Radio.Group>
                               </ClearableFormItem>
                             </Col>
+
                             {!["pending", "not_done"].includes(
-                              formValues?.pcrResultNasalThroatNp
+                              formValues?.rdtResultNasalThroatNp
                             ) && (
-                              <>
-                              <Col lg={12} md={12} sm={24}>
+                              <Col lg={10} md={10} sm={24}>
                                 <ClearableFormItem
                                   collectFormName={true}
                                   setFormValues={setFormValues}
                                   form={form}
-                                  label="Date PCR result released"
+                                  label="Date RDT result released"
                                   labelCol={{ span: 24 }}
                                   wrapperCol={{ span: 24 }}
-                                  name="dateResultReleasedPcr"
+                                  name="dateResultReleasedRdt"
                                   rules={[
                                     {
                                       required: true,
@@ -534,305 +820,18 @@ const LaboratoryInformation = ({ form }) => {
                                   <CustomDatePicker
                                     disabled={labComponentDisabled}
                                     form={form}
-                                    name="dateResultReleasedPcr"
+                                    name="dateResultReleasedRdt"
                                   />
-                                </ClearableFormItem>
-                              </Col>
-                               <Col lg={12} sm={12}>
-                                <ClearableFormItem
-                                  form={form}
-                                  setFormValues={setFormValues}
-                                  label="Genomic sequencing conducted?"
-                                  name="genomicSequencingConducted"
-                                  labelCol={{ span: 24 }}
-                                  wrapperCol={{ span: 24 }}
-                                  rules={[
-                                    {
-                                      required: true,
-                                      message: "This field is required",
-                                    },
-                                  ]}
-                                >
-                                  <DynamicRadio
-                                    buttonStyle="solid"
-                                    options={allLookup?.yes_no_type || []}
-                                    valueProperty="id"
-                                    labelProperty="value"
-                                    onChange={(e) =>
-                                      handleUpdateInputValues(e.target.name, e.target.value)
-                                    }
-                                    name="genomicSequencingConducted"
-                                  />
-                                </ClearableFormItem>
-                              </Col>
-                                </>
-                            )}
-                            {formValues?.genomicSequencingConducted ===
-                              "YES" && (
-                              <Col lg={12} md={12} sm={24}>
-                                <ClearableFormItem
-                                  collectFormName={true}
-                                  setFormValues={setFormValues}
-                                  form={form}
-                                  label="Genomic sequencing result"
-                                  name="genoSequencingPcrResult"
-                                  labelCol={{ span: 24 }}
-                                  wrapperCol={{ span: 24 }}
-                                   rules={[
-                                    {
-                                      required: true,
-                                      message: "This field is required",
-                                    },
-                                  ]}
-                                >
-                                  <DynamicRadio
-                                    disabled={labComponentDisabled}
-                                    buttonStyle="solid"
-                                    options={[ {
-                                        "id": "B.1.1.7",
-                                        "value": "B.1.1.7"
-                                    },
-                                    {
-                                        "id": "B.1.351",
-                                        "value": "B.1.351"
-                                    },
-                                    {
-                                        "id": "P.1",
-                                        "value": "P.1"
-                                    },
-                                    {
-                                        "id": "B.1.617.2",
-                                        "value": "B.1.617.2"
-                                    },
-                                    {
-                                        "id": "others",
-                                        "value": "Others"
-                                    }]}
-                                    valueProperty="id"
-                                    labelProperty="value"
-                                    onChange={(e) =>
-                                      handleUpdateInputValues(e.target.name, e.target.value)
-                                    }
-                                    name="genoSequencingPcrResult"
-                                  />
-                                  {/*<Radio.Group*/}
-                                  {/*  buttonStyle="solid"*/}
-                                  {/*  disabled={labComponentDisabled}*/}
-                                  {/*>*/}
-                                  {/*  <Radio.Button*/}
-                                  {/*    value="B.1.1.7"*/}
-                                  {/*    name="genoSequencing"*/}
-                                  {/*  >*/}
-                                  {/*    B.1.1.7*/}
-                                  {/*  </Radio.Button>*/}
-                                  {/*  <Radio.Button*/}
-                                  {/*    value="B.1.351"*/}
-                                  {/*    name="genoSequencing"*/}
-                                  {/*  >*/}
-                                  {/*    B.1.351*/}
-                                  {/*  </Radio.Button>*/}
-                                  {/*  <Radio.Button*/}
-                                  {/*    value="P.1"*/}
-                                  {/*    name="genoSequencing"*/}
-                                  {/*  >*/}
-                                  {/*    P.1*/}
-                                  {/*  </Radio.Button>*/}
-                                  {/*  <Radio.Button*/}
-                                  {/*    value="B.1.617.2"*/}
-                                  {/*    name="genoSequencing"*/}
-                                  {/*  >*/}
-                                  {/*    B.1.617.2*/}
-                                  {/*  </Radio.Button>*/}
-                                  {/*   <Radio.Button*/}
-                                  {/*    value="others"*/}
-                                  {/*    name="genoSequencing"*/}
-                                  {/*  >*/}
-                                  {/*    Others*/}
-                                  {/*  </Radio.Button>*/}
-                                  {/*</Radio.Group>*/}
                                 </ClearableFormItem>
                               </Col>
                             )}
-
-                          {formValues?.genoSequencingPcrResult === "others" && (
-                      <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Others (Specify)"
-                          name="othersGenomicSequencing"
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <Input
-                            placeholder="Enter other symptoms"
-                            id="specifyOthers"
-                            name="specifyOthers"
-                            onChange={(e) => {}}
-                          />
-                        </ClearableFormItem>
-                      </Col>
+                          </Row>
                         )}
-                            {formValues?.genomicSequencingConducted ===
-                              "YES" && (
-                             <Col lg={12} md={12} sm={24}>
-                        <ClearableFormItem
-                          collectFormName={true}
-                          setFormValues={setFormValues}
-                          form={form}
-                          label="Date genomic sequencing result released "
-                          labelCol={{ span: 24 }}
-                          wrapperCol={{ span: 24 }}
-                          name="dateGenomicSequencingResultReleased"
-                          rules={[
-                            {
-                              required: true,
-                              message: "This field is required",
-                            },
-                          ]}
-                        >
-                          <CustomDatePicker
-                            disabled={labComponentDisabled}
-                            form={form}
-                            name="dateSpecimenReceivedNasalThroatNp"
-                          />
-                        </ClearableFormItem>
-                      </Col>
-                            )}
-                          </>
-                          <Divider />
-                        </>
-                      )}
-
-
-                      {formValues?.testConductedNasal?.includes("rdt") && (
-                        <Row>
-                          <Col lg={14} md={14} sm={24}>
-                            <ClearableFormItem
-                              collectFormName={true}
-                              setFormValues={setFormValues}
-                              form={form}
-                              label="RDT result"
-                              name="rdtResultNasalThroatNp"
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "This field is required",
-                                },
-                              ]}
-                            >
-                              <Radio.Group
-                                disabled={labComponentDisabled}
-                                buttonStyle="solid"
-                                name="rdtResultNasalThroatNp"
-                                onChange={(e) => {
-                                  handleUpdateInputValues(
-                                    e.target.name,
-                                    e.target.value
-                                  );
-                                }}
-                              >
-                                <Radio.Button value="positive">
-                                  Positive
-                                </Radio.Button>
-                                <Radio.Button value="negative">
-                                  Negative
-                                </Radio.Button>
-                                <Radio.Button value="indeterminate">
-                                  Indeterminate
-                                </Radio.Button>
-                                <Radio.Button value="pending">
-                                  Pending
-                                </Radio.Button>
-                                <Radio.Button value="not done">
-                                  Not Done
-                                </Radio.Button>
-                              </Radio.Group>
-                            </ClearableFormItem>
-                          </Col>
-
-                          {/*{formValues?.rdtResultNasalThroatNp ===*/}
-                          {/*  "positive" && (*/}
-                          {/*  <Col lg={12} md={12} sm={24}>*/}
-                          {/*    <ClearableFormItem*/}
-                          {/*      collectFormName={true}*/}
-                          {/*      label="Genomic sequencing RDT"*/}
-                          {/*      name="genoSequencingThroatNp"*/}
-                          {/*      form={form}*/}
-                          {/*      setFormValues={setFormValues}*/}
-                          {/*      labelCol={{ span: 24 }}*/}
-                          {/*      wrapperCol={{ span: 24 }}*/}
-                          {/*    >*/}
-                          {/*      <Radio.Group*/}
-                          {/*        disabled={labComponentDisabled}*/}
-                          {/*        buttonStyle="solid"*/}
-                          {/*        name="genoSequencingThroatNp"*/}
-                          {/*      >*/}
-                          {/*        <Radio.Button*/}
-                          {/*          value="B.1.1.7"*/}
-                          {/*          name="genoSequencingThroatNp"*/}
-                          {/*        >*/}
-                          {/*          B.1.1.7*/}
-                          {/*        </Radio.Button>*/}
-                          {/*        <Radio.Button*/}
-                          {/*          value="B.1.351"*/}
-                          {/*          name="genoSequencingThroatNp"*/}
-                          {/*        >*/}
-                          {/*          B.1.351*/}
-                          {/*        </Radio.Button>*/}
-                          {/*        <Radio.Button*/}
-                          {/*          value="P.1"*/}
-                          {/*          name="genoSequencingThroatNp"*/}
-                          {/*        >*/}
-                          {/*          P.1*/}
-                          {/*        </Radio.Button>*/}
-                          {/*        <Radio.Button*/}
-                          {/*          value="B.1.617.2"*/}
-                          {/*          name="genoSequencingThroatNp"*/}
-                          {/*        >*/}
-                          {/*          B.1.617.2*/}
-                          {/*        </Radio.Button>*/}
-                          {/*      </Radio.Group>*/}
-                          {/*    </ClearableFormItem>*/}
-                          {/*  </Col>*/}
-                          {/*)}*/}
-
-                          <Col lg={10} md={10} sm={24}>
-                            <ClearableFormItem
-                              collectFormName={true}
-                              setFormValues={setFormValues}
-                              form={form}
-                              label="Date RDT result released"
-                              labelCol={{ span: 24 }}
-                              wrapperCol={{ span: 24 }}
-                              name="dateResultReleasedRdt"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "This field is required",
-                                },
-                              ]}
-                            >
-                              <CustomDatePicker
-                                disabled={labComponentDisabled}
-                                form={form}
-                                name="dateResultReleasedRdt"
-                              />
-                            </ClearableFormItem>
-                          </Col>
-                        </Row>
-                      )}
+                      </>
                     </>
                   )}
 
+                  {/* Redundant */}
                   {formValues?.specimenType?.includes("blood") && (
                     <Col lg={24} md={24} sm={24}>
                       <ClearableFormItem

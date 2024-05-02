@@ -63,7 +63,7 @@ const mutateCovidPayload = (fieldsValue, localTravel, internationalTravel) => {
     internationalTravel: { ...extractedPropertiesInternationalTravel },
   };
 
-  // console.log(payloadToBeSubmitted)
+  
 
   return payloadToBeSubmitted;
 };
@@ -83,7 +83,7 @@ const mutatePayload = (fieldsValue, arrayOfKeys, newObjectName) => {
     [newObjectName]: { ...extractedProperties },
   };
 
-  console.log(payloadToBeSubmitted);
+ 
 
   return payloadToBeSubmitted;
 };

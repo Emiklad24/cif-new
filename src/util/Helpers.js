@@ -279,6 +279,34 @@ function flattenNestedObjectAndRemoveEmpty(data) {
 }
 
 // =======================================================
+/**
+ * @function restructureLabData
+ * @description: Function to re-organize laboratory state data mapping
+ */
+const restructureLabData = (dataOption) => {
+  if (!dataOption) return [];
+
+  dataOption?.map(({ disease, state, laboratory }) => ({
+    disease,
+    state,
+    laboratory: laboratory?.split("\n"),
+  }));
+};
+
+
+// Sample demo data
+// const data = [
+//   {
+//     disease: "Cholera",
+//     state: "Lagos",
+//     laboratory: "Laboratory  111\nLaboratory 2222\nLaboratory 2233",
+//   },
+//   {
+//     disease: "Cholera",
+//     state: "Kano",
+//     laboratory: "Laboratory  112\nLaboratory 2235",
+//   },
+// ];
 
 export {
   NGNCurrencyFormatter,
@@ -290,7 +318,6 @@ export {
   getAgeYearMonth,
   getDoBFromAge,
   getTimeDistance,
-  parseNestedDates,
-  toUpperCaseFirst
+  parseNestedDates, restructureLabData, toUpperCaseFirst
 };
 

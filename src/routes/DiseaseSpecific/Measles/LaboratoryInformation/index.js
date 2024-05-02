@@ -5,10 +5,12 @@ import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
-import useGetHealthFacilities from "hooks/useGetHealthFacilities.hook";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -27,11 +29,16 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
-
+  const _formValues = form?.getFieldsValue(true);
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
+  );
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
@@ -40,10 +47,7 @@ const LaboratoryInformation = ({ form }) => {
   };
 
   const { data: allLookup } = useFetchAllLookup();
-  const allHealthFacilitiesQuery = useGetHealthFacilities();
-  const nameOfTestingLaboratory = allHealthFacilitiesQuery?.data?.filter(
-    (fac) => fac?.type?.toLowerCase() === "laboratory"
-  );
+  
 
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
@@ -147,6 +151,12 @@ const LaboratoryInformation = ({ form }) => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                     name="dateSpecimenSent"
+                    rules={[
+                      {
+                        required: true,
+                        message: "This field is required",
+                      },
+                    ]}
                   >
                     <CustomDatePicker form={form} name="dateSpecimenSent" />
                   </ClearableFormItem>
@@ -173,7 +183,10 @@ const LaboratoryInformation = ({ form }) => {
                     showSearch
                     allowClear
                     optionLabelProp="label"
-                    options={nameOfTestingLaboratory}
+                    options={filterLabByStateAndDisease(
+                      _formValues?.stateOfReporting,
+                      selectedDiseaseArea?.value
+                    )}
                     valueProperty="id"
                     labelProperty="name"
                     filterOption={(input, option) =>

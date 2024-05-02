@@ -25,12 +25,7 @@ import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import Initializing from "components/Loader/Initializing";
-import {
-  DATE_FORMAT,
-  SORMAS_ROLE,
-  SORMAS_UUID,
-  USER_ROLE,
-} from "constants/ActionTypes";
+import { DATE_FORMAT, QUERY_PARAM, USER_ROLE } from "constants/ActionTypes";
 import GenerateEpid from "constants/JSON/GenerateEpid.json";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import useFetchAllStates from "hooks/useFetchAllStates.hooks";
@@ -83,9 +78,10 @@ const notifiesBy = ["Hospital Informant", "Community Informant", "Others"];
 const App = () => {
   const dispatch = useDispatch();
 
-  const { labFormName } = useFormStore(
+  const { labFormName, setDiseaseProgramName } = useFormStore(
     useShallow((state) => ({
       labFormName: state.labFormName,
+      setDiseaseProgramName: state.setDiseaseProgramName,
     }))
   );
   const [form] = Form.useForm();
@@ -108,9 +104,19 @@ const App = () => {
   const [isDatePickerDisabled, setIsDatePickerDisabled] = useState(false);
   const [isYearDisabled, setIsYearDisabled] = useState(false);
 
+  // QUERY PARAMS
   const urlParams = new URLSearchParams(window.location.search);
-  const sormasCaseUuid = urlParams.get(SORMAS_UUID);
-  const userRoleFromUrl = urlParams.get(SORMAS_ROLE);
+  const sormasCaseUuid = urlParams.get(QUERY_PARAM.SORMAS_UUID);
+  const userRoleFromUrl = urlParams.get(QUERY_PARAM.SORMAS_ROLE);
+  const userId = urlParams.get(QUERY_PARAM.USER_ID);
+  const userStateId = urlParams.get(QUERY_PARAM.STATE_ID);
+  const userLgaId = urlParams.get(QUERY_PARAM.LGA_ID);
+  const userWardId = urlParams.get(QUERY_PARAM.WARD_ID);
+  const userFacilityId = urlParams.get(QUERY_PARAM.FACILITY_ID);
+
+  // ==========================================================
+
+ 
 
   const { data: allLookup, isLoading: allLookupLoading } = useFetchAllLookup();
   const { data: allStates } = useFetchAllStates();
@@ -127,7 +133,7 @@ const App = () => {
    * @function handleStateChange
    * @description Handle state change
    */
-  const handleStateChange = (value, name) => {
+  const handleStateChange = async (value, name) => {
     setSelectedState((previousState) => ({
       ...previousState,
       [name]: value,
@@ -154,7 +160,7 @@ const App = () => {
    * @function handleLgaChange
    * @description Handle LGA change
    */
-  const handleLgaChange = (value, name) => {
+  const handleLgaChange = async (value, name) => {
     setSelectedLga((previousState) => ({
       ...previousState,
       [name]: value,
@@ -235,7 +241,12 @@ const App = () => {
       setIsDatePickerDisabled(true);
       setAgeMonth(0);
       setAgeDay(0);
-      form.setFieldsValue({ dateOfBirthPersonalInformation: calculatedDate });
+      // convert the date to the format DD-MM-YYYY
+      const formattedDate = moment(calculatedDate).format(DATE_FORMAT);
+      form.setFieldsValue({
+        dateOfBirthPersonalInformation: formattedDate,
+        age: year,
+      });
       return;
     }
     form.setFieldsValue({ dateOfBirthPersonalInformation: null });
@@ -263,6 +274,42 @@ const App = () => {
   };
 
   /**
+   * @function isDateBefore
+   * @description Function to check if date1 is before date2
+   */
+  function isDateBefore(date1, date2) {
+    // Split the dates into day, month, and year
+    const [day1, month1, year1] = date1?.split("-")?.map(Number);
+    const [day2, month2, year2] = date2?.split("-")?.map(Number);
+
+    // Create Date objects for comparison
+    const dateObj1 = new Date(year1, month1 - 1, day1); // Month is 0-based
+    const dateObj2 = new Date(year2, month2 - 1, day2); // Month is 0-based
+
+    // Compare the dates
+    return dateObj1 < dateObj2;
+  }
+
+  /**
+   * @function checkDatesAndWarn
+   * @description: Function to check if date1 is before date2 and show a warning message
+   */
+  function checkDatesAndWarn(fieldsValue, field1, field2, warningMessage) {
+    if (
+      fieldsValue?.[field1] &&
+      fieldsValue?.[field2] &&
+      isDateBefore(fieldsValue[field1], fieldsValue[field2])
+    ) {
+      notification.warning({
+        message: `Date of ${warningMessage}`,
+      });
+      setFormIsLoading(false);
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * -----------------------------------------
    * @function onFinish
    * @description On finish submit form
@@ -278,11 +325,10 @@ const App = () => {
     // if (fieldsValue.epidNumber) {
     //   fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
     // }
+  
     // if epid number is "" or null, or undefined, construct the epid number
-    if (!fieldsValue.epidNumber) {
-      fieldsValue.epidNumber = `${epidNumberAddon}${fieldsValue.epidNumber}`;
-    } else {
-      fieldsValue.epidNumber = "";
+    if (!isUpdate) {
+       fieldsValue.epidNumber = "";
     }
 
     // construct payload
@@ -293,15 +339,248 @@ const App = () => {
     );
 
     // VALIDATE DATE OF NOTIFICATION AND DATE OF REPORT
+
     if (
       fieldsValue?.dateOfNotificationReportingAreas &&
       fieldsValue?.dateOfReportReportingAreas &&
-      moment(fieldsValue?.dateOfNotificationReportingAreas).isBefore(
-        moment(fieldsValue?.dateOfReportReportingAreas)
+      isDateBefore(
+        fieldsValue?.dateOfNotificationReportingAreas,
+        fieldsValue?.dateOfReportReportingAreas
       )
     ) {
       notification.warning({
-        message: "Date of notification cannot be before the date of report",
+        message: "Date of report cannot be before the date of notification",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenCollected &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenCollected,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen collected cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenSent &&
+      fieldsValue?.dateOfReportReportingAreas &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenSent,
+        fieldsValue?.dateOfReportReportingAreas
+      )
+    ) {
+      notification.warning({
+        message: "Date of specimen sent cannot be before the date of report",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenSent &&
+      fieldsValue?.dateSpecimenCollected &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenSent,
+        fieldsValue?.dateSpecimenCollected
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen sent cannot be before the date of specimen collected",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSpecimenReceivedCsf &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateSpecimenReceivedCsf,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of specimen received cannot be before the date of specimen sent",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateResultReleasedCsfPcr &&
+      fieldsValue?.dateSpecimenSent &&
+      isDateBefore(
+        fieldsValue?.dateResultReleasedCsfPcr,
+        fieldsValue?.dateSpecimenSent
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of result released cannot be before the date of specimen sent",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfLastVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfLastVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of last vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+    if (
+      fieldsValue?.dateOfFirstVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfSecondVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfSecondVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateFirstVaccinationInfluenza &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateFirstVaccinationInfluenza,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfFirstVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfFirstVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfFirstVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of first vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateSecondVaccinationInfluenza &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateSecondVaccinationInfluenza,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfSecondVaccinationCovid &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfSecondVaccinationCovid,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message:
+          "Date of second vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfLastVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfLastVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of last vaccination cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+    if (
+      fieldsValue?.dateOfVaccination &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfVaccination,
+        fieldsValue?.dateOfBirthPersonalInformation
+      )
+    ) {
+      notification.warning({
+        message: "Date of vaccination cannot be before the date of birth",
       });
       setFormIsLoading(false);
       return;
@@ -311,11 +590,10 @@ const App = () => {
       // Update or create sormas case
       const updateAction = isUpdate
         ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
-        : createSormasCaseAction({ ...reconstructedPayload });
+        : createSormasCaseAction({ userId, ...reconstructedPayload });
 
       // Api call
       const response = await dispatch(updateAction);
-      console.log(response, "hello");
 
       notification.success({
         message: response?.message ?? "Success",
@@ -325,6 +603,7 @@ const App = () => {
       });
 
       if (!isUpdate) resetForm();
+      setFormIsLoading(false);
     } catch (error) {
       const { message, validationMessages } = error;
 
@@ -355,6 +634,10 @@ const App = () => {
    */
   const onChangeDisease = async (value, reset = true) => {
     setProgram({
+      value: allLookup?.disease_id?.find((item) => item?.id === value)?.value,
+      id: value,
+    });
+    setDiseaseProgramName({
       value: allLookup?.disease_id?.find((item) => item?.id === value)?.value,
       id: value,
     });
@@ -499,7 +782,7 @@ const App = () => {
         (position) => {
           // Success callback
           const { latitude, longitude } = position.coords;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
         },
         (error) => {
           // Error callback
@@ -606,6 +889,59 @@ const App = () => {
     generateEpidNumberVal();
   }, [residenceLga, program]);
 
+  /**
+   * @function getStateDataByQueryId
+   * @description Get state data by query id
+   */
+  const getStateDataByQueryId = async () => {
+    await handleStateChange(userStateId, "stateOfReporting");
+    await handleLgaChange(userLgaId, "lgaOfReporting");
+
+    form.setFieldsValue({
+      stateOfReporting: Number(userStateId),
+    });
+
+    if (userLgaId) {
+      form.setFieldsValue({
+        lgaOfReporting: Number(userLgaId),
+      });
+    }
+    return;
+  };
+ 
+  // set the state and lga of reporting if the state and lga id is present
+  useEffect(() => {
+    if (sormasCase?.applicationUuid || !userStateId) return;
+    getStateDataByQueryId();
+  }, [userStateId]);
+
+  // set the ward of reporting if the lga id is present
+  useEffect(() => {
+    if (!userWardId) return;
+    if (wardQuery?.isFetched) {
+      form.setFieldsValue({
+        wardOfReporting: Number(userWardId),
+      });
+    }
+  }, [wardQuery?.isFetched, userWardId]);
+
+  // set the place of detection if the health facility id is present
+  useEffect(() => {
+    if (!userFacilityId) return;
+    if (
+      AllHealthFacilitiesQuery?.data?.length > 0 &&
+      place_of_detection === "Health Facility"
+    ) {
+      form.setFieldsValue({
+        placeOfDetectionFacility: Number(userFacilityId),
+      });
+    }
+  }, [
+    AllHealthFacilitiesQuery?.data?.length,
+    userFacilityId,
+    place_of_detection,
+  ]);
+
   const onChange = () => {};
   const onSearch = () => {};
 
@@ -651,7 +987,6 @@ const App = () => {
             </Col>
           </Row>
 
-          {/* {_isLoading && sormasCaseUuid && !sormasCase?.applicationUuid ? ( */}
           {_isLoading ? (
             <div className="card_loading_container">
               <div className="card_loading gx-shadow">
@@ -730,6 +1065,7 @@ const App = () => {
                           options={allStates}
                           valueProperty="id"
                           labelProperty="name"
+                          disabled={userStateId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -770,6 +1106,7 @@ const App = () => {
                           onChange={(value) => {
                             handleLgaChange(value, "lgaOfReporting");
                           }}
+                          disabled={userLgaId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -813,6 +1150,7 @@ const App = () => {
                           }
                           valueProperty="id"
                           labelProperty="name"
+                          disabled={userWardId}
                         />
                       </ClearableFormItem>
                     </Col>
@@ -890,6 +1228,7 @@ const App = () => {
                             options={AllHealthFacilitiesQuery?.data}
                             valueProperty="id"
                             labelProperty="name"
+                            disabled={userFacilityId}
                           />
                         </ClearableFormItem>
                       </Col>
@@ -956,6 +1295,7 @@ const App = () => {
                         <CustomDatePicker
                           form={form}
                           name="dateOfNotificationReportingAreas"
+                          onChange
                         />
                       </ClearableFormItem>
                     </Col>
@@ -1003,17 +1343,7 @@ const App = () => {
                         <Input size="large" />
                       </ClearableFormItem>
                     </Col>
-                    {/* <Col lg={8} md={12} sm={24} xs={24}>
-                <ClearableFormItem
-                  form={form}
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 24 }}
-                  label="Middle name"
-                  name="middleName"
-                >
-                  <Input size="large" />
-                </ClearableFormItem>
-              </Col> */}
+
                     <Col md={12} sm={24} xs={24}>
                       <ClearableFormItem
                         form={form}
@@ -1483,6 +1813,11 @@ const App = () => {
                           {
                             pattern: /^[0-9]*$/,
                             message: "Please input a valid phone number",
+                          },
+
+                          {
+                            required: true,
+                            message: "This field is required",
                           },
                         ]}
                       >

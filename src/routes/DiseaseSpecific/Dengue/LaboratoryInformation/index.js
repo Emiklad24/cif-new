@@ -12,21 +12,14 @@ import {
 import moment from "moment";
 import React, { useState } from "react";
 import "styles/pages/form.less";
+import useFormStore from "../../../../store/useFormStore";
+import { useShallow } from "zustand/react/shallow";
+import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 
 const CheckboxGroup = Checkbox.Group;
 
 const { Option } = Select;
 
-const testingLaboratoryData = [
-  "NRL, Gaduwa",
-  "CPHL",
-  "YDMH",
-  "UBTH",
-  "MAITAMA DISTRICT HOSPITAL LABORATORY",
-  "GOMBE SPECIALIST HOSPITAL",
-  "MAITAMA DISTRICT HOSPITAL LABORATORY",
-  "UNTH",
-];
 
 const LaboratoryInformation = ({ form }) => {
   const [testinglaboratory_type, settestingLaboratory] = useState("");
@@ -34,12 +27,18 @@ const LaboratoryInformation = ({ form }) => {
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-    console.log(testinglaboratory_type);
-    console.log(`selected ${value}`);
+  
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
+  const _formValues = form?.getFieldsValue(true);
 
+  const { selectedDiseaseArea } = useFormStore(
+    useShallow((state) => ({
+      selectedDiseaseArea: state.selectedDiseaseArea,
+    }))
+  );
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
@@ -191,7 +190,10 @@ const LaboratoryInformation = ({ form }) => {
                     optionLabelProp="label"
                     onChange={settestingLaboratory}
                   >
-                    {testingLaboratoryData.map((item) => (
+                    {filterLabByStateAndDisease(
+                      _formValues?.stateOfReporting,
+                      selectedDiseaseArea?.value
+                    ).map((item) => (
                       <Option label={item} value={item}>
                         {item}
                       </Option>

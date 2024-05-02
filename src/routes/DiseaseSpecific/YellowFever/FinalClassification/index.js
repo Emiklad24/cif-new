@@ -8,7 +8,7 @@ const FinalClassification = ({form}) => {
   const { Panel } = Collapse;
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -17,7 +17,7 @@ const FinalClassification = ({form}) => {
   };
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   return (

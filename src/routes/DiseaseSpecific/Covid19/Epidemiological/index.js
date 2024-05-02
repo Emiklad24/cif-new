@@ -32,7 +32,7 @@ const Epidemiological = ({ form }) => {
   };
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -41,7 +41,7 @@ const Epidemiological = ({ form }) => {
   const lgaOfEvent = useFetchAllLGA(selectedState?.stateOfEvent);
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -933,12 +933,7 @@ const Epidemiological = ({ form }) => {
                 setFormValues={setFormValues}
                 labelCol={{ span: 24 }}
                 wrapperCol={{ span: 24 }}
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
+              
               >
                 <CustomDatePicker name="dateOfDeathOutcome" form={form} />
               </ClearableFormItem>

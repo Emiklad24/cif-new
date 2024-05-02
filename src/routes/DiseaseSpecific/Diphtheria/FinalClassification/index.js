@@ -8,7 +8,7 @@ const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState({});
@@ -43,7 +43,6 @@ const FinalClassification = ({ form }) => {
                 Clinically compatible
               </Radio.Button>
               <Radio.Button value="not a case">Not a case</Radio.Button>
-              <Radio.Button value="probable">Probable</Radio.Button>
               <Radio.Button value="pending">Pending</Radio.Button>
             </Radio.Group>
           </ClearableFormItem>

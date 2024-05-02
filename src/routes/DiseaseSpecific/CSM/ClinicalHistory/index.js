@@ -13,13 +13,13 @@ const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const [formValues, setFormValues] = useState({});
 
   const handleUpdateInputValues = (inputName, value) => {
-    console.log(inputName, value);
+    
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -41,6 +41,12 @@ const ClinicalHistory = ({ form }) => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               name="dateOfSymptomOnset"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <CustomDatePicker form={form} name="dateOfSymptomOnset" />
             </ClearableFormItem>
@@ -53,6 +59,12 @@ const ClinicalHistory = ({ form }) => {
               name="fever"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
             >
               <DynamicRadio
                 buttonStyle="solid"
@@ -221,6 +233,78 @@ const ClinicalHistory = ({ form }) => {
               <DynamicRadio
                 buttonStyle="solid"
                 options={allLookup?.yes_no_unknown || []}
+                valueProperty="id"
+                labelProperty="value"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="History of Hospitalization"
+              name="historyOfHospitalizationCsm"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <DynamicRadio
+                name="historyOfHospitalizationCsm"
+                buttonStyle="solid"
+                options={[
+                  {
+                    id: "in_patient",
+                    value: "In Patient",
+                  },
+                  {
+                    id: "out_patient",
+                    value: "Out Patient",
+                  },
+                ]}
+                valueProperty="id"
+                labelProperty="value"
+              />
+            </ClearableFormItem>
+          </Col>
+
+          <Col lg={8} md={8} sm={24}>
+            <ClearableFormItem
+              setFormValues={setFormValues}
+              form={form}
+              label="Outcome"
+              name="outcome"
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <DynamicRadio
+                name="outcome"
+                buttonStyle="solid"
+                options={[
+                  {
+                    id: "alive",
+                    value: "Alive",
+                  },
+                  {
+                    id: "dead",
+                    value: "Dead",
+                  },
+                  {
+                    id: "unknown",
+                    value: "Unknown",
+                  },
+                ]}
                 valueProperty="id"
                 labelProperty="value"
               />

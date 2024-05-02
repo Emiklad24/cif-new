@@ -1,0 +1,4760 @@
+[
+ {
+  "disease": "Mpox",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Mpox",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ogun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Ondo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Mpox",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Osun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Mpox",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Oyo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Mpox",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Mpox",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Influenza",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Abia",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Adamawa",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Akwa Ibom",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Anambra",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Bauchi",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Bayelsa",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Benue",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Cross River",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Delta",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Ebonyi",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Edo",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Ekiti",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Enugu",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "FCT",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Gombe",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Imo",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Jigawa",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Kaduna",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Kano",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Katsina",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Kebbi",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Kogi",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Kwara",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Ogun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Ondo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Osun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Oyo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Plateau",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Rivers",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Sokoto",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Taraba",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Yobe",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Yellow Fever",
+  "state": "Zamfara",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Abia",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Measles",
+  "state": "Adamawa",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Measles",
+  "state": "Akwa Ibom",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Anambra",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Measles",
+  "state": "Bauchi",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Measles",
+  "state": "Bayelsa",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Benue",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Measles",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Measles",
+  "state": "Cross River",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Delta",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Ebonyi",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Measles",
+  "state": "Edo",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Ekiti",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Enugu",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Measles",
+  "state": "FCT",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Measles",
+  "state": "Gombe",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Measles",
+  "state": "Imo",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Measles",
+  "state": "Jigawa",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Kaduna",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Kano",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Katsina",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Kebbi",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Kogi",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Measles",
+  "state": "Kwara",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Measles",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Measles",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Measles",
+  "state": "Ogun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Ondo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Osun",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Oyo",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Measles",
+  "state": "Plateau",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Measles",
+  "state": "Rivers",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "Measles",
+  "state": "Sokoto",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Measles",
+  "state": "Taraba",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Measles",
+  "state": "Yobe",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Measles",
+  "state": "Zamfara",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Cholera",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Adamawa",
+  "name": "State Specialist Hospital Yola, Laboratory",
+  "id": 116712324
+ },
+ {
+  "disease": "Cholera",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Anambra",
+  "name": "General Hospital Onitsha, Laboratory",
+  "id": 8386185
+ },
+ {
+  "disease": "Cholera",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Bauchi",
+  "name": "Specialist Hospital Laboratory Bauchi",
+  "id": 273448
+ },
+ {
+  "disease": "Cholera",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Benue",
+  "name": "General Hospital Makurdi, Laboratory ",
+  "id": 116712325
+ },
+ {
+  "disease": "Cholera",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Cholera",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Cross River",
+  "name": "Calabar General Hospital, Laboratory",
+  "id": 116712341
+ },
+ {
+  "disease": "Cholera",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ebonyi",
+  "name": "Ebonyi State Public Health Laboratory (ESPL)",
+  "id": 193934
+ },
+ {
+  "disease": "Cholera",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Enugu",
+  "name": "Enugu State University  Teaching Hospital ",
+  "id": 110272
+ },
+ {
+  "disease": "Cholera",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "FCT",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "Cholera",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Gombe",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "Cholera",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Imo",
+  "name": "Imo State Specialist Hospital, Laboratory",
+  "id": 116712342
+ },
+ {
+  "disease": "Cholera",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Jigawa",
+  "name": "Rasheed Shekoni Specialist Hospital, Laboratory ",
+  "id": 116713112
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kaduna",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kano",
+  "name": "Kano Infectious Disease Hospital (IDH), Laboratory",
+  "id": 116713921
+ },
+ {
+  "disease": "Cholera",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Katsina",
+  "name": "General Hospital Katsina Laboratory",
+  "id": 326056
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kebbi",
+  "name": "Kebbi State Public Health Laboratory",
+  "id": 85566122
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kogi",
+  "name": "Specialist Hospital Lokoja, laboartory",
+  "id": 116714625
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Kwara",
+  "name": "State Public Health Laboratory, Ilorin South",
+  "id": 71915442
+ },
+ {
+  "disease": "Cholera",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "Cholera",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Nasarawa",
+  "name": "Dalhatu Araf Specialist Hospital (DASH), Lafia",
+  "id": 1005166
+ },
+ {
+  "disease": "Cholera",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Niger",
+  "name": "Minna General Hospital Laboratory",
+  "id": 116715065
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Ondo",
+  "name": "State Public Health Lab, Akure",
+  "id": 66747735
+ },
+ {
+  "disease": "Cholera",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Osun",
+  "name": "Osun state Public Health Laboratory",
+  "id": 6099003
+ },
+ {
+  "disease": "Cholera",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Oyo",
+  "name": "Ring Road State Hospital, Laboratory",
+  "id": 116715491
+ },
+ {
+  "disease": "Cholera",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Plateau",
+  "name": "Plateau State General Hospital, laboratory",
+  "id": 116715809
+ },
+ {
+  "disease": "Cholera",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Rivers",
+  "name": "Rivers State University Teaching Hospital (RSUTH) Laboratory",
+  "id": 1856080
+ },
+ {
+  "disease": "Cholera",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Sokoto",
+  "name": "Public Health Laboratory Sokoto",
+  "id": 86020430
+ },
+ {
+  "disease": "Cholera",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Taraba",
+  "name": "Public Health Laboratory  Jalingo",
+  "id": 86342951
+ },
+ {
+  "disease": "Cholera",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Yobe",
+  "name": "State Specialist Hospital, Laboratory",
+  "id": 116712306
+ },
+ {
+  "disease": "Cholera",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Cholera",
+  "state": "Zamfara",
+  "name": "Ahmad Sani Yariman Bakura Specialist Hospital (AYBSH), Laboratory",
+  "id": 174761
+ },
+ {
+  "disease": "CSM",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Adamawa",
+  "name": "State Specialist Hospital Yola, Laboratory",
+  "id": 116712324
+ },
+ {
+  "disease": "CSM",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Anambra",
+  "name": "General Hospital Onitsha, Laboratory",
+  "id": 8386185
+ },
+ {
+  "disease": "CSM",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Bauchi",
+  "name": "Specialist Hospital Laboratory Bauchi",
+  "id": 273448
+ },
+ {
+  "disease": "CSM",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Benue",
+  "name": "General Hospital Makurdi, Laboratory ",
+  "id": 116712325
+ },
+ {
+  "disease": "CSM",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "CSM",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Cross River",
+  "name": "Calabar General Hospital, Laboratory",
+  "id": 116712341
+ },
+ {
+  "disease": "CSM",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Ebonyi",
+  "name": "Ebonyi State Public Health Laboratory (ESPL)",
+  "id": 193934
+ },
+ {
+  "disease": "CSM",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Enugu",
+  "name": "Enugu State University  Teaching Hospital ",
+  "id": 110272
+ },
+ {
+  "disease": "CSM",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "FCT",
+  "name": "Maitama District Hospital Laboratory",
+  "id": 228667
+ },
+ {
+  "disease": "CSM",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Gombe",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "CSM",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Imo",
+  "name": "Imo State Specialist Hospital, Laboratory",
+  "id": 116712342
+ },
+ {
+  "disease": "CSM",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Jigawa",
+  "name": "Rasheed Shekoni Specialist Hospital, Laboratory ",
+  "id": 116713112
+ },
+ {
+  "disease": "CSM",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Kaduna",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "CSM",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Kano",
+  "name": "Kano Infectious Disease Hospital (IDH), Laboratory",
+  "id": 116713921
+ },
+ {
+  "disease": "CSM",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Katsina",
+  "name": "General Hospital Katsina Laboratory",
+  "id": 326056
+ },
+ {
+  "disease": "CSM",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Kebbi",
+  "name": "Kebbi State Public Health Laboratory",
+  "id": 85566122
+ },
+ {
+  "disease": "CSM",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Kogi",
+  "name": "Specialist Hospital Lokoja, laboartory",
+  "id": 116714625
+ },
+ {
+  "disease": "CSM",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Kwara",
+  "name": "State Public Health Laboratory, Ilorin South",
+  "id": 71915442
+ },
+ {
+  "disease": "CSM",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "CSM",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Nasarawa",
+  "name": "Dalhatu Araf Specialist Hospital (DASH), Lafia",
+  "id": 1005166
+ },
+ {
+  "disease": "CSM",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Niger",
+  "name": "Minna General Hospital Laboratory",
+  "id": 116715065
+ },
+ {
+  "disease": "CSM",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Ondo",
+  "name": "State Public Health Lab, Akure",
+  "id": 66747735
+ },
+ {
+  "disease": "CSM",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Osun",
+  "name": "Osun state Public Health Laboratory",
+  "id": 6099003
+ },
+ {
+  "disease": "CSM",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Oyo",
+  "name": "Ring Road State Hospital, Laboratory",
+  "id": 116715491
+ },
+ {
+  "disease": "CSM",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Plateau",
+  "name": "Plateau State General Hospital, laboratory",
+  "id": 116715809
+ },
+ {
+  "disease": "CSM",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Rivers",
+  "name": "Rivers State University Teaching Hospital (RSUTH) Laboratory",
+  "id": 1856080
+ },
+ {
+  "disease": "CSM",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Sokoto",
+  "name": "Public Health Laboratory Sokoto",
+  "id": 86020430
+ },
+ {
+  "disease": "CSM",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Taraba",
+  "name": "Public Health Laboratory  Jalingo",
+  "id": 86342951
+ },
+ {
+  "disease": "CSM",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Yobe",
+  "name": "State Specialist Hospital, Laboratory",
+  "id": 116712306
+ },
+ {
+  "disease": "CSM",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "CSM",
+  "state": "Zamfara",
+  "name": "Ahmad Sani Yariman Bakura Specialist Hospital (AYBSH), Laboratory",
+  "id": 174761
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Pan Respiratory Disease Surveillance (PRDS)",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Bauchi",
+  "name": "Specialist Hospital Laboratory Bauchi",
+  "id": 273448
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Cross River",
+  "name": "University of Calabar Teaching Hospital (UCTH)",
+  "id": 334394
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Enugu",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Jigawa",
+  "name": "Rasheed Shekoni Teaching Hospital, Laboratory",
+  "id": 116712274
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kaduna",
+  "name": "National Ear Care Centre Laboratory",
+  "id": 116712200
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kaduna",
+  "name": "General Hospital Sabon Tasha, Laboratory",
+  "id": 116712201
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kano",
+  "name": "AKTH NCDC Laboratory, Kano",
+  "id": 136523
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kano",
+  "name": "Infectious Disease Hospital (IDH), Laboratory",
+  "id": 116712199
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Katshina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Katshina",
+  "name": "GARSH Laboratory, Katsina (BATAGARAWA)",
+  "id": 116712198
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Kwara",
+  "name": "University of Ilorin Teaching Hospital Molecular Laboratory, Ilorin East",
+  "id": 71917462
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Lagos",
+  "name": "Lagos University Teaching Hospital (LUTH), Virology Laboratory",
+  "id": 136525
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 48850458
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Osun",
+  "name": "University of Osun Multidisciplinary Research Laboratory, Osogbo",
+  "id": 116711984
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Oyo",
+  "name": "UCH Ibadan, Diphtheria Laboratory",
+  "id": 116711885
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Taraba",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Yobe",
+  "name": "State Specialist Hospital, Damaturu, Laboratory",
+  "id": 116712306
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Yobe",
+  "name": "State Specialist Hospital, Potiskum, Laboratory",
+  "id": 116712307
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Diphtheria",
+  "state": "Zamfara",
+  "name": "Ahmad Sani Yariman Bakura Specialist Hospital (AYBSH), Laboratory",
+  "id": 174761
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Abia",
+  "name": "ABIA_SPH_LAB",
+  "id": 6597686
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Adamawa",
+  "name": "Yola Federal Medical Centre Laboratory",
+  "id": 2576970
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Akwa Ibom",
+  "name": "Molecular Diagnostics Laboratory, Methodist General Hospital, Akwa Ibom",
+  "id": 8103721
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Anambra",
+  "name": "Chukwuemeka Odumegwu Ojukwu University Teaching Hospital (COOUTH) Laboratory",
+  "id": 543186
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Anambra",
+  "name": "General Hospital Onitsha, Laboratory",
+  "id": 8386185
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Anambra",
+  "name": "Molecular Research Laboratory, Nnamdi Azikiwe University Molecular Laboratory (Nnewi Campus)",
+  "id": 116771208
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Anambra",
+  "name": "Nnamdi Azikiwe University Molecular Laboratory (Awka campus)",
+  "id": 116771209
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Bauchi",
+  "name": "Bauchi Reference Molecular Laboratory, Bauchi",
+  "id": 116771235
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Bauchi",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Bayelsa",
+  "name": "Bayelsa State Molecular Laboratory, Bayelsa",
+  "id": 116771236
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Benue",
+  "name": "161 National Airforce Hospital Laboratory, Makurdi",
+  "id": 5963094
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Benue",
+  "name": "Research Molecular Laboratory, Makurdi",
+  "id": 17403640
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Borno",
+  "name": "University of Maiduguri Teaching Hospital (UMTH) Laboratory",
+  "id": 136534
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Borno",
+  "name": "Borno State PCR Laboratory, Maiduguri",
+  "id": 116771250
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Cross River",
+  "name": "University of Calabar Teaching Hospital (UCTH)",
+  "id": 334394
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Cross River",
+  "name": "Dr Lawrence Henshaw Memorial Hospital Laboratory, Calabar",
+  "id": 116771264
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Delta",
+  "name": "Federal Medical Centre Asaba Laboratory",
+  "id": 13192663
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Delta",
+  "name": "Delta State Mobile Laboratory",
+  "id": 1970909
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ebonyi",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Edo",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Edo",
+  "name": "University of Benin Teaching Hospital (UBTH), Laboratory",
+  "id": 1820884
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ekiti",
+  "name": "Federal Teaching Hospital Ido (FETHI), Laboratory",
+  "id": 116771265
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Enugu",
+  "name": "University of Nigeria Teaching Hospital (UNTH) Laboratory",
+  "id": 8092869
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "FCT",
+  "name": "Defence Reference Laboratory (DRL)",
+  "id": 1820995
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "FCT",
+  "name": "State House Annex Clinic Molecular Laboratory",
+  "id": 65004943
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "FCT",
+  "name": "FCT Molecular Lab(FML), Kubwa, Abuja",
+  "id": 60501279
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "FCT",
+  "name": "UN IOM Clinic",
+  "id": 116771291
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Gombe",
+  "name": "Federal Teaching Hospital (FTH), Gombe",
+  "id": 2579120
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Gombe",
+  "name": "Gombe State Specialist Hospital (Molecular Diagnostic Laboratory)",
+  "id": 247169
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Imo",
+  "name": "Federal Medical Centre, Owerri Laboratory",
+  "id": 116771305
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Jigawa",
+  "name": "Jigawa Molecular Laboratory, Dutse, Jigawa",
+  "id": 116771306
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kaduna",
+  "name": "Yusuf Dantsoho Memorial Hospital Laboratory Kaduna(YDMH)",
+  "id": 178885
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kaduna",
+  "name": "Barau Dikko Teaching Hospital Laboratory (BDTH LAB), Kaduna North",
+  "id": 87582785
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kaduna",
+  "name": "Patrick Yakowa General Hospital Kafanchan, Laboratory",
+  "id": 116771307
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kaduna",
+  "name": "General Hospital, Saminaka Laboratory",
+  "id": 116771323
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kano",
+  "name": "AKTH NCDC Laboratory, Kano",
+  "id": 136523
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kano",
+  "name": "Bayero University Kano",
+  "id": 1858015
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Katsina",
+  "name": "Federal Medical Center Katsina Laboratory",
+  "id": 326047
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kebbi",
+  "name": "Federal Medical Centre, Birnin-Kebbi Laboratory",
+  "id": 711557
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kogi",
+  "name": "Kogi State Specialist Hospital, Lokoja",
+  "id": 120530
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kwara",
+  "name": "Sobi Specialist Hospital Laboratory",
+  "id": 3926497
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kwara",
+  "name": "University of Ilorin Molecular Laboratory, Ilorin East",
+  "id": 71917461
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Kwara",
+  "name": "University of Ilorin Teaching Hospital Molecular Laboratory, Ilorin East",
+  "id": 71917462
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Lagos University Teaching Hospital (LUTH), Virology Laboratory",
+  "id": 136525
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Central Public Health Laboratory (CPHL), Laboratory",
+  "id": 136524
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Nigeria Navy Reference Hospital",
+  "id": 116771353
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Nigeria Institute Of Medical Research",
+  "id": 6912399
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Lagos State Biosafety Laboratory",
+  "id": 1237717
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Centre for Genomics of Non-Communicable Diseases and Personalized Healthcare (UNILAG)",
+  "id": 116771367
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Lagos",
+  "name": "Federal Neuro-Psychiatric Hospital Yaba",
+  "id": 116771368
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Nasarawa",
+  "name": "Federal Medical Center Keffi Laboratory",
+  "id": 1005300
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Nasarawa",
+  "name": "Nasarawa State Public Health Diagnostics Laboratory",
+  "id": 116771369
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Niger",
+  "name": "Niger State Public Health Laboratory, Minna",
+  "id": 8728348
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Niger",
+  "name": "Federal Medical Centre, Bida Laboratory",
+  "id": 116771370
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ogun",
+  "name": "Ogun State Molecular Laboratory, Abeokuta",
+  "id": 1680783
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ogun",
+  "name": "Afriglobal Medicare Molecular Laboratory",
+  "id": 2708779
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ogun",
+  "name": "Neuropsychiatric Hospital, Aro, Abeokuta",
+  "id": 116771372
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ondo",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 360815
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Ondo",
+  "name": "Molecular Biology Lab, Centre for Molecular Bioscience and Medical Genomics",
+  "id": 116772315
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Osun",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Osun",
+  "name": "Osun state Public Health Laboratory",
+  "id": 6099003
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Osun",
+  "name": "Osun State University, Laboratory",
+  "id": 116772316
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Oyo",
+  "name": "University College Hospital Laboratory",
+  "id": 136532
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Oyo",
+  "name": "Biorepository Clinical Virology Laboratory, College of Medicine UI",
+  "id": 7060777
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Plateau",
+  "name": "National Veterinary Research Institute (NVRI), Vom",
+  "id": 1758913
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Plateau",
+  "name": "Plateau State General Hospital, Laboratory",
+  "id": 116715809
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Plateau",
+  "name": "Jos University Teaching Hospital Laboratory",
+  "id": 116772317
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Plateau",
+  "name": "Plateau State Specialist Hospital Laboratory",
+  "id": 116772330
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Rivers",
+  "name": "University of Port Harcourt Teaching Hospital Laboratory",
+  "id": 116772334
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Rivers",
+  "name": "Rivers State University Teaching Hospital (RSUTH) Laboratory",
+  "id": 1856080
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Rivers",
+  "name": "University of Port Harcourt Teaching Hospital Laboratory",
+  "id": 116772334
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Sokoto",
+  "name": "Usmanu Danfodiyo University Teaching Hospital",
+  "id": 136533
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Taraba",
+  "name": "General Hospital, Takum",
+  "id": 60863955
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Taraba",
+  "name": "Taraba State Specialist Hospital, Jalingo Laboratory",
+  "id": 116772335
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Taraba",
+  "name": "Federal Medical Centre, Jalingo Laboratory",
+  "id": 116772336
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Yobe",
+  "name": "State Specialist Hospital, Damaturu, Laboratory",
+  "id": 116712306
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Yobe",
+  "name": "University Teaching Hospital Laboratory",
+  "id": 116773161
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Yobe",
+  "name": "Nguru Federal Medical Centre",
+  "id": 135586
+ },
+ {
+  "disease": "COVID- 19",
+  "state": "Zamfara",
+  "name": "Federal Medical Centre Gusau Laboratory",
+  "id": 14560195
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Abia",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Adamawa",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Akwa Ibom",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Anambra",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bauchi",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Bayelsa",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Benue",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Borno",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Cross River",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Delta",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ebonyi",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Edo",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ekiti",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Enugu",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "FCT",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Gombe",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Imo",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Jigawa",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kaduna",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kano",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Katsina",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kebbi",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kogi",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Kwara",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Lagos",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Nasarawa",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Niger",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ogun",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Ondo",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Osun",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Oyo",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Plateau",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Rivers",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Sokoto",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Taraba",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Yobe",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Alex Ekwueme Federal University Teaching Hospital (AE-FUTHA) Laboratory",
+  "id": 287852
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Centre for Infectious Disease and Research (CIDR) BUK",
+  "id": 1848276
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Molecular Genetics and Infectious Diseases Research laboratory (MOGID), ATBUTH",
+  "id": 273472
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Federal Medical Centre (FMC) Owo Laboratory",
+  "id": 178553
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "FMC, Jalingo Molecular Lab",
+  "id": 60863456
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Irrua Specialist Teaching Hospital (ISTH)",
+  "id": 136527
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "National Reference Laboratory (NRL), Abuja",
+  "id": 136529
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "Center for Human and Zoonotic Virology (CHAZVY), LUTH",
+  "id": 116712133
+ },
+ {
+  "disease": "Lassa Fever",
+  "state": "Zamfara",
+  "name": "ACEGID - African Centre of Excellence for Genomics of Infectious Diseases, Osun State",
+  "id": 136531
+ }
+]

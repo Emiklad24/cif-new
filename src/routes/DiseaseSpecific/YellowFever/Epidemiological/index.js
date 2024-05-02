@@ -18,7 +18,7 @@ const Epidemiological = ({ form }) => {
   };
 
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    
   };
 
   const { data: allLookup } = useFetchAllLookup();
@@ -76,7 +76,7 @@ const Epidemiological = ({ form }) => {
               >
                 <Radio.Group buttonStyle="solid">
                   <Radio.Button value="1">1</Radio.Button>
-                  <Radio.Button value="2">2</Radio.Button>
+                  <Radio.Button value="2+">2+</Radio.Button>
                 </Radio.Group>
               </ClearableFormItem>
             </Col>
@@ -225,9 +225,27 @@ const Epidemiological = ({ form }) => {
                 options={allLookup?.present_condition_type || []}
                 valueProperty="id"
                 labelProperty="value"
+                name="outcome"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
               />
             </ClearableFormItem>
           </Col>
+          {formValues?.outcome === "DEAD" && (
+            <Col lg={12} md={12} sm={24}>
+              <ClearableFormItem
+                setFormValues={setFormValues}
+                form={form}
+                label="Date of death:"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 24 }}
+                name="dateOfDeath"
+              >
+                <CustomDatePicker form={form} name="dateOfDeath" />
+              </ClearableFormItem>
+            </Col>
+          )}
         </Row>
       </Panel>
     </Collapse>
