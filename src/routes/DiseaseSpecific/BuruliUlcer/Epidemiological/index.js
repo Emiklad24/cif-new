@@ -18,11 +18,11 @@ const comorbidityOption = [
 const Epidemiological = () => {
   const { Panel } = Collapse;
   const onChange = (value) => {
-    
+
   };
 
   const [formValues, setFormValues] = useState({});
-  ;
+  console.log(formValues, "formValues");
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({

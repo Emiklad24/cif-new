@@ -584,9 +584,10 @@ const App = () => {
 
     try {
       // Update or create sormas case
+      const _userId = userId || "";
       const updateAction = isUpdate
         ? updateSormasCaseAction(sormasCaseUuid, { ...reconstructedPayload })
-        : createSormasCaseAction({ userId, ...reconstructedPayload });
+        : createSormasCaseAction({ userId: _userId, ...reconstructedPayload });
 
       // Api call
       console.log(reconstructedPayload);
@@ -599,7 +600,7 @@ const App = () => {
           : "Case created successfully",
       });
 
-      // if (!isUpdate) resetForm();
+      if (!isUpdate) resetForm();
       setFormIsLoading(false);
     } catch (error) {
       const { message, validationMessages } = error;
@@ -640,9 +641,22 @@ const App = () => {
     });
 
     if (!reset) return;
-    // resetForm();
+    resetForm();
+  };
 
-    // clear the form but except this fields
+  const resetForm = () => {
+    setAgeYear(0);
+    setAgeMonth(0);
+    setAgeDay(0);
+    setEpidNumberAddon("");
+    setComponentDisabled(false);
+
+    // setSelectedLga(null);
+    // setSelectedState(null);
+    // setFormValues({});
+    // setResidenceLga("");
+    // setPlaceOfDetection("");
+    // form.resetFields();
 
     const preservedValues = [
       "dateOfReportReportingAreas",
@@ -659,35 +673,11 @@ const App = () => {
     ];
     const _formValues = form.getFieldsValue(true);
 
-    // remove the preserved values from the form values
-    // const filteredFormValues = Object.keys(_formValues)
-    //   .filter((key) => !preservedValues.includes(key))
-    //   .reduce((obj, key) => {
-    //     obj[key] = _formValues[key];
-    //     return obj;
-    //   }
-    //   , {});
     Object.keys(_formValues).forEach((key) => {
       if (!preservedValues.includes(key)) {
         form.setFieldsValue({ [key]: undefined });
       }
     });
-
-  };
-
-  const resetForm = () => {
-    setSelectedLga(null);
-    setSelectedState(null);
-    setFormValues({});
-    setAgeYear(0);
-    setAgeMonth(0);
-    setAgeDay(0);
-    setEpidNumberAddon("");
-    setFormValues({});
-    setResidenceLga("");
-    setPlaceOfDetection("");
-    setComponentDisabled(false);
-    form.resetFields();
   };
 
   /**

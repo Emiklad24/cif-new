@@ -23,11 +23,12 @@ const { Option } = Select;
 
 const LaboratoryInformation = ({ form }) => {
   const [testinglaboratory_type, settestingLaboratory] = useState("");
+  console.log(testinglaboratory_type, "formValues");
   const { Panel } = Collapse;
   const [isDatePickerDisabled] = useState(false);
 
   const onChange = (value) => {
-  
+
     
   };
 
