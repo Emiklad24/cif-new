@@ -34,8 +34,6 @@ const LaboratoryInformation = ({ form }) => {
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-
-
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
@@ -52,10 +50,19 @@ const LaboratoryInformation = ({ form }) => {
 
   const { data: allLookup } = useFetchAllLookup();
 
+  const dateResultReleased =
+    formValues?.dateSpecimenReceivedCsf ||
+    formValues?.dateResultReleasedCsfPcr ||
+    formValues?.dateResultReleasedCsfRdt ||
+    formValues?.dateResultReleasedCsfCulture;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
+
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   const testConductedOption = [
     {
@@ -379,9 +386,10 @@ const LaboratoryInformation = ({ form }) => {
                           </Col>
                         )}
 
-
                       {formValues?.specimenType?.length >= 1 &&
-                        (formValues?.specimenConditionCsf === "adequate" || formValues?.specimenConditionCsf === "not adequate" )&& (
+                        (formValues?.specimenConditionCsf === "adequate" ||
+                          formValues?.specimenConditionCsf ===
+                            "not adequate") && (
                           <Col lg={12} md={12} sm={24}>
                             <ClearableFormItem
                               collectFormName={true}

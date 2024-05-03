@@ -27,11 +27,9 @@ const LaboratoryInformation = ({ form }) => {
     }
   }, [userRole]);
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
- 
+
 
   const conditionOfSampleOptions = ["Adequate", "Not adequate"];
 

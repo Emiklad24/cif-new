@@ -56,7 +56,7 @@ const LaboratoryInformation = ({ form }) => {
       [inputName]: value,
     }));
   };
-  // QUSETW-E6J5QG-X6ZQOQ-OMSVKBTM
+  //TODO QUSETW-E6J5QG-X6ZQOQ-OMSVKBTM: Edit role demo
   const dateResultReleased = formValues?.dateResultReleasedStool || formValues?.dateResultReleasedRDT || formValues?.dateResultReleasedRectalSwab || formValues?.dateResultReleasedRectalSwabMicroscopy;
 
   // i want to check if any of this date has value and if it does, i want to set a true value to the hasDateResultReleased

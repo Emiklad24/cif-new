@@ -746,7 +746,7 @@ const App = () => {
     await handleStateChange(sormasCase.stateOfReporting, "stateOfReporting");
     await handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
     await onChangeDisease(sormasCase?.diseaseName, false);
-console.log(sormasCase?.dateOfBirthPersonalInformation, "sormasCase?.dateOfBirthPersonalInformation")
+
     getAgeFromDob(sormasCase?.dateOfBirthPersonalInformation, false);
     setAgeYear(sormasCase?.age);
     setIsYearDisabled(true);
