@@ -274,7 +274,7 @@ const App = () => {
    * @description Function to check if date1 is before date2
    */
   function isDateBefore(date1, date2) {
-    console.log(date1, date2, 'hello')
+    if (!date1 || !date2) return false;
 
     // Split the dates into day, month, and year
     // const [day1, month1, year1] = date1?.split("-")?.map(Number);
