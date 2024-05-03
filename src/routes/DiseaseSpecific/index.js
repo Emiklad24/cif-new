@@ -311,7 +311,6 @@ const App = () => {
   const onFinish = async (fieldsValue) => {
     setFormIsLoading(true);
 
-    // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
       fieldsValue.epidNumber = "";
     }
@@ -663,6 +662,7 @@ const App = () => {
       "dateOfNotificationReportingAreas",
       "dateOfInvestigationReportingAreas",
     ];
+
     const _formValues = form.getFieldsValue(true);
 
     Object.keys(_formValues).forEach((key) => {
@@ -746,7 +746,7 @@ const App = () => {
     await handleStateChange(sormasCase.stateOfReporting, "stateOfReporting");
     await handleLgaChange(sormasCase.lgaOfReporting, "lgaOfReporting");
     await onChangeDisease(sormasCase?.diseaseName, false);
-
+console.log(sormasCase?.dateOfBirthPersonalInformation, "sormasCase?.dateOfBirthPersonalInformation")
     getAgeFromDob(sormasCase?.dateOfBirthPersonalInformation, false);
     setAgeYear(sormasCase?.age);
     setIsYearDisabled(true);
@@ -1608,7 +1608,7 @@ const App = () => {
                             setEpidNumberIsDisabled(e.target.checked);
                           }}
                           value="epidNumberIsDisabled"
-                          disabled={userRoleFromUrl !== USER_ROLE.EDIT}
+                          // disabled={userRoleFromUrl !== USER_ROLE.EDIT}
                         />
                         <ClearableFormItem
                           form={form}

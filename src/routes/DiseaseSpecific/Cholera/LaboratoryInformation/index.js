@@ -4,13 +4,13 @@ import CustomDatePicker from "components/Custom/CustomDatePicker";
 import DynamicRadio from "components/Custom/DynamicRadio";
 import DynamicSelect from "components/Custom/DynamicSelect";
 import { USER_ROLE } from "constants/ActionTypes";
+import { filterLabByStateAndDisease } from "constants/AllLaboratory";
 import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import useFormStore from "store/useFormStore";
 import "styles/pages/form.less";
 import { useShallow } from "zustand/react/shallow";
-import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
-import useFormStore from "../../../../store/useFormStore";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -30,9 +30,7 @@ const LaboratoryInformation = ({ form }) => {
     }
   }, [userRole]);
 
-  const onChange = (value) => {
-
-  };
+  const onChange = (value) => {};
 
   const customDividerStyle = {
     "&.ant-divider-inner-text": {
@@ -52,20 +50,23 @@ const LaboratoryInformation = ({ form }) => {
 
   const { data: allLookup } = useFetchAllLookup();
 
-
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
   };
+  // QUSETW-E6J5QG-X6ZQOQ-OMSVKBTM
+  const dateResultReleased = formValues?.dateResultReleasedStool || formValues?.dateResultReleasedRDT || formValues?.dateResultReleasedRectalSwab || formValues?.dateResultReleasedRectalSwabMicroscopy;
 
-
+  // i want to check if any of this date has value and if it does, i want to set a true value to the hasDateResultReleased
+  const hasDateResultReleased = dateResultReleased ? true : false;
 
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased)
 
   const typeOfTestDoneStoolOption = [
     {
@@ -897,7 +898,7 @@ const LaboratoryInformation = ({ form }) => {
                             label="Date result released"
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
-                            name="dateResultReleasedRectalSwab"
+                            name="dateResultReleasedRectalSwabMicroscopy"
                             rules={[
                               {
                                 required: true,
@@ -907,7 +908,7 @@ const LaboratoryInformation = ({ form }) => {
                           >
                             <CustomDatePicker
                               disabled={labComponentDisabled}
-                              name="dateResultReleasedRectalSwab"
+                              name="dateResultReleasedRectalSwabMicroscopy"
                               form={form}
                             />
                           </ClearableFormItem>
