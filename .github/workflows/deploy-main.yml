@@ -23,7 +23,7 @@ jobs:
         run: yarn install
 
       - name: Build project
-        run: CI=false yarn build
+        run: yarn build
 
       - name: Deploy to staging
         uses: burnett01/rsync-deployments@7.0.1
