@@ -274,16 +274,20 @@ const App = () => {
    * @description Function to check if date1 is before date2
    */
   function isDateBefore(date1, date2) {
+    console.log(date1, date2, 'hello')
+
     // Split the dates into day, month, and year
-    const [day1, month1, year1] = date1?.split("-")?.map(Number);
-    const [day2, month2, year2] = date2?.split("-")?.map(Number);
+    // const [day1, month1, year1] = date1?.split("-")?.map(Number);
+    // const [day2, month2, year2] = date2?.split("-")?.map(Number);
 
-    // Create Date objects for comparison
-    const dateObj1 = new Date(year1, month1 - 1, day1); // Month is 0-based
-    const dateObj2 = new Date(year2, month2 - 1, day2); // Month is 0-based
+    // // Create Date objects for comparison
+    // const dateObj1 = new Date(year1, month1 - 1, day1); // Month is 0-based
+    // const dateObj2 = new Date(year2, month2 - 1, day2); // Month is 0-based
 
-    // Compare the dates
-    return dateObj1 < dateObj2;
+    // // Compare the dates
+    // return dateObj1 < dateObj2;
+    // check if date1 is before date2 using moment
+    return moment(date1).isBefore(date2);
   }
 
   /**
