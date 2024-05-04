@@ -93,9 +93,9 @@ const App = () => {
   const [selectedLga, setSelectedLga] = useState(null);
   const [program, setProgram] = useState("");
   const [place_of_detection, setPlaceOfDetection] = useState("");
-  const [ageYear, setAgeYear] = useState();
-  const [ageMonth, setAgeMonth] = useState();
-  const [ageDay, setAgeDay] = useState();
+  const [ageYear, setAgeYear] = useState("");
+  const [ageMonth, setAgeMonth] = useState("");
+  const [ageDay, setAgeDay] = useState("");
   const [epidNumberIsDisabled, setEpidNumberIsDisabled] = useState(false);
   const [residenceLga, setResidenceLga] = useState("");
   const [epidNumberAddon, setEpidNumberAddon] = useState("");
@@ -181,7 +181,10 @@ const App = () => {
    * @description Get date of birth from age
    */
   const getAgeFromDob = (dateString, notInitialLoad = true) => {
-    if (!dateString) return;
+    if (!dateString) {
+      setAgeDay("");
+      return;
+    }
 
     const formattedDate =
       typeof dateString === "string"
@@ -209,10 +212,10 @@ const App = () => {
       ageDay += 30;
     }
 
-    setAgeMonth(ageMonth);
-    setAgeDay(ageDay);
     // update this field if it is not the initial load
     if (notInitialLoad) {
+      setAgeMonth(ageMonth);
+      setAgeDay(ageDay);
       setAgeYear(ageYear);
 
       form.setFieldsValue({
@@ -227,26 +230,58 @@ const App = () => {
    * @function generateDobFromAge
    * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
    */
-  const generateDobFromAge = async (e) => {
-    const year = e.target.value;
-    setAgeYear(year);
-    if (year) {
+  const generateDobFromAge = async () => {
+    if (ageYear || ageMonth || ageDay) {
       const calculatedDate = moment()
-        .subtract(year, "years")
-        .set({ month: 0, date: 1 });
+        .subtract(ageYear || "0", "years")
+        .subtract(ageMonth || "0", "months")
+        .subtract(ageDay || "0", "days");
       setIsDatePickerDisabled(true);
-      setAgeMonth(0);
-      setAgeDay(0);
       // convert the date to the format DD-MM-YYYY
       const formattedDate = moment(calculatedDate).format(DATE_FORMAT);
       form.setFieldsValue({
         dateOfBirthPersonalInformation: formattedDate,
-        age: year,
+        age: ageYear,
       });
       return;
     }
     form.setFieldsValue({ dateOfBirthPersonalInformation: null });
     setIsDatePickerDisabled(false);
+  };
+
+  const __setAgeYear = (e) => {
+    const value = e.target.value;
+    if (typeof Number(value) !== "number" && isNaN(value)) {
+      return;
+    }
+    setAgeYear(value);
+    generateDobFromAge();
+  };
+
+  const __setAgeMonth = (e) => {
+    const value = e.target.value;
+    if (typeof Number(value) !== "number" && isNaN(value)) {
+      return;
+    }
+
+    if (Number(value) < 0 || Number(value) > 11) {
+      return;
+    }
+    setAgeDay(value);
+    generateDobFromAge();
+  };
+
+  const __setAgeDay = (e) => {
+    const value = e.target.value;
+    if (typeof Number(value) !== "number" && isNaN(value)) {
+      return;
+    }
+
+    if (Number(value) < 0 || Number(value) > 30) {
+      return;
+    }
+    setAgeDay(value);
+    generateDobFromAge();
   };
 
   /**
@@ -1432,7 +1467,7 @@ const App = () => {
                                 <Input
                                   placeholder="0"
                                   value={ageYear}
-                                  onChange={generateDobFromAge}
+                                  onChange={__setAgeYear}
                                   disabled={isYearDisabled}
                                   addonAfter={"Est. Years"}
                                 />
@@ -1445,9 +1480,9 @@ const App = () => {
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  placeholder="0"
+                                  disabled={!ageYear ? true : false}
                                   value={ageMonth}
-                                  disabled
+                                  onChange={__setAgeMonth}
                                   addonAfter={"Est. Month"}
                                 />
                               </Tooltip>
@@ -1459,10 +1494,10 @@ const App = () => {
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  placeholder="0"
                                   value={ageDay}
-                                  disabled
+                                  disabled={!ageMonth ? true : false}
                                   addonAfter={"Est. Days"}
+                                  onChange={__setAgeDay}
                                 />
                               </Tooltip>
                             </Col>
