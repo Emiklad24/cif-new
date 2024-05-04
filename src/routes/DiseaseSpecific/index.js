@@ -367,7 +367,7 @@ const App = () => {
       fieldsValue?.dateOfBirthPersonalInformation &&
       isDateBefore(
         fieldsValue?.dateOfBirthPersonalInformation,
-        fieldsValue?.dateOfReportReportingAreas,
+        fieldsValue?.dateOfReportReportingAreas
       )
     ) {
       notification.warning({
@@ -376,7 +376,6 @@ const App = () => {
       setFormIsLoading(false);
       return;
     }
-
 
     if (
       fieldsValue?.dateOfNotificationReportingAreas &&
@@ -721,6 +720,26 @@ const App = () => {
         form.setFieldsValue({ [key]: undefined });
       }
     });
+
+    form.setFieldsValue({
+      dateOfOnset: undefined,
+      dateOfNotificationReportingAreas: undefined,
+      dateOfInvestigationReportingAreas: undefined,
+      dateOfReportReportingAreas: undefined,
+      dateOfBirthPersonalInformation: undefined,
+      dateSpecimenCollected: undefined,
+      dateSpecimenSent: undefined,
+      dateSpecimenReceivedCsf: undefined,
+      dateResultReleasedCsfPcr: undefined,
+      dateOfFirstVaccination: undefined,
+      dateOfSecondVaccination: undefined,
+      dateOfLastVaccination: undefined,
+      dateOfVaccination: undefined,
+      dateFirstVaccinationInfluenza: undefined,
+      dateSecondVaccinationInfluenza: undefined,
+      dateOfFirstVaccinationCovid: undefined,
+      dateOfSecondVaccinationCovid: undefined,
+    });
   };
 
   /**
@@ -981,7 +1000,7 @@ const App = () => {
 
   // set the ward of reporting if the lga id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid || !userWardId) return;
+    if (sormasCase?.applicationUuid || !userStateId || !userLgaId) return;
     if (wardQuery?.isFetched) {
       form.setFieldsValue({
         wardOfReporting: Number(userWardId),
@@ -991,7 +1010,13 @@ const App = () => {
 
   // set the place of detection if the health facility id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid || !userFacilityId) return;
+    if (
+      sormasCase?.applicationUuid ||
+      !userFacilityId ||
+      !userStateId ||
+      !userLgaId || !userWardId
+    )
+      return;
     if (AllHealthFacilitiesQuery?.data?.length > 0) {
       form.setFieldsValue({
         placeOfDetectionFacility: Number(userFacilityId),
