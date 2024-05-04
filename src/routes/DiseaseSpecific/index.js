@@ -255,7 +255,6 @@ const App = () => {
       return;
     }
     setAgeYear(value);
-    generateDobFromAge();
   };
 
   const __setAgeMonth = (e) => {
@@ -264,11 +263,7 @@ const App = () => {
       return;
     }
 
-    if (Number(value) < 0 || Number(value) > 11) {
-      return;
-    }
-    setAgeDay(value);
-    generateDobFromAge();
+    setAgeMonth(value);
   };
 
   const __setAgeDay = (e) => {
@@ -277,12 +272,48 @@ const App = () => {
       return;
     }
 
-    if (Number(value) < 0 || Number(value) > 30) {
-      return;
-    }
     setAgeDay(value);
-    generateDobFromAge();
   };
+
+  function formatDate(date) {
+    // Pad the month and day with leading zeros
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    // Combine the parts into a date string
+    return `${day}-${month}-${year}`;
+  }
+
+  function getDateInHistory(yearsAgo="", monthsAgo, daysAgo) {
+    console.log(yearsAgo, monthsAgo, daysAgo)
+
+    if (!yearsAgo && !monthsAgo && !daysAgo) {
+      return
+    } 
+    // Get today's date
+    const today = new Date();
+
+    // Calculate the date in history
+    const historyDate = new Date(
+      today.getFullYear() - yearsAgo,
+      today.getMonth() - monthsAgo,
+      today.getDate() - daysAgo
+    );
+
+    console.log("Hey, I'm here oo", formatDate(historyDate));
+
+    form.setFieldsValue({
+      dateOfBirthPersonalInformation: formatDate(historyDate),
+      age: ageYear,
+    });
+    // Format the date
+    return formatDate(historyDate);
+  }
+
+  useEffect(() => {
+    getDateInHistory(ageYear, ageMonth, ageDay);
+  }, [ageYear, ageMonth, ageDay]);
 
   /**
    * -----------------------------------------
@@ -368,7 +399,7 @@ const App = () => {
       fieldsValue?.dateOfBirthPersonalInformation &&
       isDateBefore(
         fieldsValue?.dateOfBirthPersonalInformation,
-        fieldsValue?.dateOfReportReportingAreas,
+        fieldsValue?.dateOfReportReportingAreas
       )
     ) {
       notification.warning({
@@ -377,7 +408,6 @@ const App = () => {
       setFormIsLoading(false);
       return;
     }
-
 
     if (
       fieldsValue?.dateOfNotificationReportingAreas &&
@@ -1481,7 +1511,7 @@ const App = () => {
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  placeholder="0"
+                                  
                                   value={ageYear}
                                   onChange={__setAgeYear}
                                   disabled={isYearDisabled}
@@ -1496,7 +1526,7 @@ const App = () => {
                                 arrowPointAtCenter
                               >
                                 <Input
-                                  disabled={!ageYear ? true : false}
+                                  // disabled={!ageYear ? true : false}
                                   value={ageMonth}
                                   onChange={__setAgeMonth}
                                   addonAfter={"Est. Month"}
