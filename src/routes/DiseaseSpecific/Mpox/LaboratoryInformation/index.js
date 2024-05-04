@@ -41,11 +41,7 @@ const LaboratoryInformation = ({ form }) => {
   );
   const { data: allLookup } = useFetchAllLookup();
 
-
-
   const handleUpdateInputValues = (inputName, value) => {
-
-
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,

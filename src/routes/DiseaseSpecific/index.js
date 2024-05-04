@@ -671,9 +671,9 @@ const App = () => {
   };
 
   const resetForm = () => {
-    setAgeYear(0);
-    setAgeMonth(0);
-    setAgeDay(0);
+    setAgeYear("");
+    setAgeMonth("");
+    setAgeDay("");
     setEpidNumberAddon("");
     setComponentDisabled(false);
 
@@ -685,7 +685,7 @@ const App = () => {
     // form.resetFields();
 
     const preservedValues = [
-      "dateOfReportReportingAreas",
+      // "dateOfReportReportingAreas",
       "stateOfReporting",
       "stateOfReporting",
       "lgaOfReporting",
@@ -694,8 +694,8 @@ const App = () => {
       "placeOfDetectionFacility",
       "placeDescription",
       "notifiedBy",
-      "dateOfNotificationReportingAreas",
-      "dateOfInvestigationReportingAreas",
+      // "dateOfNotificationReportingAreas",
+      // "dateOfInvestigationReportingAreas",
     ];
 
     const _formValues = form.getFieldsValue(true);
