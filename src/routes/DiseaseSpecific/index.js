@@ -230,24 +230,7 @@ const App = () => {
    * @function generateDobFromAge
    * @description when the year field has a year calculate the date for the datepicker disable the datepicker field else set it to empty and enable the datepicker field
    */
-  const generateDobFromAge = async () => {
-    if (ageYear || ageMonth || ageDay) {
-      const calculatedDate = moment()
-        .subtract(ageYear || "0", "years")
-        .subtract(ageMonth || "0", "months")
-        .subtract(ageDay || "0", "days");
-      setIsDatePickerDisabled(true);
-      // convert the date to the format DD-MM-YYYY
-      const formattedDate = moment(calculatedDate).format(DATE_FORMAT);
-      form.setFieldsValue({
-        dateOfBirthPersonalInformation: formattedDate,
-        age: ageYear,
-      });
-      return;
-    }
-    form.setFieldsValue({ dateOfBirthPersonalInformation: null });
-    setIsDatePickerDisabled(false);
-  };
+  
 
   const __setAgeYear = (e) => {
     const value = e.target.value;
@@ -289,6 +272,10 @@ const App = () => {
     console.log(yearsAgo, monthsAgo, daysAgo)
 
     if (!yearsAgo && !monthsAgo && !daysAgo) {
+      form.setFieldsValue({
+        dateOfBirthPersonalInformation:null,
+        
+      });
       return
     } 
     // Get today's date
@@ -301,7 +288,7 @@ const App = () => {
       today.getDate() - daysAgo
     );
 
-    console.log("Hey, I'm here oo", formatDate(historyDate));
+  
 
     form.setFieldsValue({
       dateOfBirthPersonalInformation: formatDate(historyDate),
