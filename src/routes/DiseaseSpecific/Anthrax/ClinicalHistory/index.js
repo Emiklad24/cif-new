@@ -45,10 +45,8 @@ const ClinicalHistory = ({ form }) => {
   const { Panel } = Collapse;
   const [isDatePickerDisabled] = useState(false);
 
-  const [hasBaselineSecrum] = useState(null);
-
   const onChange = (value) => {
-  
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));

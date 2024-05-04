@@ -8,7 +8,7 @@ import {
   Input,
   Radio,
   Row,
-  Select
+  Select,
 } from "antd";
 import moment from "moment";
 import React, { useState } from "react";
@@ -26,27 +26,29 @@ const testingLaboratoryData = [
 
 const LaboratoryInformation = ({ form }) => {
   const [testinglaboratory_type, settestingLaboratory] = useState("");
+  console.log(testinglaboratory_type, "formValues");
   const { Panel } = Collapse;
   const [isDatePickerDisabled] = useState(false);
 
-  const onChange = (value) => {
-
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
     }));
 
-
-    if (formValues?.sampleCollected === "no" || formValues?.sampleCollected === "unknown") {
-   
+    if (
+      formValues?.sampleCollected === "no" ||
+      formValues?.sampleCollected === "unknown"
+    ) {
       form.setFieldsValue({
-        dateSpecimenCollected: null, specimenCollected: null, dateSpecimenSent: null, nameOfTestingLaboratory: null
+        dateSpecimenCollected: null,
+        specimenCollected: null,
+        dateSpecimenSent: null,
+        nameOfTestingLaboratory: null,
       });
     }
   };
@@ -128,7 +130,8 @@ const LaboratoryInformation = ({ form }) => {
                         label: "Swab",
                         value: "swab",
                       },
-                      { label: "Fine Needle Aspirates", value: "Fna" }, { label: "Biopsy", value: "Biopsy" }
+                      { label: "Fine Needle Aspirates", value: "Fna" },
+                      { label: "Biopsy", value: "Biopsy" },
                     ]}
                     name="sampleType"
                     onChange={(value) =>
@@ -211,26 +214,30 @@ const LaboratoryInformation = ({ form }) => {
                       options={
                         formValues?.sampleType?.length >= 1
                           ? [
-                            {
-                              label: "Swab",
-                              value: "Swab",
-                            },
-                            { label: "Fine Needle Aspirates", value: "Fine Needle Aspirates" },{label: "Biopsy",value: "Biopsy"}
-                          ]
+                              {
+                                label: "Swab",
+                                value: "Swab",
+                              },
+                              {
+                                label: "Fine Needle Aspirates",
+                                value: "Fine Needle Aspirates",
+                              },
+                              { label: "Biopsy", value: "Biopsy" },
+                            ]
                           : formValues?.sampleType?.length === 1 &&
                             formValues?.sampleType?.includes(
                               "Cerebrospinal fluid"
                             )
-                            ? [
+                          ? [
                               {
                                 label: "Cerebrospinal fluid",
                                 value: "Cerebrospinal fluid",
                               },
                             ]
-                            : formValues?.sampleType?.length === 1 &&
-                              formValues?.sampleType?.includes("Blood")
-                              ? [{ label: "Blood", value: "Blood" }]
-                              : null
+                          : formValues?.sampleType?.length === 1 &&
+                            formValues?.sampleType?.includes("Blood")
+                          ? [{ label: "Blood", value: "Blood" }]
+                          : null
                       }
                       name="specimenReceived"
                     />
@@ -274,7 +281,7 @@ const LaboratoryInformation = ({ form }) => {
                     placeholder="Enter Lab ID"
                     id="labid"
                     name="labid"
-                    onChange={(e) => { }}
+                    onChange={(e) => {}}
                   />
                 </Form.Item>
               </Col>
@@ -318,16 +325,19 @@ const LaboratoryInformation = ({ form }) => {
                     <CheckboxGroup
                       options={
                         formValues?.sampleType?.length === 1 &&
-                          formValues?.sampleType[0] === "Cerebrospinal fluid"
+                        formValues?.sampleType[0] === "Cerebrospinal fluid"
                           ? [
-                            { label: "PCR", value: "pcr" },
-                            { label: "Culture", value: "culture" },
-                          ]
+                              { label: "PCR", value: "pcr" },
+                              { label: "Culture", value: "culture" },
+                            ]
                           : [
-                            { label: "PCR", value: "pcr" },
-                            { label: "Histopathology", value: "histopathology" },
-                            { label: "Culture", value: "culture" },
-                          ]
+                              { label: "PCR", value: "pcr" },
+                              {
+                                label: "Histopathology",
+                                value: "histopathology",
+                              },
+                              { label: "Culture", value: "culture" },
+                            ]
                       }
                       name="testConducted"
                       onChange={(value) =>
@@ -605,4 +615,3 @@ const LaboratoryInformation = ({ form }) => {
   );
 };
 export default LaboratoryInformation;
-

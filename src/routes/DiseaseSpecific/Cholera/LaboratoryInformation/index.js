@@ -8,9 +8,9 @@ import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
+import { useShallow } from "zustand/react/shallow";
 import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
 import useFormStore from "../../../../store/useFormStore";
-import { useShallow } from "zustand/react/shallow";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -31,7 +31,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    
+
   };
 
   const customDividerStyle = {
@@ -51,7 +51,7 @@ const LaboratoryInformation = ({ form }) => {
   );
 
   const { data: allLookup } = useFetchAllLookup();
- 
+
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -646,7 +646,7 @@ const LaboratoryInformation = ({ form }) => {
                               <CustomDatePicker
                                 disabled={labComponentDisabled}
                                 form={form}
-                                name="dateResultReleasedStool"
+                                name="dateResultReleasedRDT"
                               />
                             </ClearableFormItem>
                           </Col>

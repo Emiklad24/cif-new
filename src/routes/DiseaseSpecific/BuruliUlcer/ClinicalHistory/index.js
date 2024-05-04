@@ -1,37 +1,24 @@
-import {
-  Checkbox,
-  Col,
-  Collapse,
-  Form,
-  Input,
-  Radio,
-  Row
-} from 'antd';
-import React, { useState } from 'react';
+import { Checkbox, Col, Collapse, Form, Input, Radio, Row } from "antd";
+import React, { useState } from "react";
 import "styles/pages/form.less";
 
-const ClinicalHistory = () => {;
+const ClinicalHistory = () => {
   const { Panel } = Collapse;
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState({});
-  
+  console.log(formValues, "formValues");
 
   const handleUpdateInputValues = (inputName, value) => {
-
     setFormValues((previousState) => ({
       ...previousState,
-      [inputName]: value
-
-    }))
-
-  }
+      [inputName]: value,
+    }));
+  };
 
   return (
-    <Collapse defaultActiveKey={['1']} onChange={onChange}>
+    <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Clinical history: Sign and Symptoms" key="1">
         <Row>
           <Col lg={8} md={8} sm={24}>
@@ -47,7 +34,12 @@ const ClinicalHistory = () => {;
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              >
                 <Radio.Button value="yes">Yes</Radio.Button>
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -68,7 +60,12 @@ const ClinicalHistory = () => {;
                 },
               ]}
             >
-              <Radio.Group buttonStyle="solid"onChange={(e) => handleUpdateInputValues(e.target.name, e.target.value)} >
+              <Radio.Group
+                buttonStyle="solid"
+                onChange={(e) =>
+                  handleUpdateInputValues(e.target.name, e.target.value)
+                }
+              >
                 <Radio.Button value="yes">Yes</Radio.Button>
                 <Radio.Button value="no">No</Radio.Button>
                 <Radio.Button value="unknown">Unknown</Radio.Button>
@@ -164,22 +161,20 @@ const ClinicalHistory = () => {;
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
-              <Checkbox.Group buttonStyle="solid"
-                options={
-
-                  [
-                    { label: 'Upper limbs', value: 'upperLimbs' },
-                    { label: 'Lower limb ', value: 'lowerLimb' },
-                    { label: 'Abdomen ', value: 'abdomen' },
-                    { label: 'Immunocompromised conditions', value: 'Immunocompromised conditions' },
-
-                  ]
-                }
-
+              <Checkbox.Group
+                buttonStyle="solid"
+                options={[
+                  { label: "Upper limbs", value: "upperLimbs" },
+                  { label: "Lower limb ", value: "lowerLimb" },
+                  { label: "Abdomen ", value: "abdomen" },
+                  {
+                    label: "Immunocompromised conditions",
+                    value: "Immunocompromised conditions",
+                  },
+                ]}
               />
             </Form.Item>
           </Col>
-
 
           <Col lg={8} md={8} sm={24}>
             <Form.Item
@@ -200,7 +195,6 @@ const ClinicalHistory = () => {;
               </Radio.Group>
             </Form.Item>
           </Col>
-
 
           <Col lg={8} md={8} sm={24}>
             <Form.Item
@@ -223,8 +217,6 @@ const ClinicalHistory = () => {;
               />
             </Form.Item>
           </Col>
-
-
         </Row>
       </Panel>
     </Collapse>

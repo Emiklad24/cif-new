@@ -8,10 +8,9 @@ import { useState } from "react";
 const FinalClassification = ({ form }) => {
   const { Panel } = Collapse;
   const [formValues, setFormValues] = useState({});
+  console.log(formValues, "formValues")
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
