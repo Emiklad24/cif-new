@@ -1014,7 +1014,8 @@ const App = () => {
       sormasCase?.applicationUuid ||
       !userFacilityId ||
       !userStateId ||
-      !userLgaId || !userWardId
+      !userLgaId ||
+      !userWardId
     )
       return;
     if (AllHealthFacilitiesQuery?.data?.length > 0) {
@@ -1684,7 +1685,7 @@ const App = () => {
                             setEpidNumberIsDisabled(e.target.checked);
                           }}
                           value="epidNumberIsDisabled"
-                          // disabled={userRoleFromUrl !== USER_ROLE.EDIT}
+                          disabled={!(sormasCaseUuid && userRoleFromUrl === USER_ROLE.SUPER)}
                         />
                         <ClearableFormItem
                           form={form}
