@@ -7,15 +7,11 @@ const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
   const [isDatePickerDisabled] = useState(false);
 
-  const onChange = (value) => {
-    
-  };
+  const onChange = (value) => {};
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
 
   const handleUpdateInputValues = (inputName, value) => {
-    
-
     setFormValues((previousState) => ({
       ...previousState,
       [inputName]: value,
@@ -265,23 +261,21 @@ const Epidemiological = ({ form }) => {
             </Form.Item>
           </Col>
           {formValues?.contactSuspectConfirmed === "yes" && (
-            <>
-              <Col lg={12} md={12} sm={12}>
-                <Form.Item
-                  label="Epid number of the case"
-                  name="epidCase"
-                  labelCol={{ span: 24 }}
-                  wrapperCol={{ span: 12 }}
-                >
-                  <Input
-                    placeholder="Enter Epid Number of case"
-                    id="epidNumber"
-                    name="epidNumber"
-                    onChange={(e) => {}}
-                  />
-                </Form.Item>
-              </Col>
-            </>
+            <Col lg={12} md={12} sm={12}>
+              <Form.Item
+                label="Epid number of the case"
+                name="epidCase"
+                labelCol={{ span: 24 }}
+                wrapperCol={{ span: 12 }}
+              >
+                <Input
+                  placeholder="Enter Epid Number of case"
+                  id="epidNumber"
+                  name="epidNumber"
+                  onChange={(e) => {}}
+                />
+              </Form.Item>
+            </Col>
           )}
 
           <Col lg={12} md={12} sm={24}>

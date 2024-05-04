@@ -29,7 +29,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -40,7 +40,7 @@ const LaboratoryInformation = ({ form }) => {
     }))
   );
   const handleUpdateInputValues = (inputName, value) => {
-    
+
 
     setFormValues((previousState) => ({
       ...previousState,
@@ -48,12 +48,16 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
   const { data: allLookup } = useFetchAllLookup();
-  
+
+  const dateResultReleased = formValues?.dateResultReleasedBloodSerumIgm || formValues?.dateResultReleasedBloodIggA || formValues?.dateResultReleasedBloodSerumIggc || formValues?.dateResultReleasedBloodSerumPcr || formValues?.dateResultReleasedRegionalLab;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
 
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>

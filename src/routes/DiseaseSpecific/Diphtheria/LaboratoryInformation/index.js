@@ -11,9 +11,9 @@ import "styles/pages/form.less";
 import {
   filterLabByStateAndDisease,
   filterLabNRL,
-} from "../../../../constants/AllLaboratory";
+} from "constants/AllLaboratory";
 import { useShallow } from "zustand/react/shallow";
-import useFormStore from "../../../../store/useFormStore";
+import useFormStore from "store/useFormStore";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -53,10 +53,21 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
+  const dateResultReleased =
+    formValues?.dateSpecimenReceivednasopharyngeal ||
+    formValues?.dateResultReleasedSwabPcr ||
+    formValues?.dateResultReleasedNasopharyngealCultureElek ||
+    formValues?.dateSpecimenReceivednasopharyngealNRL ||
+    formValues?.dateResultReleasedSwabPcrNRL ||
+    formValues?.dateResultReleasedNasopharyngealCultureElekNRL;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
+
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   const typeOfTestDoneNasalOption = [
     {

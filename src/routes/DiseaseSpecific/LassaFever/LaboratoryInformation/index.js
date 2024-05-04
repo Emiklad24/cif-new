@@ -29,7 +29,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -42,7 +42,7 @@ const LaboratoryInformation = ({ form }) => {
   );
 
   const { data: allLookup } = useFetchAllLookup();
-  
+
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -51,10 +51,15 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
+  const dateResultReleased = formValues?.bloodDateSpecimenReceived || formValues?.breastMilkDateSpecimenReceived;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
+
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -134,7 +139,7 @@ const LaboratoryInformation = ({ form }) => {
                     ]}
                     name="specimenType"
                     onChange={(value) => {
-                 
+
                       handleUpdateInputValues("specimenType", value);
                     }}
                   />
@@ -161,7 +166,7 @@ const LaboratoryInformation = ({ form }) => {
                 </ClearableFormItem>
               </Col>
 
-              
+
               <Col lg={12} md={12} sm={24}>
                 <ClearableFormItem
                   collectFormName={true}
@@ -201,7 +206,7 @@ const LaboratoryInformation = ({ form }) => {
                   />
                 </ClearableFormItem>
               </Col>
-             
+
             </>
           )}
 
@@ -447,9 +452,7 @@ const LaboratoryInformation = ({ form }) => {
                       </Col>
                     )}
 
-                    {(formValues?.bloodPcrResult === "positive" ||
-                      formValues?.bloodPcrResult === "negative" ||
-                      formValues?.bloodPcrResult === "indeterminate") &&
+                    {(["positive", "negative", "indeterminate"].includes(formValues?.bloodPcrResult)) &&
                       formValues?.bloodSpecimenReceived === "YES" &&
                       formValues?.specimenType?.includes("blood") && (
                         <Col lg={12} md={12} sm={24}>

@@ -12,7 +12,7 @@ const Epidemiological = ({ form }) => {
   const { Panel } = Collapse;
 
   const onChange = (value) => {
-    
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -29,7 +29,7 @@ const Epidemiological = ({ form }) => {
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       <Panel header="Epidemiological Information" key="1">
         <Row>
-          <Col lg={12} sm={24}>
+           <Col lg={24} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -58,7 +58,7 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.travelledWithinLastThreeweeks === "YES" && (
-            <Col lg={12} sm={24}>
+             <Col lg={24} sm={24}>
               <ClearableFormItem
                 setFormValues={setFormValues}
                 form={form}
@@ -79,7 +79,7 @@ const Epidemiological = ({ form }) => {
             </Col>
           )}
 
-          <Col lg={12} sm={24}>
+           <Col lg={24} sm={24}>
             <ClearableFormItem
               setFormValues={setFormValues}
               form={form}
@@ -108,7 +108,7 @@ const Epidemiological = ({ form }) => {
           </Col>
 
           {formValues?.patientHaveCutaneousEruption === "YES" && (
-            <Col lg={12} sm={24}>
+             <Col lg={24} sm={24}>
               <ClearableFormItem
                 setFormValues={setFormValues}
                 form={form}

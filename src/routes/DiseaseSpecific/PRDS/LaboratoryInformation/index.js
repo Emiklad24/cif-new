@@ -48,30 +48,15 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
+  const dateResultReleased = formValues?.dateResultSentPCR || formValues?.dateResultSentOutNasal;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
+
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
-
-  // const commonOptions = [
-  //   {
-  //     label: "PCR",
-  //     value: "pcr",
-  //     disabled: disableOptions,
-  //   },
-  //   {
-  //     label: "not_done",
-  //     value: "Not Done",
-  //   },
-  // ];
-
-  // const uniqueOption =
-  //   formValues?.specimenType?.length === 1 &&
-  //   formValues?.specimenType[0] === "nSwab"
-  //     ? { label: "serology", value: "serology", disabled: disableOptions }
-  //     : { label: "RDT", value: "rdt", disabled: disableOptions };
-
-  // const options = [...commonOptions, uniqueOption];
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   const Options = [
     {

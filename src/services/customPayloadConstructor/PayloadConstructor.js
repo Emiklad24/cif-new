@@ -43,7 +43,6 @@ const constructTravelObject = async (
   internationalTravel,
   contact = contactTracingKeys
 ) => {
-
   const extractedPropertiesLocalTravel = {};
   const extractedPropertiesInternationalTravel = {};
   const extractedPropertiesContact = {};
@@ -90,7 +89,8 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
 
     nameOfTestingLaboratoryStool: newFieldsValue?.nameOfTestingLaboratoryStool,
     dateSpecimenSentStool: newFieldsValue?.dateSpecimenSentStool,
-    nameOfTestingLaboratoryRectalSwab: newFieldsValue?.nameOfTestingLaboratoryRectalSwab,
+    nameOfTestingLaboratoryRectalSwab:
+      newFieldsValue?.nameOfTestingLaboratoryRectalSwab,
     dateSpecimenSentRectalSwab: newFieldsValue?.dateSpecimenSentRectalSwab,
 
     nasalSwab: newFieldsValue?.specimenType?.includes("nasalSwab")
@@ -259,6 +259,8 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
           rectalSwabNotAdequateReason:
             newFieldsValue?.rectalSwabNotAdequateReason,
           typeOfTestDoneRectalSwab: newFieldsValue?.typeOfTestDoneRectalSwab,
+          dateResultReleasedRectalSwabMicroscopy:
+            newFieldsValue?.dateResultReleasedRectalSwabMicroscopy,
           testResultRectalSwabMicroscopy:
             newFieldsValue?.testResultRectalSwabMicroscopy,
           testResultRectalSwabCulture:
@@ -429,7 +431,7 @@ const constructPayload = async (fieldsValue, programId, labFormName) => {
             dateResultReleasedBloodSerumIgm:
               newFieldsValue?.dateResultReleasedBloodSerumIgm,
 
-              // Regional Lab Result
+            // Regional Lab Result
             dateResultReleasedRegionalLab:
               newFieldsValue?.dateResultReleasedRegionalLab,
             regionalLabResultIgm: newFieldsValue?.regionalLabResultIgm,

@@ -8,9 +8,9 @@ import useFetchAllLookup from "hooks/useFetchAllLookups.hooks";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/pages/form.less";
-import useFormStore from "../../../../store/useFormStore";
 import { useShallow } from "zustand/react/shallow";
 import { filterLabByStateAndDisease } from "../../../../constants/AllLaboratory";
+import useFormStore from "../../../../store/useFormStore";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -30,7 +30,7 @@ const LaboratoryInformation = ({ form }) => {
   }, [userRole]);
 
   const onChange = (value) => {
-    
+
   };
 
   const [formValues, setFormValues] = useState(form?.getFieldsValue(true));
@@ -42,7 +42,7 @@ const LaboratoryInformation = ({ form }) => {
   );
 
   const { data: allLookup } = useFetchAllLookup();
-  
+
 
   const handleUpdateInputValues = (inputName, value) => {
     setFormValues((previousState) => ({
@@ -51,10 +51,15 @@ const LaboratoryInformation = ({ form }) => {
     }));
   };
 
+  const dateResultReleased = formValues?.dateSpecimenReceivedNasalThroatNp || formValues?.dateResultReleasedRdt || formValues?.dateResultReleasedPcr || formValues?.dateGenomicSequencingResultReleased;
+
+  const hasDateResultReleased = dateResultReleased ? true : false;
+
   const canSeeResult =
     USER_ROLE.LAB === userRole ||
     USER_ROLE.SUPER === userRole ||
-    USER_ROLE.VIEW === userRole;
+    USER_ROLE.VIEW === userRole ||
+    (USER_ROLE.EDIT === userRole && hasDateResultReleased);
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>

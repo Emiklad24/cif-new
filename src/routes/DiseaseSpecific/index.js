@@ -377,7 +377,6 @@ const App = () => {
   const onFinish = async (fieldsValue) => {
     setFormIsLoading(true);
 
-    // if epid number is "" or null, or undefined, construct the epid number
     if (!isUpdate) {
       fieldsValue.epidNumber = "";
     }
@@ -718,9 +717,9 @@ const App = () => {
   };
 
   const resetForm = () => {
-    setAgeYear(0);
-    setAgeMonth(0);
-    setAgeDay(0);
+    setAgeYear("");
+    setAgeMonth("");
+    setAgeDay("");
     setEpidNumberAddon("");
     setComponentDisabled(false);
 
@@ -732,7 +731,7 @@ const App = () => {
     // form.resetFields();
 
     const preservedValues = [
-      "dateOfReportReportingAreas",
+      // "dateOfReportReportingAreas",
       "stateOfReporting",
       "stateOfReporting",
       "lgaOfReporting",
@@ -741,15 +740,36 @@ const App = () => {
       "placeOfDetectionFacility",
       "placeDescription",
       "notifiedBy",
-      "dateOfNotificationReportingAreas",
-      "dateOfInvestigationReportingAreas",
+      // "dateOfNotificationReportingAreas",
+      // "dateOfInvestigationReportingAreas",
     ];
+
     const _formValues = form.getFieldsValue(true);
 
     Object.keys(_formValues).forEach((key) => {
       if (!preservedValues.includes(key)) {
         form.setFieldsValue({ [key]: undefined });
       }
+    });
+
+    form.setFieldsValue({
+      dateOfOnset: undefined,
+      dateOfNotificationReportingAreas: undefined,
+      dateOfInvestigationReportingAreas: undefined,
+      dateOfReportReportingAreas: undefined,
+      dateOfBirthPersonalInformation: undefined,
+      dateSpecimenCollected: undefined,
+      dateSpecimenSent: undefined,
+      dateSpecimenReceivedCsf: undefined,
+      dateResultReleasedCsfPcr: undefined,
+      dateOfFirstVaccination: undefined,
+      dateOfSecondVaccination: undefined,
+      dateOfLastVaccination: undefined,
+      dateOfVaccination: undefined,
+      dateFirstVaccinationInfluenza: undefined,
+      dateSecondVaccinationInfluenza: undefined,
+      dateOfFirstVaccinationCovid: undefined,
+      dateOfSecondVaccinationCovid: undefined,
     });
   };
 
@@ -1011,7 +1031,7 @@ const App = () => {
 
   // set the ward of reporting if the lga id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid || !userWardId) return;
+    if (sormasCase?.applicationUuid || !userStateId || !userLgaId) return;
     if (wardQuery?.isFetched) {
       form.setFieldsValue({
         wardOfReporting: Number(userWardId),
@@ -1021,7 +1041,14 @@ const App = () => {
 
   // set the place of detection if the health facility id is present
   useEffect(() => {
-    if (sormasCase?.applicationUuid || !userFacilityId) return;
+    if (
+      sormasCase?.applicationUuid ||
+      !userFacilityId ||
+      !userStateId ||
+      !userLgaId ||
+      !userWardId
+    )
+      return;
     if (AllHealthFacilitiesQuery?.data?.length > 0) {
       form.setFieldsValue({
         placeOfDetectionFacility: Number(userFacilityId),
@@ -1689,7 +1716,7 @@ const App = () => {
                             setEpidNumberIsDisabled(e.target.checked);
                           }}
                           value="epidNumberIsDisabled"
-                          disabled={userRoleFromUrl !== USER_ROLE.EDIT}
+                          disabled={!(sormasCaseUuid && userRoleFromUrl === USER_ROLE.SUPER)}
                         />
                         <ClearableFormItem
                           form={form}
