@@ -363,6 +363,22 @@ const App = () => {
     // VALIDATE DATE OF NOTIFICATION AND DATE OF REPORT
 
     if (
+      fieldsValue?.dateOfReportReportingAreas &&
+      fieldsValue?.dateOfBirthPersonalInformation &&
+      isDateBefore(
+        fieldsValue?.dateOfBirthPersonalInformation,
+        fieldsValue?.dateOfReportReportingAreas,
+      )
+    ) {
+      notification.warning({
+        message: "Date of report cannot be before the date of birth",
+      });
+      setFormIsLoading(false);
+      return;
+    }
+
+
+    if (
       fieldsValue?.dateOfNotificationReportingAreas &&
       fieldsValue?.dateOfReportReportingAreas &&
       isDateBefore(
